@@ -10,23 +10,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4aaaa406-d169-4a7a-a02a-c4f9d7eb2ece" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/canteen_info.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/login_register_forgetpassword.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/forgot_password.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/register.jsp" afterDir="false" />
+    <list default="true" id="4aaaa406-d169-4a7a-a02a-c4f9d7eb2ece" name="更改" comment="2023.12.15&#10;- 完成了基本的登录注册页面前端&#10;- 完成了基本数据库设计与搭建&#10;- 完成了服务器的tomcat、jdk、mysql配置">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/admin_dashboard.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,12 +22,17 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jsp File" />
         <option value="CSS File" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="LogFilters">
@@ -76,6 +67,9 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -235,8 +229,20 @@
       <workItem from="1702378979978" duration="1360000" />
       <workItem from="1702398660594" duration="887000" />
       <workItem from="1702531414230" duration="17000" />
-      <workItem from="1702612923041" duration="1040000" />
+      <workItem from="1702612923041" duration="3412000" />
+      <workItem from="1702624958291" duration="1711000" />
+      <workItem from="1702631781487" duration="9000" />
+      <workItem from="1702742607223" duration="2763000" />
     </task>
+    <task id="LOCAL-00001" summary="2023.12.15&#10;- 完成了基本的登录注册页面前端&#10;- 完成了基本数据库设计与搭建&#10;- 完成了服务器的tomcat、jdk、mysql配置">
+      <option name="closed" value="true" />
+      <created>1702614254395</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1702614254395</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -247,10 +253,26 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="2023.12.15&#10;- 完成了基本的登录注册页面前端&#10;- 完成了基本数据库设计与搭建&#10;- 完成了服务器的tomcat、jdk、mysql配置" />
+    <option name="LAST_COMMIT_MESSAGE" value="2023.12.15&#10;- 完成了基本的登录注册页面前端&#10;- 完成了基本数据库设计与搭建&#10;- 完成了服务器的tomcat、jdk、mysql配置" />
   </component>
 </project>
