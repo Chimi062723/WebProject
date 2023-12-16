@@ -1,51 +1,21 @@
+<!--
+  Created by IntelliJ IDEA.
+  User: 韶光善良君
+  Date: 2023/12/13
+  Time: 0:33
+  To change this template use File | Settings | File Templates.
+需要传入的变量：
+canteens: 所有食堂信息
+users: 所有用户信息
+reviews: 所有评价信息
+communityPosts: 所有社区帖子信息
+-->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
     <title>系统管理员控制台</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            margin: 0;
-            height: 100vh;
-        }
-        #sidebar {
-            background-color: #003366;
-            color: white;
-            padding: 15px;
-            width: 200px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        #sidebar img {
-            max-width: 100%;
-            margin-bottom: 20px;
-        }
-        #sidebar a {
-            color: white;
-            text-decoration: none;
-            padding: 10px;
-            border-radius: 5px;
-            margin: 5px 0;
-            transition: background-color 0.3s;
-        }
-        #sidebar a:hover {
-            background-color: #0056b3;
-        }
-        #content {
-            flex-grow: 1;
-            padding: 20px;
-        }
-        .data-box {
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 20px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="css/admin_menu.css">
 </head>
 <body>
 <div id="sidebar">
@@ -59,13 +29,6 @@
 <div id="content">
     <!-- 这里根据选择的导航栏显示不同的内容 -->
     <!-- 首页内容 -->
-<%--    /**--%>
-<%--     * 需要传入的变量：--%>
-<%--     * canteens: 所有食堂信息--%>
-<%--     * users: 所有用户信息--%>
-<%--     * reviews: 所有评价信息--%>
-<%--     * communityPosts: 所有社区帖子信息--%>
-<%--     */--%>
     <h2>英雄不问出处，干饭不问斤数！</h2>
     <div class="data-box">食堂数量: <span>${canteens.size()}</span></div>
     <div class="data-box">用户数量: <span>${users.size()}</span></div>
