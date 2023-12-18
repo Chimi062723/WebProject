@@ -18,6 +18,7 @@ canteens: 所有食堂信息
   <title>食堂信息管理</title>
   <!-- 在这里添加CSS和JavaScript引用 -->
   <link rel="stylesheet" href="css/admin_menu.css">
+  <link rel="stylesheet" href="css/table.css">
 </head>
 <body>
 <div id="sidebar">
