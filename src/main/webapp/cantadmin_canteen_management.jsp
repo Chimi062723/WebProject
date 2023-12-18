@@ -2,22 +2,16 @@
   Created by IntelliJ IDEA.
   User: 韶光善良君
   Date: 2023/12/18
-  Time: 16:45
+  Time: 18:20
   To change this template use File | Settings | File Templates.
   需要传入的变量：
-  - _username: 用户名_
-- _unreviews: 未审核的评价信息_
-- _uncomplaints: 未处理的投诉信息_
+  canteen: 管理员管理的食堂信息
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>食堂管理员首页</title>
+    <title>Title</title>
     <link rel="stylesheet" href="css/cantadmin_menu.css">
-    <style>
-
-    </style>
-</head>
 <body>
 <div id="sidebar">
     <img src="res/logo.png" alt="USST Canteen Management System Logo">
@@ -30,18 +24,21 @@
     <a href="admin_complaint_management.jsp">投诉处理</a>
 </div>
 <div id="main-content">
-    <h1>欢迎, 食堂管理员 ${username}</h1>
-    <!-- Content blocks for dynamic data -->
-    <div>
-        <p>未处理评价: ${unreviews.size()}条</p>
-        <button>处理评价</button>
+    <h2>食堂信息维护</h2>
+    <!-- Form for canteen information maintenance -->
+    <div class="form-group">
+        <label for="canteenName">食堂名称:</label>
+        <input type="text" id="canteenName" name="canteenName" value=${canteen.name}}>
     </div>
-    <div>
-        <p>待处理的投诉: ${uncomplaints.size()}条</p>
-        <button>查看投诉</button>
+    <div class="form-group">
+        <label for="canteenLocation">食堂位置:</label>
+        <input type="text" id="canteenLocation" name="canteenLocation" value=${canteen.location}>
     </div>
-    <img src="res/1.png" alt="Dish Illustration" style="float:right; width:300px; margin-top:50px;">
+    <div class="form-group">
+        <label for="canteenHours">营业时间:</label>
+        <input type="text" id="canteenHours" name="canteenHours" value=${canteen.opentime}>
+    </div>
+    <button type="submit">保存</button>
 </div>
 </body>
 </html>
-

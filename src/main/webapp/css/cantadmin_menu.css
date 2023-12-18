@@ -3,34 +3,63 @@ body, h1, p {
     margin: 0;
     padding: 0;
 }
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    margin: 0;
+    height: 100vh;
+}
 /* Styles for the sidebar */
 #sidebar {
-    background-color: #FFA07A; /* Salmon color */
+    background-color: #ED7D31; /* Salmon color */
     color: white;
     width: 250px;
     height: 100vh;
     float: left;
     padding: 15px;
 }
+/* Sidebar navigation links */
+#sidebar a {
+    display: block;
+    color: white; /* Text color for links */
+    padding: 10px;
+    margin: 10px 0;
+    text-decoration: none; /* Removes underline from links */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#sidebar a:hover, #sidebar a:focus {
+    background-color: #ddd; /* Light grey background on hover/focus */
+    color: #333; /* Darker text color on hover/focus */
+}
+
+/* Main content styles */
+#main-content {
+    /* ... existing styles ... */
+    display: flex;
+    flex-direction: column;
+}
+
+#main-content > div {
+    background-color: #ffe; /* Light yellow background for content blocks */
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 10px; /* Rounded corners for content blocks */
+}
 #sidebar img {
-    width: 100%; /* Adjust based on your logo size */
+    max-width: 100%;
     margin-bottom: 20px;
 }
-#sidebar h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
+button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    border: none;
+    background-color: #003366; /* Dark blue background for buttons */
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
 }
-#sidebar p {
-    font-size: 18px;
-    margin-bottom: 10px;
+
+button:hover {
+    background-color: #002244; /* Slightly darker blue on hover */
 }
-/* Styles for the main content */
-#main-content {
-    margin-left: 250px; /* Same as sidebar width */
-    padding: 20px;
-}
-#main-content h1 {
-    color: #333;
-    font-size: 28px;
-}
-/* Add more styles as needed */
