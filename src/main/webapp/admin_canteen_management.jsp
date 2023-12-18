@@ -24,10 +24,10 @@ canteens: 所有食堂信息
 <div id="sidebar">
   <img src="res/logo.png" alt="USST Logo"> <!-- 修改src为实际Logo图片路径 -->
   <a href="admin_dashboard.jsp">首页</a>
-  <a href="canteen_info.jsp">食堂信息管理</a>
-  <a href="account_management.jsp">账号管理</a>
-  <a href="reviews_management.jsp">评价信息管理</a>
-  <a href="community_management.jsp">交流社区管理</a>
+  <a href="admin_canteen_management.jsp">食堂信息管理</a>
+  <a href="admin_account_management.jsp">账号管理</a>
+  <a href="admin_reviews_management.jsp">评价信息管理</a>
+  <a href="admin_community_management.jsp">交流社区管理</a>
 </div>
 <div id="content">
   <h1>食堂信息管理</h1>
