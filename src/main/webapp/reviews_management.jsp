@@ -14,6 +14,7 @@
 <head>
     <title>评价信息管理</title>
     <link rel="stylesheet" href="css/admin_menu.css">
+    <link rel="stylesheet" href="css/table.css">
     <style>
         /* Add your CSS styles here */
         /* ... */
