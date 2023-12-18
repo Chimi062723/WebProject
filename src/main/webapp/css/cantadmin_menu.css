@@ -1,0 +1,36 @@
+/* Basic reset */
+body, h1, p {
+    margin: 0;
+    padding: 0;
+}
+/* Styles for the sidebar */
+#sidebar {
+    background-color: #FFA07A; /* Salmon color */
+    color: white;
+    width: 250px;
+    height: 100vh;
+    float: left;
+    padding: 15px;
+}
+#sidebar img {
+    width: 100%; /* Adjust based on your logo size */
+    margin-bottom: 20px;
+}
+#sidebar h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+#sidebar p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+/* Styles for the main content */
+#main-content {
+    margin-left: 250px; /* Same as sidebar width */
+    padding: 20px;
+}
+#main-content h1 {
+    color: #333;
+    font-size: 28px;
+}
+/* Add more styles as needed */
