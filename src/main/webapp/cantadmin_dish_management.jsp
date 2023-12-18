@@ -1,21 +1,17 @@
 <%--
   Created by IntelliJ IDEA.
   User: 韶光善良君
-  Date: 2023/12/18
-  Time: 16:45
+  Date: 2023/12/19
+  Time: 0:41
   To change this template use File | Settings | File Templates.
-  需要传入的变量：
-  - _username: 用户名_
-- _unreviews: 未审核的评价信息_
-- _uncomplaints: 未处理的投诉信息_
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>食堂管理员首页</title>
+    <title>菜品维护</title>
     <link rel="stylesheet" href="css/cantadmin_menu.css">
+    <link rel="stylesheet" href="css/dish.css">
     <style>
-
     </style>
 </head>
 <body>
@@ -29,18 +25,19 @@
     <a href="cantadmin_vote_management.jsp">投票与收集</a>
     <a href="cantadmin_complaint_management.jsp">投诉处理</a>
 </div>
-<div id="main-content">
-    <h1>欢迎, 食堂管理员 ${username}</h1>
-    <!-- Content blocks for dynamic data -->
-    <div>
-        <p>未处理评价: ${unreviews.size()}条</p>
-        <button>处理评价</button>
+<div id="main-content" class="clearfix">
+    <!-- Dynamic generation of dish cards -->
+    <div class="dish-card">
+        <img src="res/1.png" alt="Dish Name">
+        <div class="dish-info">
+            <h3>菜品名称</h3>
+            <p>定价: 12元/份</p>
+            <p>库存: 18份</p>
+            <p>分类: 热菜</p>
+            <button class="button">修改</button>
+        </div>
     </div>
-    <div>
-        <p>待处理的投诉: ${uncomplaints.size()}条</p>
-        <button>查看投诉</button>
-    </div>
-    <img src="res/1.png" alt="Dish Illustration" style="float:right; width:300px; margin-top:50px;">
+    <!-- Repeat for other dishes -->
 </div>
 </body>
 </html>
