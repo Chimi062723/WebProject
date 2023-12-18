@@ -1,0 +1,22 @@
+.dish-card {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    width: calc(33.333% - 10px);
+    margin: 5px;
+    float: left;
+}
+.dish-card img {
+    width: 100%;
+    height: auto;
+}
+.dish-info {
+    padding: 10px;
+    background-color: #FFEFD5; /* Papaya whip color */
+}
+.dish-info h3 {
+    margin-bottom: 5px;
+}
+.dish-info p {
+    margin-bottom: 10px;
+}

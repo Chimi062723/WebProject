@@ -19,16 +19,16 @@
     <a href="cantadmin_canteen_management.jsp">食堂信息维护</a>
     <a href="cantadmin_dish_management.jsp">菜品维护</a>
     <a href="cantadmin_reviews_management.jsp">评价管理</a>
-    <a href="admin_community_management.jsp">公告管理</a>
-    <a href="admin_vote_management.jsp">投票与收集</a>
-    <a href="admin_complaint_management.jsp">投诉处理</a>
+    <a href="cantadmin_notice_management.jsp">公告管理</a>
+    <a href="cantadmin_vote_management.jsp">投票与收集</a>
+    <a href="cantadmin_complaint_management.jsp">投诉处理</a>
 </div>
 <div id="main-content">
     <h2>食堂信息维护</h2>
     <!-- Form for canteen information maintenance -->
     <div class="form-group">
         <label for="canteenName">食堂名称:</label>
-        <input type="text" id="canteenName" name="canteenName" value=${canteen.name}}>
+        <input type="text" id="canteenName" name="canteenName" value=${canteen.name}>
     </div>
     <div class="form-group">
         <label for="canteenLocation">食堂位置:</label>
