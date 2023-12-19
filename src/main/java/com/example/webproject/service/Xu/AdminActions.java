@@ -1,16 +1,16 @@
 package com.example.webproject.service.Xu;
 
-import com.example.webproject.dao.Canteen;
+import com.example.webproject.dao.Impl.CanteenDAOImpl;
 
 public class AdminActions {
    //todo:完成管理员操作部分，目前所有返回值设为空
-   void addCanteen(Canteen Canteen){
+   void addCanteen(CanteenDAOImpl Canteen){
 
    }
-   void deleteCanteen(Canteen Canteen){
+   void deleteCanteen(CanteenDAOImpl Canteen){
 
    }
-   void editCanteen(Canteen Canteen){
+   void editCanteen(CanteenDAOImpl Canteen){
 
    }
    void getAllCanteen(){
