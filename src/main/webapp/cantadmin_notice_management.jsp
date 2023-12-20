@@ -10,6 +10,7 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="css/cantadmin_menu.css">
+    <link rel="stylesheet" href="css/notice.css">
 </head>
 <body>
 <div id="sidebar">
@@ -23,9 +24,10 @@
     <a href="cantadmin_complaint_management.jsp">投诉处理</a>
 </div>
 <div id="main-content" class="clearfix">
-    <!-- Dynamic generation of dish cards -->
-
-    <!-- Repeat for other dishes -->
+    <form class="announcement-form" action="SaveAnnouncementServlet" method="post">
+        <textarea class="full-width-textarea" name="announcementContent" rows="10">这里是原本的公告信息</textarea>
+        <input type="submit" value="修改" class="btn">
+    </form>
 </div>
 </body>
 </html>

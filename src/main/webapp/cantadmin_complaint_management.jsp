@@ -10,6 +10,7 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="css/cantadmin_menu.css">
+    <link rel="stylesheet" href="css/table1.css">
 </head>
 <body>
 <div id="sidebar">
@@ -22,10 +23,24 @@
     <a href="cantadmin_vote_management.jsp">投票与收集</a>
     <a href="cantadmin_complaint_management.jsp">投诉处理</a>
 </div>
-<div id="main-content" class="clearfix">
-    <!-- Dynamic generation of dish cards -->
-
-    <!-- Repeat for other dishes -->
+<div id="main-content">
+    <h2>投诉处理</h2>
+    <!-- A table to display the complaints -->
+    <table>
+        <thead>
+        <tr>
+            <th>投诉ID</th>
+            <th>用户名称</th>
+            <th>投诉内容</th>
+            <th>投诉时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Dynamically generate rows here from the complaints data -->
+        </tbody>
+    </table>
+    <!-- You might include a form or buttons to address each complaint -->
 </div>
 </body>
 </html>
