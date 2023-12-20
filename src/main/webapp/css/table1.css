@@ -1,0 +1,34 @@
+/* Styles for tables */
+table {
+    width: 100%; /* Make the table take the full width of the content div */
+    border-collapse: collapse; /* Collapse borders */
+    margin-top: 20px; /* Add some space above the table */
+}
+
+table, th, td {
+    border: 1px solid #ddd; /* Add a light border to the table and cells */
+}
+
+th, td {
+    text-align: left; /* Align text to the left */
+    padding: 8px; /* Add padding to cells for better readability */
+}
+
+th {
+    background-color: #ed7d31; /* Color for the table headers */
+    color: white; /* Text color for the table headers */
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2; /* Zebra striping for rows */
+}
+
+tr:hover {
+    background-color: #ddd; /* Highlight on row hover */
+}
+
+/* Style for the paginator */
+.paginator {
+    text-align: center; /* Center the page numbers */
+    margin-top: 20px; /* Add some space above the paginator */
+}

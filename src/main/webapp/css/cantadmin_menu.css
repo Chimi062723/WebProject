@@ -34,18 +34,7 @@ body {
 }
 
 /* Main content styles */
-#main-content {
-    /* ... existing styles ... */
-    display: flex;
-    flex-direction: column;
-}
 
-#main-content > div {
-    background-color: #ffe; /* Light yellow background for content blocks */
-    padding: 20px;
-    margin-bottom: 10px;
-    border-radius: 10px; /* Rounded corners for content blocks */
-}
 #sidebar img {
     max-width: 100%;
     margin-bottom: 20px;

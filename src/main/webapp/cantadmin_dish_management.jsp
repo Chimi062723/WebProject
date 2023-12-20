@@ -26,6 +26,10 @@
     <a href="cantadmin_complaint_management.jsp">投诉处理</a>
 </div>
 <div id="main-content" class="clearfix">
+    <div class="content-header">
+        <input type="text" placeholder="搜索菜品..." class="search-box">
+        <button class="button add-new">新增菜品</button>
+    </div>
     <!-- Dynamic generation of dish cards -->
     <div class="dish-card">
         <img src="res/1.png" alt="Dish Name">
