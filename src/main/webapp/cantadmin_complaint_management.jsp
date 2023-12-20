@@ -4,8 +4,11 @@
   Date: 2023/12/19
   Time: 0:46
   To change this template use File | Settings | File Templates.
+  需要传入的变量：
+  compliant: 管理员处理的投诉信息
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Title</title>
@@ -37,7 +40,18 @@
         </tr>
         </thead>
         <tbody>
-        <!-- Dynamically generate rows here from the complaints data -->
+        <c:forEach var="complaint" items="${complaints}">
+            <tr>
+                <td>${complaint.id}</td>
+                <td>${complaint.username}</td>
+                <td>${complaint.content}</td>
+                <td>${complaint.timestamp}</td>
+                <td>
+                    <button onclick="location.href='edit_complaint.jsp?id=${complaint.id}'">编辑</button>
+                    <button onclick="deleteComplaint(${complaint.id})">删除</button>
+                </td>
+            </tr>
+        </c:forEach>
         </tbody>
     </table>
     <!-- You might include a form or buttons to address each complaint -->
