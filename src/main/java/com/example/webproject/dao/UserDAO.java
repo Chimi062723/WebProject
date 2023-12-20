@@ -63,17 +63,13 @@ public class UserDAO implements UserDaoImpl {
     }
 
     @Override
-    public void addUser(User user) {
-        try (Connection connection = JDBCHelper.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(ADD_USER_SQL)) {
-
-            preparedStatement.setString(1, user.getUserName());
-            preparedStatement.setString(2, user.getPassword());
-            preparedStatement.setString(3, user.getRole());
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void addUser(User user) throws SQLException{
+        Connection connection = JDBCHelper.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(ADD_USER_SQL);
+        preparedStatement.setString(1, user.getUserName());
+        preparedStatement.setString(2, user.getPassword());
+        preparedStatement.setString(3, user.getRole());
+        preparedStatement.executeUpdate();
     }
 
     @Override
