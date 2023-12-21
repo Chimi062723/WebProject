@@ -28,6 +28,11 @@
     <a href="cantadmin_notice_management.jsp">公告管理</a>
     <a href="cantadmin_vote_management.jsp">投票与收集</a>
     <a href="cantadmin_complaint_management.jsp">投诉处理</a>
+    <div class="bottom" id="logoutbt">
+        <form id="logout" action="logout" method="post">
+            <input type="submit"   class="button"value="退出" />
+        </form>
+    </div>
 </div>
 <div id="main-content">
     <h1>欢迎, 食堂管理员 ${username}</h1>

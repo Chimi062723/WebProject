@@ -13,6 +13,11 @@
     <a href="customer_dish.jsp">菜品一览</a>
     <a href="customer_community.jsp">交流社区</a>
     <a href="customer_canteen.jsp">食堂搜索</a>
+    <div class="bottom" id="logoutbt">
+        <form id="logout" action="logout" method="post">
+            <input type="submit"   class="button"value="退出" />
+        </form>
+    </div>
 </div>
 
 <div id="main-content">

@@ -17,6 +17,7 @@
     <img src="res/logo.png" alt="USST食堂管理系统" /> <!-- 修改src为实际Logo图片路径 -->
     <form action="forgotPasswordAction" method="post"> <!-- 修改action为后端处理忘记密码的URL -->
         <input type="email" name="email" placeholder="email" required />
+        <input type="password" name="password" placeholder="新密码" required />
         <input type="submit" value="重置密码" />
     </form>
     <a href="login.jsp">返回登录</a>

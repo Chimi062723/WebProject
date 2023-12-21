@@ -90,4 +90,17 @@ public class UserDAO implements UserDaoImpl {
         preparedStatement.setString(1, username);
         preparedStatement.executeUpdate();
     }
+
+    @Override
+    public String judgeRole(String username) throws SQLException{
+        Connection connection = JDBCHelper.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_USERNAME_SQL);
+        preparedStatement.setString(1, username);
+        ResultSet rs = preparedStatement.executeQuery();
+        if (rs.next()) {
+            String role = rs.getString("Role");
+            return role;
+        }
+        return null;
+    }
 }

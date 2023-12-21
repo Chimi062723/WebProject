@@ -25,6 +25,11 @@ communityPosts: 所有社区帖子信息
     <a href="admin_account_management.jsp">账号管理</a>
     <a href="admin_reviews_management.jsp">评价信息管理</a>
     <a href="admin_community_management.jsp">交流社区管理</a>
+    <div class="bottom" id="logoutbt">
+        <form id="logout" action="logout" method="post">
+            <input type="submit"   class="button"value="退出" />
+        </form>
+    </div>
 </div>
 <div id="content">
     <!-- 这里根据选择的导航栏显示不同的内容 -->

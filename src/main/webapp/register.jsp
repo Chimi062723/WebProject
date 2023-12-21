@@ -15,7 +15,7 @@
 <body>
 <div id="registerContainer">
   <img src="res/logo.png" alt="USST食堂管理系" /> <!-- 修改src为实际Logo图片路径 -->
-  <form action="registerAction" method="post"> <!-- 修改action为后端处理注册的URL -->
+  <form action="register" method="post"> <!-- 修改action为后端处理注册的URL -->
     <input type="email" name="email" placeholder="电子邮箱" required />
     <input type="text" name="username" placeholder="用户名" required />
     <input type="password" name="password" placeholder="密码" required />
