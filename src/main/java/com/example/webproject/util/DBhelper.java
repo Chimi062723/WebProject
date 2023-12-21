@@ -1,9 +1,12 @@
 package com.example.webproject.util;
 
+import com.example.webproject.model.Post;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class DBhelper {
     public Connection dbconn = null;
@@ -87,5 +90,62 @@ public class DBhelper {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    public List<Post> getPostList(Connection dbconn) {
+        String sql = "SELECT * FROM CommunityPosts";
+        PreparedStatement ps = null;
+        try {
+            ps = dbconn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            List<Post> postList = new java.util.ArrayList<>();
+            while (rs.next()) {
+                Post post = new Post();
+                post.setPostID(rs.getInt("PostId"));
+                post.setUserID(rs.getInt("UserId"));
+                post.setTitle(rs.getString("Title"));
+                post.setContent(rs.getString("Content"));
+                post.setCreateDate(rs.getDate("CreateDate"));
+                post.setLike(rs.getInt("Like"));
+                post.setPicture(rs.getString("Picture"));
+                postList.add(post);
+            }
+            return postList;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    public boolean addPost(Connection dbconn, int userid,String title, String content) {
+        String sql = "INSERT INTO CommunityPosts (UserID,Title, Content) VALUES (?, ?, ?)";
+        PreparedStatement ps = null;
+        try {
+            ps = dbconn.prepareStatement(sql);
+            ps.setInt(1,userid);
+            ps.setString(2, title);
+            ps.setString(3, content);
+            int result = ps.executeUpdate();
+            return result > 0;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+
+    public int getUserID(Connection dbconn, String username) {
+        String sql = "SELECT UserID FROM Users WHERE Username = ?";
+        PreparedStatement ps = null;
+        try {
+            ps = dbconn.prepareStatement(sql);
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("UserID");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return -1;
     }
 }

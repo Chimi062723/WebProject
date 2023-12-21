@@ -42,11 +42,31 @@
         <button onclick="sort('popularity')">按热度排序</button>
     </div>
 
-    <!-- 用户消息显示区 -->
-    <div id="messages">
-        <!-- 动态加载用户消息 -->
-    </div>
+<%--TODO 后续改为使用fragment动态刷新帖子的页面--%>
+    <form action="PostMessageServlet" method="Get">
+        <input type="submit"   class="button" value="点击查看历史帖子">
 
+    </form>
+    <!-- 用户帖子显示区 -->
+    <c:forEach var="post" items="${requestScope.postList}">
+    <div id="messages">
+        <!-- 动态加载帖子 -->
+        <div class="message">
+            <div class="message-header">
+<%--                <span class="message-id">${post.postID}</span>--%>
+                <span class="message-title">${post.title}</span>
+                <span class="message-author">${post.userID}</span>
+                <span class="message-time">${post.createDate}</span>
+            </div>
+            <div class="message-content">
+                ${post.content}
+            </div>
+            <div>
+                <span class="message-popularity">点赞数: ${post.like}</span>
+            </div>
+
+    </div>
+    </c:forEach>
     <script>
         function sort(type) {
             // 根据排序类型调整消息显示顺序
