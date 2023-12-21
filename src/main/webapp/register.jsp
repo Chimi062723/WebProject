@@ -21,6 +21,13 @@
     <input type="password" name="password" placeholder="密码" required />
     <input type="submit" value="注册" />
   </form>
+  <%
+    if (request.getParameter("error") != null && request.getParameter("error").equals("Account_is_Exists")) {
+  %>
+  <p style="color: #ce1f1f;">注册失败，账号已存在！</p>
+    <%
+        }
+    %>
   <a href="login.jsp">已有账户？登录</a>
 </div>
 </body>

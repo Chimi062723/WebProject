@@ -57,4 +57,35 @@ public class DBhelper {
         int result = ps.executeUpdate();
         return result > 0;
     }
+
+    public boolean verifyEmail(Connection dbconn, String username, String email) {
+        String sql = "SELECT COUNT(*) FROM Users WHERE Username = ? AND Email = ?";
+        PreparedStatement ps = null;
+        try {
+            ps = dbconn.prepareStatement(sql);
+            ps.setString(1, username);
+            ps.setString(2, email);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                return count > 0;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+
+    public void changePassword(Connection dbconn, String username, String newPassword) {
+        String sql = "UPDATE Users SET Password = ? WHERE Username = ?";
+        PreparedStatement ps = null;
+        try {
+            ps = dbconn.prepareStatement(sql);
+            ps.setString(1, newPassword);
+            ps.setString(2, username);
+            ps.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 }

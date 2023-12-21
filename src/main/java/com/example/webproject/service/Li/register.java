@@ -37,12 +37,12 @@ public class register  extends HttpServlet {
                 else  if(role.equals("normal_user")){
                     response.sendRedirect("customer_dashboard.jsp");
                 }else {
-                    response.sendRedirect("login.jsp?error=registration-failed");
+                    response.sendRedirect("login.jsp");
                 }
 
 
             }else{
-                response.sendRedirect("login.jsp?error=registration-failed");
+                response.sendRedirect("register.jsp?error=registration-failed");
             }
         } catch (SQLException e) {
             e.printStackTrace();
