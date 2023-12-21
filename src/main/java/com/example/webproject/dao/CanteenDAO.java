@@ -14,10 +14,10 @@ public class CanteenDAO implements com.example.webproject.dao.Impl.CanteenDAOImp
     private static final String DELETE_CANTEEN_SQL = "DELETE FROM Canteens WHERE CanteenID = ?";
 
     @Override
-    public List<Canteen> getAllCanteens() {
+    public List<Canteen> getAllCanteens() throws SQLException {
         List<Canteen> canteens = new ArrayList<>();
         try (Connection connection = JDBCHelper.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL_CANTEENS_SQL)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL_CANTEENS_SQL)){
 
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -30,14 +30,12 @@ public class CanteenDAO implements com.example.webproject.dao.Impl.CanteenDAOImp
                 canteen.setManagerId(rs.getInt("ManagerID"));
                 canteens.add(canteen);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
         return canteens;
     }
 
     @Override
-    public Canteen getCanteenById(int canteenId) {
+    public Canteen getCanteenById(int canteenId) throws SQLException{
         Canteen canteen = null;
         try (Connection connection = JDBCHelper.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(GET_CANTEEN_BY_ID_SQL)) {
@@ -53,14 +51,12 @@ public class CanteenDAO implements com.example.webproject.dao.Impl.CanteenDAOImp
                 canteen.setOpenTime(rs.getString("OpenTime"));
                 canteen.setManagerId(rs.getInt("ManagerID"));
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
         return canteen;
     }
 
     @Override
-    public void addCanteen(Canteen canteen) {
+    public void addCanteen(Canteen canteen) throws SQLException{
         try (Connection connection = JDBCHelper.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(ADD_CANTEEN_SQL)) {
 
@@ -69,13 +65,11 @@ public class CanteenDAO implements com.example.webproject.dao.Impl.CanteenDAOImp
             preparedStatement.setString(3, canteen.getOpenTime());
             preparedStatement.setInt(4, canteen.getManagerId());
             preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
     @Override
-    public void updateCanteen(Canteen canteen) {
+    public void updateCanteen(Canteen canteen) throws SQLException{
         try (Connection connection = JDBCHelper.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_CANTEEN_SQL)) {
 
@@ -85,20 +79,16 @@ public class CanteenDAO implements com.example.webproject.dao.Impl.CanteenDAOImp
             preparedStatement.setInt(4, canteen.getManagerId());
             preparedStatement.setInt(5, canteen.getCanteenId());
             preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
     @Override
-    public void deleteCanteen(int canteenId) {
+    public void deleteCanteen(int canteenId) throws SQLException{
         try (Connection connection = JDBCHelper.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CANTEEN_SQL)) {
 
             preparedStatement.setInt(1, canteenId);
             preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 }

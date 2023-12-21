@@ -1,0 +1,9 @@
+.button {
+    padding: 10px 20px;
+    background-color: #FFA07A; /* Salmon color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    white-space: nowrap; /* Prevents text from wrapping */
+}

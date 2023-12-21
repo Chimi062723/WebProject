@@ -49,7 +49,7 @@
                 <td>${review.reviewer}</td>
                 <td>${review.dish}</td>
                 <td>${review.score}</td>
-                <td>${review.comment}</td>
+                <td>${review.review}</td>
                 <td>${review.timestamp}</td>
                 <td>
                     <button onclick="location.href='edit_review.jsp?id=${review.id}'">编辑</button>

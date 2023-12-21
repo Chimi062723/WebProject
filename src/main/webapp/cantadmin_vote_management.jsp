@@ -23,9 +23,22 @@
     <a href="cantadmin_complaint_management.jsp">投诉处理</a>
 </div>
 <div id="main-content" class="clearfix">
-    <!-- Dynamic generation of dish cards -->
+    <h2>投票与收集</h2>
+    <form action="SubmitVoteServlet" method="post">
+        <p>请选择您喜欢的菜品:</p>
+        <!-- Dynamically generate voting options here -->
+        <label>
+            <input type="radio" name="dish" value="dish1"> 菜品1
+        </label><br>
+        <label>
+            <input type="radio" name="dish" value="dish2"> 菜品2
+        </label><br>
+        <!-- Add more options as needed -->
+        <input type="submit" value="提交">
+        <input type="submit" value="结果">
+    </form>
 
-    <!-- Repeat for other dishes -->
+    <!-- Optionally add a section for results or additional data collection here -->
 </div>
 </body>
 </html>

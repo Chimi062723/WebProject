@@ -63,42 +63,31 @@ public class UserDAO implements UserDaoImpl {
     }
 
     @Override
-    public void addUser(User user) {
-        try (Connection connection = JDBCHelper.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(ADD_USER_SQL)) {
-
-            preparedStatement.setString(1, user.getUserName());
-            preparedStatement.setString(2, user.getPassword());
-            preparedStatement.setString(3, user.getRole());
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void addUser(User user) throws SQLException{
+        Connection connection = JDBCHelper.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(ADD_USER_SQL);
+        preparedStatement.setString(1, user.getUserName());
+        preparedStatement.setString(2, user.getPassword());
+        preparedStatement.setString(3, user.getRole());
+        preparedStatement.executeUpdate();
     }
 
     @Override
-    public void updateUser(User user) {
-        try (Connection connection = JDBCHelper.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER_SQL)) {
+    public void updateUser(User user) throws SQLException{
+        Connection connection = JDBCHelper.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER_SQL);
+        preparedStatement.setString(1, user.getPassword());
+        preparedStatement.setString(2, user.getRole());
+        preparedStatement.setString(3, user.getUserName());
+        preparedStatement.executeUpdate();
 
-            preparedStatement.setString(1, user.getPassword());
-            preparedStatement.setString(2, user.getRole());
-            preparedStatement.setString(3, user.getUserName());
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
-    public void deleteUser(String username) {
-        try (Connection connection = JDBCHelper.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_USER_SQL)) {
-
-            preparedStatement.setString(1, username);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public void deleteUser(String username) throws SQLException{
+        Connection connection = JDBCHelper.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(DELETE_USER_SQL);
+        preparedStatement.setString(1, username);
+        preparedStatement.executeUpdate();
     }
 }
