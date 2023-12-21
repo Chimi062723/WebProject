@@ -54,8 +54,9 @@
         <div class="message">
             <div class="message-header">
 <%--                <span class="message-id">${post.postID}</span>--%>
-                <span class="message-title">${post.title}</span>
-                <span class="message-author">${post.userID}</span>
+                <span class="message-title"><h4>${post.title}</h4></span>
+                <span class="message-author">发表人:${post.author}</span>
+                <span class="message-author">ID:${post.userID}</span>
                 <span class="message-time">${post.createDate}</span>
             </div>
             <div class="message-content">
@@ -64,6 +65,7 @@
             <div>
                 <span class="message-popularity">点赞数: ${post.like}</span>
             </div>
+            <br>
 
     </div>
     </c:forEach>

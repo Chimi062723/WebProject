@@ -8,13 +8,13 @@ public class Post {
     String author;
     String title;
     String content;
-    Date createDate;
+    String createDate;
     int like;
     String picture;
 
     public Post() {
     }
-    public Post(int postId, int userID, String title, String content, Date createDate, int like, String picture) {
+    public Post(int postId, int userID, String title, String content,String createDate, int like, String picture) {
         this.postID = postId;
         this.userID = userID;
         this.title = title;
@@ -63,11 +63,11 @@ public class Post {
         this.content = content;
     }
 
-    public Date getCreateDate() {
+    public String getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(String createDate) {
         this.createDate = createDate;
     }
 

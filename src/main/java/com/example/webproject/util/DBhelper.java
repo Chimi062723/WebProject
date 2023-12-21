@@ -2,10 +2,8 @@ package com.example.webproject.util;
 
 import com.example.webproject.model.Post;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class DBhelper {
@@ -105,7 +103,16 @@ public class DBhelper {
                 post.setUserID(rs.getInt("UserId"));
                 post.setTitle(rs.getString("Title"));
                 post.setContent(rs.getString("Content"));
-                post.setCreateDate(rs.getDate("CreateDate"));
+                //填充名字
+                DBhelper db = new DBhelper();
+                db.init();
+                post.setAuthor(db.getUserName(db.dbconn,post.getUserID()));
+                Timestamp createTimestamp = rs.getTimestamp("CreateDate");
+                if (createTimestamp != null) {
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    String formattedDateTime = sdf.format( createTimestamp.getTime());
+                    post.setCreateDate(formattedDateTime);
+                }
                 post.setLike(rs.getInt("Like"));
                 post.setPicture(rs.getString("Picture"));
                 postList.add(post);
@@ -147,5 +154,21 @@ public class DBhelper {
             throwables.printStackTrace();
         }
         return -1;
+    }
+    public String getUserName(Connection dbconn, int userid) {
+        String sql = "SELECT Username FROM Users WHERE UserID = ?";
+        PreparedStatement ps = null;
+        try {
+            ps = dbconn.prepareStatement(sql);
+            ps.setInt(1, userid);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getString("Username");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+
     }
 }
