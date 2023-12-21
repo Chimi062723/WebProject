@@ -1,4 +1,4 @@
 package com.example.webproject.model;
 
-public class Comment {
+public class Review {
 }

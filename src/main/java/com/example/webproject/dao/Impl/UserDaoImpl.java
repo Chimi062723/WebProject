@@ -10,6 +10,6 @@ public interface UserDaoImpl{
     List<User> getAllUsers();
     User getUserByUsername(String username);
     void addUser(User user) throws SQLException;
-    void updateUser(User user);
-    void deleteUser(String username);
+    void updateUser(User user) throws SQLException;
+    void deleteUser(String username) throws SQLException;
 }

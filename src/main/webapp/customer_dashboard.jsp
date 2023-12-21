@@ -141,33 +141,33 @@
     </div>
     <div>
         <p>最新评论</p>
-        <div class="comment-section">
-            <div class="comment-item">
+        <div class="review-section">
+            <div class="review-item">
                 <img src="placeholder-image.jpg" alt="${comment1.title}" />
-                <span class="comment-name">${comment1.name}</span>
-                <span class="comment-time">${comment1.createTime}</span>
-                <span class="comment-details">${comment1.content}</span>
-                <span class="comment-actions">
+                <span class="review-name">${comment1.name}</span>
+                <span class="review-time">${comment1.createTime}</span>
+                <span class="review-details">${comment1.content}</span>
+                <span class="review-actions">
                     <a href="#">回复</a>
                     <!-- 更多操作 -->
                 </span>
             </div>
-            <div class="comment-item">
+            <div class="review-item">
                 <img src="placeholder-image.jpg" alt="${comment2.title}" />
-                <span class="comment-name">${comment2.name}</span>
-                <span class="comment-time">${comment2.createTime}</span>
-                <span class="comment-details">${comment2.content}</span>
-                <span class="comment-actions">
+                <span class="review-name">${comment2.name}</span>
+                <span class="review-time">${comment2.createTime}</span>
+                <span class="review-details">${comment2.content}</span>
+                <span class="review-actions">
                     <a href="#">回复</a>
                     <!-- 更多操作 -->
                 </span>
             </div>
-            <div class="comment-item">
+            <div class="review-item">
                 <img src="placeholder-image.jpg" alt="${comment3.title}" />
-                <span class="comment-name">${comment3.name}</span>
-                <span class="comment-time">${comment3.createTime}</span>
-                <span class="comment-details">${comment3.content}</span>
-                <span class="comment-actions">
+                <span class="review-name">${comment3.name}</span>
+                <span class="review-time">${comment3.createTime}</span>
+                <span class="review-details">${comment3.content}</span>
+                <span class="review-actions">
                     <a href="#">回复</a>
                     <!-- 更多操作 -->
                 </span>
