@@ -15,7 +15,7 @@
 <div id="main-content">
     <!-- 菜品展示区 -->
     <div class="dish-display">
-        <p>>菜品上新</p>
+        <p>菜品上新</p>
         <div class="dish-carousel">
             <button class="carousel-control prev">←</button>
             <div class="carousel-track-container">
