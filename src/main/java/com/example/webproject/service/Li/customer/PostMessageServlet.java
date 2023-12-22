@@ -1,4 +1,4 @@
-package com.example.webproject.service.Li;
+package com.example.webproject.service.Li.customer;
 
 import com.example.webproject.model.Post;
 import com.example.webproject.util.DBhelper;

@@ -7,7 +7,10 @@ public class Dish {
     private double price;
     private int canteenID;
     private String image;
-
+    private double promotionPrice;
+    public double getPromotionPrice() {
+        return promotionPrice;
+    }
     public Dish() {
     }
 
@@ -36,11 +39,11 @@ public class Dish {
         this.name = name;
     }
 
-    public String gettype() {
+    public String getType() {
         return type;
     }
 
-    public void settype(String type){
+    public void setType(String type){
         this.type = type;
     }
 
@@ -66,5 +69,8 @@ public class Dish {
 
     public void setImage(String image){
         this.image = image;
+    }
+    public void setPromotionPrice(double promotionPrice) {
+        this.promotionPrice = promotionPrice;
     }
 }

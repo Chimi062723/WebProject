@@ -5,6 +5,10 @@
     <title>USST食堂管理系统</title>
     <link rel="stylesheet" href="css/customer_menu.css"/> <!-- 链接到外部CSS文件 -->
     <!-- 内联样式或外部样式表应包括页面布局、字体、颜色等的定义 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/foundation/5.5.3/css/foundation.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/foundation/5.5.3/js/foundation.min.js"></script>
+    <script src="https://cdn.staticfile.org/foundation/5.5.3/js/vendor/modernizr.js"></script>
 </head>
 <body>
 <jsp:include page="custom_sidebar.jspf"/>

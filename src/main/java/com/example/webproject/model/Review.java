@@ -11,8 +11,6 @@ public class Review {
     String comment;
     Timestamp createDate;
 
-    String reply;
-
     public Timestamp getCreateDate() {
         return createDate;
     }
@@ -29,10 +27,15 @@ public class Review {
         this.reply = reply;
     }
 
-    public Review(int reviewID, int userID, int dishID, int rating, String comment, String reply, Date createDate,String picture) {
+    String reply;
+    public Review(int reviewID, int userID, int dishID, int rating, String comment, String reply, Timestamp createDate) {
         this.reviewID=reviewID;
         this.userID = userID;
-
+        this.dishID = dishID;
+        this.rating = rating;
+        this.comment = comment;
+        this.reply = reply;
+        this.createDate = createDate;
     }
 
     public int getReviewID() {
