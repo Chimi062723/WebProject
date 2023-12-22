@@ -39,8 +39,8 @@ public class PostMessageServlet extends HttpServlet {
         String title = request.getParameter("title");
         String content = request.getParameter("content");
         String username = (String) session.getAttribute("username");
-        Part filePart = request.getPart("image");
-        String fileName = filePart.getSubmittedFileName();
+//        Part filePart = request.getPart("image");
+//        String fileName = filePart.getSubmittedFileName();
 
 
         DBhelper db = new DBhelper();

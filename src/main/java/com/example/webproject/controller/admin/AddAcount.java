@@ -24,7 +24,7 @@ public class AddAcount extends HttpServlet {
         User user = new User(name,"123456",email,role);
         adminAction.addAccount(user);
         HttpSession session = request.getSession();
-        session.setAttribute("users",adminAction.getAllAccount());
+//        session.setAttribute("users",adminAction.getAllAccount());
         request.getRequestDispatcher("admin_account_management.jsp").forward(request,response);
     }
 }

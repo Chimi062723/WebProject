@@ -17,7 +17,7 @@ public class DeleteAccount extends HttpServlet {
         User user = adminAction.getAccount(id);
         adminAction.deleteAccount(user);
         HttpSession session = request.getSession();
-        session.setAttribute("users",adminAction.getAllAccount());
+//        session.setAttribute("users",adminAction.getAllAccount());
         request.getRequestDispatcher("admin_account_management.jsp").forward(request,response);
     }
 

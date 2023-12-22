@@ -153,7 +153,7 @@
             <br>
             <span class="post-time">发表时间：${sessionScope.post2.createDate}</span>
             <br>
-            <span class="post-details">帖子内容${sessionScope.post2.content}</span>
+            <span class="post-details">帖子内容:${sessionScope.post2.content}</span>
             <br>
             <img src="res/${sessionScope.post2.picture}" alt="${sessionScope.post2.title}"/>
             <br>
