@@ -49,6 +49,7 @@ public class CanteenDAO implements com.example.webproject.dao.Impl.CanteenDAOImp
                 canteen.setLocation(rs.getString("Location"));
                 canteen.setOpenTime(rs.getString("OpenTime"));
                 canteen.setManagerID(rs.getInt("ManagerID"));
+                canteen.setNotice(rs.getString("Notice"));
             }
         }
         return canteen;
