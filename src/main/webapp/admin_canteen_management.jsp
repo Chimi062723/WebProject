@@ -63,12 +63,15 @@ canteens: 所有食堂信息
         <td><label for="address"></label><input id="address" name="address" type="text" placeholder="输入新的地址"></td>
         <td><label for="time"></label><input id="time" name="time" type="text" placeholder="输入新的营业时间"></td>
         <td><label for="manager"></label><input id="manager" name="managerID" type="number" placeholder="输入新的管理员ID"></td>
-        <td><input type="submit" formaction="AddAccount" formmethod="post" datafld=""></td>
+        <td><input type="submit" formaction="AddCanteen" formmethod="post"></td>
       </tr>
     </table>
   </form>
   <!-- 在这里添加分页器 -->
 </div>
+<iframe id="iframe">
+
+</iframe>
 <script>
   // JavaScript 函数用于处理删除食堂的操作
   function deleteCanteen(id) {
