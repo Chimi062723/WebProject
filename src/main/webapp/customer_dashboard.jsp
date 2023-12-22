@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -125,78 +126,72 @@
             <button class="carousel-control next">→</button>
         </div>
     </div>
+    <div class="content-row">
+        <!-- 交流区 -->
+        <div class="communication-section">
+            <p>社区热点</p>
+            <!-- 动态生成交流内容，示例代码 -->
+            <div class="post">
+                <span class="post-author">发表人：${sessionScope.post1.author.userName}</span>
+                <br>
+                <span class="post-title">标题：${sessionScope.post1.title}</span>
+                <br>
+                <span class="post-time">发表时间：${sessionScope.post1.createDate}</span>
+                <br>
+                <span class="post-details">帖子内容：${sessionScope.post1.content}</span>
+                <br>
+                <img src="res/${sessionScope.post1.picture}" alt="${sessionScope.post1.title}"/>
+                <br>
+                <span class="post-actions">
+                <a href="#">点赞</a>
+                    <!-- 更多操作 -->
+            </span>
+            </div>
+            <div class="post">
+                <span class="post-author">发表人：${sessionScope.post2.author.userName}</span>
+                <br>
+                <span class="post-title">标题：${sessionScope.post2.title}</span>
+                <br>
+                <span class="post-time">发表时间：${sessionScope.post2.createDate}</span>
+                <br>
+                <span class="post-details">帖子内容：${sessionScope.post2.content}</span>
+                <br>
+                <img src="res/${sessionScope.post2.picture}" alt="${sessionScope.post2.title}"/>
+                <br>
+                <span class="post-actions">
+                <a href="#">点赞</a>
+                    <!-- 更多操作 -->
+            </span>
+            </div>
+            <div class="post">
+                <span class="post-author">发表人：${sessionScope.post3.author.userName}</span>
+                <br>
+                <span class="post-title">标题：${sessionScope.post3.title}</span>
+                <br>
+                <span class="post-time">发表时间：${sessionScope.post3.createDate}</span>
+                <br>
+                <span class="post-details">帖子内容：${sessionScope.post3.content}</span>
+                <br>
+                <img src="res/${sessionScope.post3.picture}" alt="${sessionScope.post3.title}"/>
+                <br>
+                <span class="post-actions">
+                <a href="#">点赞</a>
+                    <!-- 更多操作 -->
+            </span>
+            </div>
+        </div>
 
-    <!-- 交流区 -->
-    <div class="communication-section">
-        <p>社区热点</p>
-        <!-- 动态生成交流内容，示例代码 -->
-        <div class="post">
-            <span class="post-author">发表人：${sessionScope.post1.author.userName}</span>
-            <br>
-            <span class="post-title">标题：${sessionScope.post1.title}</span>
-            <br>
-            <span class="post-time">发表时间：${sessionScope.post1.createDate}</span>
-            <br>
-            <span class="post-details">帖子内容${sessionScope.post2.content}</span>
-            <br>
-            <img src="res/${sessionScope.post1.picture}" alt="${sessionScope.post1.title}"/>
-            <br>
-            <span class="post-actions">
-                <a href="#">点赞</a>
-                <!-- 更多操作 -->
-            </span>
+        <!-- 公告区 -->
+        <div class="announcement-section">
+            <p>促销活动</p>
+            <!-- 动态生成公告内容，示例代码 -->
+            <c:forEach items="${sessionScope.canteens}" var="canteen">
+                <div class="announcement">
+                    <p class="announcement-title">${canteen.name}</p>
+                    <p class="announcement-content">${canteen.notice}</p>
+                </div>
+            </c:forEach>
         </div>
-        <div class="post">
-            <span class="post-author">发表人：${sessionScope.post2.author.userName}</span>
-            <br>
-            <span class="post-title">标题：${sessionScope.post2.title}</span>
-            <br>
-            <span class="post-time">发表时间：${sessionScope.post2.createDate}</span>
-            <br>
-            <span class="post-details">帖子内容:${sessionScope.post2.content}</span>
-            <br>
-            <img src="res/${sessionScope.post2.picture}" alt="${sessionScope.post2.title}"/>
-            <br>
-            <span class="post-actions">
-                <a href="#">点赞</a>
-                <!-- 更多操作 -->
-            </span>
-        </div>
-        <div class="post">
-            <span class="post-author">发表人：${sessionScope.post3.author.userName}</span>
-            <br>
-            <span class="post-title">标题：${sessionScope.post3.title}</span>
-            <br>
-            <span class="post-time">发表时间：${sessionScope.post3.createDate}</span>
-            <br>
-            <span class="post-details">帖子内容${sessionScope.post2.content}</span>
-            <br>
-            <img src="res/${sessionScope.post3.picture}" alt="${sessionScope.post3.title}"/>
-            <br>
-            <span class="post-actions">
-                <a href="#">点赞</a>
-                <!-- 更多操作 -->
-            </span>
-        </div>
-    </div>
-
-    <!-- 公告区 -->
-    <div class="announcement-section">
-        <p>促销活动</p>
-        <!-- 动态生成公告内容，示例代码 -->
-        <div class="announcement">
-            <textarea rows="4" readonly>这里是公告1内容</textarea>
-        </div>
-        <div class="announcement">
-            <textarea rows="4" readonly>这里是公告2内容</textarea>
-        </div>
-        <div class="announcement">
-            <textarea rows="4" readonly>这里是公告3内容</textarea>
-        </div>
-        <div class="announcement">
-            <textarea rows="4" readonly>这里是公告4内容</textarea>
-        </div>
-        <!-- 更多公告 -->
     </div>
     <div>
         <p>最新投票</p>
@@ -311,9 +306,13 @@
     let prevButton = document.querySelector('.carousel-control.prev');
     let nextButton = document.querySelector('.carousel-control.next');
     let cardSize = cards[0].clientWidth;
-    let setCardSize = () => { cardSize = cards[0].clientWidth; };
+    let setCardSize = () => {
+        cardSize = cards[0].clientWidth;
+    };
 
-    let moveToStart = () => { track.style.transform = 'translateX(-' + cardSize + 'px)'; };
+    let moveToStart = () => {
+        track.style.transform = 'translateX(-' + cardSize + 'px)';
+    };
     window.addEventListener('resize', setCardSize);
     window.addEventListener('resize', moveToStart);
     moveToStart();

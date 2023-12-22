@@ -7,19 +7,23 @@ body {
     background-color: #f4f4f4;
     color: #333;
 }
+
 #sidebar {
     background-color: #003366;
     color: white;
-    padding: 15px;
+    padding-bottom:9999px;
+    margin-bottom: 9999px;
     width: 200px;
     height: 100%;
     display: flex;
     flex-direction: column;
 }
+
 #sidebar img {
     max-width: 100%;
     margin-bottom: 20px;
 }
+
 #sidebar a {
     color: white;
     text-decoration: none;
@@ -28,33 +32,14 @@ body {
     margin: 5px 0;
     transition: background-color 0.3s;
 }
+
 #sidebar a:hover {
     background-color: #0056b3;
 }
+
 #content {
     flex-grow: 1;
     padding: 20px;
-}
-.data-box {
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 20px;
-    margin-bottom: 20px;
-    text-align: center;
-}
-.tabs-content > .content.active {
-    -webkit-animation: fadeEffect 1s;
-    animation: fadeEffect 1s;
-}
-
-@-webkit-keyframes fadeEffect {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
-
-@keyframes fadeEffect {
-    from {opacity: 0;}
-    to {opacity: 1;}
 }
 
 #main-content {
@@ -64,9 +49,22 @@ body {
     width: calc(100% - 220px);
 }
 
+.data-box {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.tabs-content > .content.active {
+    -webkit-animation: fadeEffect 1s;
+    animation: fadeEffect 1s;
+}
+
 /* 菜品展示区样式 */
 .dish-card {
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: 20px;
@@ -83,14 +81,17 @@ body {
     object-fit: cover;
     max-height: 150px; /* 限制图片最大高度 */
 }
+
 .dish-carousel {
     position: relative;
     overflow: hidden;
 }
+
 .carousel-track-container {
     width: 100%;
     overflow: hidden;
 }
+
 .carousel-track {
     display: flex;
     transition: transform 0.5s ease;
@@ -110,23 +111,65 @@ body {
 .dish-price, .dish-type {
     color: #666;
 }
-
 /* 交流区样式 */
+.communication-section {
+    margin: 20px 0;
+}
+
 .post {
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: 20px;
     background-color: #fff;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
 }
 
 .post img {
-    width: 100%;
+    max-width: 100%; /* 确保图片不超过容器宽度 */
     height: auto;
+    object-fit: contain;
+    max-height: 200px; /* 调整图片最大高度 */
+    margin-top: 10px;
+}
+
+.post-author, .post-title, .post-time, .post-details {
+    margin-bottom: 10px;
+}
+
+.post-author {
+    font-weight: bold;
+    color: #0056b3;
+}
+
+.post-title {
+    font-size: 1.2em;
+    color: #000;
+}
+
+.post-time {
+    font-style: italic;
+    color: #666;
 }
 
 .post-details {
-    padding: 10px;
+    color: #333;
+}
+
+.post-actions a {
+    color: #0056b3;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #0056b3;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.post-actions a:hover {
+    background-color: #0056b3;
+    color: white;
 }
 
 /* 公告区样式 */
@@ -135,21 +178,54 @@ body {
     padding: 15px;
     margin-bottom: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
 }
-
+.announcement p {
+    margin-bottom: 10px;
+    color: #333;
+}
+.announcement .announcement-title {
+    font-weight: bold;
+    color: #0056b3;
+    font-size: 1.2em;
+}
+.announcement .announcement-content {
+    color: #666;
+    overflow-wrap: break-word; /* 确保文本在容器内换行 */
+}
 /* 响应式设计 */
 @media (max-width: 768px) {
     .dish-card, .post, .announcement {
         margin-left: 10px;
         margin-right: 10px;
+        flex-direction: column;
     }
 }
 
+@-webkit-keyframes fadeEffect {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeEffect {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
 /* 动画和过渡效果 */
 .dish-card:hover, .post:hover, .announcement:hover {
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
+
 .carousel-control {
     position: absolute;
     top: 50%;
@@ -168,3 +244,17 @@ body {
 .carousel-control.next {
     right: 10px;
 }
+.content-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.communication-section {
+    flex: 1; /* 每个部分占据等量空间 */
+    margin: 10px; /* 添加一些间距 */
+}
+.announcement-section{
+    flex: 1; /* 每个部分占据等量空间 */
+    margin: 20px; /* 添加一些间距 */
+}
+/* 如果需要，您可以添加更多的样式来进一步美化这两个部分 */
