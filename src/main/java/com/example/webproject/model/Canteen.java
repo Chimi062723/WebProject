@@ -7,15 +7,18 @@ public class Canteen {
     private String openTime;
     private int managerID;
 
+    private String notice;
+
     public Canteen() {
     }
 
-    public Canteen(int canteenID, String name, String location, String openTime, int managerID) {
+    public Canteen(int canteenID, String name, String location, String openTime, int managerID,String notice) {
         this.canteenID = canteenID;
         this.name = name;
         this.location = location;
         this.openTime = openTime;
         this.managerID = managerID;
+        this.notice = notice;
     }
     // getters and setters
     public int getCanteenID() {
@@ -59,4 +62,11 @@ public class Canteen {
     }
 
 
+    public String getNotice() {
+        return notice;
+    }
+
+    public void setNotice(String notice) {
+        this.notice = notice;
+    }
 }

@@ -27,6 +27,16 @@ public class AdminActionImpl implements AdminActions{
         this.canteenDAO = new CanteenDAO();
         this.reviewDAO = new ReviewDAO();
     }
+
+    public Canteen getCanteen(int canteenID){
+        try {
+            return canteenDAO.getCanteenByID(canteenID);
+        } catch (SQLException e) {
+            //todo:异常处理
+            throw new RuntimeException(e);
+        }
+    }
+
     /**
      * @param canteen 新的食堂信息
      * @return
@@ -102,7 +112,7 @@ public class AdminActionImpl implements AdminActions{
      * @return
      */
     @Override
-    public int editAccount(String username,String email,String role) {
+    public int editAccount(String username, String email, String role) {
         try{
             userDAO.updateUser(username,email,role);
             return 1;
@@ -200,8 +210,8 @@ public class AdminActionImpl implements AdminActions{
      * @return
      */
     @Override
-    public Canteen canteenEncapsulation(int canteenID, String name, String location, String openTime, int managerID) {
-        return new Canteen(canteenID,name,location,openTime,managerID);
+    public Canteen canteenEncapsulation(int canteenID, String name, String location, String openTime, int managerID,String notice) {
+        return new Canteen(canteenID,name,location,openTime,managerID,notice);
     }
 
     /**

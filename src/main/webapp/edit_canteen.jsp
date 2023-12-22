@@ -12,12 +12,12 @@
 </head>
 <body>
 <div id="main-content">
-    <h2>编辑用户信息</h2>
+    <h2>编辑餐厅信息</h2>
     <!-- 假设已经获取了用户对象 user -->
     <form action="UpdateCanteenServlet" method="post">
         <label>
             食堂名称:
-            <input type="text" name="canteenName" value="${requestScope.canteen.canteenName}">
+            <input type="text" name="canteenName" value="${requestScope.canteen.name}">
         </label>
         <br>
         <label>
@@ -27,13 +27,14 @@
         <br>
         <label>
             营业时间:
-            <input type="text" name="opentime" value="${requestScope.canteen.opentime}">
+            <input type="text" name="openTime" value="${requestScope.canteen.openTime}">
         </label>
         <br>
         <label>
             食堂负责人:
-            <input type="text" name="managerName" value="${requestScope.manager.name}">
+            <input type="text" name="managerName" value="${requestScope.manager.userName}">
         </label>
+        <input type="hidden" name="managerID" value="${requestScope.manager.userID}">
         <br>
         <label>
             食堂公告:

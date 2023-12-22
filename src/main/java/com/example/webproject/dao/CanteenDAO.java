@@ -18,9 +18,7 @@ public class CanteenDAO implements com.example.webproject.dao.Impl.CanteenDAOImp
         List<Canteen> canteens = new ArrayList<>();
         try (Connection connection = JDBCHelper.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL_CANTEENS_SQL)){
-
             ResultSet rs = preparedStatement.executeQuery();
-
             while (rs.next()) {
                 Canteen canteen = new Canteen();
                 canteen.setCanteenID(rs.getInt("CanteenID"));
@@ -28,6 +26,7 @@ public class CanteenDAO implements com.example.webproject.dao.Impl.CanteenDAOImp
                 canteen.setLocation(rs.getString("Location"));
                 canteen.setOpenTime(rs.getString("OpenTime"));
                 canteen.setManagerID(rs.getInt("ManagerID"));
+                canteen.setNotice(rs.getString("Notice"));
                 canteens.add(canteen);
             }
         }

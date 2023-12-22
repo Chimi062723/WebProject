@@ -12,7 +12,7 @@ public class UserDAO implements UserDaoImpl {
     private static final String GET_USER_BY_USERNAME_SQL = "SELECT * FROM Users WHERE UserName = ?";
     private static final String GET_USER_BY_USERID_SQL = "SELECT * FROM Users WHERE UserID = ?";
     private static final String ADD_USER_SQL = "INSERT INTO Users (UserName,Password,Email, Role) VALUES (?,Password ,?, ?)";
-    private static final String UPDATE_USER_SQL = "UPDATE Users SET Password = ?, Role = ? WHERE UserName = ?";
+    private static final String UPDATE_USER_SQL = "UPDATE Users SET Email= ?, Role = ? WHERE UserName = ?";
     private static final String DELETE_USER_SQL = "DELETE FROM Users WHERE UserName = ?";
 
     @Override
