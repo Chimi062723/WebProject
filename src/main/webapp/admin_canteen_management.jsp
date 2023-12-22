@@ -50,7 +50,7 @@ canteens: 所有食堂信息
         <td>${canteen.openTime}</td>
         <td>${canteen.managerID}</td>
         <td>
-          <button onclick="location.href='edit_canteen.jsp?id=${canteen.canteenID}'">编辑</button>
+          <button onclick="location.href='editCanteen?id=${canteen.canteenID}'">编辑</button>
           <button onclick="deleteCanteen(${canteen.canteenID})">删除</button>
         </td>
       </tr>
