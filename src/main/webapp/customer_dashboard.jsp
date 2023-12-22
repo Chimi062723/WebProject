@@ -34,12 +34,12 @@
             </div>
         </div>
         <div class="dish-card">
-            <img src="placeholder-image.jpg" alt="${dish3.name}" />
+            <img src="res/${sessionScope.dish3.image}" alt="${sessionScope.dish3.name}" />
             <div class="dish-details">
-                <span class="dish-name">${dish3.name}</span>
-                <span class="dish-price">价格: ${dish3.price}</span>
-                <span class="dish-type">类别: ${dish3.type}</span>
-                <a href="dish_detial_Servlet?name='${dish3.name}'">详情</a>
+                <span class="dish-name">${sessionScope.dish3.name}</span>
+                <span class="dish-price">价格: ${sessionScope.dish3.price}</span>
+                <span class="dish-type">类别: ${sessionScope.dish3.type}</span>
+                <a href="dish_detial_Servlet?name='${sessionScope.dish3.name}'">详情</a>
                 <!-- 更多信息 -->
             </div>
         </div>

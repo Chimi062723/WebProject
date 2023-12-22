@@ -1,8 +1,11 @@
 body {
-    font-family: Arial, sans-serif;
     display: flex;
+    flex-direction: column; /* 改为列布局以适应不同屏幕 */
     margin: 0;
     height: 100vh;
+    font-family: 'Open Sans', Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
 }
 #sidebar {
     background-color: #003366;
@@ -52,4 +55,80 @@ body {
 @keyframes fadeEffect {
     from {opacity: 0;}
     to {opacity: 1;}
+}
+
+#main-content {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* 菜品展示区样式 */
+.dish-card {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    display: flex; /* 使用flex布局 */
+    flex-direction: column; /* 垂直排列 */
+}
+
+.dish-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.dish-details {
+    padding: 10px;
+    background-color: #fff;
+}
+
+.dish-name {
+    font-size: 1.2em;
+    color: #000;
+}
+
+.dish-price, .dish-type {
+    color: #666;
+}
+
+/* 交流区样式 */
+.post {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+
+.post img {
+    width: 100%;
+    height: auto;
+}
+
+.post-details {
+    padding: 10px;
+}
+
+/* 公告区样式 */
+.announcement {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .dish-card, .post, .announcement {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+
+/* 动画和过渡效果 */
+.dish-card:hover, .post:hover, .announcement:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
