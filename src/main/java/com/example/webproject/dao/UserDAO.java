@@ -37,7 +37,27 @@ public class UserDAO implements UserDaoImpl {
         }
         return users;
     }
+public User getUserById(int id) {
+    User user = null;
+    try (Connection connection = JDBCHelper.getConnection();
+         PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_USERNAME_SQL)) {
+        preparedStatement.setInt(1, id);
+        ResultSet rs = preparedStatement.executeQuery();
 
+        while (rs.next()) {
+            user = new User();
+            user.setUserId(rs.getInt("UserID"));
+            user.setUserName(rs.getString("UserName"));
+            user.setPassword(rs.getString("Password"));
+            user.setEmail(rs.getString("Email"));
+            user.setRole(rs.getString("Role"));
+            user.setCreateDate(rs.getTimestamp("CreateDate"));
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return user;
+}
     @Override
     public User getUserByUsername(String username) {
         User user = null;
