@@ -14,22 +14,22 @@
         <p>>菜品上新</p>
         <!-- 动态生成菜品卡片，示例代码 -->
         <div class="dish-card">
-            <img src="placeholder-image.jpg" alt="${dish1.name}" />
+            <img src="res/${sessionScope.dish1.image}" alt="${sessionScope.dish1.name}" />
             <div class="dish-details">
-                <span class="dish-name">${dish1.name}</span>
-                <span class="dish-price">价格: ${dish1.price}</span>
-                <span class="dish-type">类别: ${dish1.cuisineType}</span>
-                <a href="dish_detial_Servlet?name='${dish1.name}'">详情</a>
+                <span class="dish-name">${sessionScope.dish1.name}</span>
+                <span class="dish-price">价格: ${sessionScope.dish1.price}</span>
+                <span class="dish-type">类别: ${sessionScope.dish1.type}</span>
+                <a href="dish_detial_Servlet?id='${sessionScope.dish1.dishID}'">详情</a>
                 <!-- 更多信息 -->
             </div>
         </div>
         <div class="dish-card">
-            <img src="placeholder-image.jpg" alt="${dish2.name}" />
+            <img src="res/${sessionScope.dish2.image}" alt="${sessionScope.dish2.name}" />
             <div class="dish-details">
-                <span class="dish-name">${dish2.name}</span>
-                <span class="dish-price">价格: ${dish2.price}</span>
-                <span class="dish-type">类别: ${dish2.cuisineType}</span>
-                <a href="dish_detial_Servlet?name='${dish2.name}'">详情</a>
+                <span class="dish-name">${sessionScope.dish2.name}</span>
+                <span class="dish-price">价格: ${sessionScope.dish2.price}</span>
+                <span class="dish-type">类别: ${sessionScope.dish2.type}</span>
+                <a href="dish_detial_Servlet?name='${sessionScope.ish2.name}'">详情</a>
                 <!-- 更多信息 -->
             </div>
         </div>
@@ -38,7 +38,7 @@
             <div class="dish-details">
                 <span class="dish-name">${dish3.name}</span>
                 <span class="dish-price">价格: ${dish3.price}</span>
-                <span class="dish-type">类别: ${dish3.cuisineType}</span>
+                <span class="dish-type">类别: ${dish3.type}</span>
                 <a href="dish_detial_Servlet?name='${dish3.name}'">详情</a>
                 <!-- 更多信息 -->
             </div>
