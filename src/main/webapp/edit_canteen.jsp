@@ -27,14 +27,13 @@
         <br>
         <label>
             营业时间:
-            <input type="text" name="openTime" value="${requestScope.canteen.openTime}">
+            <input type="text" name="opentime" value="${requestScope.canteen.openTime}">
         </label>
         <br>
         <label>
             食堂负责人:
             <input type="text" name="managerName" value="${requestScope.manager.userName}">
         </label>
-        <input type="hidden" name="managerID" value="${requestScope.manager.userID}">
         <br>
         <label>
             食堂公告:
