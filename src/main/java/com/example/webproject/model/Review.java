@@ -28,7 +28,8 @@ public class Review {
     }
 
     String reply;
-    public Review(int reviewID, int userID, int dishID, int rating, String comment, String reply, Timestamp createDate) {
+    String picture;
+    public Review(int reviewID, int userID, int dishID, int rating, String comment, String reply, Timestamp createDate,String picture) {
         this.reviewID=reviewID;
         this.userID = userID;
         this.dishID = dishID;
@@ -36,6 +37,7 @@ public class Review {
         this.comment = comment;
         this.reply = reply;
         this.createDate = createDate;
+        this.picture = picture;
     }
 
     public int getReviewID() {
@@ -78,5 +80,11 @@ public class Review {
         this.comment = comment;
     }
 
+    public String getPicture() {
+        return picture;
+    }
 
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
 }

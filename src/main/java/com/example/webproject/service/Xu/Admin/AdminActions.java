@@ -5,6 +5,7 @@ import com.example.webproject.model.Post;
 import com.example.webproject.model.User;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public interface AdminActions {
    //todo:细化对异常的处理
@@ -141,9 +142,9 @@ public interface AdminActions {
     * @author ChiMi
     * #Date 2023/12/21
     */
-   Review reviewEncapsulation(int reviewID,int userID,int dishID,int rating,String comment,String reply,Date createDate);
+   //Review reviewEncapsulation(int reviewID, int userID, int dishID, int rating, String comment, String reply, Timestamp createDate);
 
-   Post postEncapsulation(int postID, int userID, String title, String content, String createDate, int like, String picture);
+   //Post postEncapsulation(int postID, int userID, String title, String content, String createDate, int like, String picture);
 
-   Review reviewEncapsulation(int reviewID, int userID, int dishID, int rating, String comment, String reply, Date createDate, String picture);
+  //Review reviewEncapsulation(int reviewID, int userID, int dishID, int rating, String comment, String reply,Timestamp createDate, String picture);
 }
