@@ -3,19 +3,19 @@ package com.example.webproject.model;
 import java.sql.Timestamp;
 
 public class User {
-    private int userId;
+    private int userID;
     private String userName;
     private String password;
     private String email;
     private String role;
     private Timestamp createDate;
 
-    public int getUserId() {
-        return userId;
+    public int getUserID() {
+        return userID;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
     public String getUserName() {

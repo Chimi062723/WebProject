@@ -42,14 +42,14 @@
         </tr>
         <c:forEach var="user" items="${sessionScope.users}">
             <tr>
-                <td>${user.userId}</td>
+                <td>${user.userID}</td>
                 <td>${user.userName}</td>
                 <td>${user.email}</td>
                 <td>${user.role}</td>
                 <td>${user.createDate}</td>
                 <td>
-                    <button onclick="location.href='editAccount?id=${user.userId}'">编辑</button>
-                    <button onclick="deleteAccount(${user.userId})">删除</button>
+                    <button onclick="location.href='editAccount?id=${user.userID}'">编辑</button>
+                    <button onclick="deleteAccount(${user.userID})">删除</button>
                 </td>
             </tr>
         </c:forEach>

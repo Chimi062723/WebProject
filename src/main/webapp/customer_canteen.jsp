@@ -37,7 +37,7 @@
             <td>${canteen.location}</td>
             <td>${canteen.openTime}</td>
             <!-- 在该单元格中创建一个链接标签，void运算符来阻止href返回值，通过onclick事件(鼠标点击)属性来删除信息行-->
-            <td><a href="canteenDetailServlet?canteenId='${canteen.id}'">查看</a></td>
+            <td><a href="canteenDetailServlet?canteenID='${canteen.id}'">查看</a></td>
         </tr>
         <!-- 表格第三行：学生信息2 -->
     </c:forEach>

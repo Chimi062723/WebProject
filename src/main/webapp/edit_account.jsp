@@ -17,7 +17,7 @@
     <form action="UpdateAccountServlet" method="post">
         <label>
             用户名:
-            <input type="text" name="username" value="${requestScope.user.username}">
+            <input type="text" name="username" value="${requestScope.user.userName}">
         </label>
         <br>
         <label>

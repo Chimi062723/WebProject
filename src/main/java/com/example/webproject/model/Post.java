@@ -14,8 +14,8 @@ public class Post {
 
     public Post() {
     }
-    public Post(int postId, int userID, String title, String content,String createDate, int like, String picture) {
-        this.postID = postId;
+    public Post(int postID, int userID, String title, String content,String createDate, int like, String picture) {
+        this.postID = postID;
         this.userID = userID;
         this.title = title;
         this.content = content;

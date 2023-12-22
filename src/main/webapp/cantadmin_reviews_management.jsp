@@ -48,7 +48,7 @@
                     <td>${review.rating}</td>
                     <td>${review.content}</td>
                     <td>${review.creationTime}</td>
-                    <td><a href="review_detail.jsp?reviewId=${review.id}">查看</a></td>
+                    <td><a href="review_detail.jsp?reviewID=${review.id}">查看</a></td>
                 </tr>
             </c:forEach>
         </tbody>

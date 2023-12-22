@@ -99,8 +99,8 @@ public class DBhelper {
             List<Post> postList = new java.util.ArrayList<>();
             while (rs.next()) {
                 Post post = new Post();
-                post.setPostID(rs.getInt("PostId"));
-                post.setUserID(rs.getInt("UserId"));
+                post.setPostID(rs.getInt("PostID"));
+                post.setUserID(rs.getInt("UserID"));
                 post.setTitle(rs.getString("Title"));
                 post.setContent(rs.getString("Content"));
                 //填充名字

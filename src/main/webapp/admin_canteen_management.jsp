@@ -44,14 +44,14 @@ canteens: 所有食堂信息
     </tr>
     <c:forEach var="canteen" items="${sessionScope.canteens}">
       <tr>
-        <td>${canteen.canteenId}</td>
+        <td>${canteen.canteenID}</td>
         <td>${canteen.name}</td>
         <td>${canteen.location}</td>
         <td>${canteen.openTime}</td>
-        <td>${canteen.managerId}</td>
+        <td>${canteen.managerID}</td>
         <td>
-          <button onclick="location.href='edit_canteen.jsp?id=${canteen.canteenId}'">编辑</button>
-          <button onclick="deleteCanteen(${canteen.canteenId})">删除</button>
+          <button onclick="location.href='edit_canteen.jsp?id=${canteen.canteenID}'">编辑</button>
+          <button onclick="deleteCanteen(${canteen.canteenID})">删除</button>
         </td>
       </tr>
     </c:forEach>

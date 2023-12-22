@@ -49,7 +49,7 @@ public class AdminActionImpl implements AdminActions{
     @Override
     public int deleteCanteen(Canteen canteen) {
         try{
-            canteenDAO.deleteCanteen(canteen.getCanteenId());
+            canteenDAO.deleteCanteen(canteen.getCanteenID());
             return 1;
         }catch (SQLException e) {
             //todo
@@ -70,6 +70,15 @@ public class AdminActionImpl implements AdminActions{
             //todo
             return 0;
         }
+    }
+
+    /**
+     * @param userID
+     * @return
+     */
+    @Override
+    public User getAccount(int userID) {
+        return userDAO.getUserByID(userID);
     }
 
     /**
@@ -181,7 +190,7 @@ public class AdminActionImpl implements AdminActions{
     }
 
     /**
-     * @param canteenId 餐厅编号
+     * @param canteenID 餐厅编号
      * @param name      餐厅名
      * @param location  餐厅位置
      * @param openTime  时间
@@ -189,13 +198,13 @@ public class AdminActionImpl implements AdminActions{
      * @return
      */
     @Override
-    public Canteen canteenEncapsulation(int canteenId, String name, String location, String openTime, int managerID) {
-        return new Canteen(canteenId,name,location,openTime,managerID);
+    public Canteen canteenEncapsulation(int canteenID, String name, String location, String openTime, int managerID) {
+        return new Canteen(canteenID,name,location,openTime,managerID);
     }
 
     /**
-     * @param postId     帖子编号（自动生成）
-     * @param userId     用户编号
+     * @param postID     帖子编号（自动生成）
+     * @param userID     用户编号
      * @param title      标题
      * @param content    内容
      * @param createDate 创建时间，可传空值，由系统自动生成
@@ -203,14 +212,14 @@ public class AdminActionImpl implements AdminActions{
      * @return
      */
     @Override
-    public Post postEncapsulation(int postId, int userId, String title, String content, Date createDate, int like) {
+    public Post postEncapsulation(int postID, int userID, String title, String content, Date createDate, int like) {
         return null;
     }
 
     /**
-     * @param reviewId   评价id（自动生成）
-     * @param userId     用户id
-     * @param dishId     菜品编号
+     * @param reviewID   评价id（自动生成）
+     * @param userID     用户id
+     * @param dishID     菜品编号
      * @param rating     评价(int)
      * @param comment    评价内容
      * @param statue
@@ -218,13 +227,13 @@ public class AdminActionImpl implements AdminActions{
      * @return
      */
     @Override
-    public Review reviewEncapsulation(int reviewId, int userId, int dishId, int rating, String comment, int statue, Date createDate) {
+    public Review reviewEncapsulation(int reviewID, int userID, int dishID, int rating, String comment, int statue, Date createDate) {
         return null;
     }
 
     /**
-     * @param postId     帖子编号（自动生成）
-     * @param userId     用户编号
+     * @param postID     帖子编号（自动生成）
+     * @param userID     用户编号
      * @param title      标题
      * @param content    内容
      * @param createDate 创建时间，可传空值，由系统自动生成
@@ -232,14 +241,14 @@ public class AdminActionImpl implements AdminActions{
      * @return
      */
     @Override
-    public Post postEncapsulation(int postId, int userId, String title, String content, String createDate, int like, String picture) {
-        return new Post(postId,userId,title,content,createDate,like,picture);
+    public Post postEncapsulation(int postID, int userID, String title, String content, String createDate, int like, String picture) {
+        return new Post(postID,userID,title,content,createDate,like,picture);
     }
 
     /**
-     * @param reviewId   评价id（自动生成）
-     * @param userId     用户id
-     * @param dishId     菜品编号
+     * @param reviewID   评价id（自动生成）
+     * @param userID     用户id
+     * @param dishID     菜品编号
      * @param rating     评价(int)
      * @param comment    评价内容
      * @param statue
@@ -247,7 +256,7 @@ public class AdminActionImpl implements AdminActions{
      * @return
      */
     @Override
-    public Review reviewEncapsulation(int reviewId, int userId, int dishId, int rating, String comment, int statue, Date createDate,String picture) {
-        return new Review(reviewId,userId,dishId,rating,comment,statue,createDate,picture);
+    public Review reviewEncapsulation(int reviewID, int userID, int dishID, int rating, String comment, int statue, Date createDate,String picture) {
+        return new Review(reviewID,userID,dishID,rating,comment,statue,createDate,picture);
     }
 }

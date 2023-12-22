@@ -17,7 +17,7 @@
     发送时间: ${review.sendTime}<br>
     <!-- 这里添加回复表单 -->
     <form action="replyToReview" method="post">
-        <input type="hidden" name="reviewId" value="${review.id}" />
+        <input type="hidden" name="reviewID" value="${review.id}" />
         <textarea name="reply" rows="4" required></textarea>
         <input type="submit" value="回复">
     </form>

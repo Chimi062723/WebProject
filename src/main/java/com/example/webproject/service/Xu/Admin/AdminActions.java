@@ -46,9 +46,7 @@ public interface AdminActions {
     * @author ChiMi
     * #Date 2023/12/22
     */
-   User getAccount(int userId){
-
-   }
+   User getAccount(int userID);
 
    int addAccount(User user);
    /**
@@ -101,7 +99,7 @@ public interface AdminActions {
    int editPost(Post newPost);
    /**
     * 将食堂信息封装为食堂实体类
-    * @param canteenId 餐厅编号
+    * @param canteenID 餐厅编号
     * @param name 餐厅名
     * @param location 餐厅位置
     * @param openTime 时间
@@ -110,11 +108,11 @@ public interface AdminActions {
     * @author ChiMi
     * #Date 2023/12/21
     */
-   Canteen canteenEncapsulation(int canteenId, String name, String location, String openTime, int managerID);
+   Canteen canteenEncapsulation(int canteenID, String name, String location, String openTime, int managerID);
    /**
     * 社区帖子封装类
-    * @param postId 帖子编号（自动生成）
-    * @param userId 用户编号
+    * @param postID 帖子编号（自动生成）
+    * @param userID 用户编号
     * @param title 标题
     * @param content 内容
     * @param createDate 创建时间，可传空值，由系统自动生成
@@ -123,12 +121,12 @@ public interface AdminActions {
     * @author ChiMi
     * #Date 2023/12/21
     */
-   Post postEncapsulation(int postId, int userId, String title, String content, Date createDate, int like);
+   Post postEncapsulation(int postID, int userID, String title, String content, Date createDate, int like);
    /**
     * Description
-    * @param reviewId 评价id（自动生成）
-    * @param userId 用户id
-    * @param dishId 菜品编号
+    * @param reviewID 评价id（自动生成）
+    * @param userID 用户id
+    * @param dishID 菜品编号
     * @param rating 评价(int)
     * @param comment 评价内容
     * @param statue
@@ -137,9 +135,9 @@ public interface AdminActions {
     * @author ChiMi
     * #Date 2023/12/21
     */
-   Review reviewEncapsulation(int reviewId,int userId,int dishId,int rating,String comment,int statue,Date createDate);
+   Review reviewEncapsulation(int reviewID,int userID,int dishID,int rating,String comment,int statue,Date createDate);
 
-   Post postEncapsulation(int postId, int userId, String title, String content, String createDate, int like, String picture);
+   Post postEncapsulation(int postID, int userID, String title, String content, String createDate, int like, String picture);
 
-   Review reviewEncapsulation(int reviewId, int userId, int dishId, int rating, String comment, int statue, Date createDate, String picture);
+   Review reviewEncapsulation(int reviewID, int userID, int dishID, int rating, String comment, int statue, Date createDate, String picture);
 }
