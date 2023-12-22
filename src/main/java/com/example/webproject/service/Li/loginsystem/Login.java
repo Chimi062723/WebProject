@@ -52,9 +52,15 @@ public class Login  extends HttpServlet {
                         Dish dish1 = dishDAO.getDish(1);
                         Dish dish2 = dishDAO.getDish(2);
                         Dish dish3 = dishDAO.getDish(3);
+                        Dish dish4 = dishDAO.getDish(4);
+                        Dish dish5 = dishDAO.getDish(5);
+                        Dish dish6 = dishDAO.getDish(6);
                         session.setAttribute("dish1",dish1);
                         session.setAttribute("dish2",dish2);
                         session.setAttribute("dish3",dish3);
+                        session.setAttribute("dish4",dish4);
+                        session.setAttribute("dish5",dish5);
+                        session.setAttribute("dish6",dish6);
                         request.getRequestDispatcher("customer_dashboard.jsp").forward(request,response);
                     }
                 }else {
