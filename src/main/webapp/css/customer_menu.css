@@ -257,4 +257,49 @@ body {
     flex: 1; /* 每个部分占据等量空间 */
     margin: 20px; /* 添加一些间距 */
 }
-/* 如果需要，您可以添加更多的样式来进一步美化这两个部分 */
+.content-column{
+    display: flex;
+    flex-direction: column;
+}
+.vote-section {
+    flex: 1;
+    margin: 20px;
+}
+.vote-item {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.vote-title, .vote-question {
+    display: block; /* 使标题和问题在各自的行显示 */
+    margin-bottom: 10px;
+}
+
+.vote-title {
+    font-weight: bold;
+    color: #0056b3;
+    font-size: 1.2em;
+}
+
+.vote-question {
+    color: #333;
+}
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+input[type="submit"] {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #003366;
+}

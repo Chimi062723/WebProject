@@ -2,11 +2,8 @@ package com.example.webproject.service.Li.loginsystem;
 
 
 import com.example.webproject.dao.*;
-import com.example.webproject.model.Dish;
-import com.example.webproject.model.Post;
-import com.example.webproject.model.User;
+import com.example.webproject.model.*;
 import com.example.webproject.util.DBhelper;
-import com.example.webproject.model.Canteen;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -35,6 +32,7 @@ public class Login  extends HttpServlet {
                     CanteenDAO canteenDAO = new CanteenDAO();
                     DishDAO dishDAO = new DishDAO();//todo:DishDAO
                     PostDAO postDAO = new PostDAO();//todo:PostDAO完善
+                    VoteDAO voteDAO = new VoteDAO();
                     ReviewDAO reviewDAO = new ReviewDAO(); //todo:ReviewDAO完善
                     role= userDAO.judgeRole(username);
                     if(role.equals("sys_admin")){
@@ -71,6 +69,9 @@ public class Login  extends HttpServlet {
                         List<Canteen> canteens = canteenDAO.getAllCanteens();
                         session.setAttribute("canteens",canteens);
                         //以上传入食堂信息
+                        Vote vote = voteDAO.getVote(1);
+                        session.setAttribute("vote",vote);
+                        //以上传入投票信息
                         request.getRequestDispatcher("customer_dashboard.jsp").forward(request,response);
                     }
                 }else {

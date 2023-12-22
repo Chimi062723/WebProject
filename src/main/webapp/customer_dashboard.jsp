@@ -180,54 +180,39 @@
             </span>
             </div>
         </div>
-
-        <!-- 公告区 -->
-        <div class="announcement-section">
-            <p>促销活动</p>
-            <!-- 动态生成公告内容，示例代码 -->
-            <c:forEach items="${sessionScope.canteens}" var="canteen">
-                <div class="announcement">
-                    <p class="announcement-title">${canteen.name}</p>
-                    <p class="announcement-content">${canteen.notice}</p>
+        <div class="content-column">
+            <!-- 公告区 -->
+            <div class="announcement-section">
+                <p>促销活动</p>
+                <!-- 动态生成公告内容，示例代码 -->
+                <c:forEach items="${sessionScope.canteens}" var="canteen">
+                    <div class="announcement">
+                        <p class="announcement-title">${canteen.name}</p>
+                        <p class="announcement-content">${canteen.notice}</p>
+                    </div>
+                </c:forEach>
+            </div>
+            <div class="vote-section">
+                <p>最新投票</p>
+                <div class="vote-item">
+                    <span class="vote-title">${sessionScope.vote.title}</span>
+                    <span class="vote-question">${sessionScope.vote.question}</span>
+                    <form action="VoteServlet" method="post">
+                        <input type="radio" name="result" id="1" value="${sessionScope.dish1.name}">
+                        <label for="1">${sessionScope.dish1.name}</label>
+                        <input type="radio" name="result" id="2" value="${sessionScope.dish2.name}">
+                        <label for="2">${sessionScope.dish2.name}</label>
+                        <input type="radio" name="result" id="3" value="${sessionScope.dish3.name}">
+                        <label for="3">${sessionScope.dish3.name}</label>
+                        <input type="radio" name="result" id="4" value="${sessionScope.dish4.name}">
+                        <label for="4">${sessionScope.dish4.name}</label>
+                        <input type="submit" value="投票">
+                    </form>
                 </div>
-            </c:forEach>
-        </div>
-    </div>
-    <div>
-        <p>最新投票</p>
-        <div class="vote-section">
-            <div class="vote-item">
-                <img src="placeholder-image.jpg" alt="${vote1.title}"/>
-                <span class="vote-title">${vote1.title}</span>
-                <span class="vote-time">${vote1.createTime}</span>
-                <span class="vote-details">${vote1.content}</span>
-                <span class="vote-actions">
-                    <a href="#">参与投票</a>
-                    <!-- 更多操作 -->
-                </span>
-            </div>
-            <div class="vote-item">
-                <img src="placeholder-image.jpg" alt="${vote2.title}"/>
-                <span class="vote-title">${vote2.title}</span>
-                <span class="vote-time">${vote2.createTime}</span>
-                <span class="vote-details">${vote2.content}</span>
-                <span class="vote-actions">
-                    <a href="#">参与投票</a>
-                    <!-- 更多操作 -->
-                </span>
-            </div>
-            <div class="vote-item">
-                <img src="placeholder-image.jpg" alt="${vote3.title}"/>
-                <span class="vote-title">${vote3.title}</span>
-                <span class="vote-time">${vote3.createTime}</span>
-                <span class="vote-details">${vote3.content}</span>
-                <span class="vote-actions">
-                    <a href="#">参与投票</a>
-                    <!-- 更多操作 -->
-                </span>
             </div>
         </div>
     </div>
+
     <div>
         <p>最新评论</p>
         <div class="review-section">
