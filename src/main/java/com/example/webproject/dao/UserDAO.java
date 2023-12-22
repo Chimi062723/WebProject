@@ -120,8 +120,7 @@ public User getUserByID(int id) {
         preparedStatement.setString(1, username);
         ResultSet rs = preparedStatement.executeQuery();
         if (rs.next()) {
-            String role = rs.getString("Role");
-            return role;
+            return rs.getString("Role");
         }
         return null;
     }
