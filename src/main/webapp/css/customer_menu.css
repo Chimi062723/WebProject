@@ -1,6 +1,6 @@
 body {
     display: flex;
-    flex-direction: column; /* 改为列布局以适应不同屏幕 */
+    flex-direction: row; /* 改为列布局以适应不同屏幕 */
     margin: 0;
     height: 100vh;
     font-family: 'Open Sans', Arial, sans-serif;
@@ -61,6 +61,7 @@ body {
     max-width: 1200px;
     margin: auto;
     padding: 20px;
+    width: calc(100% - 220px);
 }
 
 /* 菜品展示区样式 */
@@ -70,18 +71,35 @@ body {
     overflow: hidden;
     margin-bottom: 20px;
     display: flex; /* 使用flex布局 */
-    flex-direction: column; /* 垂直排列 */
+    flex-direction: row; /* 垂直排列 */
+    min-width: 300px;
+    margin-right: 15px;
 }
 
 .dish-card img {
     width: 100%;
     height: auto;
+    max-width: 50%;
     object-fit: cover;
+    max-height: 150px; /* 限制图片最大高度 */
+}
+.dish-carousel {
+    position: relative;
+    overflow: hidden;
+}
+.carousel-track-container {
+    width: 100%;
+    overflow: hidden;
+}
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease;
 }
 
 .dish-details {
     padding: 10px;
     background-color: #fff;
+    width: 50%;
 }
 
 .dish-name {
@@ -131,4 +149,22 @@ body {
 /* 动画和过渡效果 */
 .dish-card:hover, .post:hover, .announcement:hover {
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.carousel-control.prev {
+    left: 10px;
+}
+
+.carousel-control.next {
+    right: 10px;
 }
