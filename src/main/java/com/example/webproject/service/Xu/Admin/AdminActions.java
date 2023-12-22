@@ -6,6 +6,7 @@ import com.example.webproject.model.User;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.List;
 
 public interface AdminActions {
    //todo:细化对异常的处理
@@ -17,6 +18,7 @@ public interface AdminActions {
     * #Date 2023/12/21
     */
    int addCanteen(Canteen canteen);
+    List<User> getAllAccount();
    /**
     * 删除餐厅
     * @param canteen 要删除的餐厅信息
@@ -129,6 +131,12 @@ public interface AdminActions {
     * #Date 2023/12/21
     */
    Post postEncapsulation(int postID, int userID, String title, String content, Date createDate, int like);
+
+   Review reviewEncapsulation(int reviewID, int userID, int dishID, int rating, String comment, String reply, Date createDate);
+
+   Post postEncapsulation(int postID, int userID, String title, String content, String createDate, int like, String picture);
+
+   Review reviewEncapsulation(int reviewID, int userID, int dishID, int rating, String comment, String reply, Date createDate, String picture);
    /**
     * Description
     * @param reviewID 评价id（自动生成）

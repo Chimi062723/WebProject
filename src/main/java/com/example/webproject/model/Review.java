@@ -37,7 +37,7 @@ public class Review {
         this.comment = comment;
         this.reply = reply;
         this.createDate = createDate;
-        this.picture = picture;
+        this.picture=picture;
     }
 
     public int getReviewID() {

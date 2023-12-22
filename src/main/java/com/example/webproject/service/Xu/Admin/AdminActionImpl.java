@@ -1,13 +1,12 @@
 package com.example.webproject.service.Xu.Admin;
 
 import com.example.webproject.dao.CanteenDAO;
-import com.example.webproject.dao.ReviewDAO;
+//import com.example.webproject.dao.ReviewDAO;
 import com.example.webproject.dao.UserDAO;
 import com.example.webproject.model.Canteen;
 import com.example.webproject.model.Review;
 import com.example.webproject.model.Post;
 import com.example.webproject.model.User;
-import com.oracle.wls.shaded.org.apache.bcel.classfile.ConstantNameAndType;
 
 import java.sql.Date;
 import java.sql.SQLException;
@@ -25,11 +24,15 @@ public class AdminActionImpl implements AdminActions{
     //todo: 管理员操作的具体实现，数据库错误的异常处理
     UserDAO userDAO;
     CanteenDAO canteenDAO;
-    ReviewDAO reviewDAO;
+//    ReviewDAO reviewDAO;
+    @Override
+    public List<User> getAllAccount() {
+        return userDAO.getAllUsers();
+    }
     public AdminActionImpl(){
         this.userDAO = new UserDAO();
         this.canteenDAO = new CanteenDAO();
-        this.reviewDAO = new ReviewDAO();
+//        this.reviewDAO = new ReviewDAO();
     }
 
     public Canteen getCanteen(int canteenID){
@@ -281,7 +284,7 @@ public class AdminActionImpl implements AdminActions{
      * @return
      */
     @Override
-    public Review reviewEncapsulation(int reviewID, int userID, int dishID, int rating, String comment, String reply, Date createDate,String picture) {
+    public Review reviewEncapsulation(int reviewID, int userID, int dishID, int rating, String comment, String reply, Date createDate, String picture) {
         return new Review(reviewID,userID,dishID,rating,comment,reply,new Timestamp(createDate.getTime()),picture);
     }
 }

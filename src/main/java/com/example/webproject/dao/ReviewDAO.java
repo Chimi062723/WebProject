@@ -26,16 +26,20 @@ public class ReviewDAO {
                     resultSet.getInt("rating"),
                     resultSet.getString("comment"),
                     resultSet.getString("reply"),
-//                    resultSet.getTimestamp("createDate")
-//                    new java.sql.Date(System.currentTimeMillis()).toString(),
-//                    resultSet.getDate("createDate").toString(),
-                    new Timestamp(resultSet.getTimestamp("createDate").getTime()),
-                    resultSet.getString("picture")
-//                    resultSet.getTimestamp("createDate")
-            );
+                    resultSet.getTimestamp("createDate"),
+                    resultSet.getString("picture"));
+            review.setReviewID(resultSet.getInt("reviewID"));
+            review.setUserID(resultSet.getInt("userID"));
+            review.setDishID(resultSet.getInt("dishID"));
+            review.setRating(resultSet.getInt("rating"));
+            review.setComment(resultSet.getString("comment"));
+            review.setReply(resultSet.getString("reply"));
+            review.setCreateDate(resultSet.getTimestamp("createDate"));
             reviews.add(review);
         }
-        return reviews;}
+        return reviews;
+    }
+
     public List<Review> getReviewsByUserId(int userId) throws SQLException {
         List<Review> reviews = new ArrayList<>();
         dBhelper.init();
@@ -53,8 +57,14 @@ public class ReviewDAO {
                     resultSet.getString("comment"),
                     resultSet.getString("reply"),
                     resultSet.getTimestamp("createDate"),
-                    resultSet.getString("picture")
-            );
+                    resultSet.getString("picture"));
+            review.setReviewID(resultSet.getInt("reviewID"));
+            review.setUserID(resultSet.getInt("userID"));
+            review.setDishID(resultSet.getInt("dishID"));
+            review.setRating(resultSet.getInt("rating"));
+            review.setComment(resultSet.getString("comment"));
+            review.setReply(resultSet.getString("reply"));
+            review.setCreateDate(resultSet.getTimestamp("createDate"));
             reviews.add(review);
         }
         return reviews;
