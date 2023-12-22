@@ -11,7 +11,7 @@ public class UserDAO implements UserDaoImpl {
     private static final String GET_ALL_USERS_SQL = "SELECT * FROM Users";
     private static final String GET_USER_BY_USERNAME_SQL = "SELECT * FROM Users WHERE UserName = ?";
     private static final String GET_USER_BY_USERID_SQL = "SELECT * FROM Users WHERE UserID = ?";
-    private static final String ADD_USER_SQL = "INSERT INTO Users (UserName, Password, Role) VALUES (?, ?, ?)";
+    private static final String ADD_USER_SQL = "INSERT INTO Users (UserName,Password,Email, Role) VALUES (?,Password ,?, ?)";
     private static final String UPDATE_USER_SQL = "UPDATE Users SET Password = ?, Role = ? WHERE UserName = ?";
     private static final String DELETE_USER_SQL = "DELETE FROM Users WHERE UserName = ?";
 
@@ -95,12 +95,12 @@ public User getUserByID(int id) {
     }
 
     @Override
-    public void updateUser(User user) throws SQLException{
+    public void updateUser(String username,String email,String role) throws SQLException{
         Connection connection = JDBCHelper.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER_SQL);
-        preparedStatement.setString(1, user.getPassword());
-        preparedStatement.setString(2, user.getRole());
-        preparedStatement.setString(3, user.getUserName());
+        preparedStatement.setString(1, username);
+        preparedStatement.setString(2, email);
+        preparedStatement.setString(3, role);
         preparedStatement.executeUpdate();
 
     }

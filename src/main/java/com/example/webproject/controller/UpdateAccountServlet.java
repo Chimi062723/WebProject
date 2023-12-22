@@ -1,5 +1,6 @@
 package com.example.webproject.controller;
 
+import com.example.webproject.service.Xu.Admin.AdminActionImpl;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -10,7 +11,11 @@ import java.io.IOException;
 public class UpdateAccountServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        String username = request.getParameter("username");
+        String email = request.getParameter("email");
+        String role = request.getParameter("role");
+        AdminActionImpl adminAction = new AdminActionImpl();
+        adminAction.editAccount(username,email,role);
     }
 
     @Override

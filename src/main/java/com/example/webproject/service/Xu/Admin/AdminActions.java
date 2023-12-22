@@ -32,15 +32,9 @@ public interface AdminActions {
     * #Date 2023/12/21
     */
    int editCanteen(Canteen newCanteen);
+
    /**
-    * 用户注册时会用到的添加用户
-    * @param user 新添加的用户
-    * @return 操作正常，返回结果1，操作异常，返回结果0
-    * @author ChiMi
-    * #Date 2023/12/21
-    */
-   /**
-    * Description
+    * 用用户id获取用户
     * @param
     * @return user
     * @author ChiMi
@@ -48,15 +42,25 @@ public interface AdminActions {
     */
    User getAccount(int userID);
 
-   int addAccount(User user);
    /**
-    * 修改用户，系统管理员可用
-    * @param newUser 新用户样式
+    * 用户注册时会用到的添加用户
+    * @param user 新添加的用户
     * @return 操作正常，返回结果1，操作异常，返回结果0
     * @author ChiMi
     * #Date 2023/12/21
     */
-   int editAccount(User newUser);
+   int addAccount(User user);
+   /**
+    * 修改用户，系统管理员可用
+    * @param username 新用户
+    * @param email
+    * @param role
+    * @return 操作正常，返回结果1，操作异常，返回结果0
+    * @author ChiMi
+    * #Date 2023/12/21
+    */
+   int editAccount(String username, String email, String role);
+
    /**
     * 删除指定用户
     * @param user 需要删除的用户

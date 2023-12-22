@@ -96,13 +96,15 @@ public class AdminActionImpl implements AdminActions{
     }
 
     /**
-     * @param newUser 新用户样式
+     * @param username 用户名
+     * @param email 邮箱
+     * @param role 角色
      * @return
      */
     @Override
-    public int editAccount(User newUser) {
+    public int editAccount(String username,String email,String role) {
         try{
-            userDAO.updateUser(newUser);
+            userDAO.updateUser(username,email,role);
             return 1;
         }catch (SQLException e){
             //todo
