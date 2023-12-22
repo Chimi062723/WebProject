@@ -206,11 +206,12 @@ public class AdminActionImpl implements AdminActions{
      * @param name      餐厅名
      * @param location  餐厅位置
      * @param openTime  时间
-     * @param managerID 管理员编号
+     * @param managerName 管理员编号
      * @return
      */
     @Override
-    public Canteen canteenEncapsulation(int canteenID, String name, String location, String openTime, int managerID,String notice) {
+    public Canteen canteenEncapsulation(int canteenID, String name, String location, String openTime, String managerName,String notice) {
+        int managerID = userDAO.getUserByUsername(managerName).getUserID();
         return new Canteen(canteenID,name,location,openTime,managerID,notice);
     }
 
