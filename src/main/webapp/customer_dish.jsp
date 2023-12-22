@@ -49,11 +49,27 @@
                 <select id="cuisine-select" name="cuisine">
                     <option value="all">所有菜品</option>
                     <option value="川菜">川菜</option>
-                    <option value="浙江菜">粤菜</option>
+                    <option value="浙菜">浙菜</option>
 <%--                    <option value="鲁菜">鲁菜</option>--%>
                 </select>
-                <input type="submit" value="提交">
+                <input type="submit" value="确认">
             </form>
+            <div id="search-results">
+                <!-- 动态生成的检索结果将在这里显示 -->
+                <c:forEach items="${requestScope.dishList}" var="dish">
+                    <div class="dish-card">
+                            <%--                <img src="placeholder-image.jpg" alt="${dish.name}" />--%>
+                        <div class="dish-details">
+                            <span class="dish-name">${dish.name}</span>
+                            <span class="dish-price">价格: ${dish.price}</span>
+                            <span class="dish-type">类别: ${dish.type}</span>
+                            <span class="dish-canteen">食堂id: ${dish.canteenID}</span>
+                                <%--                    <a href="dish_detial_Servlet?name='${dish.name}'">详情</a>--%>
+                            <!-- 更多信息 -->
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
         </div>
         <div class="content" id="menu2">
             <li><a href="#">升序</a></li>
@@ -65,22 +81,7 @@
         </div>
     </div>
     <!-- 检索结果 -->
-    <div id="search-results">
-        <!-- 动态生成的检索结果将在这里显示 -->
-        <c:forEach items="${requestScope.dishList}" var="dish">
-            <div class="dish-card">
-<%--                <img src="placeholder-image.jpg" alt="${dish.name}" />--%>
-                <div class="dish-details">
-                    <span class="dish-name">${dish.name}</span>
-                    <span class="dish-price">价格: ${dish.price}</span>
-                    <span class="dish-type">类别: ${dish.type}</span>
-                    <span class="dish-canteen">食堂id: ${dish.canteenID}</span>
-<%--                    <a href="dish_detial_Servlet?name='${dish.name}'">详情</a>--%>
-                    <!-- 更多信息 -->
-                </div>
-            </div>
-        </c:forEach>
-    </div>
+
 
 </div>
 <script>
@@ -102,6 +103,16 @@
 
             // 显示目标内容
             document.getElementById(targetTab).classList.add('active');
+        });
+    });
+    // 确保DOM加载完毕后，执行相关操作
+    window.addEventListener('DOMContentLoaded', () => {
+        const cuisineSelect = document.getElementById('cuisine-select');
+        cuisineSelect.value = localStorage.getItem('selectedCuisine') || 'all'; // 恢复用户之前的菜系选择
+
+        // 监听下拉菜单的change事件，保存用户选择到本地存储
+        cuisineSelect.addEventListener('change', () => {
+            localStorage.setItem('selectedCuisine', cuisineSelect.value);
         });
     });
 </script>

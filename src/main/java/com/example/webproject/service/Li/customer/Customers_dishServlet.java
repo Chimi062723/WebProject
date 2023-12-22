@@ -20,8 +20,15 @@ public class Customers_dishServlet extends HttpServlet {
         String cuisine = request.getParameter("cuisine");
         DBhelper db = new DBhelper();
         db.init();
+
         try {
-            dishList = db.getDishList(db.dbconn,cuisine);
+            if(cuisine.equals("all")){
+                dishList = db.getAllDishList(db.dbconn);
+            }
+            else{
+                dishList = db.getDishList(db.dbconn,cuisine);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);

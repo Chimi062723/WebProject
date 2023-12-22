@@ -26,7 +26,7 @@ public class DishDAO {
                 Dish dish = new Dish();
                 dish.setDishID(rs.getInt("DishID"));
                 dish.setName(rs.getString("Name"));
-                dish.settype(rs.getString("CuisineType"));
+                dish.setType(rs.getString("CuisineType"));
                 dish.setPrice(rs.getDouble("Price"));
                 dish.setPromotionPrice(rs.getDouble("PromotionPrice"));
                 dish.setCanteenID(rs.getInt("canteenID"));
@@ -46,7 +46,7 @@ public class DishDAO {
                 if (rs.next()) {
                     dish.setDishID(rs.getInt("DishID"));
                     dish.setName(rs.getString("Name"));
-                    dish.settype(rs.getString("CuisineType"));
+                    dish.setType(rs.getString("CuisineType"));
                     dish.setPrice(rs.getDouble("Price"));
                     dish.setCanteenID(rs.getInt("canteenID"));
                     dish.setImage(rs.getString("ImageURL"));
@@ -60,7 +60,7 @@ public class DishDAO {
         try (Connection conn = JDBCHelper.getConnection();
              PreparedStatement ps = conn.prepareStatement(INSERT_DISH)) {
             ps.setString(1, dish.getName());
-            ps.setString(2, dish.gettype());
+            ps.setString(2, dish.getType());
             ps.setDouble(3, dish.getPrice());
             ps.setInt(4, dish.getCanteenID());
             ps.setString(5, dish.getImage());
@@ -73,7 +73,7 @@ public class DishDAO {
         try (Connection conn = JDBCHelper.getConnection();
              PreparedStatement ps = conn.prepareStatement(UPDATE_DISH)) {
             ps.setString(1, dish.getName());
-            ps.setString(2, dish.gettype());
+            ps.setString(2, dish.getType());
             ps.setDouble(3, dish.getPrice());
             ps.setInt(4, dish.getCanteenID());
             ps.setString(5, dish.getImage());
