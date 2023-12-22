@@ -235,12 +235,12 @@ public class AdminActionImpl implements AdminActions{
      * @param dishID     菜品编号
      * @param rating     评价(int)
      * @param comment    评价内容
-     * @param statue
+     * @param reply
      * @param createDate 创建日期(自动生成)
      * @return
      */
     @Override
-    public Review reviewEncapsulation(int reviewID, int userID, int dishID, int rating, String comment, int statue, Date createDate) {
+    public Review reviewEncapsulation(int reviewID, int userID, int dishID, int rating, String comment, String reply, Date createDate) {
         return null;
     }
 
@@ -264,12 +264,12 @@ public class AdminActionImpl implements AdminActions{
      * @param dishID     菜品编号
      * @param rating     评价(int)
      * @param comment    评价内容
-     * @param statue
+     * @param reply
      * @param createDate 创建日期(自动生成)
      * @return
      */
     @Override
-    public Review reviewEncapsulation(int reviewID, int userID, int dishID, int rating, String comment, int statue, Date createDate,String picture) {
-        return new Review(reviewID,userID,dishID,rating,comment,statue,createDate,picture);
+    public Review reviewEncapsulation(int reviewID, int userID, int dishID, int rating, String comment, String reply, Date createDate,String picture) {
+        return new Review(reviewID,userID,dishID,rating,comment,reply,createDate,picture);
     }
 }

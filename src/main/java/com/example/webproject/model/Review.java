@@ -1,6 +1,7 @@
 package com.example.webproject.model;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Review {
     int reviewID;
@@ -8,8 +9,26 @@ public class Review {
     int dishID;
     int rating;
     String comment;
-    int statue; //评论有无被回复
-    public Review(int reviewID, int userID, int dishID, int rating, String comment, int statue, Date createDate,String picture) {
+    Timestamp createDate;
+
+    public Timestamp getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Timestamp createDate) {
+        this.createDate = createDate;
+    }
+
+    public String getReply() {
+        return reply;
+    }
+
+    public void setReply(String reply) {
+        this.reply = reply;
+    }
+
+    String reply;
+    public Review(int reviewID, int userID, int dishID, int rating, String comment, String reply, Date createDate,String picture) {
         this.reviewID=reviewID;
         this.userID = userID;
 
@@ -55,11 +74,5 @@ public class Review {
         this.comment = comment;
     }
 
-    public int getStatue() {
-        return statue;
-    }
 
-    public void setStatue(int statue) {
-        this.statue = statue;
-    }
 }

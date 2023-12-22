@@ -135,15 +135,15 @@ public interface AdminActions {
     * @param dishID 菜品编号
     * @param rating 评价(int)
     * @param comment 评价内容
-    * @param statue
+    * @param reply
     * @param createDate 创建日期(自动生成)
     * @return 封装后的评价实体类
     * @author ChiMi
     * #Date 2023/12/21
     */
-   Review reviewEncapsulation(int reviewID,int userID,int dishID,int rating,String comment,int statue,Date createDate);
+   Review reviewEncapsulation(int reviewID,int userID,int dishID,int rating,String comment,String reply,Date createDate);
 
    Post postEncapsulation(int postID, int userID, String title, String content, String createDate, int like, String picture);
 
-   Review reviewEncapsulation(int reviewID, int userID, int dishID, int rating, String comment, int statue, Date createDate, String picture);
+   Review reviewEncapsulation(int reviewID, int userID, int dishID, int rating, String comment, String reply, Date createDate, String picture);
 }
