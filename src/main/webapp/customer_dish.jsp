@@ -40,34 +40,42 @@
     </ul>
     <div class="tabs-content">
         <div class="content active" id="home">
-            <h3>总览</h3>
             <p>列表/表格显示所有菜品</p>
+
         </div>
         <div class="content" id="menu1">
-            <h3>菜系</h3>
-            <p>呈现不同菜系的选项，点击之后只显示该菜系的菜品</p>
+            <form action="customers_dish" method="get">
+                <label for="cuisine-select">选择菜系: </label>
+                <select id="cuisine-select" name="cuisine">
+                    <option value="all">所有菜品</option>
+                    <option value="川菜">川菜</option>
+                    <option value="浙江菜">粤菜</option>
+<%--                    <option value="鲁菜">鲁菜</option>--%>
+                </select>
+                <input type="submit" value="提交">
+            </form>
         </div>
         <div class="content" id="menu2">
-            <h3>食堂</h3>
+            <li><a href="#">升序</a></li>
+            <li><a href="#">降序</a></li>
             <p>呈现不同食堂的选项，点击之后只显示该食堂的菜品</p>
         </div>
         <div class="content" id="menu3">
-            <h3>价格</h3>
             <p>提供降序和升序按钮，点击之后按顺序显示</p>
         </div>
     </div>
     <!-- 检索结果 -->
     <div id="search-results">
         <!-- 动态生成的检索结果将在这里显示 -->
-        <c:forEach items="${dishes}" var="dish">
+        <c:forEach items="${requestScope.dishList}" var="dish">
             <div class="dish-card">
-                <img src="placeholder-image.jpg" alt="${dish.name}" />
+<%--                <img src="placeholder-image.jpg" alt="${dish.name}" />--%>
                 <div class="dish-details">
                     <span class="dish-name">${dish.name}</span>
                     <span class="dish-price">价格: ${dish.price}</span>
-                    <span class="dish-type">类别: ${dish.cuisineType}</span>
-                    <span class="dish-canteen">食堂: ${dish.canteen}</span>
-                    <a href="dish_detial_Servlet?name='${dish.name}'">详情</a>
+                    <span class="dish-type">类别: ${dish.type}</span>
+                    <span class="dish-canteen">食堂id: ${dish.canteenID}</span>
+<%--                    <a href="dish_detial_Servlet?name='${dish.name}'">详情</a>--%>
                     <!-- 更多信息 -->
                 </div>
             </div>
@@ -79,6 +87,23 @@
     $(document).ready(function() {
         $(document).foundation();
     })
+    document.querySelectorAll('.dropdown-content a').forEach(anchor => {
+        anchor.addEventListener('click', (event) => {
+            // 阻止默认行为
+            event.preventDefault();
+
+            // 获取所选标签的href属性值
+            var targetTab = event.target.getAttribute('href').replace('#', '');
+
+            // 隐藏所有内容
+            document.querySelectorAll('.content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // 显示目标内容
+            document.getElementById(targetTab).classList.add('active');
+        });
+    });
 </script>
 
 

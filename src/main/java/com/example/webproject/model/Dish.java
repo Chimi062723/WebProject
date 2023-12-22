@@ -36,11 +36,11 @@ public class Dish {
         this.name = name;
     }
 
-    public String gettype() {
+    public String getType() {
         return type;
     }
 
-    public void settype(String type){
+    public void setType(String type){
         this.type = type;
     }
 

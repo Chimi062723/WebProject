@@ -1,5 +1,6 @@
 package com.example.webproject.util;
 
+import com.example.webproject.model.Dish;
 import com.example.webproject.model.Post;
 
 import java.sql.*;
@@ -170,5 +171,30 @@ public class DBhelper {
         }
         return null;
 
+    }
+
+    public List<Dish> getDishList(Connection dbconn, String cuisine) {
+        String sql = "SELECT * FROM Dishes WHERE CuisineType = ?";
+        PreparedStatement ps = null;
+        try {
+            ps = dbconn.prepareStatement(sql);
+            ps.setString(1, cuisine);
+            ResultSet rs = ps.executeQuery();
+            List<Dish> dishList = new java.util.ArrayList<>();
+            while (rs.next()) {
+                Dish dish = new Dish();
+                dish.setDishID(rs.getInt("DishID"));
+                dish.setCanteenID(rs.getInt("CanteenID"));
+                dish.setName(rs.getString("Name"));
+                dish.setType(rs.getString("CuisineType"));
+                dish.setPrice(rs.getDouble("Price"));
+                dish.setImage(rs.getString("ImageURL"));
+                dishList.add(dish);
+            }
+            return dishList;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
     }
 }
