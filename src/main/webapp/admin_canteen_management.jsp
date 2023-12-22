@@ -52,8 +52,9 @@ canteens: 所有食堂信息
           <td>${canteen.openTime}</td>
           <td>${canteen.managerID}</td>
           <td>
-            <button onclick="location.href='EditCanteen?id=${canteen.canteenID}'">编辑</button>
-            <button onclick="deleteCanteen(${canteen.canteenID})">删除</button>
+            <input type="hidden" name="id">
+            <input type="submit" value="编辑" formaction="EditCanteen" formmethod="get">
+            <input type="submit" value="删除" formaction="DeleteCanteen" formmethod="get">
           </td>
         </tr>
       </c:forEach>

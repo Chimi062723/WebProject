@@ -10,6 +10,17 @@ public class User {
     private String role;
     private Timestamp createDate;
 
+    public User(){
+
+    }
+
+    public User(String name,String password, String email, String role) {
+        this.userName = name;
+        this.password = password;
+        this.email = email;
+        this.role = role;
+    }
+
     public int getUserID() {
         return userID;
     }

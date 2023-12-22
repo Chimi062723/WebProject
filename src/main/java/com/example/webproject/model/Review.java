@@ -10,7 +10,7 @@ public class Review {
     int rating;
     String comment;
     Timestamp createDate;
-
+    String Picture;
     public Timestamp getCreateDate() {
         return createDate;
     }

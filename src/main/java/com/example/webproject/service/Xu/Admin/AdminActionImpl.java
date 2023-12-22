@@ -11,7 +11,6 @@ import com.oracle.wls.shaded.org.apache.bcel.classfile.ConstantNameAndType;
 
 import java.sql.Date;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.List;
 
 /**
