@@ -43,7 +43,6 @@ public class UserDAO implements UserDaoImpl {
         User user = null;
         try (Connection connection = JDBCHelper.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_USERNAME_SQL)) {
-
             preparedStatement.setString(1, username);
             ResultSet rs = preparedStatement.executeQuery();
 
