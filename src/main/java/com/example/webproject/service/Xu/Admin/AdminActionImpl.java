@@ -93,7 +93,9 @@ public class AdminActionImpl implements AdminActions{
             return 0;
         }
     }
-
+    public List<User> getAllAccount(){
+        return userDAO.getAllUsers();
+    }
     /**
      * @param userID
      * @return
