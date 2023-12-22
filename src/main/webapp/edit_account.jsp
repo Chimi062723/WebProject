@@ -37,6 +37,7 @@
         <br>
         <input type="submit" value="更新">
     </form>
+    <a href="admin_account_management.jsp">返回</a>
 </div>
 </body>
 </html>
