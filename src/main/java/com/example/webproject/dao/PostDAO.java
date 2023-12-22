@@ -13,6 +13,7 @@ public class PostDAO {
     //todo:PostDAO
     public Post getPost(int postID) throws SQLException {
         Post post = new Post();
+        UserDAO userDAO = new UserDAO();
         try (Connection conn = JDBCHelper.getConnection();
              PreparedStatement ps = conn.prepareStatement(GET_POST_BY_ID)) {
             ps.setInt(1, postID);
@@ -25,6 +26,7 @@ public class PostDAO {
                     post.setCreateDate(rs.getTimestamp("CreateDate").toString());
                     post.setLike(rs.getInt("Like"));
                     post.setPicture(rs.getString("Picture"));
+                    post.setAuthor(userDAO.getUserByID(rs.getInt("UserID")));
                 }
             }
         }

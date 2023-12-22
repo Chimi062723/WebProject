@@ -1,12 +1,11 @@
 package com.example.webproject.util;
 
-import com.example.webproject.model.Canteen;
+import com.example.webproject.dao.UserDAO;
 import com.example.webproject.model.Dish;
 import com.example.webproject.model.Post;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 public class DBhelper {
@@ -107,9 +106,8 @@ public class DBhelper {
                 post.setTitle(rs.getString("Title"));
                 post.setContent(rs.getString("Content"));
                 //填充名字
-                DBhelper db = new DBhelper();
-                db.init();
-                post.setAuthor(db.getUserName(db.dbconn,post.getUserID()));
+                UserDAO userDAO = new UserDAO();
+                post.setAuthor(userDAO.getUserByID(post.getUserID()));
                 Timestamp createTimestamp = rs.getTimestamp("CreateDate");
                 if (createTimestamp != null) {
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -222,34 +220,5 @@ public class DBhelper {
             throwables.printStackTrace();
         }
         return null;
-    }
-    public List<Canteen> performFuzzySearch(Connection connection ,String canteenName) {
-        List<Canteen> canteens = new ArrayList<>();
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
-
-        try {
-            String sql = "SELECT * FROM Canteens WHERE Name LIKE ?";
-            statement = connection.prepareStatement(sql);
-            statement.setString(1, "%" + canteenName + "%"); // 设置模糊查询条件
-            resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                Canteen canteen = new Canteen();
-                canteen.setCanteenID(resultSet.getInt("CanteenID"));
-                canteen.setName(resultSet.getString("Name"));
-                canteen.setLocation(resultSet.getString("Location"));
-                canteen.setOpenTime(resultSet.getString("OpenTime"));
-                canteen.setManagerID(resultSet.getInt("ManagerID"));
-                canteen.setNotice(resultSet.getString("Notice"));
-                canteens.add(canteen);
-            }
-
-        } catch (SQLException e) {
-           e.printStackTrace();
-           throw new RuntimeException(e);
-        }
-
-        return canteens;
     }
 }
