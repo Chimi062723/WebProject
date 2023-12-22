@@ -17,7 +17,9 @@ public class DeleteCanteen extends HttpServlet {
         AdminActionImpl adminAction = new AdminActionImpl();
         Canteen canteen = adminAction.getCanteen(id);
         adminAction.deleteCanteen(canteen);
-        request.getRequestDispatcher("admin_account_management.jsp").forward(request,response);
+        HttpSession session = request.getSession();
+        session.setAttribute("canteens",adminAction.getAllCanteen());
+        request.getRequestDispatcher("admin_canteen_management.jsp").forward(request,response);
     }
 
     @Override

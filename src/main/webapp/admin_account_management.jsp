@@ -49,9 +49,11 @@
                     <td>${user.role}</td>
                     <td>${user.createDate}</td>
                     <td>
-                        <input type="hidden" name="id">
-                        <input type="submit" value="编辑" formaction="EditAccount" formmethod="get">
-                        <input type="submit" value="删除" formaction="DeleteAccount" formmethod="get">
+                        <form>
+                            <input type="hidden" name="id" value="${user.userID}">
+                            <input type="submit" value="编辑" formaction="EditAccount" formmethod="get">
+                            <input type="submit" value="删除" formaction="DeleteAccount" formmethod="get">
+                        </form>
                     </td>
                 </tr>
             </c:forEach>

@@ -52,9 +52,11 @@ canteens: 所有食堂信息
           <td>${canteen.openTime}</td>
           <td>${canteen.managerID}</td>
           <td>
-            <input type="hidden" name="id">
-            <input type="submit" value="编辑" formaction="EditCanteen" formmethod="get">
-            <input type="submit" value="删除" formaction="DeleteCanteen" formmethod="get">
+            <form>
+              <input type="hidden" name="id" value="${canteen.canteenID}">
+              <input type="submit" value="编辑" formaction="EditCanteen" formmethod="get">
+              <input type="submit" value="删除" formaction="DeleteCanteen" formmethod="get">
+            </form>
           </td>
         </tr>
       </c:forEach>
