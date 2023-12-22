@@ -1,5 +1,6 @@
 package com.example.webproject.util;
 
+import com.example.webproject.dao.UserDAO;
 import com.example.webproject.model.Dish;
 import com.example.webproject.model.Post;
 
@@ -105,9 +106,8 @@ public class DBhelper {
                 post.setTitle(rs.getString("Title"));
                 post.setContent(rs.getString("Content"));
                 //填充名字
-                DBhelper db = new DBhelper();
-                db.init();
-                post.setAuthor(db.getUserName(db.dbconn,post.getUserID()));
+                UserDAO userDAO = new UserDAO();
+                post.setAuthor(userDAO.getUserByID(post.getUserID()));
                 Timestamp createTimestamp = rs.getTimestamp("CreateDate");
                 if (createTimestamp != null) {
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

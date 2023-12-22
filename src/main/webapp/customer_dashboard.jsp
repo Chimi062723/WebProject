@@ -131,27 +131,48 @@
         <p>社区热点</p>
         <!-- 动态生成交流内容，示例代码 -->
         <div class="post">
-            <img src="placeholder-image.jpg" alt="${post1.title}"/>
-            <span class="post-time">${post1.createTime}</span>
-            <span class="post-details">${post2.centent}</span>
+            <span class="post-author">发表人：${sessionScope.post1.author.userName}</span>
+            <br>
+            <span class="post-title">标题：${sessionScope.post1.title}</span>
+            <br>
+            <span class="post-time">发表时间：${sessionScope.post1.createDate}</span>
+            <br>
+            <span class="post-details">帖子内容${sessionScope.post2.content}</span>
+            <br>
+            <img src="res/${sessionScope.post1.picture}" alt="${sessionScope.post1.title}"/>
+            <br>
             <span class="post-actions">
                 <a href="#">点赞</a>
                 <!-- 更多操作 -->
             </span>
         </div>
         <div class="post">
-            <img src="placeholder-image.jpg" alt="${post2.title}"/>
-            <span class="post-time">${post2.createTime}</span>
-            <span class="post-details">${post2.content}</span>
+            <span class="post-author">发表人：${sessionScope.post2.author.userName}</span>
+            <br>
+            <span class="post-title">标题：${sessionScope.post2.title}</span>
+            <br>
+            <span class="post-time">发表时间：${sessionScope.post2.createDate}</span>
+            <br>
+            <span class="post-details">帖子内容${sessionScope.post2.content}</span>
+            <br>
+            <img src="res/${sessionScope.post2.picture}" alt="${sessionScope.post2.title}"/>
+            <br>
             <span class="post-actions">
                 <a href="#">点赞</a>
                 <!-- 更多操作 -->
             </span>
         </div>
         <div class="post">
-            <img src="placeholder-image.jpg" alt="${post3.title}"/>
-            <span class="post-time">${post3.createTime}</span>
-            <span class="post-details">${post3.content}</span>
+            <span class="post-author">发表人：${sessionScope.post3.author.userName}</span>
+            <br>
+            <span class="post-title">标题：${sessionScope.post3.title}</span>
+            <br>
+            <span class="post-time">发表时间：${sessionScope.post3.createDate}</span>
+            <br>
+            <span class="post-details">帖子内容${sessionScope.post2.content}</span>
+            <br>
+            <img src="res/${sessionScope.post3.picture}" alt="${sessionScope.post3.title}"/>
+            <br>
             <span class="post-actions">
                 <a href="#">点赞</a>
                 <!-- 更多操作 -->

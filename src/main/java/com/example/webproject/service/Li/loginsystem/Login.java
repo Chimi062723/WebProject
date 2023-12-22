@@ -61,7 +61,13 @@ public class Login  extends HttpServlet {
                         session.setAttribute("dish5",dish5);
                         session.setAttribute("dish6",dish6);
                         //以上传入菜品上新菜品
-                        Post post1 = postDAO.getPost(6);
+                        Post post1 = postDAO.getPost(1);
+                        Post post2 = postDAO.getPost(2);
+                        Post post3 = postDAO.getPost(6);
+
+                        session.setAttribute("post1",post1);
+                        session.setAttribute("post2",post2);
+                        session.setAttribute("post3",post3);
                         request.getRequestDispatcher("customer_dashboard.jsp").forward(request,response);
                     }
                 }else {
