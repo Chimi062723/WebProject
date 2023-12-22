@@ -14,13 +14,7 @@
     <link rel="stylesheet" href="css/canteen_table.css"/>
 </head>
 <body>
-<div id="sidebar">
-    <img src="res/logo.png" alt="USST Canteen Management System Logo">
-    <a href="customer_dashboard.jsp">首页</a>
-    <a href="customer_dish.jsp">菜品一览</a>
-    <a href="customer_community.jsp">交流社区</a>
-    <a href="customer_canteen.jsp">食堂搜索</a>
-</div>
+<jsp:include page="custom_sidebar.jspf" />
 <table>    <!-- 表格标题 -->
     <caption>食堂信息表</caption>    <!-- 表格第一行：表格表头 -->
     <tr>
