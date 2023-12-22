@@ -7,9 +7,12 @@ import com.example.webproject.model.Canteen;
 import com.example.webproject.model.Review;
 import com.example.webproject.model.Post;
 import com.example.webproject.model.User;
+import com.oracle.wls.shaded.org.apache.bcel.classfile.ConstantNameAndType;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.List;
+
 /**
  * 使用说明：
  * 1.实例化，会自动调用dao层接口，对dao层进行实例化
@@ -31,6 +34,15 @@ public class AdminActionImpl implements AdminActions{
     public Canteen getCanteen(int canteenID){
         try {
             return canteenDAO.getCanteenByID(canteenID);
+        } catch (SQLException e) {
+            //todo:异常处理
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<Canteen> getAllCanteen(){
+        try {
+            return canteenDAO.getAllCanteens();
         } catch (SQLException e) {
             //todo:异常处理
             throw new RuntimeException(e);
@@ -200,7 +212,6 @@ public class AdminActionImpl implements AdminActions{
 //        }
         return 0;
     }
-
     /**
      * @param canteenID 餐厅编号
      * @param name      餐厅名
