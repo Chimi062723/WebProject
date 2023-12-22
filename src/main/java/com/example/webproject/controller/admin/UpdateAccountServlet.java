@@ -1,4 +1,4 @@
-package com.example.webproject.controller;
+package com.example.webproject.controller.admin;
 
 import com.example.webproject.service.Xu.Admin.AdminActionImpl;
 import jakarta.servlet.*;

@@ -28,14 +28,10 @@ public class Review {
     }
 
     String reply;
-    public Review(int reviewID, int userID, int dishID, int rating, String comment, String reply, Timestamp createDate) {
+    public Review(int reviewID, int userID, int dishID, int rating, String comment, String reply, Date createDate,String picture) {
         this.reviewID=reviewID;
         this.userID = userID;
-        this.dishID = dishID;
-        this.rating = rating;
-        this.comment = comment;
-        this.reply = reply;
-        this.createDate = createDate;
+
     }
 
     public int getReviewID() {

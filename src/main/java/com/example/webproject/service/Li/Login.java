@@ -4,6 +4,8 @@ package com.example.webproject.service.Li;
 import com.example.webproject.dao.CanteenDAO;
 import com.example.webproject.dao.ReviewDAO;
 import com.example.webproject.dao.UserDAO;
+import com.example.webproject.dao.DishDAO;
+import com.example.webproject.model.Dish;
 import com.example.webproject.model.User;
 import com.example.webproject.util.DBhelper;
 import com.example.webproject.model.Canteen;
@@ -33,6 +35,7 @@ public class Login  extends HttpServlet {
                     String role=null;
                     UserDAO userDAO = new UserDAO();
                     CanteenDAO canteenDAO = new CanteenDAO();
+                    DishDAO dishDAO = new DishDAO();//todo:DishDAO
                     ReviewDAO reviewDAO = new ReviewDAO(); //todo:ReviewDAO完善
                     role= userDAO.judgeRole(username);
                     if(role.equals("sys_admin")){
@@ -46,7 +49,13 @@ public class Login  extends HttpServlet {
                         response.sendRedirect("cantadmin_dashboard.jsp");
                     }
                     else  if(role.equals("normal_user")){
-                        response.sendRedirect("customer_dashboard.jsp");
+                        Dish dish1 = dishDAO.getDish(1);
+                        Dish dish2 = dishDAO.getDish(2);
+                        Dish dish3 = dishDAO.getDish(3);
+                        session.setAttribute("dish1",dish1);
+                        session.setAttribute("dish2",dish2);
+                        session.setAttribute("dish3",dish3);
+                        request.getRequestDispatcher("customer_dashboard.jsp").forward(request,response);
                     }
                 }else {
                     response.sendRedirect("login.jsp?error=password_error");
