@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: 韶光善良君
   Date: 2023/12/22
-  Time: 15:44
+  Time: 16:19
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -11,18 +11,19 @@
     <title>Title</title>
 </head>
 <body>
+
 <div id="main-content">
-    <h2>编辑食堂信息</h2>
+    <h2>编辑帖子信息</h2>
     <!-- 假设已经获取了用户对象 user -->
-    <form action="UpdateCanteenServlet" method="post">
+    <form action="UpdatePostServlet" method="post">
         <label>
-            食堂名称:
-            <input type="text" name="canteenName" value="${requestScope.canteen.canteenName}">
+            帖子标题:
+            <input type="text" name="title" value="${requestScope.post.title}">
         </label>
         <br>
         <label>
-            食堂地址:
-            <input type="text" name="location" value="${requestScope.canteen.location}">
+            帖子内容:
+            <input type="text" name="content" value="${requestScope.post.content}">
         </label>
         <br>
         <label>
@@ -31,18 +32,19 @@
         </label>
         <br>
         <label>
-            食堂负责人:
-            <input type="text" name="managerName" value="${requestScope.manager.name}">
+            发送者:
+            <input type="text" name="username" value="${requestScope.user.name}">
         </label>
         <br>
         <label>
-            食堂公告:
-            <input type="text" name="notice" value="${requestScope.canteen.notice}">
+            创建时间:
+            <input type="text" name="createdate" value="${requestScope.canteen.createdate}">
         </label>
         <br>
+
         <input type="submit" value="更新">
     </form>
-    <a href="admin_canteen_management.jsp">返回</a>
+    <a href="admin_community_management.jsp">返回</a>
 </div>
 </body>
 </html>
