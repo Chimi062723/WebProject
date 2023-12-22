@@ -44,6 +44,7 @@
                     <span class="dish-name">${dish.name}</span>
                     <span class="dish-price">价格: ${dish.price}</span>
                     <span class="dish-type">类别: ${dish.cuisineType}</span>
+                    <span class="dish-canteen">食堂: ${dish.canteen}</span>
                     <a href="dish_detial_Servlet?name='${dish.name}'">详情</a>
                     <!-- 更多信息 -->
                 </div>

@@ -24,9 +24,10 @@
     <h2>社区论坛</h2>
 
     <!-- 发布消息表单 -->
-    <form action="PostMessageServlet" method="post">
+    <form action="PostMessageServlet" method="post" enctype="multipart/form-data">
         标题: <input type="text" name="title">
         内容: <textarea name="content"></textarea>
+        上传图片: <input type="file" name="image">
         <input type="submit" value="发表">
     </form>
 
