@@ -1,8 +1,12 @@
 package com.example.webproject.service.Li;
 
 
+import com.example.webproject.dao.CanteenDAO;
+import com.example.webproject.dao.ReviewDAO;
 import com.example.webproject.dao.UserDAO;
+import com.example.webproject.model.User;
 import com.example.webproject.util.DBhelper;
+import com.example.webproject.model.Canteen;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -12,6 +16,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet(name = "login", value = "/login")
 public class Login  extends HttpServlet {
@@ -27,9 +32,15 @@ public class Login  extends HttpServlet {
                 if(db.verifyPassword(db.dbconn, username, password)){
                     String role=null;
                     UserDAO userDAO = new UserDAO();
+                    CanteenDAO canteenDAO = new CanteenDAO();
+                    ReviewDAO reviewDAO = new ReviewDAO(); //todo:ReviewDAO完善
                     role= userDAO.judgeRole(username);
                     if(role.equals("sys_admin")){
-                        response.sendRedirect("admin_dashboard.jsp");
+                        List<User> users = userDAO.getAllUsers();
+                        List<Canteen> canteens = canteenDAO.getAllCanteens();
+                        session.setAttribute("users",users);
+                        session.setAttribute("canteens",canteens);
+                        request.getRequestDispatcher("admin_dashboard.jsp").forward(request,response);
                     }
                     else if(role.equals("res_admin")){
                         response.sendRedirect("cantadmin_dashboard.jsp");

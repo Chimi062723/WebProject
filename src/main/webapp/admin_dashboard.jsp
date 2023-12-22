@@ -35,10 +35,10 @@ communityPosts: 所有社区帖子信息
     <!-- 这里根据选择的导航栏显示不同的内容 -->
     <!-- 首页内容 -->
     <h2>英雄不问出处，干饭不问斤数！</h2>
-    <div class="data-box">食堂数量: <span>${canteens.size()}</span></div>
-    <div class="data-box">用户数量: <span>${users.size()}</span></div>
-    <div class="data-box">评价数量: <span>${reviews.size()}</span></div>
-    <div class="data-box">帖子数量: <span>${communityPosts.size()}</span></div>
+    <div class="data-box">食堂数量: <span>${sessionScope.canteens.size()}</span></div>
+    <div class="data-box">用户数量: <span>${sessionScope.users.size()}</span></div>
+    <div class="data-box">评价数量: <span>${sessionScope.reviews.size()}</span></div>
+    <div class="data-box">帖子数量: <span>${sessionScope.communityPosts.size()}</span></div>
     <!-- 其他页面的内容将根据导航选择动态加载 -->
 </div>
 </body>

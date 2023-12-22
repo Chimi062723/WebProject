@@ -40,20 +40,18 @@ canteens: 所有食堂信息
       <th>地址</th>
       <th>营业时间</th>
       <th>管理者</th>
-      <th>邮箱</th>
       <th>操作</th>
     </tr>
-    <c:forEach var="canteen" items="${canteens}">
+    <c:forEach var="canteen" items="${sessionScope.canteens}">
       <tr>
-        <td>${canteen.id}</td>
+        <td>${canteen.canteenId}</td>
         <td>${canteen.name}</td>
-        <td>${canteen.address}</td>
-        <td>${canteen.businessHours}</td>
-        <td>${canteen.manager}</td>
-        <td>${canteen.email}</td>
+        <td>${canteen.location}</td>
+        <td>${canteen.openTime}</td>
+        <td>${canteen.managerId}</td>
         <td>
-          <button onclick="location.href='edit_canteen.jsp?id=${canteen.id}'">编辑</button>
-          <button onclick="deleteCanteen(${canteen.id})">删除</button>
+          <button onclick="location.href='edit_canteen.jsp?id=${canteen.canteenId}'">编辑</button>
+          <button onclick="deleteCanteen(${canteen.canteenId})">删除</button>
         </td>
       </tr>
     </c:forEach>

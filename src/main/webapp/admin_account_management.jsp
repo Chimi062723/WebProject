@@ -20,7 +20,7 @@
 </head>
 <body>
 <div id="sidebar">
-    <img src="res/logo.png" alt="USST Logo"> <!-- Replace with actual logo path -->
+    <img src="res/logo.png" alt="USST Logo"> <!-- Replace with actual logo path-->
     <a href="admin_dashboard.jsp">首页</a>
     <a href="admin_canteen_management.jsp">食堂信息管理</a>
     <a href="admin_account_management.jsp">账号管理</a>
@@ -40,16 +40,16 @@
             <th>创建时间</th>
             <th>操作</th>
         </tr>
-        <c:forEach var="user" items="${users}">
+        <c:forEach var="user" items="${sessionScope.users}">
             <tr>
-                <td>${user.id}</td>
-                <td>${user.name}</td>
+                <td>${user.userId}</td>
+                <td>${user.userName}</td>
                 <td>${user.email}</td>
                 <td>${user.role}</td>
-                <td>${user.creationTime}</td>
+                <td>${user.createDate}</td>
                 <td>
-                    <button onclick="location.href='edit_account.jsp?id=${user.id}'">编辑</button>
-                    <button onclick="deleteAccount(${user.id})">删除</button>
+                    <button onclick="location.href='editAccount?id=${user.userId}'">编辑</button>
+                    <button onclick="deleteAccount(${user.userId})">删除</button>
                 </td>
             </tr>
         </c:forEach>

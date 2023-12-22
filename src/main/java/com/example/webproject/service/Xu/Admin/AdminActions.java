@@ -8,8 +8,6 @@ import java.sql.Date;
 
 public interface AdminActions {
    //todo:细化对异常的处理
-   //todo:controller层可以进行调用并与前端对接了，将需求反馈给我们
-
    /**
     * 添加餐厅
     * @param canteen 新的食堂信息
@@ -41,6 +39,17 @@ public interface AdminActions {
     * @author ChiMi
     * #Date 2023/12/21
     */
+   /**
+    * Description
+    * @param
+    * @return user
+    * @author ChiMi
+    * #Date 2023/12/22
+    */
+   User getAccount(int userId){
+
+   }
+
    int addAccount(User user);
    /**
     * 修改用户，系统管理员可用
@@ -129,4 +138,8 @@ public interface AdminActions {
     * #Date 2023/12/21
     */
    Review reviewEncapsulation(int reviewId,int userId,int dishId,int rating,String comment,int statue,Date createDate);
+
+   Post postEncapsulation(int postId, int userId, String title, String content, String createDate, int like, String picture);
+
+   Review reviewEncapsulation(int reviewId, int userId, int dishId, int rating, String comment, int statue, Date createDate, String picture);
 }

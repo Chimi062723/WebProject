@@ -15,14 +15,26 @@
     <h2>编辑用户信息</h2>
     <!-- 假设已经获取了用户对象 user -->
     <form action="UpdateAccountServlet" method="post">
-        用户名: <input type="text" name="username" value="${user.username}"><br>
-        邮箱: <input type="text" name="email" value="${user.email}"><br>
-        角色:
-        <select name="role">
-            <option value="student" ${user.role == 'student' ? 'selected' : ''}>学生</option>
-            <option value="teacher" ${user.role == 'teacher' ? 'selected' : ''}>教师</option>
-            <!-- 其他角色选项 -->
-        </select><br>
+        <label>
+            用户名:
+            <input type="text" name="username" value="${requestScope.user.username}">
+        </label>
+        <br>
+        <label>
+            邮箱:
+            <input type="text" name="email" value="${requestScope.user.email}">
+        </label>
+        <br>
+        <label>
+            角色:
+            <select name="role">
+                <option value="sys_admin" ${requestScope.user.role == 'sys_admin' ? 'selected' : ''}>系统管理员</option>
+                <option value="res_admin" ${requestScope.user.role == 'res_admin' ? 'selected' : ''}>食堂管理员</option>
+                <option value="res_admin" ${requestScope.user.role == 'normal_user' ? 'selected' : ''}>普通用户</option>
+                <!-- 其他角色选项 -->
+            </select>
+        </label>
+        <br>
         <input type="submit" value="更新">
     </form>
 </div>
