@@ -107,13 +107,13 @@ public interface AdminActions {
     * @param name 餐厅名
     * @param location 餐厅位置
     * @param openTime 时间
-    * @param managerID 管理员编号
+    * @param managerName 管理员编号
     * @param notice
     * @return 餐厅实体类
     * @author ChiMi
     * #Date 2023/12/21
     */
-   Canteen canteenEncapsulation(int canteenID, String name, String location, String openTime, int managerID, String notice);
+   Canteen canteenEncapsulation(int canteenID, String name, String location, String openTime, String managerName, String notice);
 
    /**
     * 社区帖子封装类
