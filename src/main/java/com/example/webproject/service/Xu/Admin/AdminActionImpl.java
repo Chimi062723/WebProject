@@ -200,7 +200,6 @@ public class AdminActionImpl implements AdminActions{
 //        }
         return 0;
     }
-
     /**
      * @param canteenID 餐厅编号
      * @param name      餐厅名
