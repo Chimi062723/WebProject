@@ -11,66 +11,66 @@ public class ReviewDAO {
 
     private DBhelper dBhelper = new DBhelper();
 
-    public List<Review> getAllReviews() throws SQLException {
-        List<Review> reviews = new ArrayList<>();
-        dBhelper.init();
-        Connection connection = dBhelper.dbconn;
-        String sql = "SELECT * FROM Reviews";
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(sql);
-        while (resultSet.next()) {
-            Review review = new Review(
-                    resultSet.getInt("reviewID"),
-                    resultSet.getInt("userID"),
-                    resultSet.getInt("dishID"),
-                    resultSet.getInt("rating"),
-                    resultSet.getString("comment"),
-                    resultSet.getString("reply"),
-                    resultSet.getTimestamp("createDate"),
-                    resultSet.getString("Picture")
-            );
-            review.setReviewID(resultSet.getInt("reviewID"));
-            review.setUserID(resultSet.getInt("userID"));
-            review.setDishID(resultSet.getInt("dishID"));
-            review.setRating(resultSet.getInt("rating"));
-            review.setComment(resultSet.getString("comment"));
-            review.setReply(resultSet.getString("reply"));
-            review.setCreateDate(resultSet.getTimestamp("createDate"));
-            reviews.add(review);
-        }
-        return reviews;
-    }
+//    public List<Review> getAllReviews() throws SQLException {
+//        List<Review> reviews = new ArrayList<>();
+//        dBhelper.init();
+//        Connection connection = dBhelper.dbconn;
+//        String sql = "SELECT * FROM Reviews";
+//        Statement statement = connection.createStatement();
+//        ResultSet resultSet = statement.executeQuery(sql);
+//        while (resultSet.next()) {
+//            Review review = new Review(
+//                    resultSet.getInt("reviewID"),
+//                    resultSet.getInt("userID"),
+//                    resultSet.getInt("dishID"),
+//                    resultSet.getInt("rating"),
+//                    resultSet.getString("comment"),
+//                    resultSet.getString("reply"),
+//                    resultSet.getTimestamp("createDate"),
+//                    resultSet.getString("Picture");
+//            );
+//            review.setReviewID(resultSet.getInt("reviewID"));
+//            review.setUserID(resultSet.getInt("userID"));
+//            review.setDishID(resultSet.getInt("dishID"));
+//            review.setRating(resultSet.getInt("rating"));
+//            review.setComment(resultSet.getString("comment"));
+//            review.setReply(resultSet.getString("reply"));
+//            review.setCreateDate(resultSet.getTimestamp("createDate"));
+//            reviews.add(review);
+//        }
+//        return reviews;
+//    }
 
-    public List<Review> getReviewsByUserId(int userId) throws SQLException {
-        List<Review> reviews = new ArrayList<>();
-        dBhelper.init();
-        Connection connection = dBhelper.dbconn;
-        String sql = "SELECT * FROM Reviews WHERE userID = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, userId);
-        ResultSet resultSet = statement.executeQuery();
-        while (resultSet.next()) {
-            Review review = new Review(
-                    resultSet.getInt("reviewID"),
-                    resultSet.getInt("userID"),
-                    resultSet.getInt("dishID"),
-                    resultSet.getInt("rating"),
-                    resultSet.getString("comment"),
-                    resultSet.getString("reply"),
-                    resultSet.getTimestamp("createDate"),
-                    resultSet.getString("Picture")
-            );
-            review.setReviewID(resultSet.getInt("reviewID"));
-            review.setUserID(resultSet.getInt("userID"));
-            review.setDishID(resultSet.getInt("dishID"));
-            review.setRating(resultSet.getInt("rating"));
-            review.setComment(resultSet.getString("comment"));
-            review.setReply(resultSet.getString("reply"));
-            review.setCreateDate(resultSet.getTimestamp("createDate"));
-            reviews.add(review);
-        }
-        return reviews;
-    }
+//    public List<Review> getReviewsByUserId(int userId) throws SQLException {
+//        List<Review> reviews = new ArrayList<>();
+//        dBhelper.init();
+//        Connection connection = dBhelper.dbconn;
+//        String sql = "SELECT * FROM Reviews WHERE userID = ?";
+//        PreparedStatement statement = connection.prepareStatement(sql);
+//        statement.setInt(1, userId);
+//        ResultSet resultSet = statement.executeQuery();
+//        while (resultSet.next()) {
+//            Review review = new Review(
+//                    resultSet.getInt("reviewID"),
+//                    resultSet.getInt("userID"),
+//                    resultSet.getInt("dishID"),
+//                    resultSet.getInt("rating"),
+//                    resultSet.getString("comment"),
+//                    resultSet.getString("reply"),
+//                    resultSet.getTimestamp("createDate"),
+//                    resultSet.getString("Picture")
+//            );
+//            review.setReviewID(resultSet.getInt("reviewID"));
+//            review.setUserID(resultSet.getInt("userID"));
+//            review.setDishID(resultSet.getInt("dishID"));
+//            review.setRating(resultSet.getInt("rating"));
+//            review.setComment(resultSet.getString("comment"));
+//            review.setReply(resultSet.getString("reply"));
+//            review.setCreateDate(resultSet.getTimestamp("createDate"));
+//            reviews.add(review);
+//        }
+//        return reviews;
+//    }
 
     public boolean addReview(Review review) throws SQLException {
         dBhelper.init();

@@ -64,7 +64,7 @@
                             <span class="dish-price">价格: ${dish.price}</span>
                             <span class="dish-type">类别: ${dish.type}</span>
                             <span class="dish-canteen">食堂id: ${dish.canteenID}</span>
-                                <%--                    <a href="dish_detial_Servlet?name='${dish.name}'">详情</a>--%>
+                            <a href="dish_detial_Servlet?name='${dish.name}'">详情</a>
                             <!-- 更多信息 -->
                         </div>
                     </div>
