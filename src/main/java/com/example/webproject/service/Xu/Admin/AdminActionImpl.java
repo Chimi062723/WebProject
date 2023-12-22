@@ -12,6 +12,7 @@ import com.oracle.wls.shaded.org.apache.bcel.classfile.ConstantNameAndType;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
+import java.sql.Timestamp;
 
 /**
  * 使用说明：
@@ -250,10 +251,10 @@ public class AdminActionImpl implements AdminActions{
      * @param createDate 创建日期(自动生成)
      * @return
      */
-//    @Override
-//    public Review reviewEncapsulation(int reviewID, int userID, int dishID, int rating, String comment, String reply, Date createDate) {
-//        return null;
-//    }
+    @Override
+    public Review reviewEncapsulation(int reviewID, int userID, int dishID, int rating, String comment, String reply, Date createDate) {
+        return null;
+    }
 
     /**
      * @param postID     帖子编号（自动生成）
@@ -264,10 +265,10 @@ public class AdminActionImpl implements AdminActions{
      * @param like       用户喜欢程度
      * @return
      */
-//    @Override
-//    public Post postEncapsulation(int postID, int userID, String title, String content, String createDate, int like, String picture) {
-//        return new Post(postID,userID,title,content,createDate,like,picture);
-//    }
+    @Override
+    public Post postEncapsulation(int postID, int userID, String title, String content, String createDate, int like, String picture) {
+        return new Post(postID,userID,title,content,createDate,like,picture);
+    }
 
     /**
      * @param reviewID   评价id（自动生成）
@@ -279,8 +280,8 @@ public class AdminActionImpl implements AdminActions{
      * @param createDate 创建日期(自动生成)
      * @return
      */
-//    @Override
-//    public Review reviewEncapsulation(int reviewID, int userID, int dishID, int rating, String comment, String reply, Date createDate,String picture) {
-//        return new Review(reviewID,userID,dishID,rating,comment,reply,createDate,picture);
-//    }
+    @Override
+    public Review reviewEncapsulation(int reviewID, int userID, int dishID, int rating, String comment, String reply, Date createDate,String picture) {
+        return new Review(reviewID,userID,dishID,rating,comment,reply,new Timestamp(createDate.getTime()),picture);
+    }
 }

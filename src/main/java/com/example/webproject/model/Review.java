@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 
 public class Review {
+    private final String picture;
     int reviewID;
     int userID;
     int dishID;
@@ -28,7 +29,7 @@ public class Review {
     }
 
     String reply;
-    public Review(int reviewID, int userID, int dishID, int rating, String comment, String reply, Timestamp createDate) {
+    public Review(int reviewID, int userID, int dishID, int rating, String comment, String reply, Timestamp createDate,String picture) {
         this.reviewID=reviewID;
         this.userID = userID;
         this.dishID = dishID;
@@ -36,6 +37,7 @@ public class Review {
         this.comment = comment;
         this.reply = reply;
         this.createDate = createDate;
+        this.picture = picture;
     }
 
     public int getReviewID() {
