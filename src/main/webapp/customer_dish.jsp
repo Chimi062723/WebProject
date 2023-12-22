@@ -17,7 +17,7 @@
     <script src="https://cdn.staticfile.org/foundation/5.5.3/js/vendor/modernizr.js"></script>
 </head>
 <body>
-<jsp:include page="custom_sidebar.jspf" />
+<jsp:include page="custom_sidebar.jsp" />
 <div id="main-content">
 <%--    <h2>菜品一览</h2>--%>
 

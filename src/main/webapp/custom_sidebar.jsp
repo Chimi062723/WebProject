@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
 <div id="sidebar">
     <img src="res/logo.png" alt="USST Canteen Management System Logo">
     <a href="customer_dashboard.jsp">首页</a>
@@ -10,3 +15,4 @@
         </form>
     </div>
 </div>
+</body>

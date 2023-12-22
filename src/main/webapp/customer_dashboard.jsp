@@ -8,7 +8,7 @@
     <!-- 内联样式或外部样式表应包括页面布局、字体、颜色等的定义 -->
 </head>
 <body>
-<jsp:include page="custom_sidebar.jspf"/>
+<jsp:include page="custom_sidebar.jsp"/>
 <div id="main-content">
     <!-- 菜品展示区 -->
     <div class="dish-display">

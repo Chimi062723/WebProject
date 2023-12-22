@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="css/customer_menu.css" />
 </head>
 <body>
-<jsp:include page="custom_sidebar.jspf" />
+<jsp:include page="custom_sidebar.jsp" />
 <div id="main-content">
     <h2>社区论坛</h2>
 

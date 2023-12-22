@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="css/canteen_table.css"/>
 </head>
 <body>
-<jsp:include page="custom_sidebar.jspf" />
+<jsp:include page="custom_sidebar.jsp" />
 <div>
 <form action="customer_canteens">
     <input type="text" name="canteenName" placeholder="请输入食堂名称">
