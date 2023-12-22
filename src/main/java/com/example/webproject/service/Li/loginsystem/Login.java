@@ -1,11 +1,9 @@
 package com.example.webproject.service.Li.loginsystem;
 
 
-import com.example.webproject.dao.CanteenDAO;
-import com.example.webproject.dao.ReviewDAO;
-import com.example.webproject.dao.UserDAO;
-import com.example.webproject.dao.DishDAO;
+import com.example.webproject.dao.*;
 import com.example.webproject.model.Dish;
+import com.example.webproject.model.Post;
 import com.example.webproject.model.User;
 import com.example.webproject.util.DBhelper;
 import com.example.webproject.model.Canteen;
@@ -36,6 +34,7 @@ public class Login  extends HttpServlet {
                     UserDAO userDAO = new UserDAO();
                     CanteenDAO canteenDAO = new CanteenDAO();
                     DishDAO dishDAO = new DishDAO();//todo:DishDAO
+                    PostDAO postDAO = new PostDAO();//todo:PostDAO完善
                     ReviewDAO reviewDAO = new ReviewDAO(); //todo:ReviewDAO完善
                     role= userDAO.judgeRole(username);
                     if(role.equals("sys_admin")){
@@ -61,6 +60,8 @@ public class Login  extends HttpServlet {
                         session.setAttribute("dish4",dish4);
                         session.setAttribute("dish5",dish5);
                         session.setAttribute("dish6",dish6);
+                        //以上传入菜品上新菜品
+                        Post post1 = postDAO.getPost(6);
                         request.getRequestDispatcher("customer_dashboard.jsp").forward(request,response);
                     }
                 }else {
