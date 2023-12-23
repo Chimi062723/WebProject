@@ -24,6 +24,14 @@ public class Post {
         this.commentID = commnetID;
     }
 
+    public Post(int postID,String title, String content, int userid, String createDate) {
+        this.postID = postID;
+        this.userID = userid;
+        this.title = title;
+        this.content = content;
+        this.createDate = createDate;
+    }
+
     public void setAuthor(User author) {
         this.author = author;
     }

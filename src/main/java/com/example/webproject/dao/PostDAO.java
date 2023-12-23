@@ -60,5 +60,14 @@ public class PostDAO {
     }
 
     public void editPost(Post newPost) throws SQLException{
+        Connection connection = JDBCHelper.getConnection();
+        String editSQL = "update CommunityPosts set UserID=?,Title =?,Content=?,CreateDate=? where PostID=?";
+        PreparedStatement preparedStatement = connection.prepareStatement(editSQL);
+        preparedStatement.setInt(1,newPost.getUserID());
+        preparedStatement.setString(2,newPost.getTitle());
+        preparedStatement.setString(3,newPost.getContent());
+        preparedStatement.setString(4,newPost.getCreateDate());
+        preparedStatement.setInt(5,newPost.getPostID());
+        preparedStatement.executeUpdate();
     }
 }

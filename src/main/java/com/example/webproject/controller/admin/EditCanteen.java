@@ -2,7 +2,7 @@ package com.example.webproject.controller.admin;
 
 import com.example.webproject.model.Canteen;
 import com.example.webproject.model.User;
-import com.example.webproject.service.Xu.Admin.AdminActionImpl;
+import com.example.webproject.service.xu.admin.AdminActionImpl;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
