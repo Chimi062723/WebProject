@@ -5,7 +5,7 @@
   Time: 21:45
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -15,7 +15,7 @@
 <div id="main-content">
     <h2>编辑评论信息</h2>
     <!-- 假设已经获取了用户对象 user -->
-    <form action="UpdateReview" method="post">
+    <form action="EditReview" method="post">
         <input type="hidden" name="reviewID" value="${requestScope.review.reviewID}">
         <label>
             评分:
@@ -27,7 +27,7 @@
         <br>
         <label>
             评价者:
-            <input type="text" name="sendername" value="${requestScope.sender.name}">
+            <input type="text" name="sendername" value="${requestScope.sender.userName}">
         </label>
         <br>
         <label>
@@ -46,8 +46,8 @@
         </label>
         <br>
         <label>
-            创建时间:
-            <input type="text" name="createdate" value="${requestScope.review.createdate}">
+            创建时间:(修改格式需如：2023-02-02 01:00:00)
+            <input type="text" name="createDate" value="${requestScope.review.createDate}" placeholder="修改格式需如：2023-02-02 01:00:00">
         </label>
         <br>
         <input type="submit" value="更新">

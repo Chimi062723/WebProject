@@ -15,7 +15,8 @@
 <div id="main-content">
     <h2>编辑帖子信息</h2>
     <!-- 假设已经获取了用户对象 user -->
-    <form action="UpdatePostServlet" method="post">
+    <form action="EditPost" method="post">
+        <input type="hidden" name="postID" value="${requestScope.post.userID}">
         <label>
             帖子标题:
             <input type="text" name="title" value="${requestScope.post.title}">
@@ -25,23 +26,16 @@
             帖子内容:
             <input type="text" name="content" value="${requestScope.post.content}">
         </label>
-        <br>
-        <label>
-            营业时间:
-            <input type="text" name="opentime" value="${requestScope.canteen.opentime}">
-        </label>
-        <br>
         <label>
             发送者:
-            <input type="text" name="username" value="${requestScope.user.name}">
+            <input type="text" name="username" value="${requestScope.user.userName}">
         </label>
         <br>
         <label>
-            创建时间:
-            <input type="text" name="createdate" value="${requestScope.canteen.createdate}">
+            发送时间:
+            <input type="text" name="createdate" value="${requestScope.post.createDate}">
         </label>
         <br>
-
         <input type="submit" value="更新">
     </form>
     <a href="admin_community_management.jsp">返回</a>

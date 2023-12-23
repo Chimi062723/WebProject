@@ -14,7 +14,7 @@
 <div id="main-content">
     <h2>编辑餐厅信息</h2>
     <!-- 假设已经获取了用户对象 user -->
-    <form action="UpdateCanteen" method="post">
+    <form action="EditCanteen" method="post">
         <input type="hidden" name="canteenID" value="${requestScope.canteen.canteenID}">
         <label>
             食堂名称:

@@ -127,57 +127,75 @@
         </div>
     </div>
     <div class="content-row">
-        <!-- 交流区 -->
-        <div class="communication-section">
-            <p>社区热点</p>
-            <!-- 动态生成交流内容，示例代码 -->
-            <div class="post">
-                <span class="post-author">发表人：${sessionScope.post1.author.userName}</span>
-                <br>
-                <span class="post-title">标题：${sessionScope.post1.title}</span>
-                <br>
-                <span class="post-time">发表时间：${sessionScope.post1.createDate}</span>
-                <br>
-                <span class="post-details">帖子内容：${sessionScope.post1.content}</span>
-                <br>
-                <img src="res/${sessionScope.post1.picture}" alt="${sessionScope.post1.title}"/>
-                <br>
-                <span class="post-actions">
-                <a href="#">点赞</a>
-                    <!-- 更多操作 -->
-            </span>
+        <div class="content-column">
+            <!-- 交流区 -->
+            <div class="communication-section">
+                <p>社区热点</p>
+                <!-- 动态生成交流内容，示例代码 -->
+                <div class="post">
+                    <span class="post-author">发表人：${sessionScope.post1.author.userName}</span>
+                    <br>
+                    <span class="post-title">标题：${sessionScope.post1.title}</span>
+                    <br>
+                    <span class="post-time">发表时间：${sessionScope.post1.createDate}</span>
+                    <br>
+                    <span class="post-details">帖子内容：${sessionScope.post1.content}</span>
+                    <br>
+                    <img src="res/${sessionScope.post1.picture}" alt="${sessionScope.post1.title}"/>
+                    <br>
+                    <span class="post-actions">
+                        <a href="#">点赞</a>
+                        <!-- 更多操作 -->
+                    </span>
+                </div>
+                <div class="post">
+                    <span class="post-author">发表人：${sessionScope.post2.author.userName}</span>
+                    <br>
+                    <span class="post-title">标题：${sessionScope.post2.title}</span>
+                    <br>
+                    <span class="post-time">发表时间：${sessionScope.post2.createDate}</span>
+                    <br>
+                    <span class="post-details">帖子内容：${sessionScope.post2.content}</span>
+                    <br>
+                    <img src="res/${sessionScope.post2.picture}" alt="${sessionScope.post2.title}"/>
+                    <br>
+                    <span class="post-actions">
+                        <a href="#">点赞</a>
+                        <!-- 更多操作 -->
+                    </span>
+                </div>
+                <div class="post">
+                    <span class="post-author">发表人：${sessionScope.post3.author.userName}</span>
+                    <br>
+                    <span class="post-title">标题：${sessionScope.post3.title}</span>
+                    <br>
+                    <span class="post-time">发表时间：${sessionScope.post3.createDate}</span>
+                    <br>
+                    <span class="post-details">帖子内容：${sessionScope.post3.content}</span>
+                    <br>
+                    <img src="res/${sessionScope.post3.picture}" alt="${sessionScope.post3.title}"/>
+                    <br>
+                    <span class="post-actions">
+                        <a href="#">点赞</a>
+                        <!-- 更多操作 -->
+                    </span>
+                </div>
             </div>
-            <div class="post">
-                <span class="post-author">发表人：${sessionScope.post2.author.userName}</span>
-                <br>
-                <span class="post-title">标题：${sessionScope.post2.title}</span>
-                <br>
-                <span class="post-time">发表时间：${sessionScope.post2.createDate}</span>
-                <br>
-                <span class="post-details">帖子内容：${sessionScope.post2.content}</span>
-                <br>
-                <img src="res/${sessionScope.post2.picture}" alt="${sessionScope.post2.title}"/>
-                <br>
-                <span class="post-actions">
-                <a href="#">点赞</a>
-                    <!-- 更多操作 -->
-            </span>
-            </div>
-            <div class="post">
-                <span class="post-author">发表人：${sessionScope.post3.author.userName}</span>
-                <br>
-                <span class="post-title">标题：${sessionScope.post3.title}</span>
-                <br>
-                <span class="post-time">发表时间：${sessionScope.post3.createDate}</span>
-                <br>
-                <span class="post-details">帖子内容：${sessionScope.post3.content}</span>
-                <br>
-                <img src="res/${sessionScope.post3.picture}" alt="${sessionScope.post3.title}"/>
-                <br>
-                <span class="post-actions">
-                <a href="#">点赞</a>
-                    <!-- 更多操作 -->
-            </span>
+            <!-- 投诉区 -->
+            <div class="complaint-section">
+                <p>我要投诉</p>
+                <div class="complaint-item">
+                    <form action="ComplaintServlet" method="post">
+                        <select id="canteenID" name="canteenID">
+                            <option value="0">请选择食堂</option>
+                            <c:forEach items="${sessionScope.canteens}" var="canteen">
+                                <option value="${canteen.canteenID}">${canteen.name}</option>
+                            </c:forEach>
+                        </select>
+                        <input type="text" name="content" placeholder="请填写投诉内容">
+                        <input type="submit" value="投诉">
+                    </form>
+                </div>
             </div>
         </div>
         <div class="content-column">
@@ -192,6 +210,7 @@
                     </div>
                 </c:forEach>
             </div>
+            <!-- 投票区 -->
             <div class="vote-section">
                 <p>最新投票</p>
                 <div class="vote-item">
@@ -210,76 +229,30 @@
                     </form>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div>
-        <p>最新评论</p>
-        <div class="review-section">
-            <div class="review-item">
-                <img src="placeholder-image.jpg" alt="${comment1.title}"/>
-                <span class="review-name">${comment1.name}</span>
-                <span class="review-time">${comment1.createTime}</span>
-                <span class="review-details">${comment1.content}</span>
-                <span class="review-actions">
-                    <a href="#">回复</a>
-                    <!-- 更多操作 -->
-                </span>
-            </div>
-            <div class="review-item">
-                <img src="placeholder-image.jpg" alt="${comment2.title}"/>
-                <span class="review-name">${comment2.name}</span>
-                <span class="review-time">${comment2.createTime}</span>
-                <span class="review-details">${comment2.content}</span>
-                <span class="review-actions">
-                    <a href="#">回复</a>
-                    <!-- 更多操作 -->
-                </span>
-            </div>
-            <div class="review-item">
-                <img src="placeholder-image.jpg" alt="${comment3.title}"/>
-                <span class="review-name">${comment3.name}</span>
-                <span class="review-time">${comment3.createTime}</span>
-                <span class="review-details">${comment3.content}</span>
-                <span class="review-actions">
-                    <a href="#">回复</a>
-                    <!-- 更多操作 -->
-                </span>
-            </div>
-        </div>
-    </div>
-    <div>
-        <p>投诉处理</p>
-        <div class="complaint-section">
-            <div class="complaint-item">
-                <img src="placeholder-image.jpg" alt="${complaint1.title}"/>
-                <span class="complaint-name">${complaint1.name}</span>
-                <span class="complaint-time">${complaint1.createTime}</span>
-                <span class="complaint-details">${complaint1.content}</span>
-                <span class="complaint-actions">
-                    <a href="#">回复</a>
-                    <!-- 更多操作 -->
-                </span>
-            </div>
-            <div class="complaint-item">
-                <img src="placeholder-image.jpg" alt="${complaint2.title}"/>
-                <span class="complaint-name">${complaint2.name}</span>
-                <span class="complaint-time">${complaint2.createTime}</span>
-                <span class="complaint-details">${complaint2.content}</span>
-                <span class="complaint-actions">
-                    <a href="#">回复</a>
-                    <!-- 更多操作 -->
-                </span>
-            </div>
-            <div class="complaint-item">
-                <img src="placeholder-image.jpg" alt="${complaint3.title}"/>
-                <span class="complaint-name">${complaint3.name}</span>
-                <span class="complaint-time">${complaint3.createTime}</span>
-                <span class="complaint-details">${complaint3.content}</span>
-                <span class="complaint-actions">
-                    <a href="#">回复</a>
-                    <!-- 更多操作 -->
-                </span>
+            <!-- 评论区 -->
+            <div class="review-section">
+                <p>最新评论</p>
+                <c:forEach items="${sessionScope.lastThreeReviews}" var="lastReview">
+                    <div class="review-item">
+                        <c:if test="${lastReview.picture!= null}">
+                            <img src="res/${lastReview.picture}" alt="评论图片"/>
+                            <br>
+                        </c:if>
+                        <span class="review-sender">评价者：${lastReview.sender.userName}</span>
+                        <br>
+                        <span class="review-dish">评价菜品：${lastReview.dish.name}</span>
+                        <br>
+                        <span class="review-rating">评分：${lastReview.rating} 分</span>
+                        <br>
+                        <span class="review-time">评价时间：${lastReview.createDate}</span>
+                        <br>
+                        <span class="review-details">评价内容：${lastReview.comment}</span>
+                        <br>
+                        <c:if test="${lastReview.reply!= null}">
+                            <span class="review-reply">回复：${lastReview.reply}</span>
+                        </c:if>
+                    </div>
+                </c:forEach>
             </div>
         </div>
     </div>

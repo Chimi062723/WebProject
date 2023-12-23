@@ -1,4 +1,4 @@
-package com.example.webproject.service.Xu.Admin;
+package com.example.webproject.service.xu.admin;
 import com.example.webproject.model.Canteen;
 import com.example.webproject.model.Review;
 import com.example.webproject.model.Post;
@@ -10,30 +10,30 @@ public interface AdminActions {
    //todo:细化对异常的处理
    /**
     * 添加餐厅
+    *
     * @param canteen 新的食堂信息
-    * @return 操作正常，返回结果1，操作异常，返回结果0
     * @author ChiMi
     * #Date 2023/12/21
     */
-   int addCanteen(Canteen canteen);
+   void addCanteen(Canteen canteen);
 
     List<User> getAllAccount();
    /**
     * 删除餐厅
+    *
     * @param canteen 要删除的餐厅信息
-    * @return 操作正常，返回结果1，操作异常，返回结果0
     * @author ChiMi
     * #Date 2023/12/21
     */
-   int deleteCanteen(Canteen canteen);
+   void deleteCanteen(Canteen canteen);
    /**
     * 更改餐厅信息
+    *
     * @param newCanteen 新的餐厅信息
-    * @return 操作正常，返回结果1，操作异常，返回结果0
     * @author ChiMi
     * #Date 2023/12/21
     */
-   int editCanteen(Canteen newCanteen);
+   void editCanteen(Canteen newCanteen);
 
    /**
     * 用用户id获取用户
@@ -98,12 +98,17 @@ public interface AdminActions {
    int deletePost(int postID);
    /**
     * Description
-    * @param newPost 更改后的评论内容
+    * @param id
+    * @param title
+    * @param username
+    * @param content
+    * @param createDate
     * @return 操作正常，返回结果1，操作异常，返回结果0
     * @author ChiMi
     * #Date 2023/12/21
     */
-   int editPost(Post newPost);
+   int editPost(int id, String title, String content, String username, String createDate);
+
    /**
     * 将食堂信息封装为食堂实体类
     * @param canteenID 餐厅编号

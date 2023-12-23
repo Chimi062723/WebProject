@@ -1,6 +1,7 @@
 package com.example.webproject.dao;
 
 import com.example.webproject.model.Dish;
+import com.example.webproject.model.Review;
 import com.example.webproject.util.JDBCHelper;
 
 import java.sql.Connection;
@@ -90,5 +91,17 @@ public class DishDAO {
             int rowsDeleted = ps.executeUpdate();
             return rowsDeleted > 0;
         }
+    }
+
+    public int getDishIDByName(String dish) throws SQLException {
+        Connection connection = JDBCHelper.getConnection();
+        String sql = "select * from Dishes where Name = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1,dish);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if(resultSet.next()){
+            return resultSet.getInt("DishID");
+        }
+        return 0;
     }
 }
