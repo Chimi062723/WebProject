@@ -17,7 +17,9 @@ import java.util.List;
 public class Customers_dishServlet extends HttpServlet {
     List<Dish> dishList = new ArrayList<>();
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
         String cuisine = request.getParameter("cuisine");
+        String canteenName = request.getParameter("canteenName");
         DBhelper db = new DBhelper();
         db.init();
 
