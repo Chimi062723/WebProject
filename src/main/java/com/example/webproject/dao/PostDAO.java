@@ -73,6 +73,7 @@ public class PostDAO {
                 post.setLike(resultSet.getInt("Like"));
                 post.setPicture(resultSet.getString("Picture"));
                 post.setAuthor(userDAO.getUserByID(resultSet.getInt("UserID")));
+                post.setCommentID(resultSet.getInt("CommentID"));
                 posts.add(post);
             }
         }
@@ -95,12 +96,37 @@ public class PostDAO {
                     post.setLike(rs.getInt("Like"));
                     post.setPicture(rs.getString("Picture"));
                     post.setAuthor(userDAO.getUserByID(rs.getInt("UserID")));
+                    post.setCommentID(rs.getInt("CommentID"));
                 }
             }
         }
         return post;
     }
-
+public List<Post> getPostByCommentID(int commentID) throws SQLException {
+        List<Post> posts = null;
+        UserDAO userDAO = new UserDAO();
+        String sql = "SELECT * FROM CommunityPosts WHERE CommentID =? ORDER BY CreateDate DESC";
+        try (Connection connection = JDBCHelper.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            posts=new ArrayList<>();
+            preparedStatement.setInt(1,commentID);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Post post = new Post();
+                post.setPostID(resultSet.getInt("PostID"));
+                post.setUserID(resultSet.getInt("UserID"));
+                post.setTitle(resultSet.getString("Title"));
+                post.setContent(resultSet.getString("Content"));
+                post.setCreateDate(resultSet.getTimestamp("CreateDate").toString());
+                post.setLike(resultSet.getInt("Like"));
+                post.setPicture(resultSet.getString("Picture"));
+                post.setAuthor(userDAO.getUserByID(resultSet.getInt("UserID")));
+                post.setCommentID(resultSet.getInt("CommentID"));
+                posts.add(post);
+            }
+        }
+        return posts;
+    }
     public void deletePost(int PostID) throws SQLException {
 
     }

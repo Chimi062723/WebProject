@@ -1,6 +1,10 @@
 package com.example.webproject.model;
 
+import com.example.webproject.dao.PostDAO;
+
+import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.List;
 
 public class Post {
     int postID;
@@ -12,8 +16,27 @@ public class Post {
     String picture;
     User author;
     int commentID;
+    List<Post> comments;
 
-    public Post(int postID, int userID, String title, String content, Timestamp createDate, int like, String picture, int commnetID) {
+    public int getCommentID() {
+        return commentID;
+    }
+
+    public void setCommentID(int commentID) {
+        this.commentID = commentID;
+    }
+
+    public List<Post> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Post> comments) {
+        this.comments = comments;
+
+    }
+
+    PostDAO postDAO = new PostDAO();
+    public Post(int postID, int userID, String title, String content, Timestamp createDate, int like, String picture, int commentID) {
         this.postID = postID;
         this.userID = userID;
         this.title = title;
@@ -21,7 +44,12 @@ public class Post {
         this.createDate = createDate.toString();
         this.like = like;
         this.picture = picture;
-        this.commentID = commnetID;
+        this.commentID = commentID;
+        try {
+            this.comments=postDAO.getPostByCommentID(postID);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public Post(int postID,String title, String content, int userid, String createDate) {
@@ -58,6 +86,11 @@ public class Post {
 
     public void setPostID(int postID) {
         this.postID = postID;
+        try {
+            this.comments=postDAO.getPostByCommentID(postID);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public int getUserID() {

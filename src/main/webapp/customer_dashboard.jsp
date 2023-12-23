@@ -145,9 +145,21 @@
                         <img src="res/${post.picture}" alt="${post.title}"/>
                         <br>
                         <span class="post-actions">
-                        <a href="#" class="like-link" data-liked="false">点赞</a>
-                            <!-- 更多操作 -->
-                    </span>
+                            <a href="#" class="like-link" data-liked="false">点赞</a>
+                            <a href="#" class="comment-link">评论</a>
+                        </span>
+                        <br>
+                        <span class="comment-list">
+                            <c:forEach items="${post.comments}" var="comment" varStatus="status">
+                                <span class="comment-item">
+                                    <span class="comment-count">回复：${status.count}</span>
+                                    <span class="comment-author">发表人：${comment.author.userName}</span>
+                                    <span class="comment-content">评论内容：${comment.content}</span>
+                                    <span class="comment-time">回复时间：${comment.createDate}</span>
+                                    <br>
+                                </span>
+                            </c:forEach>
+                        </span>
                     </div>
                 </c:forEach>
             </div>

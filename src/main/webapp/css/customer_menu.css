@@ -390,4 +390,54 @@ input[type="submit"]:hover {
 .liked {
     color: red; /* 或者您喜欢的任何样式 */
 }
+/* 回复列表的整体样式 */
+.comment-list {
+    margin-top: 10px;
+    padding: 5px;
+    background-color: #f2f2f2; /* 背景颜色 */
+    border-radius: 5px; /* 边框圆角 */
+}
 
+/* 单个回复的样式 */
+.comment-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd; /* 分隔线 */
+}
+/* 回复内容的每个部分（作者、内容、时间）的样式 */
+.comment-item span {
+    display: block; /* 使每个span独占一行 */
+    margin-bottom: 5px; /* 增加底部外边距 */
+}
+/* 最后一个回复项没有底部边框 */
+.comment-item:last-child {
+    border-bottom: none;
+}
+
+/* 回复计数的样式 */
+.comment-count {
+    font-weight: bold;
+    color: #333;
+}
+
+/* 回复作者的样式 */
+.comment-author {
+    color: #007bff; /* 蓝色 */
+    font-style: italic;
+}
+
+/* 回复内容的样式 */
+.comment-content {
+    color: #555;
+    margin-top: 5px;
+}
+
+/* 回复时间的样式 */
+.comment-time {
+    font-size: 0.8em;
+    color: #666;
+    margin-top: 5px;
+}
+/* 最后一个元素不需要底部外边距 */
+.comment-item span:last-child {
+    margin-bottom: 0;
+}
