@@ -72,9 +72,6 @@ canteens: 所有食堂信息
   </form>
   <!-- 在这里添加分页器 -->
 </div>
-<iframe id="iframe">
-
-</iframe>
 <script>
   // JavaScript 函数用于处理删除食堂的操作
   function deleteCanteen(id) {

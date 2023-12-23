@@ -43,7 +43,7 @@
         <br>
         <input type="submit" value="更新">
     </form>
-    <a href="admin_canteen_management.jsp">返回</a>
+    <a href="javascript:history.back()">返回</a>
 </div>
 </body>
 </html>
