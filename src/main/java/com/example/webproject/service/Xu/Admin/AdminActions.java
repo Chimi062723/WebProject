@@ -118,5 +118,8 @@ public interface AdminActions {
     * #Date 2023/12/21
     */
    Canteen canteenEncapsulation(int canteenID, String name, String location, String openTime, String managerName, String notice);
-   //实体封装类改为用实体类构造方法实现，除canteen封装需要用到managerid和name的转换所以保留以外，其余全部移除
+
+   Review getReview(int reviewid);
+
+    //实体封装类改为用实体类构造方法实现，除canteen封装需要用到managerid和name的转换所以保留以外，其余全部移除
  }

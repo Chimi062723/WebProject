@@ -47,7 +47,7 @@
         <br>
         <label>
             创建时间:
-            <input type="text" name="createdate" value="${requestScope.review.createdate}">
+            <input type="text" name="createdate" value="${requestScope.review.createdate}" placeholder="修改格式需如：2023-02-02 01:00:00">
         </label>
         <br>
         <input type="submit" value="更新">

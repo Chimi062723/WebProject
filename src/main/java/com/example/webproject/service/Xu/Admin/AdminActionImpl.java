@@ -1,12 +1,10 @@
 package com.example.webproject.service.Xu.Admin;
 
 import com.example.webproject.dao.CanteenDAO;
+import com.example.webproject.dao.DishDAO;
 import com.example.webproject.dao.ReviewDAO;
 import com.example.webproject.dao.UserDAO;
-import com.example.webproject.model.Canteen;
-import com.example.webproject.model.Review;
-import com.example.webproject.model.Post;
-import com.example.webproject.model.User;
+import com.example.webproject.model.*;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -23,7 +21,7 @@ public class AdminActionImpl implements AdminActions{
     UserDAO userDAO;
     CanteenDAO canteenDAO;
     ReviewDAO reviewDAO;
-//    ReviewDAO reviewDAO;
+    DishDAO dishDAO;
     @Override
     public List<User> getAllAccount() {
         return userDAO.getAllUsers();
@@ -32,6 +30,7 @@ public class AdminActionImpl implements AdminActions{
         this.userDAO = new UserDAO();
         this.canteenDAO = new CanteenDAO();
         this.reviewDAO = new ReviewDAO();
+        this.dishDAO = new DishDAO();
     }
 
     public Canteen getCanteen(int canteenID){
@@ -164,13 +163,12 @@ public class AdminActionImpl implements AdminActions{
      */
     @Override
     public int editReview(Review newReview) {
-//        try{
-//            postDao.deletePost(post); //todo 创建postDao类
-//            return 1;
-//        }catch (SQLException e){
-//            throw new RuntimeException(e);
-//        }
-        return 0;
+        try{
+            reviewDAO.updateReview(newReview);
+            return 1;
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -216,10 +214,37 @@ public class AdminActionImpl implements AdminActions{
         return new Canteen(canteenID,name,location,openTime,managerID,notice);
     }
 
-
+    @Override
     public Review getReview(int reviewid) {
         try {
             return reviewDAO.getReviewByReviewID(reviewid);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public Dish getDishByID(int dishID) {
+        try {
+            return dishDAO.getDish(dishID);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public User getAccountByUserName(String user) {
+       return userDAO.getUserByUsername(user);
+    }
+
+    public int getDishIDByName(String dish) {
+        try {
+            return dishDAO.getDishIDByName(dish);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<Review> getAllReview() {
+        try {
+            return reviewDAO.getAllReviews();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
