@@ -387,4 +387,7 @@ input[type="submit"]:hover {
 .complaint-item input[type="submit"]:hover {
     background-color: #003366;
 }
+.liked {
+    color: red; /* 或者您喜欢的任何样式 */
+}
 

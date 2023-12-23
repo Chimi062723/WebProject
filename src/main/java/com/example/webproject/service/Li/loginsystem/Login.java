@@ -55,9 +55,7 @@ public class Login  extends HttpServlet {
                             session.setAttribute("dish5", dishDAO.getDish(5));
                             session.setAttribute("dish6", dishDAO.getDish(6));
                             //以上传入上新菜品
-                            session.setAttribute("post1", postDAO.getPost(1));
-                            session.setAttribute("post2", postDAO.getPost(2));
-                            session.setAttribute("post3", postDAO.getPost(6));
+                            session.setAttribute("posts", postDAO.getMostLikesThreePosts());
                             //以上传入社区热点
                             List<Canteen> canteens = canteenDAO.getAllCanteens();
                             session.setAttribute("canteens", canteens);

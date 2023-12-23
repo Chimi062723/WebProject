@@ -132,54 +132,24 @@
             <div class="communication-section">
                 <p>社区热点</p>
                 <!-- 动态生成交流内容，示例代码 -->
-                <div class="post">
-                    <span class="post-author">发表人：${sessionScope.post1.author.userName}</span>
-                    <br>
-                    <span class="post-title">标题：${sessionScope.post1.title}</span>
-                    <br>
-                    <span class="post-time">发表时间：${sessionScope.post1.createDate}</span>
-                    <br>
-                    <span class="post-details">帖子内容：${sessionScope.post1.content}</span>
-                    <br>
-                    <img src="res/${sessionScope.post1.picture}" alt="${sessionScope.post1.title}"/>
-                    <br>
-                    <span class="post-actions">
-                        <a href="#">点赞</a>
-                        <!-- 更多操作 -->
+                <c:forEach items="${sessionScope.posts}" var="post">
+                    <div class="post">
+                        <span class="post-author">发表人：${post.author.userName}</span>
+                        <br>
+                        <span class="post-title">标题：${post.title}</span>
+                        <br>
+                        <span class="post-time">发表时间：${post.createDate}</span>
+                        <br>
+                        <span class="post-details">帖子内容：${post.content}</span>
+                        <br>
+                        <img src="res/${post.picture}" alt="${post.title}"/>
+                        <br>
+                        <span class="post-actions">
+                        <a href="#" class="like-link" data-liked="false">点赞</a>
+                            <!-- 更多操作 -->
                     </span>
-                </div>
-                <div class="post">
-                    <span class="post-author">发表人：${sessionScope.post2.author.userName}</span>
-                    <br>
-                    <span class="post-title">标题：${sessionScope.post2.title}</span>
-                    <br>
-                    <span class="post-time">发表时间：${sessionScope.post2.createDate}</span>
-                    <br>
-                    <span class="post-details">帖子内容：${sessionScope.post2.content}</span>
-                    <br>
-                    <img src="res/${sessionScope.post2.picture}" alt="${sessionScope.post2.title}"/>
-                    <br>
-                    <span class="post-actions">
-                        <a href="#">点赞</a>
-                        <!-- 更多操作 -->
-                    </span>
-                </div>
-                <div class="post">
-                    <span class="post-author">发表人：${sessionScope.post3.author.userName}</span>
-                    <br>
-                    <span class="post-title">标题：${sessionScope.post3.title}</span>
-                    <br>
-                    <span class="post-time">发表时间：${sessionScope.post3.createDate}</span>
-                    <br>
-                    <span class="post-details">帖子内容：${sessionScope.post3.content}</span>
-                    <br>
-                    <img src="res/${sessionScope.post3.picture}" alt="${sessionScope.post3.title}"/>
-                    <br>
-                    <span class="post-actions">
-                        <a href="#">点赞</a>
-                        <!-- 更多操作 -->
-                    </span>
-                </div>
+                    </div>
+                </c:forEach>
             </div>
             <!-- 投诉区 -->
             <div class="complaint-section">
@@ -324,6 +294,23 @@
     });
 
     autoMove = setInterval(nextSlide, interval);
+    //以下是点赞逻辑
+    document.querySelectorAll('.like-link').forEach(item => {
+        item.addEventListener('click', function (e) {
+            e.preventDefault();
+            let isLiked = this.getAttribute('data-liked') === 'true';
+            if (isLiked) {
+                // 如果已经是“已点赞”状态，切换到“点赞”
+                this.textContent = '点赞';
+                this.classList.remove('liked');
+            } else {
+                // 如果是“点赞”状态，切换到“已点赞”
+                this.textContent = '已点赞';
+                this.classList.add('liked');
+            }
+            this.setAttribute('data-liked', !isLiked);
+        });
+    });
 
 </script>
 </body>

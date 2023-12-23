@@ -10,13 +10,14 @@ import java.util.List;
 public class PostDAO {
     private static final String GET_POST_BY_ID = "SELECT * FROM CommunityPosts WHERE PostID =?";
     private static final String GET_ALL_POSTS = "select * from CommunityPosts";
+    private static final String GET_POST_BY_USER_ID = "SELECT * FROM CommunityPosts WHERE UserID =?";
 
-    public List<Post> getAllPosts() throws SQLException{
-        List<Post> posts =new ArrayList<>();
-        try(Connection connection = JDBCHelper.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL_POSTS)){
+    public List<Post> getAllPosts() throws SQLException {
+        List<Post> posts = new ArrayList<>();
+        try (Connection connection = JDBCHelper.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL_POSTS)) {
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 Post post = new Post(
                         resultSet.getInt("PostID"),
                         resultSet.getInt("UserID"),
@@ -27,6 +28,51 @@ public class PostDAO {
                         resultSet.getString("Picture"),
                         resultSet.getInt("CommentID")
                 );
+                posts.add(post);
+            }
+        }
+        return posts;
+    }
+
+    public List<Post> getPostsByUserID(int userID) throws SQLException {
+        List<Post> posts = new ArrayList<>();
+        try (Connection connection = JDBCHelper.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(GET_POST_BY_USER_ID)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Post post = new Post(
+                        resultSet.getInt("PostID"),
+                        resultSet.getInt("UserID"),
+                        resultSet.getString("Title"),
+                        resultSet.getString("Content"),
+                        resultSet.getTimestamp("CreateDate"),
+                        resultSet.getInt("Like"),
+                        resultSet.getString("Picture"),
+                        resultSet.getInt("CommentID")
+                );
+                posts.add(post);
+            }
+        }
+        return posts;
+    }
+
+    public List<Post> getMostLikesThreePosts() throws SQLException {
+        List<Post> posts = new ArrayList<>();
+        UserDAO userDAO = new UserDAO();
+        String sql = "SELECT * FROM CommunityPosts ORDER BY `Like` DESC LIMIT 3";
+        try (Connection connection = JDBCHelper.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Post post = new Post();
+                post.setPostID(resultSet.getInt("PostID"));
+                post.setUserID(resultSet.getInt("UserID"));
+                post.setTitle(resultSet.getString("Title"));
+                post.setContent(resultSet.getString("Content"));
+                post.setCreateDate(resultSet.getTimestamp("CreateDate").toString());
+                post.setLike(resultSet.getInt("Like"));
+                post.setPicture(resultSet.getString("Picture"));
+                post.setAuthor(userDAO.getUserByID(resultSet.getInt("UserID")));
                 posts.add(post);
             }
         }
@@ -55,19 +101,19 @@ public class PostDAO {
         return post;
     }
 
-    public void deletePost(int PostID) throws SQLException{
+    public void deletePost(int PostID) throws SQLException {
 
     }
 
-    public void editPost(Post newPost) throws SQLException{
+    public void editPost(Post newPost) throws SQLException {
         Connection connection = JDBCHelper.getConnection();
         String editSQL = "update CommunityPosts set UserID=?,Title =?,Content=?,CreateDate=? where PostID=?";
         PreparedStatement preparedStatement = connection.prepareStatement(editSQL);
-        preparedStatement.setInt(1,newPost.getUserID());
-        preparedStatement.setString(2,newPost.getTitle());
-        preparedStatement.setString(3,newPost.getContent());
-        preparedStatement.setString(4,newPost.getCreateDate());
-        preparedStatement.setInt(5,newPost.getPostID());
+        preparedStatement.setInt(1, newPost.getUserID());
+        preparedStatement.setString(2, newPost.getTitle());
+        preparedStatement.setString(3, newPost.getContent());
+        preparedStatement.setString(4, newPost.getCreateDate());
+        preparedStatement.setInt(5, newPost.getPostID());
         preparedStatement.executeUpdate();
     }
 }
