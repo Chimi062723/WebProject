@@ -10,9 +10,7 @@ public class Review {
     int rating;
     String comment;
     Timestamp createDate;
-
     String reply;
-
     String picture;
 
     public String getPicture() {

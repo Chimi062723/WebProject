@@ -38,7 +38,7 @@ communityPosts: 所有社区帖子信息
     <div class="data-box">食堂数量: <span>${sessionScope.canteens.size()}</span></div>
     <div class="data-box">用户数量: <span>${sessionScope.users.size()}</span></div>
     <div class="data-box">评价数量: <span>${sessionScope.reviews.size()}</span></div>
-    <div class="data-box">帖子数量: <span>${sessionScope.communityPosts.size()}</span></div>
+    <div class="data-box">帖子数量: <span>${sessionScope.posts.size()}</span></div>
     <!-- 其他页面的内容将根据导航选择动态加载 -->
 </div>
 </body>

@@ -42,16 +42,16 @@
             <th>发布时间</th>
             <th>操作</th>
         </tr>
-        <c:forEach var="post" items="${posts}">
+        <c:forEach var="post" items="${sessionScope.posts}">
             <tr>
-                <td>${post.id}</td>
-                <td>${post.author}</td>
+                <td>${post.postID}</td>
+                <td>${post.userID}</td>
                 <td>${post.title}</td>
                 <td>${post.content}</td>
-                <td>${post.timestamp}</td>
+                <td>${post.createDate}</td>
                 <td>
-                    <button onclick="location.href='editPost?id=${post.id}'">编辑</button>
-                    <button onclick="deletePost(${post.id})">删除</button>
+                    <button onclick="location.href='editPost?id=${post.postID}'">编辑</button>
+                    <button onclick="deletePost(${post.postID})">删除</button>
                 </td>
             </tr>
         </c:forEach>

@@ -54,8 +54,8 @@
                 <td>${review.createDate}</td>
                 <td>${review.reply}</td>
                 <td>
-                    <button onclick="location.href='edit_review.jsp?id=${review.id}'">编辑</button>
-                    <button onclick="deleteReview(${review.id})">删除</button>
+                    <button onclick="location.href='edit_review.jsp?id=${review.reviewID}'">编辑</button>
+                    <button onclick="deleteReview(${review.reviewID})">删除</button>
                 </td>
             </tr>
         </c:forEach>

@@ -3,14 +3,36 @@ package com.example.webproject.dao;
 import com.example.webproject.model.Post;
 import com.example.webproject.util.JDBCHelper;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PostDAO {
     private static final String GET_POST_BY_ID = "SELECT * FROM CommunityPosts WHERE PostID =?";
-    //todo:PostDAO
+    private static final String GET_ALL_POSTS = "select * from CommunityPosts";
+
+    public List<Post> getAllPosts() throws SQLException{
+        List<Post> posts =new ArrayList<>();
+        try(Connection connection = JDBCHelper.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL_POSTS)){
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                Post post = new Post(
+                        resultSet.getInt("PostID"),
+                        resultSet.getInt("UserID"),
+                        resultSet.getString("Title"),
+                        resultSet.getString("Content"),
+                        resultSet.getTimestamp("CreateDate"),
+                        resultSet.getInt("Like"),
+                        resultSet.getString("Picture"),
+                        resultSet.getInt("CommentID")
+                );
+                posts.add(post);
+            }
+        }
+        return posts;
+    }
+
     public Post getPost(int postID) throws SQLException {
         Post post = new Post();
         UserDAO userDAO = new UserDAO();

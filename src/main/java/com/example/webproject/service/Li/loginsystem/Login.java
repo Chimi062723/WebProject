@@ -36,44 +36,37 @@ public class Login  extends HttpServlet {
                     VoteDAO voteDAO = new VoteDAO();
                     ReviewDAO reviewDAO = new ReviewDAO();
                     role= userDAO.judgeRole(username);
-                    if(role.equals("sys_admin")){
-                        List<User> users = userDAO.getAllUsers();
-                        List<Canteen> canteens = canteenDAO.getAllCanteens();
-                        session.setAttribute("users",users);
-                        session.setAttribute("canteens",canteens);
-                        request.getRequestDispatcher("admin_dashboard.jsp").forward(request,response);
-                    }
-                    else if(role.equals("res_admin")){
-                        response.sendRedirect("cantadmin_dashboard.jsp");
-                    }
-                    else  if(role.equals("normal_user")){
-                        Dish dish1 = dishDAO.getDish(1);
-                        Dish dish2 = dishDAO.getDish(2);
-                        Dish dish3 = dishDAO.getDish(3);
-                        Dish dish4 = dishDAO.getDish(4);
-                        Dish dish5 = dishDAO.getDish(5);
-                        Dish dish6 = dishDAO.getDish(6);
-                        session.setAttribute("dish1",dish1);
-                        session.setAttribute("dish2",dish2);
-                        session.setAttribute("dish3",dish3);
-                        session.setAttribute("dish4",dish4);
-                        session.setAttribute("dish5",dish5);
-                        session.setAttribute("dish6",dish6);
-                        //以上传入上新菜品
-                        Post post1 = postDAO.getPost(1);
-                        Post post2 = postDAO.getPost(2);
-                        Post post3 = postDAO.getPost(6);
-                        session.setAttribute("post1",post1);
-                        session.setAttribute("post2",post2);
-                        session.setAttribute("post3",post3);
-                        //以上传入社区热点
-                        List<Canteen> canteens = canteenDAO.getAllCanteens();
-                        session.setAttribute("canteens",canteens);
-                        //以上传入食堂信息
-                        Vote vote = voteDAO.getVote(1);
-                        session.setAttribute("vote",vote);
-                        //以上传入投票信息
-                        request.getRequestDispatcher("customer_dashboard.jsp").forward(request,response);
+                    switch (role) {
+                        case "sys_admin":
+                            session.setAttribute("users", userDAO.getAllUsers());
+                            session.setAttribute("canteens", canteenDAO.getAllCanteens());
+                            session.setAttribute("reviews", reviewDAO.getAllReviews());
+                            session.setAttribute("posts", postDAO.getAllPosts());
+                            request.getRequestDispatcher("admin_dashboard.jsp").forward(request, response);
+                            break;
+                        case "res_admin":
+                            response.sendRedirect("cantadmin_dashboard.jsp");
+                            break;
+                        case "normal_user":
+                            session.setAttribute("dish1", dishDAO.getDish(1));
+                            session.setAttribute("dish2", dishDAO.getDish(2));
+                            session.setAttribute("dish3", dishDAO.getDish(3));
+                            session.setAttribute("dish4", dishDAO.getDish(4));
+                            session.setAttribute("dish5", dishDAO.getDish(5));
+                            session.setAttribute("dish6", dishDAO.getDish(6));
+                            //以上传入上新菜品
+                            session.setAttribute("post1", postDAO.getPost(1));
+                            session.setAttribute("post2", postDAO.getPost(2));
+                            session.setAttribute("post3", postDAO.getPost(6));
+                            //以上传入社区热点
+                            List<Canteen> canteens = canteenDAO.getAllCanteens();
+                            session.setAttribute("canteens", canteens);
+                            //以上传入食堂信息
+                            Vote vote = voteDAO.getVote(1);
+                            session.setAttribute("vote", vote);
+                            //以上传入投票信息
+                            request.getRequestDispatcher("customer_dashboard.jsp").forward(request, response);
+                            break;
                     }
                 }else {
                     response.sendRedirect("login.jsp?error=password_error");
