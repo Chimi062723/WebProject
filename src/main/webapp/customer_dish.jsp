@@ -15,6 +15,8 @@
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/foundation/5.5.3/js/foundation.min.js"></script>
     <script src="https://cdn.staticfile.org/foundation/5.5.3/js/vendor/modernizr.js"></script>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 <jsp:include page="custom_sidebar.jsp" />
@@ -46,15 +48,16 @@
         <div class="content" id="menu1">
             <form action="customers_dish" method="get">
                 <label for="cuisine-select">选择菜系: </label>
-                <select id="cuisine-select" name="cuisine">
+                <select  class="form-select" id="cuisine-select" name="cuisine">
                     <option value="all">所有菜品</option>
                     <option value="川菜">川菜</option>
                     <option value="浙菜">浙菜</option>
-<%--                    <option value="鲁菜">鲁菜</option>--%>
+                    <option value="鲁菜">鲁菜</option>
+                    <option value="苏菜">徽菜</option>
                 </select>
-                <input type="submit" value="确认">
+                <button type="submit" name="action" value="SearchByCuisine" >确认</button>
             </form>
-            <div id="search-results">
+            <div class="search-results">
                 <!-- 动态生成的检索结果将在这里显示 -->
                 <c:forEach items="${requestScope.dishList}" var="dish">
                     <div class="dish-card">
@@ -72,13 +75,41 @@
             </div>
         </div>
         <div class="content" id="menu2">
-            <li><a href="#">升序</a></li>
-            <li><a href="#">降序</a></li>
             <p>呈现不同食堂的选项，点击之后只显示该食堂的菜品</p>
+            <form action="customers_dish" method="get">
+                <label for="canteen-select">选择食堂: </label>
+                <select class="form-select" id="canteen-select" name="canteenName">
+                    <option value="all">所有食堂</option>
+                    <option value="思餐厅">思餐厅</option>
+                    <option value="一食堂">一食堂</option>
+                    <option value="五食堂">五食堂</option>
+                    <option value="新食堂">新食堂</option>
+                </select>
+                <button type="submit" name="action" value="SearchByCuisine" >确认</button>
+            </form>
+            <div class="search-results">
+                <!-- 动态生成的检索结果将在这里显示 -->
+                <c:forEach items="${requestScope.dishList}" var="dish">
+                    <div class="dish-card">
+                            <%--                <img src="placeholder-image.jpg" alt="${dish.name}" />--%>
+                        <div class="dish-details">
+                            <span class="dish-name">${dish.name}</span>
+                            <span class="dish-price">价格: ${dish.price}</span>
+                            <span class="dish-type">类别: ${dish.type}</span>
+                            <span class="dish-canteen">食堂id: ${dish.canteenID}</span>
+                            <a href="dish_detial_Servlet?name='${dish.name}'">详情</a>
+                            <!-- 更多信息 -->
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
         </div>
         <div class="content" id="menu3">
+            <li><a href="#">升序</a></li>
+            <li><a href="#">降序</a></li>
             <p>提供降序和升序按钮，点击之后按顺序显示</p>
         </div>
+
     </div>
     <!-- 检索结果 -->
 
