@@ -1,6 +1,6 @@
 package com.example.webproject.model;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Post {
     int postID;
@@ -11,6 +11,18 @@ public class Post {
     int like;
     String picture;
     User author;
+    int commentID;
+
+    public Post(int postID, int userID, String title, String content, Timestamp createDate, int like, String picture, int commnetID) {
+        this.postID = postID;
+        this.userID = userID;
+        this.title = title;
+        this.content = content;
+        this.createDate = createDate.toString();
+        this.like = like;
+        this.picture = picture;
+        this.commentID = commnetID;
+    }
 
     public void setAuthor(User author) {
         this.author = author;

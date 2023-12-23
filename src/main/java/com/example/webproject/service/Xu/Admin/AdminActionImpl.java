@@ -7,9 +7,7 @@ import com.example.webproject.model.Canteen;
 import com.example.webproject.model.Review;
 import com.example.webproject.model.Post;
 import com.example.webproject.model.User;
-import com.oracle.wls.shaded.org.apache.bcel.classfile.ConstantNameAndType;
 
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -39,7 +37,6 @@ public class AdminActionImpl implements AdminActions{
         try {
             return canteenDAO.getCanteenByID(canteenID);
         } catch (SQLException e) {
-            //todo:异常处理
             throw new RuntimeException(e);
         }
     }
@@ -48,7 +45,6 @@ public class AdminActionImpl implements AdminActions{
         try {
             return canteenDAO.getAllCanteens();
         } catch (SQLException e) {
-            //todo:异常处理
             throw new RuntimeException(e);
         }
     }
@@ -63,8 +59,7 @@ public class AdminActionImpl implements AdminActions{
             canteenDAO.addCanteen(canteen);
             return 1;
         }catch (SQLException e){
-            //todo
-            return 0;
+            throw new RuntimeException(e);
         }
     }
 
@@ -78,8 +73,7 @@ public class AdminActionImpl implements AdminActions{
             canteenDAO.deleteCanteen(canteen.getCanteenID());
             return 1;
         }catch (SQLException e) {
-            //todo
-            return 0;
+            throw new RuntimeException(e);
         }
     }
 
@@ -93,8 +87,7 @@ public class AdminActionImpl implements AdminActions{
             canteenDAO.updateCanteen(newCanteen);
             return 1;
         }catch (SQLException e) {
-            //todo
-            return 0;
+            throw new RuntimeException(e);
         }
     }
     /**

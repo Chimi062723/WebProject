@@ -41,16 +41,18 @@
             <th>评分</th>
             <th>评论</th>
             <th>发布时间</th>
+            <th>回复</th>
             <th>操作</th>
         </tr>
-        <c:forEach var="review" items="${reviews}">
+        <c:forEach var="review" items="${sessionScope.reviews}">
             <tr>
-                <td>${review.id}</td>
-                <td>${review.reviewer}</td>
-                <td>${review.dish}</td>
-                <td>${review.score}</td>
-                <td>${review.review}</td>
-                <td>${review.timestamp}</td>
+                <td>${review.reviewID}</td>
+                <td>${review.userID}</td>
+                <td>${review.dishID}</td>
+                <td>${review.rating}</td>
+                <td>${review.comment}</td>
+                <td>${review.createDate}</td>
+                <td>${review.reply}</td>
                 <td>
                     <button onclick="location.href='edit_review.jsp?id=${review.id}'">编辑</button>
                     <button onclick="deleteReview(${review.id})">删除</button>

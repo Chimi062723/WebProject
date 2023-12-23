@@ -1,6 +1,5 @@
 package com.example.webproject.controller.admin;
 
-import com.example.webproject.model.User;
 //import com.example.webproject.service.Xu.Admin.AdminActionImpl;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;

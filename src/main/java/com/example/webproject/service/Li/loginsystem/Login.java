@@ -31,10 +31,10 @@ public class Login  extends HttpServlet {
                     String role=null;
                     UserDAO userDAO = new UserDAO();
                     CanteenDAO canteenDAO = new CanteenDAO();
-                    DishDAO dishDAO = new DishDAO();//todo:DishDAO
-                    PostDAO postDAO = new PostDAO();//todo:PostDAO完善
+                    DishDAO dishDAO = new DishDAO();
+                    PostDAO postDAO = new PostDAO();
                     VoteDAO voteDAO = new VoteDAO();
-                    ReviewDAO reviewDAO = new ReviewDAO(); //todo:ReviewDAO完善
+                    ReviewDAO reviewDAO = new ReviewDAO();
                     role= userDAO.judgeRole(username);
                     if(role.equals("sys_admin")){
                         List<User> users = userDAO.getAllUsers();

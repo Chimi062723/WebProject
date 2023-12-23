@@ -1,4 +1,4 @@
-package com.example.webproject.controller.admin;
+package com.example.webproject.controller.user;
 
 import com.example.webproject.dao.UserDAO;
 import com.example.webproject.dao.VoteResultDao;
