@@ -1,4 +1,7 @@
 package com.example.webproject.model;
+import com.example.webproject.dao.CanteenDAO;
+
+import java.sql.SQLException;
 
 public class Dish {
     private int dishID;
@@ -8,6 +11,16 @@ public class Dish {
     private int canteenID;
     private String image;
     private double promotionPrice;
+    private Canteen canteen;
+
+    public Canteen getCanteen() {
+        return canteen;
+    }
+
+    public void setCanteen(Canteen canteen) {
+        this.canteen = canteen;
+    }
+
     public double getPromotionPrice() {
         return promotionPrice;
     }
@@ -21,6 +34,13 @@ public class Dish {
         this.price = price;
         this.canteenID = canteenID;
         this.image = image;
+        CanteenDAO canteenDAO = new CanteenDAO();
+        try {
+            this.canteen = canteenDAO.getCanteenByID(canteenID);
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public int getDishID() {
@@ -61,6 +81,12 @@ public class Dish {
 
     public void setCanteenID(int canteenID){
         this.canteenID = canteenID;
+        CanteenDAO canteenDAO = new CanteenDAO();
+        try {
+            this.canteen = canteenDAO.getCanteenByID(canteenID);
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getImage() {

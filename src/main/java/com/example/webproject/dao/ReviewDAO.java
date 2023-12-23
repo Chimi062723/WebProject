@@ -66,13 +66,13 @@ public class ReviewDAO {
         return reviews;
     }
 
-    public List<Review> getReviewsByUserId(int userId) throws SQLException {
+    public List<Review> getReviewsByDishId(int dishId) throws SQLException {
         List<Review> reviews = new ArrayList<>();
         dBhelper.init();
         Connection connection = dBhelper.dbconn;
-        String sql = "SELECT * FROM Reviews WHERE userID = ?";
+        String sql = "SELECT * FROM Reviews WHERE dishID = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, userId);
+        statement.setInt(1, dishId);
         ResultSet resultSet = statement.executeQuery();
         while (resultSet.next()) {
             Review review = new Review(
