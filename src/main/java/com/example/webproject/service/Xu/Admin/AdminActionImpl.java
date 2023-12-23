@@ -1,9 +1,6 @@
 package com.example.webproject.service.Xu.Admin;
 
-import com.example.webproject.dao.CanteenDAO;
-import com.example.webproject.dao.DishDAO;
-import com.example.webproject.dao.ReviewDAO;
-import com.example.webproject.dao.UserDAO;
+import com.example.webproject.dao.*;
 import com.example.webproject.model.*;
 
 import java.sql.SQLException;
@@ -17,11 +14,11 @@ import java.util.List;
  * 4.反馈操作结果
  */
 public class AdminActionImpl implements AdminActions{
-    //todo: 管理员操作的具体实现，数据库错误的异常处理
     UserDAO userDAO;
     CanteenDAO canteenDAO;
     ReviewDAO reviewDAO;
     DishDAO dishDAO;
+    PostDAO postDAO;
     @Override
     public List<User> getAllAccount() {
         return userDAO.getAllUsers();
@@ -31,6 +28,7 @@ public class AdminActionImpl implements AdminActions{
         this.canteenDAO = new CanteenDAO();
         this.reviewDAO = new ReviewDAO();
         this.dishDAO = new DishDAO();
+        this.postDAO = new PostDAO();
     }
 
     public Canteen getCanteen(int canteenID){
@@ -143,28 +141,13 @@ public class AdminActionImpl implements AdminActions{
     }
 
     /**
-     * @param review 需要删除的评价
+     * @param reviewID 需要删除的评价
      * @return
      */
     @Override
-    public int deleteReview(Review review) {
-//        try{
-//            //todo:reviewDAO.deleteReview(review); //todo:创建postDao类
-//            return 1;
-//        }catch (SQLException e){
-//            throw new RuntimeException(e);
-//        }
-        return 0;
-    }
-
-    /**
-     * @param newReview 新评论内容
-     * @return
-     */
-    @Override
-    public int editReview(Review newReview) {
+    public int deleteReview(int reviewID) {
         try{
-            reviewDAO.updateReview(newReview);
+            reviewDAO.deleteReview(reviewID); //todo:创建postDao类
             return 1;
         }catch (SQLException e){
             throw new RuntimeException(e);
@@ -172,18 +155,29 @@ public class AdminActionImpl implements AdminActions{
     }
 
     /**
-     * @param post 需要删除的评论
+     * @param newReview 新评论内容
+     */
+    @Override
+    public void editReview(Review newReview) {
+        try{
+            reviewDAO.updateReview(newReview);
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * @param postID 需要删除的评论
      * @return
      */
     @Override
-    public int deletePost(Post post) {
-//        try{
-//            postDao.deletePost(post); //todo 创建postDao类
-//            return 1;
-//        }catch (SQLException e){
-//            throw new RuntimeException(e);
-//        }
-        return 0;
+    public int deletePost(int postID) {
+        try{
+            postDAO.deletePost(postID);
+            return 1;
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -192,13 +186,12 @@ public class AdminActionImpl implements AdminActions{
      */
     @Override
     public int editPost(Post newPost) {
-//        try{
-//            postDao.editPost(newPost); //todo 创建postDao类
-//            return 1;
-//        }catch (SQLException e){
-//            throw new RuntimeException(e);
-//        }
-        return 0;
+        try{
+            postDAO.editPost(newPost);
+            return 1;
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
     }
     /**
      * @param canteenID 餐厅编号

@@ -54,7 +54,7 @@ public class EditReview extends HttpServlet {
             adminAction.editReview(review);
             HttpSession session = request.getSession();
             session.setAttribute("reviews",adminAction.getAllReview());
-            request.getRequestDispatcher("admin_reviews_management.jsp");
+            request.getRequestDispatcher("admin_reviews_management.jsp").forward(request,response);
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }

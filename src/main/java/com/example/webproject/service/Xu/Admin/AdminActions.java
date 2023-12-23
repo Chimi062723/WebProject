@@ -4,8 +4,6 @@ import com.example.webproject.model.Review;
 import com.example.webproject.model.Post;
 import com.example.webproject.model.User;
 
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.List;
 
 public interface AdminActions {
@@ -75,28 +73,29 @@ public interface AdminActions {
    int deleteAccount(User user);
    /**
     * 删除指定评价
-    * @param review 需要删除的评价
+    * @param reviewID 需要删除的评价
     * @return 操作正常，返回结果1，操作异常，返回结果0
     * @author ChiMi
     * #Date 2023/12/21
     */
-   int deleteReview(Review review);
-   /**
-    * 删除指定评价
-    * @param newReview 新评论内容
-    * @return 操作正常，返回结果1，操作异常，返回结果0
-    * @author ChiMi
-    * #Date 2023/12/21
-    */
-   int editReview(Review newReview);
+    int deleteReview(int reviewID);
+
+    /**
+     * 删除指定评价
+     *
+     * @param newReview 新评论内容
+     * @author ChiMi
+     * #Date 2023/12/21
+     */
+   void editReview(Review newReview);
    /**
     * Description
-    * @param post 需要删除的评论
+    * @param postID 需要删除的评论
     * @return 操作正常，返回结果1，操作异常，返回结果0
     * @author ChiMi
     * #Date 2023/12/21
     */
-   int deletePost(Post post);
+   int deletePost(int postID);
    /**
     * Description
     * @param newPost 更改后的评论内容

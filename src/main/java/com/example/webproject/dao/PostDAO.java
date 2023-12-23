@@ -54,4 +54,11 @@ public class PostDAO {
         }
         return post;
     }
+
+    public void deletePost(int PostID) throws SQLException{
+
+    }
+
+    public void editPost(Post newPost) throws SQLException{
+    }
 }
