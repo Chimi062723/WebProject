@@ -7,9 +7,12 @@ import com.example.webproject.model.Canteen;
 import com.example.webproject.model.Review;
 import com.example.webproject.model.Post;
 import com.example.webproject.model.User;
+import com.oracle.wls.shaded.org.apache.bcel.classfile.ConstantNameAndType;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.List;
+
 /**
  * 使用说明：
  * 1.实例化，会自动调用dao层接口，对dao层进行实例化
@@ -21,12 +24,35 @@ public class AdminActionImpl implements AdminActions{
     //todo: 管理员操作的具体实现，数据库错误的异常处理
     UserDAO userDAO;
     CanteenDAO canteenDAO;
-    ReviewDAO reviewDAO;
+//    ReviewDAO reviewDAO;
+    @Override
+    public List<User> getAllAccount() {
+        return userDAO.getAllUsers();
+    }
     public AdminActionImpl(){
         this.userDAO = new UserDAO();
         this.canteenDAO = new CanteenDAO();
-        this.reviewDAO = new ReviewDAO();
+//        this.reviewDAO = new ReviewDAO();
     }
+
+    public Canteen getCanteen(int canteenID){
+        try {
+            return canteenDAO.getCanteenByID(canteenID);
+        } catch (SQLException e) {
+            //todo:异常处理
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<Canteen> getAllCanteen(){
+        try {
+            return canteenDAO.getAllCanteens();
+        } catch (SQLException e) {
+            //todo:异常处理
+            throw new RuntimeException(e);
+        }
+    }
+
     /**
      * @param canteen 新的食堂信息
      * @return
@@ -49,7 +75,7 @@ public class AdminActionImpl implements AdminActions{
     @Override
     public int deleteCanteen(Canteen canteen) {
         try{
-            canteenDAO.deleteCanteen(canteen.getCanteenId());
+            canteenDAO.deleteCanteen(canteen.getCanteenID());
             return 1;
         }catch (SQLException e) {
             //todo
@@ -71,6 +97,14 @@ public class AdminActionImpl implements AdminActions{
             return 0;
         }
     }
+    /**
+     * @param userID
+     * @return
+     */
+    @Override
+    public User getAccount(int userID) {
+        return userDAO.getUserByID(userID);
+    }
 
     /**
      * @param user 新添加的用户
@@ -81,23 +115,23 @@ public class AdminActionImpl implements AdminActions{
             userDAO.addUser(user);
             return 1;
         }catch (SQLException e){
-            //todo
-            return 0;
+            throw new RuntimeException(e);
         }
     }
 
     /**
-     * @param newUser 新用户样式
+     * @param username 用户名
+     * @param email 邮箱
+     * @param role 角色
      * @return
      */
     @Override
-    public int editAccount(User newUser) {
+    public int editAccount(String username, String email, String role) {
         try{
-            userDAO.updateUser(newUser);
+            userDAO.updateUser(username,email,role);
             return 1;
         }catch (SQLException e){
-            //todo
-            return 0;
+            throw new RuntimeException(e);
         }
     }
 
@@ -111,8 +145,7 @@ public class AdminActionImpl implements AdminActions{
             userDAO.deleteUser(user.getUserName());
             return 1;
         }catch (SQLException e){
-            //todo
-            return 0;
+            throw new RuntimeException(e);
         }
     }
 
@@ -126,8 +159,7 @@ public class AdminActionImpl implements AdminActions{
 //            //todo:reviewDAO.deleteReview(review); //todo:创建postDao类
 //            return 1;
 //        }catch (SQLException e){
-//            //todo
-//            return 0;
+//            throw new RuntimeException(e);
 //        }
         return 0;
     }
@@ -142,8 +174,7 @@ public class AdminActionImpl implements AdminActions{
 //            postDao.deletePost(post); //todo 创建postDao类
 //            return 1;
 //        }catch (SQLException e){
-//            //todo
-//            return 0;
+//            throw new RuntimeException(e);
 //        }
         return 0;
     }
@@ -158,8 +189,7 @@ public class AdminActionImpl implements AdminActions{
 //            postDao.deletePost(post); //todo 创建postDao类
 //            return 1;
 //        }catch (SQLException e){
-//            //todo
-//            return 0;
+//            throw new RuntimeException(e);
 //        }
         return 0;
     }
@@ -174,80 +204,22 @@ public class AdminActionImpl implements AdminActions{
 //            postDao.editPost(newPost); //todo 创建postDao类
 //            return 1;
 //        }catch (SQLException e){
-//            //todo
-//            return 0;
+//            throw new RuntimeException(e);
 //        }
         return 0;
     }
-
     /**
-     * @param canteenId 餐厅编号
+     * @param canteenID 餐厅编号
      * @param name      餐厅名
      * @param location  餐厅位置
      * @param openTime  时间
-     * @param managerID 管理员编号
+     * @param managerName 管理员编号
      * @return
      */
     @Override
-    public Canteen canteenEncapsulation(int canteenId, String name, String location, String openTime, int managerID) {
-        return new Canteen(canteenId,name,location,openTime,managerID);
+    public Canteen canteenEncapsulation(int canteenID, String name, String location, String openTime, String managerName,String notice) {
+        int managerID = userDAO.getUserByUsername(managerName).getUserID();
+        return new Canteen(canteenID,name,location,openTime,managerID,notice);
     }
 
-    /**
-     * @param postId     帖子编号（自动生成）
-     * @param userId     用户编号
-     * @param title      标题
-     * @param content    内容
-     * @param createDate 创建时间，可传空值，由系统自动生成
-     * @param like       用户喜欢程度
-     * @return
-     */
-    @Override
-    public Post postEncapsulation(int postId, int userId, String title, String content, Date createDate, int like) {
-        return null;
-    }
-
-    /**
-     * @param reviewId   评价id（自动生成）
-     * @param userId     用户id
-     * @param dishId     菜品编号
-     * @param rating     评价(int)
-     * @param comment    评价内容
-     * @param statue
-     * @param createDate 创建日期(自动生成)
-     * @return
-     */
-    @Override
-    public Review reviewEncapsulation(int reviewId, int userId, int dishId, int rating, String comment, int statue, Date createDate) {
-        return null;
-    }
-
-    /**
-     * @param postId     帖子编号（自动生成）
-     * @param userId     用户编号
-     * @param title      标题
-     * @param content    内容
-     * @param createDate 创建时间，可传空值，由系统自动生成
-     * @param like       用户喜欢程度
-     * @return
-     */
-    @Override
-    public Post postEncapsulation(int postId, int userId, String title, String content, String createDate, int like, String picture) {
-        return new Post(postId,userId,title,content,createDate,like,picture);
-    }
-
-    /**
-     * @param reviewId   评价id（自动生成）
-     * @param userId     用户id
-     * @param dishId     菜品编号
-     * @param rating     评价(int)
-     * @param comment    评价内容
-     * @param statue
-     * @param createDate 创建日期(自动生成)
-     * @return
-     */
-    @Override
-    public Review reviewEncapsulation(int reviewId, int userId, int dishId, int rating, String comment, int statue, Date createDate,String picture) {
-        return new Review(reviewId,userId,dishId,rating,comment,statue,createDate,picture);
-    }
 }

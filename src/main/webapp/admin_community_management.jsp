@@ -50,7 +50,7 @@
                 <td>${post.content}</td>
                 <td>${post.timestamp}</td>
                 <td>
-                    <button onclick="location.href='edit_post.jsp?id=${post.id}'">编辑</button>
+                    <button onclick="location.href='editPost?id=${post.id}'">编辑</button>
                     <button onclick="deletePost(${post.id})">删除</button>
                 </td>
             </tr>

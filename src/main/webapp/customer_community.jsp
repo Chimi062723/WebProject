@@ -13,20 +13,15 @@
     <link rel="stylesheet" href="css/customer_menu.css" />
 </head>
 <body>
-<div id="sidebar">
-    <img src="res/logo.png" alt="USST Canteen Management System Logo">
-    <a href="customer_dashboard.jsp">首页</a>
-    <a href="customer_dish.jsp">菜品一览</a>
-    <a href="customer_community.jsp">交流社区</a>
-    <a href="customer_canteen.jsp">食堂搜索</a>
-</div>
+<jsp:include page="custom_sidebar.jsp" />
 <div id="main-content">
     <h2>社区论坛</h2>
 
     <!-- 发布消息表单 -->
-    <form action="PostMessageServlet" method="post">
+    <form action="PostMessageServlet" method="post" enctype="multipart/form-data">
         标题: <input type="text" name="title">
         内容: <textarea name="content"></textarea>
+        上传图片: <input type="file" name="image">
         <input type="submit" value="发表">
     </form>
 

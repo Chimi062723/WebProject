@@ -1,29 +1,34 @@
 package com.example.webproject.model;
 
 public class Canteen {
-    private int canteenId;
+    private int canteenID;
     private String name;
     private String location;
     private String openTime;
-    private int managerId;
+    private int managerID;
+
+    private String notice;
 
     public Canteen() {
     }
 
-    public Canteen(int canteenId, String name, String location, String openTime, int managerId) {
-        this.canteenId = canteenId;
+    public Canteen(int canteenID, String name, String location, String openTime, int managerID,String notice) {
+        this.canteenID = canteenID;
         this.name = name;
         this.location = location;
         this.openTime = openTime;
-        this.managerId = managerId;
-    }
-    // getters and setters
-    public int getCanteenId() {
-        return canteenId;
+        this.managerID = managerID;
+        this.notice = notice;
     }
 
-    public void setCanteenId(int canteenId) {
-        this.canteenId = canteenId;
+
+    // getters and setters
+    public int getCanteenID() {
+        return canteenID;
+    }
+
+    public void setCanteenID(int canteenID) {
+        this.canteenID = canteenID;
     }
 
     public String getName() {
@@ -50,13 +55,20 @@ public class Canteen {
         this.openTime = openTime;
     }
 
-    public int getManagerId() {
-        return managerId;
+    public int getManagerID() {
+        return managerID;
     }
 
-    public void setManagerId(int managerId){
-        this.managerId = managerId;
+    public void setManagerID(int managerID){
+        this.managerID = managerID;
     }
 
 
+    public String getNotice() {
+        return notice;
+    }
+
+    public void setNotice(String notice) {
+        this.notice = notice;
+    }
 }

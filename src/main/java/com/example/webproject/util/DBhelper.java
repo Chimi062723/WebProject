@@ -1,9 +1,13 @@
 package com.example.webproject.util;
 
+import com.example.webproject.dao.UserDAO;
+import com.example.webproject.model.Canteen;
+import com.example.webproject.model.Dish;
 import com.example.webproject.model.Post;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DBhelper {
@@ -20,7 +24,6 @@ public class DBhelper {
             System.out.println(e1);
         } catch (java.sql.SQLException e2) {
             e2.printStackTrace();
-
         }
     }
     //检查账号是否已经存在
@@ -99,14 +102,13 @@ public class DBhelper {
             List<Post> postList = new java.util.ArrayList<>();
             while (rs.next()) {
                 Post post = new Post();
-                post.setPostID(rs.getInt("PostId"));
-                post.setUserID(rs.getInt("UserId"));
+                post.setPostID(rs.getInt("PostID"));
+                post.setUserID(rs.getInt("UserID"));
                 post.setTitle(rs.getString("Title"));
                 post.setContent(rs.getString("Content"));
                 //填充名字
-                DBhelper db = new DBhelper();
-                db.init();
-                post.setAuthor(db.getUserName(db.dbconn,post.getUserID()));
+                UserDAO userDAO = new UserDAO();
+                post.setAuthor(userDAO.getUserByID(post.getUserID()));
                 Timestamp createTimestamp = rs.getTimestamp("CreateDate");
                 if (createTimestamp != null) {
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -170,5 +172,83 @@ public class DBhelper {
         }
         return null;
 
+    }
+
+    public List<Dish> getDishList(Connection dbconn, String cuisine) {
+        String sql = "SELECT * FROM Dishes WHERE CuisineType = ?";
+        PreparedStatement ps = null;
+        try {
+            ps = dbconn.prepareStatement(sql);
+            ps.setString(1, cuisine);
+            ResultSet rs = ps.executeQuery();
+            List<Dish> dishList = new java.util.ArrayList<>();
+            while (rs.next()) {
+                Dish dish = new Dish();
+                dish.setDishID(rs.getInt("DishID"));
+                dish.setCanteenID(rs.getInt("CanteenID"));
+                dish.setName(rs.getString("Name"));
+                dish.setType(rs.getString("CuisineType"));
+                dish.setPrice(rs.getDouble("Price"));
+                dish.setImage(rs.getString("ImageURL"));
+                dishList.add(dish);
+            }
+            return dishList;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Dish> getAllDishList(Connection dbconn) {
+        String sql = "SELECT * FROM Dishes";
+        PreparedStatement ps = null;
+        try {
+            ps = dbconn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            List<Dish> dishList = new java.util.ArrayList<>();
+            while (rs.next()) {
+                Dish dish = new Dish();
+                dish.setDishID(rs.getInt("DishID"));
+                dish.setCanteenID(rs.getInt("CanteenID"));
+                dish.setName(rs.getString("Name"));
+                dish.setType(rs.getString("CuisineType"));
+                dish.setPrice(rs.getDouble("Price"));
+                dish.setImage(rs.getString("ImageURL"));
+                dishList.add(dish);
+            }
+            return dishList;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+    public List<Canteen> performFuzzySearch(Connection connection , String canteenName) {
+        List<Canteen> canteens = new ArrayList<>();
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            String sql = "SELECT * FROM Canteens WHERE Name LIKE ?";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, "%" + canteenName + "%"); // 设置模糊查询条件
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                Canteen canteen = new Canteen();
+                canteen.setCanteenID(resultSet.getInt("CanteenID"));
+                canteen.setName(resultSet.getString("Name"));
+                canteen.setLocation(resultSet.getString("Location"));
+                canteen.setOpenTime(resultSet.getString("OpenTime"));
+                canteen.setManagerID(resultSet.getInt("ManagerID"));
+                canteen.setNotice(resultSet.getString("Notice"));
+                canteens.add(canteen);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
+        return canteens;
     }
 }

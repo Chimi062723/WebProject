@@ -1,14 +1,11 @@
-package com.example.webproject.service.Li;
+package com.example.webproject.service.Li.customer;
 
 import com.example.webproject.model.Post;
 import com.example.webproject.util.DBhelper;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -42,6 +39,9 @@ public class PostMessageServlet extends HttpServlet {
         String title = request.getParameter("title");
         String content = request.getParameter("content");
         String username = (String) session.getAttribute("username");
+//        Part filePart = request.getPart("image");
+//        String fileName = filePart.getSubmittedFileName();
+
 
         DBhelper db = new DBhelper();
         db.init();

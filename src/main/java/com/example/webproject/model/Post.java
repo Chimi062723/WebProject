@@ -5,30 +5,31 @@ import java.sql.Date;
 public class Post {
     int postID;
     int userID;
-    String author;
     String title;
     String content;
     String createDate;
     int like;
     String picture;
+    User author;
+
+    public void setAuthor(User author) {
+        this.author = author;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
 
     public Post() {
     }
-    public Post(int postId, int userID, String title, String content,String createDate, int like, String picture) {
-        this.postID = postId;
+    public Post(int postID, int userID, String title, String content,String createDate, int like, String picture) {
+        this.postID = postID;
         this.userID = userID;
         this.title = title;
         this.content = content;
         this.createDate = createDate;
         this.like = like;
         this.picture = picture;
-    }
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
     }
 
     public int getPostID() {

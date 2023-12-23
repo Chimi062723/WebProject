@@ -1,12 +1,10 @@
-package com.example.webproject.service.Li;
+package com.example.webproject.service.Li.loginsystem;
 
 
-import com.example.webproject.dao.CanteenDAO;
-import com.example.webproject.dao.ReviewDAO;
-import com.example.webproject.dao.UserDAO;
-import com.example.webproject.model.User;
+import com.example.webproject.dao.*;
+//import com.example.webproject.dao.ReviewDAO;
+import com.example.webproject.model.*;
 import com.example.webproject.util.DBhelper;
-import com.example.webproject.model.Canteen;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -33,6 +31,9 @@ public class Login  extends HttpServlet {
                     String role=null;
                     UserDAO userDAO = new UserDAO();
                     CanteenDAO canteenDAO = new CanteenDAO();
+                    DishDAO dishDAO = new DishDAO();//todo:DishDAO
+                    PostDAO postDAO = new PostDAO();//todo:PostDAO完善
+                    VoteDAO voteDAO = new VoteDAO();
                     ReviewDAO reviewDAO = new ReviewDAO(); //todo:ReviewDAO完善
                     role= userDAO.judgeRole(username);
                     if(role.equals("sys_admin")){
@@ -46,7 +47,33 @@ public class Login  extends HttpServlet {
                         response.sendRedirect("cantadmin_dashboard.jsp");
                     }
                     else  if(role.equals("normal_user")){
-                        response.sendRedirect("customer_dashboard.jsp");
+                        Dish dish1 = dishDAO.getDish(1);
+                        Dish dish2 = dishDAO.getDish(2);
+                        Dish dish3 = dishDAO.getDish(3);
+                        Dish dish4 = dishDAO.getDish(4);
+                        Dish dish5 = dishDAO.getDish(5);
+                        Dish dish6 = dishDAO.getDish(6);
+                        session.setAttribute("dish1",dish1);
+                        session.setAttribute("dish2",dish2);
+                        session.setAttribute("dish3",dish3);
+                        session.setAttribute("dish4",dish4);
+                        session.setAttribute("dish5",dish5);
+                        session.setAttribute("dish6",dish6);
+                        //以上传入上新菜品
+                        Post post1 = postDAO.getPost(1);
+                        Post post2 = postDAO.getPost(2);
+                        Post post3 = postDAO.getPost(6);
+                        session.setAttribute("post1",post1);
+                        session.setAttribute("post2",post2);
+                        session.setAttribute("post3",post3);
+                        //以上传入社区热点
+                        List<Canteen> canteens = canteenDAO.getAllCanteens();
+                        session.setAttribute("canteens",canteens);
+                        //以上传入食堂信息
+                        Vote vote = voteDAO.getVote(1);
+                        session.setAttribute("vote",vote);
+                        //以上传入投票信息
+                        request.getRequestDispatcher("customer_dashboard.jsp").forward(request,response);
                     }
                 }else {
                     response.sendRedirect("login.jsp?error=password_error");

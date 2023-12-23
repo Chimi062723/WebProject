@@ -10,8 +10,9 @@ import java.util.List;
 public class UserDAO implements UserDaoImpl {
     private static final String GET_ALL_USERS_SQL = "SELECT * FROM Users";
     private static final String GET_USER_BY_USERNAME_SQL = "SELECT * FROM Users WHERE UserName = ?";
-    private static final String ADD_USER_SQL = "INSERT INTO Users (UserName, Password, Role) VALUES (?, ?, ?)";
-    private static final String UPDATE_USER_SQL = "UPDATE Users SET Password = ?, Role = ? WHERE UserName = ?";
+    private static final String GET_USER_BY_USERID_SQL = "SELECT * FROM Users WHERE UserID = ?";
+    private static final String ADD_USER_SQL = "INSERT INTO Users (UserName,Password,Email, Role) VALUES (?,? ,?, ?)";
+    private static final String UPDATE_USER_SQL = "UPDATE Users SET Email= ?, Role = ? WHERE UserName = ?";
     private static final String DELETE_USER_SQL = "DELETE FROM Users WHERE UserName = ?";
 
     @Override
@@ -24,7 +25,7 @@ public class UserDAO implements UserDaoImpl {
 
             while (rs.next()) {
                 User user = new User();
-                user.setUserId(rs.getInt("UserID"));
+                user.setUserID(rs.getInt("UserID"));
                 user.setUserName(rs.getString("UserName"));
                 user.setPassword(rs.getString("Password"));
                 user.setEmail(rs.getString("Email"));
@@ -37,16 +38,16 @@ public class UserDAO implements UserDaoImpl {
         }
         return users;
     }
-public User getUserById(int id) {
+public User getUserByID(int id) {
     User user = null;
     try (Connection connection = JDBCHelper.getConnection();
-         PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_USERNAME_SQL)) {
+         PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_USERID_SQL)) {
         preparedStatement.setInt(1, id);
         ResultSet rs = preparedStatement.executeQuery();
 
         while (rs.next()) {
             user = new User();
-            user.setUserId(rs.getInt("UserID"));
+            user.setUserID(rs.getInt("UserID"));
             user.setUserName(rs.getString("UserName"));
             user.setPassword(rs.getString("Password"));
             user.setEmail(rs.getString("Email"));
@@ -68,7 +69,7 @@ public User getUserById(int id) {
 
             while (rs.next()) {
                 user = new User();
-                user.setUserId(rs.getInt("UserID"));
+                user.setUserID(rs.getInt("UserID"));
                 user.setUserName(rs.getString("UserName"));
                 user.setPassword(rs.getString("Password"));
                 user.setEmail(rs.getString("Email"));
@@ -81,23 +82,26 @@ public User getUserById(int id) {
         return user;
     }
 
+
+
     @Override
     public void addUser(User user) throws SQLException{
         Connection connection = JDBCHelper.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(ADD_USER_SQL);
         preparedStatement.setString(1, user.getUserName());
         preparedStatement.setString(2, user.getPassword());
-        preparedStatement.setString(3, user.getRole());
+        preparedStatement.setString(3, user.getEmail());
+        preparedStatement.setString(4, user.getRole());
         preparedStatement.executeUpdate();
     }
 
     @Override
-    public void updateUser(User user) throws SQLException{
+    public void updateUser(String username,String email,String role) throws SQLException{
         Connection connection = JDBCHelper.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER_SQL);
-        preparedStatement.setString(1, user.getPassword());
-        preparedStatement.setString(2, user.getRole());
-        preparedStatement.setString(3, user.getUserName());
+        preparedStatement.setString(1, username);
+        preparedStatement.setString(2, email);
+        preparedStatement.setString(3, role);
         preparedStatement.executeUpdate();
 
     }
@@ -117,8 +121,7 @@ public User getUserById(int id) {
         preparedStatement.setString(1, username);
         ResultSet rs = preparedStatement.executeQuery();
         if (rs.next()) {
-            String role = rs.getString("Role");
-            return role;
+            return rs.getString("Role");
         }
         return null;
     }

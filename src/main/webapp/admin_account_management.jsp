@@ -31,34 +31,55 @@
     <h1>账号管理</h1>
     <input type="text" id="searchBox" placeholder="搜索账号..." />
     <button onclick="location.href='add_account.jsp'">新增账号</button>
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>姓名</th>
-            <th>邮箱</th>
-            <th>角色</th>
-            <th>创建时间</th>
-            <th>操作</th>
-        </tr>
-        <c:forEach var="user" items="${sessionScope.users}">
+    <form>
+        <table border="1">
             <tr>
-                <td>${user.userId}</td>
-                <td>${user.userName}</td>
-                <td>${user.email}</td>
-                <td>${user.role}</td>
-                <td>${user.createDate}</td>
-                <td>
-                    <button onclick="location.href='editAccount?id=${user.userId}'">编辑</button>
-                    <button onclick="deleteAccount(${user.userId})">删除</button>
-                </td>
+                <th>ID</th>
+                <th>姓名</th>
+                <th>邮箱</th>
+                <th>角色</th>
+                <th>创建时间</th>
+                <th>操作</th>
             </tr>
-        </c:forEach>
-    </table>
+            <c:forEach var="user" items="${sessionScope.users}">
+                <tr>
+                    <td>${user.userID}</td>
+                    <td>${user.userName}</td>
+                    <td>${user.email}</td>
+                    <td>${user.role}</td>
+                    <td>${user.createDate}</td>
+                    <td>
+                        <form>
+                            <input type="hidden" name="id" value="${user.userID}">
+                            <input type="submit" value="编辑" formaction="EditAccount" formmethod="get">
+                            <input type="submit" value="删除" formaction="DeleteAccount" formmethod="get">
+                        </form>
+                    </td>
+                </tr>
+            </c:forEach>
+            <tr>
+                <td>New</td>
+                <td><label for="name"></label><input id="name" type="text" name="name" placeholder="输入新的用户名称"> </td>
+                <td><label for="address"></label><input id="address" name="email" type="text" placeholder="输入新用户邮箱地址"></td>
+                <td><label>
+                    <select name="role" id="role">
+                        <option value="sys_admin">系统管理员</option>
+                        <option value="res_admin">食堂管理员</option>
+                        <option value="normal_user">普通用户</option>
+                    </select>
+                </label></td>
+                <td>系统自动生成</td>
+                <td><input type="submit" formaction="AddAcount" formmethod="post" value="提交"></td>
+            </tr>
+        </table>
+    </form>
     <!-- Add paginator here -->
 </div>
 <script>
     // JavaScript function for deleting accounts
     function deleteAccount(id) {
+        location.href='DeleteAccount?id='+id;
+
         // Confirm deletion logic
     }
     // JavaScript for search functionality

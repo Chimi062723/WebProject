@@ -31,33 +31,50 @@ canteens: 所有食堂信息
 </div>
 <div id="content">
   <h1>食堂信息管理</h1>
+  <label for="searchBox"></label>
   <input type="text" id="searchBox" placeholder="搜索食堂..." />
   <button onclick="location.href='add_canteen.jsp'">新增食堂</button>
-  <table border="1">
-    <tr>
-      <th>ID</th>
-      <th>名称</th>
-      <th>地址</th>
-      <th>营业时间</th>
-      <th>管理者</th>
-      <th>操作</th>
-    </tr>
-    <c:forEach var="canteen" items="${sessionScope.canteens}">
+  <form>
+    <table border="1">
       <tr>
-        <td>${canteen.canteenId}</td>
-        <td>${canteen.name}</td>
-        <td>${canteen.location}</td>
-        <td>${canteen.openTime}</td>
-        <td>${canteen.managerId}</td>
-        <td>
-          <button onclick="location.href='edit_canteen.jsp?id=${canteen.canteenId}'">编辑</button>
-          <button onclick="deleteCanteen(${canteen.canteenId})">删除</button>
-        </td>
+        <th>ID</th>
+        <th>名称</th>
+        <th>地址</th>
+        <th>营业时间</th>
+        <th>管理者</th>
+        <th>操作</th>
       </tr>
-    </c:forEach>
-  </table>
+      <c:forEach var="canteen" items="${sessionScope.canteens}">
+        <tr>
+          <td>${canteen.canteenID}</td>
+          <td>${canteen.name}</td>
+          <td>${canteen.location}</td>
+          <td>${canteen.openTime}</td>
+          <td>${canteen.managerID}</td>
+          <td>
+            <form>
+              <input type="hidden" name="id" value="${canteen.canteenID}">
+              <input type="submit" value="编辑" formaction="EditCanteen" formmethod="get">
+              <input type="submit" value="删除" formaction="DeleteCanteen" formmethod="get">
+            </form>
+          </td>
+        </tr>
+      </c:forEach>
+      <tr>
+        <td>New</td>
+        <td><label for="name"></label><input id="name" type="text" name="name" placeholder="输入新的食堂名称"> </td>
+        <td><label for="address"></label><input id="address" name="address" type="text" placeholder="输入新的地址"></td>
+        <td><label for="time"></label><input id="time" name="time" type="text" placeholder="输入新的营业时间"></td>
+        <td><label for="manager"></label><input id="manager" name="managerID" type="number" placeholder="输入新的管理员ID"></td>
+        <td><input type="submit" formaction="AddCanteen" formmethod="post"></td>
+      </tr>
+    </table>
+  </form>
   <!-- 在这里添加分页器 -->
 </div>
+<iframe id="iframe">
+
+</iframe>
 <script>
   // JavaScript 函数用于处理删除食堂的操作
   function deleteCanteen(id) {
