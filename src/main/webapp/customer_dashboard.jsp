@@ -39,7 +39,7 @@
                             <br>
                             <span class="dish-type">类别: ${sessionScope.dish1.type}</span>
                             <br>
-                            <a href="dish_detial_Servlet?id='${sessionScope.dish1.dishID}'">详情</a>
+                            <a href="DishDetailServlet?id=${sessionScope.dish1.dishID}">详情</a>
                             <!-- 更多信息 -->
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                             <br>
                             <span class="dish-type">类别: ${sessionScope.dish2.type}</span>
                             <br>
-                            <a href="dish_detial_Servlet?name='${sessionScope.ish2.name}'">详情</a>
+                            <a href="DishDetailServlet?id=${sessionScope.dish2.dishID}">详情</a>
                             <!-- 更多信息 -->
                         </div>
                     </div>
@@ -65,7 +65,7 @@
                             <br>
                             <span class="dish-type">类别: ${sessionScope.dish3.type}</span>
                             <br>
-                            <a href="dish_detial_Servlet?name='${sessionScope.dish3.name}'">详情</a>
+                            <a href="DishDetailServlet?id=${sessionScope.dish3.dishID}">详情</a>
                             <!-- 更多信息 -->
                         </div>
                     </div>
@@ -78,7 +78,7 @@
                             <br>
                             <span class="dish-type">类别: ${sessionScope.dish4.type}</span>
                             <br>
-                            <a href="dish_detial_Servlet?name='${sessionScope.dish4.name}'">详情</a>
+                            <a href="DishDetailServlet?id=${sessionScope.dish4.dishID}">详情</a>
                             <!-- 更多信息 -->
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                             <br>
                             <span class="dish-type">类别: ${sessionScope.dish5.type}</span>
                             <br>
-                            <a href="dish_detial_Servlet?name='${sessionScope.dish5.name}'">详情</a>
+                            <a href="DishDetailServlet?id=${sessionScope.dish5.dishID}">详情</a>
                             <!-- 更多信息 -->
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                             <br>
                             <span class="dish-type">类别: ${sessionScope.dish6.type}</span>
                             <br>
-                            <a href="dish_detial_Servlet?name='${sessionScope.dish6.name}'">详情</a>
+                            <a href="DishDetailServlet?id=${sessionScope.dish6.dishID}">详情</a>
                             <!-- 更多信息 -->
                         </div>
                     </div>
@@ -117,7 +117,7 @@
                             <br>
                             <span class="dish-type">类别: ${sessionScope.dish1.type}</span>
                             <br>
-                            <a href="dish_detial_Servlet?id='${sessionScope.dish1.dishID}'">详情</a>
+                            <a href="DishDetailServlet?id=${sessionScope.dish1.dishID}">详情</a>
                             <!-- 更多信息 -->
                         </div>
                     </div>
