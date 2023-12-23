@@ -1,5 +1,8 @@
 package com.example.webproject.model;
 
+import com.example.webproject.dao.DishDAO;
+import com.example.webproject.dao.UserDAO;
+
 import java.sql.Date;
 import java.sql.Timestamp;
 
@@ -12,6 +15,24 @@ public class Review {
     Timestamp createDate;
     String reply;
     String picture;
+    User sender;
+    Dish dish;
+    public User getSender() {
+        return sender;
+    }
+
+    public void setSender(User sender) {
+        this.sender = sender;
+    }
+
+    public Dish getDish() {
+        return dish;
+    }
+
+    public void setDish(Dish dish) {
+        this.dish = dish;
+    }
+
 
     public String getPicture() {
         return picture;
@@ -30,6 +51,14 @@ public class Review {
         this.reply = reply;
         this.createDate = createDate;
         this.picture=picture;
+        UserDAO userDAO = new UserDAO();
+        DishDAO dishDAO = new DishDAO();
+        try {
+            this.sender = userDAO.getUserByID(userID);
+            this.dish = dishDAO.getDish(dishID);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public Timestamp getCreateDate() {
@@ -38,7 +67,6 @@ public class Review {
 
     public void setCreateDate(Timestamp createDate) {
         this.createDate = createDate;
-        this.picture=picture;
     }
 
     public String getReply() {
@@ -64,14 +92,27 @@ public class Review {
 
     public void setUserID(int userID) {
         this.userID = userID;
+        UserDAO userDAO = new UserDAO();
+        try {
+            this.sender = userDAO.getUserByID(userID);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public int getDishID() {
         return dishID;
     }
 
-    public void setDishID(int dishID) {
+    public void setDishID(int dishID)
+    {
         this.dishID = dishID;
+        DishDAO dishDAO = new DishDAO();
+        try {
+            this.dish = dishDAO.getDish(dishID);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public int getRating() {

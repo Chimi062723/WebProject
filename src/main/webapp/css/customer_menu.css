@@ -11,7 +11,7 @@ body {
 #sidebar {
     background-color: #003366;
     color: white;
-    padding-bottom:9999px;
+    padding-bottom:2600px;
     margin-bottom: 9999px;
     width: 200px;
     height: 100%;
@@ -116,6 +116,51 @@ body {
     margin: 20px 0;
 }
 
+/* 评论区样式 */
+.review-section {
+    margin: 20px;
+}
+
+.review-item {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background-color: #fff;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.review-item img {
+    max-width: 100%; /* 确保图片不超过容器宽度 */
+    height: auto;
+    object-fit: contain;
+    max-height: 200px; /* 调整图片最大高度 */
+    margin-top: 10px;
+}
+
+.review-sender, .review-dish, .review-rating, .review-time, .review-details, .review-reply {
+    margin-bottom: 10px;
+}
+
+.review-sender, .review-dish {
+    font-weight: bold;
+    color: #0056b3;
+}
+
+.review-rating {
+    color: #000;
+}
+
+.review-time {
+    font-style: italic;
+    color: #666;
+}
+
+.review-details, .review-reply {
+    color: #333;
+}
 .post {
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     border-radius: 10px;
@@ -250,7 +295,6 @@ body {
 }
 
 .communication-section {
-    flex: 1; /* 每个部分占据等量空间 */
     margin: 10px; /* 添加一些间距 */
 }
 .announcement-section{
@@ -303,3 +347,44 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #003366;
 }
+/* 投诉区样式 */
+.complaint-section {
+    margin: 20px 0;
+}
+
+.complaint-item {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.complaint-item form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.complaint-item select,
+.complaint-item input[type="text"],
+.complaint-item input[type="submit"] {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.complaint-item input[type="submit"] {
+    background-color: #0056b3;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+.complaint-item input[type="submit"]:hover {
+    background-color: #003366;
+}
+

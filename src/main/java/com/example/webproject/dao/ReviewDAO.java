@@ -43,6 +43,29 @@ public class ReviewDAO {
         return reviews;
     }
 
+    public List<Review> getLastThreeReviews() throws SQLException {
+        List<Review> reviews = new ArrayList<>();
+        dBhelper.init();
+        Connection connection = dBhelper.dbconn;
+        String sql = "SELECT * FROM Reviews ORDER BY CreateDate DESC LIMIT 3";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ResultSet resultSet = ps.executeQuery();
+        while (resultSet.next()) {
+            Review review = new Review(
+                    resultSet.getInt("reviewID"),
+                    resultSet.getInt("userID"),
+                    resultSet.getInt("dishID"),
+                    resultSet.getInt("rating"),
+                    resultSet.getString("comment"),
+                    resultSet.getString("reply"),
+                    resultSet.getTimestamp("createDate"),
+                    resultSet.getString("Picture")
+            );
+            reviews.add(review);
+        }
+        return reviews;
+    }
+
     public List<Review> getReviewsByUserId(int userId) throws SQLException {
         List<Review> reviews = new ArrayList<>();
         dBhelper.init();

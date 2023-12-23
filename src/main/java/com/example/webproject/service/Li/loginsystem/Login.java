@@ -65,6 +65,9 @@ public class Login  extends HttpServlet {
                             Vote vote = voteDAO.getVote(1);
                             session.setAttribute("vote", vote);
                             //以上传入投票信息
+                            List<Review> lastThreeReviews = reviewDAO.getLastThreeReviews();
+                            session.setAttribute("lastThreeReviews", lastThreeReviews);
+
                             request.getRequestDispatcher("customer_dashboard.jsp").forward(request, response);
                             break;
                     }
