@@ -24,7 +24,6 @@ public class DBhelper {
             System.out.println(e1);
         } catch (java.sql.SQLException e2) {
             e2.printStackTrace();
-
         }
     }
     //检查账号是否已经存在

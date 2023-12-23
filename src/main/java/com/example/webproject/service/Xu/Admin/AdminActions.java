@@ -18,6 +18,7 @@ public interface AdminActions {
     * #Date 2023/12/21
     */
    int addCanteen(Canteen canteen);
+
     List<User> getAllAccount();
    /**
     * 删除餐厅
@@ -117,42 +118,5 @@ public interface AdminActions {
     * #Date 2023/12/21
     */
    Canteen canteenEncapsulation(int canteenID, String name, String location, String openTime, String managerName, String notice);
-
-   /**
-    * 社区帖子封装类
-    * @param postID 帖子编号（自动生成）
-    * @param userID 用户编号
-    * @param title 标题
-    * @param content 内容
-    * @param createDate 创建时间，可传空值，由系统自动生成
-    * @param like 用户喜欢程度
-    * @return 帖子实体类
-    * @author ChiMi
-    * #Date 2023/12/21
-    */
-   Post postEncapsulation(int postID, int userID, String title, String content, Date createDate, int like);
-
-   Review reviewEncapsulation(int reviewID, int userID, int dishID, int rating, String comment, String reply, Date createDate);
-
-   Post postEncapsulation(int postID, int userID, String title, String content, String createDate, int like, String picture);
-
-   Review reviewEncapsulation(int reviewID, int userID, int dishID, int rating, String comment, String reply, Date createDate, String picture);
-   /**
-    * Description
-    * @param reviewID 评价id（自动生成）
-    * @param userID 用户id
-    * @param dishID 菜品编号
-    * @param rating 评价(int)
-    * @param comment 评价内容
-    * @param reply
-    * @param createDate 创建日期(自动生成)
-    * @return 封装后的评价实体类
-    * @author ChiMi
-    * #Date 2023/12/21
-    */
-   //Review reviewEncapsulation(int reviewID, int userID, int dishID, int rating, String comment, String reply, Timestamp createDate);
-
-   //Post postEncapsulation(int postID, int userID, String title, String content, String createDate, int like, String picture);
-
-  //Review reviewEncapsulation(int reviewID, int userID, int dishID, int rating, String comment, String reply,Timestamp createDate, String picture);
-}
+   //实体封装类改为用实体类构造方法实现，除canteen封装需要用到managerid和name的转换所以保留以外，其余全部移除
+ }

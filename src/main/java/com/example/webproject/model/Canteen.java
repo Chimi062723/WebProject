@@ -20,6 +20,8 @@ public class Canteen {
         this.managerID = managerID;
         this.notice = notice;
     }
+
+
     // getters and setters
     public int getCanteenID() {
         return canteenID;

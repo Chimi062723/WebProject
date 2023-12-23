@@ -15,7 +15,7 @@ public class ReviewDAO {
         List<Review> reviews = new ArrayList<>();
         dBhelper.init();
         Connection connection = dBhelper.dbconn;
-        String sql = "SELECT * FROM reviews";
+        String sql = "SELECT * FROM Reviews";
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
         while (resultSet.next()) {
@@ -27,14 +27,16 @@ public class ReviewDAO {
                     resultSet.getString("comment"),
                     resultSet.getString("reply"),
                     resultSet.getTimestamp("createDate"),
-                    resultSet.getString("picture"));
-            review.setReviewID(resultSet.getInt("reviewID"));
-            review.setUserID(resultSet.getInt("userID"));
-            review.setDishID(resultSet.getInt("dishID"));
-            review.setRating(resultSet.getInt("rating"));
-            review.setComment(resultSet.getString("comment"));
-            review.setReply(resultSet.getString("reply"));
-            review.setCreateDate(resultSet.getTimestamp("createDate"));
+                    resultSet.getString("Picture")
+            );
+//            review.setReviewID(resultSet.getInt("reviewID"));
+//            review.setUserID(resultSet.getInt("userID"));
+//            review.setDishID(resultSet.getInt("dishID"));
+//            review.setRating(resultSet.getInt("rating"));
+//            review.setComment(resultSet.getString("comment"));
+//            review.setReply(resultSet.getString("reply"));
+//            review.setCreateDate(resultSet.getTimestamp("createDate"));
+//            构造方法已经将数据传入了，不需要再额外设置
             reviews.add(review);
         }
         return reviews;
@@ -44,7 +46,7 @@ public class ReviewDAO {
         List<Review> reviews = new ArrayList<>();
         dBhelper.init();
         Connection connection = dBhelper.dbconn;
-        String sql = "SELECT * FROM reviews WHERE userID = ?";
+        String sql = "SELECT * FROM Reviews WHERE userID = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, userId);
         ResultSet resultSet = statement.executeQuery();
@@ -57,14 +59,8 @@ public class ReviewDAO {
                     resultSet.getString("comment"),
                     resultSet.getString("reply"),
                     resultSet.getTimestamp("createDate"),
-                    resultSet.getString("picture"));
-            review.setReviewID(resultSet.getInt("reviewID"));
-            review.setUserID(resultSet.getInt("userID"));
-            review.setDishID(resultSet.getInt("dishID"));
-            review.setRating(resultSet.getInt("rating"));
-            review.setComment(resultSet.getString("comment"));
-            review.setReply(resultSet.getString("reply"));
-            review.setCreateDate(resultSet.getTimestamp("createDate"));
+                    resultSet.getString("Picture")
+            );
             reviews.add(review);
         }
         return reviews;
@@ -73,7 +69,7 @@ public class ReviewDAO {
     public boolean addReview(Review review) throws SQLException {
         dBhelper.init();
         Connection connection = dBhelper.dbconn;
-        String sql = "INSERT INTO reviews (userID, dishID, rating, comment, reply, createDate) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Reviews (userID, dishID, rating, comment, reply, createDate) VALUES (?, ?, ?, ?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, review.getUserID());
         statement.setInt(2, review.getDishID());
@@ -88,7 +84,7 @@ public class ReviewDAO {
     public boolean updateReview(Review review) throws SQLException {
         dBhelper.init();
         Connection connection = dBhelper.dbconn;
-        String sql = "UPDATE reviews SET userID = ?, dishID = ?, rating = ?, comment = ?, reply = ?, createDate = ? WHERE reviewID = ?";
+        String sql = "UPDATE Reviews SET userID = ?, dishID = ?, rating = ?, comment = ?, reply = ?, createDate = ? WHERE reviewID = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, review.getUserID());
         statement.setInt(2, review.getDishID());
@@ -104,7 +100,7 @@ public class ReviewDAO {
     public boolean deleteReview(int reviewId) throws SQLException {
         dBhelper.init();
         Connection connection = dBhelper.dbconn;
-        String sql = "DELETE FROM reviews WHERE reviewID = ?";
+        String sql = "DELETE FROM Reviews WHERE reviewID = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, reviewId);
         int rowsDeleted = statement.executeUpdate();
