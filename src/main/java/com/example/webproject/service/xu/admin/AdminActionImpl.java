@@ -1,4 +1,4 @@
-package com.example.webproject.service.xu.admin;
+package com.example.webproject.service.Xu.Admin;
 
 import com.example.webproject.dao.*;
 import com.example.webproject.model.*;
@@ -49,11 +49,13 @@ public class AdminActionImpl implements AdminActions{
 
     /**
      * @param canteen 新的食堂信息
+     * @return
      */
     @Override
-    public void addCanteen(Canteen canteen) {
+    public int addCanteen(Canteen canteen) {
         try{
             canteenDAO.addCanteen(canteen);
+            return 1;
         }catch (SQLException e){
             throw new RuntimeException(e);
         }
@@ -61,11 +63,13 @@ public class AdminActionImpl implements AdminActions{
 
     /**
      * @param canteen 要删除的餐厅信息
+     * @return
      */
     @Override
-    public void deleteCanteen(Canteen canteen) {
+    public int deleteCanteen(Canteen canteen) {
         try{
             canteenDAO.deleteCanteen(canteen.getCanteenID());
+            return 1;
         }catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -73,11 +77,13 @@ public class AdminActionImpl implements AdminActions{
 
     /**
      * @param newCanteen 新的餐厅信息
+     * @return
      */
     @Override
-    public void editCanteen(Canteen newCanteen) {
+    public int editCanteen(Canteen newCanteen) {
         try{
             canteenDAO.updateCanteen(newCanteen);
+            return 1;
         }catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -174,11 +180,13 @@ public class AdminActionImpl implements AdminActions{
         }
     }
 
+    /**
+     * @param newPost 更改后的评论内容
+     * @return
+     */
     @Override
-    public int editPost(int id, String title, String content, String username, String createDate) {
+    public int editPost(Post newPost) {
         try{
-            int userid = getAccountByUserName(username).getUserID();
-            Post newPost = new Post(id,title,content,userid,createDate);
             postDAO.editPost(newPost);
             return 1;
         }catch (SQLException e){
@@ -230,22 +238,6 @@ public class AdminActionImpl implements AdminActions{
     public List<Review> getAllReview() {
         try {
             return reviewDAO.getAllReviews();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public List<Post> getAllPosts() {
-        try {
-            return postDAO.getAllPosts();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public Post getPost(int id) {
-        try {
-            return postDAO.getPost(id);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
