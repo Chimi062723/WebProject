@@ -20,7 +20,14 @@ public class EditAccount extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String username = request.getParameter("username");
+        String email = request.getParameter("email");
+        String role = request.getParameter("role");
+        AdminActionImpl adminAction = new AdminActionImpl();
+        adminAction.editAccount(username,email,role);
+        HttpSession session= request.getSession();
+        session.setAttribute("users",adminAction.getAllAccount());
+        request.getRequestDispatcher("admin_account_management.jsp").forward(request,response);
     }
 }

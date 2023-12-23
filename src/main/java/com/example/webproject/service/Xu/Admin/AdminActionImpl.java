@@ -22,6 +22,7 @@ public class AdminActionImpl implements AdminActions{
     //todo: 管理员操作的具体实现，数据库错误的异常处理
     UserDAO userDAO;
     CanteenDAO canteenDAO;
+    ReviewDAO reviewDAO;
 //    ReviewDAO reviewDAO;
     @Override
     public List<User> getAllAccount() {
@@ -30,7 +31,7 @@ public class AdminActionImpl implements AdminActions{
     public AdminActionImpl(){
         this.userDAO = new UserDAO();
         this.canteenDAO = new CanteenDAO();
-//        this.reviewDAO = new ReviewDAO();
+        this.reviewDAO = new ReviewDAO();
     }
 
     public Canteen getCanteen(int canteenID){
@@ -215,4 +216,12 @@ public class AdminActionImpl implements AdminActions{
         return new Canteen(canteenID,name,location,openTime,managerID,notice);
     }
 
+
+    public Review getReview(int reviewid) {
+        try {
+            return reviewDAO.getReviewByReviewID(reviewid);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

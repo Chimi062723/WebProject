@@ -15,7 +15,7 @@
 <div id="main-content">
     <h2>编辑帖子信息</h2>
     <!-- 假设已经获取了用户对象 user -->
-    <form action="UpdatePostServlet" method="post">
+    <form action="EditPost" method="post">
         <label>
             帖子标题:
             <input type="text" name="title" value="${requestScope.post.title}">
