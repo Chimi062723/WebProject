@@ -142,4 +142,14 @@ public List<Post> getPostByCommentID(int commentID) throws SQLException {
         preparedStatement.setInt(5, newPost.getPostID());
         preparedStatement.executeUpdate();
     }
+    public boolean addPostComment(int userID,String content,int commentID) throws SQLException {
+        Connection connection = JDBCHelper.getConnection();
+        String addSQL = "INSERT INTO CommunityPosts (UserID,Content,CommentID) VALUES (?,?,?)";
+        PreparedStatement preparedStatement = connection.prepareStatement(addSQL);
+        preparedStatement.setInt(1, userID);
+        preparedStatement.setString(2, content);
+        preparedStatement.setInt(3, commentID);
+        int result = preparedStatement.executeUpdate();
+        return result > 0;
+    }
 }

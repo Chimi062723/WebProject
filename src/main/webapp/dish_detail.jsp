@@ -20,7 +20,7 @@
         <div class="dish-info">
             <h1>${requestScope.dish.name}</h1>
             <p><strong>价格:</strong> ${requestScope.dish.price}</p>
-            <c:if test="${requestScope.dish.promotionPrice!= null}">
+            <c:if test="${requestScope.dish.promotionPrice!= 0}">
                 <p><strong>促销价:</strong> ${requestScope.dish.promotionPrice}</p>
             </c:if>
             <p><strong>类别:</strong> ${requestScope.dish.type}</p>

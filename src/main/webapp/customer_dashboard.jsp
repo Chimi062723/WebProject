@@ -144,11 +144,6 @@
                         <br>
                         <img src="res/${post.picture}" alt="${post.title}"/>
                         <br>
-                        <span class="post-actions">
-                            <a href="#" class="like-link" data-liked="false">点赞</a>
-                            <a href="#" class="comment-link">评论</a>
-                        </span>
-                        <br>
                         <span class="comment-list">
                             <c:forEach items="${post.comments}" var="comment" varStatus="status">
                                 <span class="comment-item">
@@ -159,6 +154,15 @@
                                     <br>
                                 </span>
                             </c:forEach>
+                        </span>
+                        <br>
+                        <span class="post-actions">
+                            <form class="comment-form" action="AddPostComment" method="post">
+                                <input type="text" name="commentContent" placeholder="输入评论内容" class="comment-input"/>
+                                <input type="hidden" name="postID" value="${post.postID}"/>
+                                <a href="#" class="like-link" data-liked="false">点赞</a>
+                                <button type="submit" class="comment-submit">评论</button>
+                            </form>
                         </span>
                     </div>
                 </c:forEach>
@@ -231,7 +235,7 @@
                         <span class="review-details">评价内容：${lastReview.comment}</span>
                         <br>
                         <c:if test="${lastReview.reply!= null}">
-                            <span class="review-reply">回复：${lastReview.reply}</span>
+                            <span class="review-reply">食堂管理员回复：${lastReview.reply}</span>
                         </c:if>
                     </div>
                 </c:forEach>
@@ -323,6 +327,29 @@
             this.setAttribute('data-liked', !isLiked);
         });
     });
+
+    //处理评论不能为空逻辑
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.comment-form').forEach(function(form) {
+            form.addEventListener('submit', function(event) {
+                var commentInput = this.querySelector('.comment-input');
+                if (!commentInput.value.trim()) {
+                    event.preventDefault(); // 阻止表单提交
+                    alert('评论不能为空');
+                }
+            });
+        });
+    });
+
+
+    //强制页面返回时更新一次，否则无法动态加载修改后的数据
+    window.addEventListener("pageshow", function (event) {
+        if (event.persisted || (window.performance && window.performance.navigation.type == 2)) {
+            // 页面是从历史记录中加载的
+            window.location.reload(true);
+        }
+    });
+
 
 </script>
 </body>
