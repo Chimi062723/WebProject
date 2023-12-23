@@ -50,8 +50,8 @@
                 <td>${post.content}</td>
                 <td>${post.createDate}</td>
                 <td>
-                    <button onclick="location.href='editPost?id=${post.postID}'">编辑</button>
-                    <button onclick="deletePost(${post.postID})">删除</button>
+                    <button onclick="location.href='EditPost?id=${post.postID}'">编辑</button>
+                    <button onclick="location.href='DeletePost?id=${post.postID}'">删除</button>
                 </td>
             </tr>
         </c:forEach>
