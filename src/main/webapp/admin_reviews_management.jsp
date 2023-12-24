@@ -31,9 +31,11 @@
 </div>
 <div id="content">
     <h1>评价信息管理</h1>
+    <label for="searchBox">搜索评价</label>
     <input type="text" id="searchBox" placeholder="搜索评价..." />
+    <input type="button" id="searchBtn" onclick="search()" value="搜索"/>
     <!-- Add button if necessary -->
-    <table border="1">
+    <table border="1" id="table">
         <tr>
             <th>ID</th>
             <th>评价方</th>
@@ -63,6 +65,24 @@
     <!-- Add paginator here -->
 </div>
 <script>
+    function search() {
+        let input, filter, table, tr, i;
+        input = document.getElementById("searchBox");
+        filter = input.value;
+        table = document.getElementById("table");
+        tr = table.getElementsByTagName("tr");
+        // 循环表格每一行，查找匹配项
+        for (i = 0; i < tr.length; i++) {
+            const td1 = tr[i].getElementsByTagName("td")[4];
+            if (td1) {
+                if (td1.innerHTML.indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
     function deleteReview(id) {
         // Confirm deletion logic
     }

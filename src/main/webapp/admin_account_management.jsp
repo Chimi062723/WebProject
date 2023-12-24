@@ -29,10 +29,11 @@
 </div>
 <div id="content">
     <h1>账号管理</h1>
-    <input type="text" id="searchBox" placeholder="搜索账号..." />
-    <button onclick="location.href='add_account.jsp'">新增账号</button>
+    <label for="searchBox">搜索用户</label>
+    <input type="text" id="searchBox" placeholder="搜索用户..." />
+    <input type="button" id="searchBtn" onclick="search()" value="搜索"/>
     <form>
-        <table border="1">
+        <table border="1" id="table">
             <tr>
                 <th>ID</th>
                 <th>姓名</th>
@@ -76,6 +77,24 @@
     <!-- Add paginator here -->
 </div>
 <script>
+    function search() {
+        let input, filter, table, tr, i;
+        input = document.getElementById("searchBox");
+        filter = input.value;
+        table = document.getElementById("table");
+        tr = table.getElementsByTagName("tr");
+        // 循环表格每一行，查找匹配项
+        for (i = 0; i < tr.length; i++) {
+            const td1 = tr[i].getElementsByTagName("td")[1];
+            if (td1) {
+                if (td1.innerHTML.indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
     // JavaScript function for deleting accounts
     function deleteAccount(id) {
         location.href='DeleteAccount?id='+id;

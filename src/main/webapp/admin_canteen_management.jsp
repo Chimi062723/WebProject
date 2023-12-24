@@ -31,11 +31,11 @@ canteens: 所有食堂信息
 </div>
 <div id="content">
   <h1>食堂信息管理</h1>
-  <label for="searchBox"></label>
+  <label for="searchBox">搜索食堂</label>
   <input type="text" id="searchBox" placeholder="搜索食堂..." />
-  <button onclick="location.href='add_canteen.jsp'">新增食堂</button>
+  <input type="button" id="searchBtn" onclick="search()" value="搜索"/>
   <form>
-    <table border="1">
+    <table border="1" id="table">
       <tr>
         <th>ID</th>
         <th>名称</th>
@@ -73,6 +73,24 @@ canteens: 所有食堂信息
   <!-- 在这里添加分页器 -->
 </div>
 <script>
+  function search() {
+    let input, filter, table, tr, i;
+    input = document.getElementById("searchBox");
+    filter = input.value;
+    table = document.getElementById("table");
+    tr = table.getElementsByTagName("tr");
+    // 循环表格每一行，查找匹配项
+    for (i = 0; i < tr.length; i++) {
+      const td1 = tr[i].getElementsByTagName("td")[1];
+      if (td1) {
+        if (td1.innerHTML.indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
   // JavaScript 函数用于处理删除食堂的操作
   function deleteCanteen(id) {
     // 确认删除逻辑
