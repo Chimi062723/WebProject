@@ -19,39 +19,46 @@
 </head>
 <body>
 <jsp:include page="custom_sidebar.jsp" />
-<div>
-<form action="customer_canteens">
-    <input type="text" name="canteenName" placeholder="请输入食堂名称">
-    <input type="submit" value="搜索">
-</form>
-</div>
-<%--<form action="customer_canteens">--%>
+
 <div class="container mt-3">
     <h4>食堂信息表</h4>
-    <table class="table table-hover">    <!-- 表格标题 -->
-        <!-- 表格第一行：表格表头 -->
-        <tr>
-            <th>编号</th>
-            <th>名称</th>
-            <th>位置</th>
-            <th>开放时间</th>
-<%--            <th>操作</th>--%>
-        </tr>
-        <c:forEach var="canteen" items="${requestScope.canteens}">
-            <tr>
-                <td>${canteen.canteenID}</td>
-                <td>${canteen.name}</td>
-                <td>${canteen.location}</td>
-                <td>${canteen.openTime}</td>
-                <!-- 在该单元格中创建一个链接标签，void运算符来阻止href返回值，通过onclick事件(鼠标点击)属性来删除信息行-->
-<%--                <td><a href="CanteenDetailServlet?canteenID='${canteen.id}'">查看</a></td>--%>
-            </tr>
-            <!-- 表格第三行：学生信息2 -->
-        </c:forEach>
 
-    </table>
+    <div class="row">
+        <div class="col-md-6">
+            <form action="customer_canteens">
+                <div class="input-group mb-3">
+                    <input type="text" name="canteenName" class="form-control" placeholder="请输入食堂名称">
+                    <button class="btn btn-outline-secondary" type="submit">搜索</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>名称</th>
+                    <th>位置</th>
+                    <th>开放时间</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="canteen" items="${requestScope.canteens}">
+                    <tr>
+                        <td>${canteen.canteenID}</td>
+                        <td>${canteen.name}</td>
+                        <td>${canteen.location}</td>
+                        <td>${canteen.openTime}</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
-<%--</form>--%>
 
 </body>
 </html>
