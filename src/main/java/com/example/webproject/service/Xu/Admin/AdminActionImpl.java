@@ -19,6 +19,7 @@ public class AdminActionImpl implements AdminActions{
     ReviewDAO reviewDAO;
     DishDAO dishDAO;
     PostDAO postDAO;
+    CuisineDAO cuisineDAO;
     @Override
     public List<User> getAllAccount() {
         return userDAO.getAllUsers();
@@ -29,6 +30,7 @@ public class AdminActionImpl implements AdminActions{
         this.reviewDAO = new ReviewDAO();
         this.dishDAO = new DishDAO();
         this.postDAO = new PostDAO();
+        this.cuisineDAO = new CuisineDAO();
     }
 
     public Canteen getCanteen(int canteenID){
@@ -253,5 +255,9 @@ public class AdminActionImpl implements AdminActions{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public List<String> getAllCuisine() {
+        return cuisineDAO.getAllCuisine();
     }
 }
