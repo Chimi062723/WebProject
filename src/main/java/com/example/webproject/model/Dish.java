@@ -38,7 +38,7 @@ public class Dish {
         try {
             this.canteen = canteenDAO.getCanteenByID(canteenID);
         }catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
     }
@@ -85,7 +85,7 @@ public class Dish {
         try {
             this.canteen = canteenDAO.getCanteenByID(canteenID);
         }catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
