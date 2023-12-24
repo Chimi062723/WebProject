@@ -1,6 +1,7 @@
 package com.example.webproject.model;
 
 import com.example.webproject.dao.PostDAO;
+import com.example.webproject.dao.UserDAO;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -14,8 +15,10 @@ public class Post {
     String createDate;
     int like;
     String picture;
-    User author;
     int commentID;
+
+    //以下author和comments为特殊封装对象
+    User author;
     List<Post> comments;
 
     public int getCommentID() {
@@ -35,7 +38,9 @@ public class Post {
 
     }
 
+    UserDAO userDAO = new UserDAO();
     PostDAO postDAO = new PostDAO();
+
     public Post(int postID, int userID, String title, String content, Timestamp createDate, int like, String picture, int commentID) {
         this.postID = postID;
         this.userID = userID;
@@ -46,15 +51,16 @@ public class Post {
         this.picture = picture;
         this.commentID = commentID;
         try {
-            this.comments=postDAO.getPostByCommentID(postID);
+            this.author = userDAO.getUserByID(userID);
+            this.comments = postDAO.getPostByCommentID(postID);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public Post(int postID,String title, String content, int userid, String createDate) {
+    public Post(int postID,  String title, String content, int userID,String createDate) {
         this.postID = postID;
-        this.userID = userid;
+        this.userID = userID;
         this.title = title;
         this.content = content;
         this.createDate = createDate;
@@ -70,15 +76,7 @@ public class Post {
 
     public Post() {
     }
-    public Post(int postID, int userID, String title, String content,String createDate, int like, String picture) {
-        this.postID = postID;
-        this.userID = userID;
-        this.title = title;
-        this.content = content;
-        this.createDate = createDate;
-        this.like = like;
-        this.picture = picture;
-    }
+
 
     public int getPostID() {
         return postID;
@@ -87,7 +85,7 @@ public class Post {
     public void setPostID(int postID) {
         this.postID = postID;
         try {
-            this.comments=postDAO.getPostByCommentID(postID);
+            this.comments = postDAO.getPostByCommentID(postID);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -99,6 +97,7 @@ public class Post {
 
     public void setUserID(int userID) {
         this.userID = userID;
+        this.author = userDAO.getUserByID(userID);
     }
 
     public String getTitle() {

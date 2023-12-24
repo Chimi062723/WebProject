@@ -106,9 +106,6 @@ public class DBhelper {
                 post.setUserID(rs.getInt("UserID"));
                 post.setTitle(rs.getString("Title"));
                 post.setContent(rs.getString("Content"));
-                //填充名字
-                UserDAO userDAO = new UserDAO();
-                post.setAuthor(userDAO.getUserByID(post.getUserID()));
                 Timestamp createTimestamp = rs.getTimestamp("CreateDate");
                 if (createTimestamp != null) {
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -117,6 +114,7 @@ public class DBhelper {
                 }
                 post.setLike(rs.getInt("Like"));
                 post.setPicture(rs.getString("Picture"));
+                post.setCommentID(rs.getInt("CommentID"));
                 postList.add(post);
             }
             return postList;

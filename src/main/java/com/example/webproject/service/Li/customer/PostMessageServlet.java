@@ -24,12 +24,7 @@ public class PostMessageServlet extends HttpServlet {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
-        ServletContext context= request.getServletContext();
-        context.setAttribute("postList", postList);
-        if(postList==null){
-            postList= new ArrayList<>();
-            context.setAttribute("postList", postList);
-        }
+
         request.setAttribute("postList", postList);
         request.getRequestDispatcher("customer_community.jsp").forward(request, response);
     }

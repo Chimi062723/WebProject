@@ -13,7 +13,20 @@ import java.sql.SQLException;
 public class AddPostComment extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        int postID = Integer.parseInt(request.getParameter("postID"));
+        String content = request.getParameter("commentContent");
+        HttpSession session = request.getSession();
+        UserDAO userDAO = new UserDAO();
+        String username = (String) session.getAttribute("username");
+        int userID = userDAO.getUserByUsername(username).getUserID();
+        PostDAO postDAO = new PostDAO();
+        try {
+            if(postDAO.addPostComment(userID,content,postID)){
+                response.sendRedirect("PostMessageServlet");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
