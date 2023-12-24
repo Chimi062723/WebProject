@@ -23,7 +23,7 @@
 </head>
 <body>
 <jsp:include page="custom_sidebar.jsp" />
-<div id="main-content">
+<div class="container mt-3">
 
     <h2>菜品一览</h2>
     <ul class="tabs" data-tab>
