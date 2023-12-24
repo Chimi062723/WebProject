@@ -36,10 +36,6 @@
     <div class="tabs-content">
         <div class="content active" id="home">
             <p>列表/表格显示所有菜品</p>
-            <%
-                // 调用 JavaBean 中的方法获取菜品列表
-
-            %>
         </div>
         <div class="content" id="menu1"> <!-- 菜系选择 -->
             <form id="cuisine-form" action="customers_dish" method="get">
@@ -53,8 +49,31 @@
                 </select>
             </form>
         </div>
+        <div class="content" id="menu2">
+            <p>呈现不同食堂的选项，点击之后只显示该食堂的菜品</p>
+            <form action="customers_dish" id="canteen-form"  method="get">
+                <label for="canteen-select">选择食堂: </label>
+                <select class="form-select"   id="canteen-select" name="canteenName">
+                    <option value="all">所有食堂</option>
+                    <c:forEach items="${sessionScope.canteens}" var="canteen">
+                        <option value="${canteen.name}">${canteen.name}</option>
+                    </c:forEach>
+                </select>
+            </form>
+        </div>
+        <div class="content" id="menu3">
+            <p>提供降序和升序按钮，点击之后按顺序显示</p>
+            <form action="customers_dish" id="order-form"  method="get">
+                <input type="submit" name="ascending" value="升序">
+                <input type="submit" name="descending" value="降序">
+            </form>
+        </div>
         <div class="search-results">
             <!-- 动态生成的检索结果将在这里显示 -->
+            <input type="hidden" value="${requestScope.dishListSize}">
+            <c:if test="${requestScope.dishListSize == '0'}">
+                <p>没有找到任何结果，更改筛选条件再试一次？</p>
+            </c:if>
             <c:forEach items="${requestScope.dishList}" var="dish">
                 <div class="dish-card">
                     <div class="dish-details">
@@ -68,63 +87,6 @@
                 </div>
             </c:forEach>
         </div>
-        <div class="content" id="menu2">
-            <p>呈现不同食堂的选项，点击之后只显示该食堂的菜品</p>
-            <form action="customers_dish" id="canteen-form"  method="get">
-                <label for="canteen-select">选择食堂: </label>
-                <select class="form-select"   id="canteen-select" name="canteenName">
-                    <option value="all">所有食堂</option>
-                    <c:forEach items="${sessionScope.canteens}" var="canteen">
-                        <option value="${canteen.name}">${canteen.name}</option>
-                    </c:forEach>
-<%--                    <option value="思餐厅">思餐厅</option>--%>
-<%--                    <option value="一食堂">一食堂</option>--%>
-<%--                    <option value="五食堂">五食堂</option>--%>
-<%--                    <option value="新食堂">新食堂</option>--%>
-                </select>
-<%--                <button type="submit" name="action" value="SearchByCuisine" >确认</button>--%>
-            </form>
-            <div class="search-results">
-                <!-- 动态生成的检索结果将在这里显示 -->
-                <c:forEach items="${requestScope.dishList}" var="dish">
-                    <div class="dish-card">
-                            <%--                <img src="placeholder-image.jpg" alt="${dish.name}" />--%>
-                        <div class="dish-details">
-                            <span class="dish-name">${dish.name}</span>
-                            <span class="dish-price">价格: ${dish.price}</span>
-                            <span class="dish-type">类别: ${dish.type}</span>
-                            <span class="dish-canteen">食堂id: ${dish.canteenID}</span>
-                            <a href="DishDetailServlet?id=${dish.dishID}">详情</a>
-                            <!-- 更多信息 -->
-                        </div>
-                    </div>
-                </c:forEach>
-            </div>
-        </div>
-        <div class="content" id="menu3">
-            <p>提供降序和升序按钮，点击之后按顺序显示</p>
-            <form action="customers_dish" id="order-form"  method="get">
-                <input type="submit" name="ascending" value="升序">
-                <input type="submit" name="descending" value="降序">
-            </form>
-            <div class="search-results">
-                <!-- 动态生成的检索结果将在这里显示 -->
-                <c:forEach items="${requestScope.dishList}" var="dish">
-                    <div class="dish-card">
-                            <%--                <img src="placeholder-image.jpg" alt="${dish.name}" />--%>
-                        <div class="dish-details">
-                            <span class="dish-name">${dish.name}</span>
-                            <span class="dish-price">价格: ${dish.price}</span>
-                            <span class="dish-type">类别: ${dish.type}</span>
-                            <span class="dish-canteen">食堂id: ${dish.canteenID}</span>
-                            <a href="DishDetailServlet?id=${dish.dishID}">详情</a>
-                            <!-- 更多信息 -->
-                        </div>
-                    </div>
-                </c:forEach>
-            </div>
-        </div>
-
     </div>
     <!-- 检索结果 -->
 

@@ -10,7 +10,6 @@ import java.io.IOException;
 public class getAllDishes extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getParameterMap().clear(); //清空request域，减轻服务器压力
         AdminActionImpl adminAction = new AdminActionImpl();
         request.setAttribute("dishList",adminAction.getAllDish());
         request.getRequestDispatcher("customer_dish.jsp").forward(request,response);

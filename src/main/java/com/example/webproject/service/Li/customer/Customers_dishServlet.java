@@ -60,11 +60,12 @@ public class Customers_dishServlet extends HttpServlet {
             }
         }
         //清空选项
-        request.removeAttribute("cuisine");
-        request.removeAttribute("canteenName");
-        request.removeAttribute("ascending");
-        request.removeAttribute("descending");
+        request.setAttribute("cuisine",null);
+        request.setAttribute("canteenName",null);
+        request.setAttribute("ascending",null);
+        request.setAttribute("descending",null);
         request.setAttribute("dishList", dishList);
+        request.setAttribute("dishListSize",dishList.size());
         request.getRequestDispatcher("customer_dish.jsp").forward(request, response);
 
 
