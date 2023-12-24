@@ -246,4 +246,12 @@ public class AdminActionImpl implements AdminActions{
             throw new RuntimeException(e);
         }
     }
+
+    public List<Dish> getAllDish() {
+        try {
+            return dishDAO.getAllDishes();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

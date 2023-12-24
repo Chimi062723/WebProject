@@ -1,7 +1,9 @@
 <%@ page import="com.example.webproject.model.Dish" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.webproject.dao.DishDAO" %>
-<%@ page import="com.example.webproject.util.DBhelper" %><%--
+<%@ page import="com.example.webproject.util.DBhelper" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="com.example.webproject.service.Xu.Admin.AdminActionImpl" %><%--
   Created by IntelliJ IDEA.
   User: 韶光善良君
   Date: 2023/12/20
@@ -36,29 +38,11 @@
             <p>列表/表格显示所有菜品</p>
             <%
                 // 调用 JavaBean 中的方法获取菜品列表
-                List<Dish> AlldishList = DBhelper.getAllDishList();
-                // 将菜品列表存储在 request 属性中，以便在页面中使用
-                request.setAttribute("AlldishList", AlldishList);
+
             %>
-            <div class="search-results">
-                <!-- 动态生成的检索结果将在这里显示 -->
-                <c:forEach items="${requestScope.AlldishList}" var="dish">
-                    <div class="dish-card">
-                            <%--                <img src="placeholder-image.jpg" alt="${dish.name}" />--%>
-                        <div class="dish-details">
-                            <span class="dish-name">${dish.name}</span>
-                            <span class="dish-price">价格: ${dish.price}</span>
-                            <span class="dish-type">类别: ${dish.type}</span>
-                            <span class="dish-canteen">食堂id: ${dish.canteenID}</span>
-                            <a href="dish_detial_Servlet?name='${dish.name}'">详情</a>
-                            <!-- 更多信息 -->
-                        </div>
-                    </div>
-                </c:forEach>
-            </div>
         </div>
-        <div class="content" id="menu1">
-            <form id="cuisine-form"action="customers_dish" method="get">
+        <div class="content" id="menu1"> <!-- 菜系选择 -->
+            <form id="cuisine-form" action="customers_dish" method="get">
                 <label for="cuisine-select">选择菜系: </label>
                 <select  class="form-select" id="cuisine-select" name="cuisine">
                     <option value="all">所有菜品</option>
@@ -67,24 +51,22 @@
                     <option value="鲁菜">鲁菜</option>
                     <option value="苏菜">徽菜</option>
                 </select>
-<%--                <button type="submit" name="action" value="SearchByCuisine" >确认</button>--%>
             </form>
-            <div class="search-results">
-                <!-- 动态生成的检索结果将在这里显示 -->
-                <c:forEach items="${requestScope.dishList}" var="dish">
-                    <div class="dish-card">
-                            <%--                <img src="placeholder-image.jpg" alt="${dish.name}" />--%>
-                        <div class="dish-details">
-                            <span class="dish-name">${dish.name}</span>
-                            <span class="dish-price">价格: ${dish.price}</span>
-                            <span class="dish-type">类别: ${dish.type}</span>
-                            <span class="dish-canteen">食堂id: ${dish.canteenID}</span>
-                            <a href="dish_detial_Servlet?name='${dish.name}'">详情</a>
-                            <!-- 更多信息 -->
-                        </div>
+        </div>
+        <div class="search-results">
+            <!-- 动态生成的检索结果将在这里显示 -->
+            <c:forEach items="${requestScope.dishList}" var="dish">
+                <div class="dish-card">
+                    <div class="dish-details">
+                        <span class="dish-name">${dish.name}</span>
+                        <span class="dish-price">价格: ${dish.price}</span>
+                        <span class="dish-type">类别: ${dish.type}</span>
+                        <span class="dish-canteen">食堂id: ${dish.canteenID}</span>
+                        <a href="DishDetailServlet?id=${dish.dishID}">详情</a>
+                        <!-- 更多信息 -->
                     </div>
-                </c:forEach>
-            </div>
+                </div>
+            </c:forEach>
         </div>
         <div class="content" id="menu2">
             <p>呈现不同食堂的选项，点击之后只显示该食堂的菜品</p>
@@ -92,10 +74,13 @@
                 <label for="canteen-select">选择食堂: </label>
                 <select class="form-select"   id="canteen-select" name="canteenName">
                     <option value="all">所有食堂</option>
-                    <option value="思餐厅">思餐厅</option>
-                    <option value="一食堂">一食堂</option>
-                    <option value="五食堂">五食堂</option>
-                    <option value="新食堂">新食堂</option>
+                    <c:forEach items="${sessionScope.canteens}" var="canteen">
+                        <option value="${canteen.name}">${canteen.name}</option>
+                    </c:forEach>
+<%--                    <option value="思餐厅">思餐厅</option>--%>
+<%--                    <option value="一食堂">一食堂</option>--%>
+<%--                    <option value="五食堂">五食堂</option>--%>
+<%--                    <option value="新食堂">新食堂</option>--%>
                 </select>
 <%--                <button type="submit" name="action" value="SearchByCuisine" >确认</button>--%>
             </form>
@@ -109,7 +94,7 @@
                             <span class="dish-price">价格: ${dish.price}</span>
                             <span class="dish-type">类别: ${dish.type}</span>
                             <span class="dish-canteen">食堂id: ${dish.canteenID}</span>
-                            <a href="dish_detial_Servlet?name='${dish.name}'">详情</a>
+                            <a href="DishDetailServlet?id=${dish.dishID}">详情</a>
                             <!-- 更多信息 -->
                         </div>
                     </div>
@@ -132,7 +117,7 @@
                             <span class="dish-price">价格: ${dish.price}</span>
                             <span class="dish-type">类别: ${dish.type}</span>
                             <span class="dish-canteen">食堂id: ${dish.canteenID}</span>
-                            <a href="dish_detial_Servlet?name='${dish.name}'">详情</a>
+                            <a href="DishDetailServlet?id=${dish.dishID}">详情</a>
                             <!-- 更多信息 -->
                         </div>
                     </div>

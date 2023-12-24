@@ -23,7 +23,6 @@ public class Customers_dishServlet extends HttpServlet {
         String descending = request.getParameter("descending");
         DBhelper db = new DBhelper();
         db.init();
-
         if(cuisine!=null){
             try {
                 if(cuisine.equals("all")){
@@ -34,7 +33,6 @@ public class Customers_dishServlet extends HttpServlet {
                 }
 
             } catch (Exception e) {
-                e.printStackTrace();
                 throw new RuntimeException(e);
             }
         }else if(canteenName!=null){
@@ -46,30 +44,26 @@ public class Customers_dishServlet extends HttpServlet {
                     dishList = db.getDishListByCanteen(db.dbconn,canteenName);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
                 throw new RuntimeException(e);
             }
         }else if(ascending!=null){
             try {
                 dishList = db.getDishListByPriceAscending(db.dbconn);
             } catch (Exception e) {
-                e.printStackTrace();
                 throw new RuntimeException(e);
             }
         }else if(descending!=null){
             try {
                 dishList = db.getDishListByPriceDescending(db.dbconn);
             } catch (Exception e) {
-                e.printStackTrace();
                 throw new RuntimeException(e);
             }
         }
         //清空选项
-        request.setAttribute("cuisine",null);
-        request.setAttribute("canteenName",null);
-        request.setAttribute("ascending",null);
-        request.setAttribute("descending",null);
-
+        request.removeAttribute("cuisine");
+        request.removeAttribute("canteenName");
+        request.removeAttribute("ascending");
+        request.removeAttribute("descending");
         request.setAttribute("dishList", dishList);
         request.getRequestDispatcher("customer_dish.jsp").forward(request, response);
 
