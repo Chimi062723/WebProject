@@ -21,8 +21,7 @@
 <jsp:include page="custom_sidebar.jsp" />
 
 <div class="container mt-3">
-    <h4>食堂信息表</h4>
-
+    <h1 class="text-center mt-4 mb-4">食堂信息表</h1>
     <div class="row">
         <div class="col-md-6">
             <form action="customer_canteens">

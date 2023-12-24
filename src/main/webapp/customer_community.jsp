@@ -11,59 +11,67 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="css/customer_menu.css" />
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+
 </head>
 <body>
 <jsp:include page="custom_sidebar.jsp" />
-<div id="main-content">
-    <h2>社区论坛</h2>
+<div class="container">
+    <h1 class="text-center mt-4 mb-4">社区论坛</h1>
 
-    <!-- 发布消息表单 -->
     <form action="PostMessageServlet" method="post" enctype="multipart/form-data">
-        标题: <input type="text" name="title">
-        内容: <textarea name="content"></textarea>
-        上传图片: <input type="file" name="image">
-        <input type="submit" value="发表">
+        <div class="mb-3">
+            <label for="title" class="form-label">标题:</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+        </div>
+        <div class="mb-3">
+            <label for="content" class="form-label">内容:</label>
+            <textarea class="form-control" id="content" name="content" rows="4" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">上传图片:</label>
+            <input type="file" class="form-control" id="image" name="image">
+        </div>
+        <button type="submit" class="btn btn-primary">发表</button>
     </form>
 
-    <!-- 搜索功能 -->
-    <form action="SearchForumServlet" method="get">
-        <input type="text" name="searchQuery" placeholder="搜索标题或用户名">
-        <input type="submit" value="搜索">
+    <form action="SearchForumServlet" method="get" class="mt-4">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="searchQuery" placeholder="搜索标题或用户名">
+            <button class="btn btn-outline-secondary" type="submit">搜索</button>
+        </div>
     </form>
 
-    <!-- 排序选项 -->
-    <div>
-        <button onclick="sort('time')">按时间排序</button>
-        <button onclick="sort('popularity')">按热度排序</button>
+    <div class="mb-3">
+        <button onclick="sort('time')" class="btn btn-secondary me-2">按时间排序</button>
+        <button onclick="sort('popularity')" class="btn btn-secondary">按热度排序</button>
     </div>
 
-<%--TODO 后续改为使用fragment动态刷新帖子的页面--%>
+    <div class="message-list">
+        <c:forEach var="post" items="${requestScope.postList}">
+            <div class="card mb-3">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="card-title">${post.title}</h5>
+                    <span>发表人: ${post.author}</span>
+                    <span>ID: ${post.userID}</span>
+                    <span>${post.createDate}</span>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">${post.content}</p>
+                </div>
+                <div class="card-footer text-muted">
+                    <span class="fw-bold">点赞数: ${post.like}</span>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
+
     <form action="PostMessageServlet" method="Get">
-        <input type="submit"   class="button" value="点击查看历史帖子">
-
+        <input type="submit" class="btn btn-primary" value="点击查看历史帖子">
     </form>
-    <!-- 用户帖子显示区 -->
-    <c:forEach var="post" items="${requestScope.postList}">
-    <div id="messages">
-        <!-- 动态加载帖子 -->
-        <div class="message">
-            <div class="message-header">
-<%--                <span class="message-id">${post.postID}</span>--%>
-                <span class="message-title"><h4>${post.title}</h4></span>
-                <span class="message-author">发表人:${post.author}</span>
-                <span class="message-author">ID:${post.userID}</span>
-                <span class="message-time">${post.createDate}</span>
-            </div>
-            <div class="message-content">
-                ${post.content}
-            </div>
-            <div>
-                <span class="message-popularity">点赞数: ${post.like}</span>
-            </div>
-            <br>
+</div>
 
-    </div>
-    </c:forEach>
     <script>
         function sort(type) {
             // 根据排序类型调整消息显示顺序

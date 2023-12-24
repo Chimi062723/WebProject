@@ -11,6 +11,7 @@
     <title>Title</title>
 </head>
 <body>
+
 <div id="main-content">
     <h2>编辑用户信息</h2>
     <!-- 假设已经获取了用户对象 user -->

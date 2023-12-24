@@ -24,8 +24,7 @@
 <body>
 <jsp:include page="custom_sidebar.jsp" />
 <div class="container mt-3">
-
-    <h2>菜品一览</h2>
+    <h1 class="text-center mt-4 mb-4">菜品一览</h1>
     <ul class="tabs" data-tab>
         <li class="tab-title active"><a href="#home">总览</a></li>
         <li class="tab-title"><a href="#menu1">菜系</a></li>
@@ -171,6 +170,10 @@
     window.addEventListener('DOMContentLoaded', () => {
         const cuisineSelect = document.getElementById('cuisine-select');
         cuisineSelect.value = localStorage.getItem('selectedCuisine') || 'all'; // 恢复用户之前的菜系选择
+        const canteenSelect = document.getElementById('canteen-select');
+        canteenSelect.value = localStorage.getItem('selectedCanteen') || 'all'; // 恢复用户之前的食堂选择
+        const orderSelect = document.getElementById('order-select');
+        orderSelect.value = localStorage.getItem('selectedOrder') || 'all'; // 恢复用户之前顺序堂选择
 
         // 监听下拉菜单的change事件，保存用户选择到本地存储
         cuisineSelect.addEventListener('change', () => {
