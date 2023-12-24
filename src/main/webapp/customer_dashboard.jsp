@@ -156,14 +156,16 @@
                             </c:forEach>
                         </span>
                         <br>
-                        <span class="post-actions">
+                        <div class="post-actions">
                             <form class="comment-form" action="AddPostComment" method="post">
-                                <input type="text" name="commentContent" placeholder="输入评论内容" class="comment-input"/>
+                                <label>
+                                    <input type="text" name="commentContent" placeholder="输入评论内容" class="comment-input"/>
+                                </label>
                                 <input type="hidden" name="postID" value="${post.postID}"/>
                                 <a href="#" class="like-link" data-liked="false">点赞</a>
                                 <button type="submit" class="comment-submit">评论</button>
                             </form>
-                        </span>
+                        </div>
                     </div>
                 </c:forEach>
             </div>
