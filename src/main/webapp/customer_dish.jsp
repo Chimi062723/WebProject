@@ -37,10 +37,9 @@
                 <label for="cuisine-select">选择菜系: </label>
                 <select  class="form-select" id="cuisine-select" name="cuisine">
                     <option value="all">所有菜品</option>
-                    <option value="川菜">川菜</option>
-                    <option value="浙菜">浙菜</option>
-                    <option value="鲁菜">鲁菜</option>
-                    <option value="苏菜">徽菜</option>
+                    <c:forEach items="${sessionScope.cuisines}" var="cuisine">
+                        <option value="${cuisine}">${cuisine}</option>
+                    </c:forEach>
                 </select>
             </form>
         </div>
@@ -48,7 +47,7 @@
             <p>呈现不同食堂的选项，点击之后只显示该食堂的菜品</p>
             <form action="customers_dish" id="canteen-form"  method="get">
                 <label for="canteen-select">选择食堂: </label>
-                <select class="form-select"   id="canteen-select" name="canteenName">
+                <select class="form-select" id="canteen-select" name="canteenName">
                     <option value="all">所有食堂</option>
                     <c:forEach items="${sessionScope.canteens}" var="canteen">
                         <option value="${canteen.name}">${canteen.name}</option>
@@ -75,7 +74,7 @@
                         <span class="dish-name">${dish.name}</span>
                         <span class="dish-price">价格: ${dish.price}</span>
                         <span class="dish-type">类别: ${dish.type}</span>
-                        <span class="dish-canteen">食堂id: ${dish.canteenID}</span>
+                        <span class="dish-canteen">开设食堂: ${dish.canteen.name}</span>
                         <a href="DishDetailServlet?id=${dish.dishID}">详情</a>
                         <!-- 更多信息 -->
                     </div>
