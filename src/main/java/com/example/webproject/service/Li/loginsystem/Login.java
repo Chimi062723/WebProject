@@ -62,6 +62,9 @@ public class Login  extends HttpServlet {
                             //以上传入食堂信息
                             Vote vote = voteDAO.getVote(1);
                             session.setAttribute("vote", vote);
+                            //传入菜系信息
+                            List<String> cuisines = dishDAO.getAllCuisines();
+                            session.setAttribute("cuisinestype", cuisines);
                             //以上传入投票信息
                             List<Review> lastThreeReviews = reviewDAO.getLastThreeReviews();
                             session.setAttribute("lastThreeReviews", lastThreeReviews);

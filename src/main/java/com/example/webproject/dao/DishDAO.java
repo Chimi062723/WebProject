@@ -1,6 +1,7 @@
 package com.example.webproject.dao;
 
 import com.example.webproject.model.Dish;
+import com.example.webproject.util.DBhelper;
 import com.example.webproject.util.JDBCHelper;
 
 import java.sql.Connection;
@@ -102,5 +103,21 @@ public class DishDAO {
             return resultSet.getInt("DishID");
         }
         return 0;
+    }
+
+    public List<String> getAllCuisines() {
+        List<String> cuisines = new ArrayList<>();
+        DBhelper db = new DBhelper();
+        db.init();
+        try (Connection conn = db.dbconn;
+             PreparedStatement ps = conn.prepareStatement("SELECT DISTINCT CuisineType FROM Dishes");
+             ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                cuisines.add(rs.getString("CuisineType"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return cuisines;
     }
 }

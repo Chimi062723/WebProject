@@ -37,10 +37,9 @@
                 <label for="cuisine-select">选择菜系: </label>
                 <select  class="form-select" id="cuisine-select" name="cuisine">
                     <option value="all">所有菜品</option>
-                    <option value="川菜">川菜</option>
-                    <option value="浙菜">浙菜</option>
-                    <option value="鲁菜">鲁菜</option>
-                    <option value="苏菜">徽菜</option>
+                    <c:forEach items="${sessionScope.cuisinestype}" var="cuisine">
+                        <option value="${cuisine}">${cuisine}</option>
+                    </c:forEach>
                 </select>
             </form>
         </div>
