@@ -1,0 +1,396 @@
+Index: src/main/java/com/example/webproject/service/xu/admin/AdminActionImpl.java
+===================================================================
+diff --git a/src/main/java/com/example/webproject/service/xu/admin/AdminActionImpl.java b/src/main/java/com/example/webproject/service/xu/admin/AdminActionImpl.java
+deleted file mode 100644
+--- a/src/main/java/com/example/webproject/service/xu/admin/AdminActionImpl.java	(revision 89f1dd2ee39b4f8bcb1dc4b8f9eeaa701d706079)
++++ /dev/null	(revision 89f1dd2ee39b4f8bcb1dc4b8f9eeaa701d706079)
+@@ -1,253 +0,0 @@
+-package com.example.webproject.service.xu.admin;
+-
+-import com.example.webproject.dao.*;
+-import com.example.webproject.model.*;
+-
+-import java.sql.SQLException;
+-import java.util.List;
+-
+-/**
+- * 使用说明：
+- * 1.实例化，会自动调用dao层接口，对dao层进行实例化
+- * 2.使用封装类xxxEncapsulation将传入的对象封装
+- * 3.传入对应操作的类（例如editCanteen(canteen,canteenModifyed)
+- * 4.反馈操作结果
+- */
+-public class AdminActionImpl implements AdminActions{
+-    UserDAO userDAO;
+-    CanteenDAO canteenDAO;
+-    ReviewDAO reviewDAO;
+-    DishDAO dishDAO;
+-    PostDAO postDAO;
+-    @Override
+-    public List<User> getAllAccount() {
+-        return userDAO.getAllUsers();
+-    }
+-    public AdminActionImpl(){
+-        this.userDAO = new UserDAO();
+-        this.canteenDAO = new CanteenDAO();
+-        this.reviewDAO = new ReviewDAO();
+-        this.dishDAO = new DishDAO();
+-        this.postDAO = new PostDAO();
+-    }
+-
+-    public Canteen getCanteen(int canteenID){
+-        try {
+-            return canteenDAO.getCanteenByID(canteenID);
+-        } catch (SQLException e) {
+-            throw new RuntimeException(e);
+-        }
+-    }
+-
+-    public List<Canteen> getAllCanteen(){
+-        try {
+-            return canteenDAO.getAllCanteens();
+-        } catch (SQLException e) {
+-            throw new RuntimeException(e);
+-        }
+-    }
+-
+-    /**
+-     * @param canteen 新的食堂信息
+-     */
+-    @Override
+-    public void addCanteen(Canteen canteen) {
+-        try{
+-            canteenDAO.addCanteen(canteen);
+-        }catch (SQLException e){
+-            throw new RuntimeException(e);
+-        }
+-    }
+-
+-    /**
+-     * @param canteen 要删除的餐厅信息
+-     */
+-    @Override
+-    public void deleteCanteen(Canteen canteen) {
+-        try{
+-            canteenDAO.deleteCanteen(canteen.getCanteenID());
+-        }catch (SQLException e) {
+-            throw new RuntimeException(e);
+-        }
+-    }
+-
+-    /**
+-     * @param newCanteen 新的餐厅信息
+-     */
+-    @Override
+-    public void editCanteen(Canteen newCanteen) {
+-        try{
+-            canteenDAO.updateCanteen(newCanteen);
+-        }catch (SQLException e) {
+-            throw new RuntimeException(e);
+-        }
+-    }
+-    /**
+-     * @param userID
+-     * @return
+-     */
+-    @Override
+-    public User getAccount(int userID) {
+-        return userDAO.getUserByID(userID);
+-    }
+-
+-    /**
+-     * @param user 新添加的用户
+-     */
+-    @Override
+-    public int addAccount(User user) {
+-        try{
+-            userDAO.addUser(user);
+-            return 1;
+-        }catch (SQLException e){
+-            throw new RuntimeException(e);
+-        }
+-    }
+-
+-    /**
+-     * @param username 用户名
+-     * @param email 邮箱
+-     * @param role 角色
+-     * @return
+-     */
+-    @Override
+-    public int editAccount(String username, String email, String role) {
+-        try{
+-            userDAO.updateUser(username,email,role);
+-            return 1;
+-        }catch (SQLException e){
+-            throw new RuntimeException(e);
+-        }
+-    }
+-
+-    /**
+-     * @param user 需要删除的用户
+-     * @return
+-     */
+-    @Override
+-    public int deleteAccount(User user) {
+-        try{
+-            userDAO.deleteUser(user.getUserName());
+-            return 1;
+-        }catch (SQLException e){
+-            throw new RuntimeException(e);
+-        }
+-    }
+-
+-    /**
+-     * @param reviewID 需要删除的评价
+-     * @return
+-     */
+-    @Override
+-    public int deleteReview(int reviewID) {
+-        try{
+-            reviewDAO.deleteReview(reviewID); //todo:创建postDao类
+-            return 1;
+-        }catch (SQLException e){
+-            throw new RuntimeException(e);
+-        }
+-    }
+-
+-    /**
+-     * @param newReview 新评论内容
+-     */
+-    @Override
+-    public void editReview(Review newReview) {
+-        try{
+-            reviewDAO.updateReview(newReview);
+-        }catch (SQLException e){
+-            throw new RuntimeException(e);
+-        }
+-    }
+-
+-    /**
+-     * @param postID 需要删除的评论
+-     * @return
+-     */
+-    @Override
+-    public int deletePost(int postID) {
+-        try{
+-            postDAO.deletePost(postID);
+-            return 1;
+-        }catch (SQLException e){
+-            throw new RuntimeException(e);
+-        }
+-    }
+-
+-    @Override
+-    public int editPost(int id, String title, String content, String username, String createDate) {
+-        try{
+-            int userid = getAccountByUserName(username).getUserID();
+-            Post newPost = new Post(id,title,content,userid,createDate);
+-            postDAO.editPost(newPost);
+-            return 1;
+-        }catch (SQLException e){
+-            throw new RuntimeException(e);
+-        }
+-    }
+-    /**
+-     * @param canteenID 餐厅编号
+-     * @param name      餐厅名
+-     * @param location  餐厅位置
+-     * @param openTime  时间
+-     * @param managerName 管理员编号
+-     * @return
+-     */
+-    @Override
+-    public Canteen canteenEncapsulation(int canteenID, String name, String location, String openTime, String managerName,String notice) {
+-        int managerID = userDAO.getUserByUsername(managerName).getUserID();
+-        return new Canteen(canteenID,name,location,openTime,managerID,notice);
+-    }
+-
+-    @Override
+-    public Review getReview(int reviewid) {
+-        try {
+-            return reviewDAO.getReviewByReviewID(reviewid);
+-        } catch (SQLException e) {
+-            throw new RuntimeException(e);
+-        }
+-    }
+-    public Dish getDishByID(int dishID) {
+-        try {
+-            return dishDAO.getDish(dishID);
+-        } catch (SQLException e) {
+-            throw new RuntimeException(e);
+-        }
+-    }
+-
+-    public User getAccountByUserName(String user) {
+-       return userDAO.getUserByUsername(user);
+-    }
+-
+-    public int getDishIDByName(String dish) {
+-        try {
+-            return dishDAO.getDishIDByName(dish);
+-        } catch (SQLException e) {
+-            throw new RuntimeException(e);
+-        }
+-    }
+-
+-    public List<Review> getAllReview() {
+-        try {
+-            return reviewDAO.getAllReviews();
+-        } catch (SQLException e) {
+-            throw new RuntimeException(e);
+-        }
+-    }
+-
+-    public List<Post> getAllPosts() {
+-        try {
+-            return postDAO.getAllPosts();
+-        } catch (SQLException e) {
+-            throw new RuntimeException(e);
+-        }
+-    }
+-
+-    public Post getPost(int id) {
+-        try {
+-            return postDAO.getPost(id);
+-        } catch (SQLException e) {
+-            throw new RuntimeException(e);
+-        }
+-    }
+-}
+Index: src/main/java/com/example/webproject/service/xu/admin/AdminActions.java
+===================================================================
+diff --git a/src/main/java/com/example/webproject/service/xu/admin/AdminActions.java b/src/main/java/com/example/webproject/service/xu/admin/AdminActions.java
+deleted file mode 100644
+--- a/src/main/java/com/example/webproject/service/xu/admin/AdminActions.java	(revision 89f1dd2ee39b4f8bcb1dc4b8f9eeaa701d706079)
++++ /dev/null	(revision 89f1dd2ee39b4f8bcb1dc4b8f9eeaa701d706079)
+@@ -1,129 +0,0 @@
+-package com.example.webproject.service.xu.admin;
+-import com.example.webproject.model.Canteen;
+-import com.example.webproject.model.Review;
+-import com.example.webproject.model.Post;
+-import com.example.webproject.model.User;
+-
+-import java.util.List;
+-
+-public interface AdminActions {
+-   //todo:细化对异常的处理
+-   /**
+-    * 添加餐厅
+-    *
+-    * @param canteen 新的食堂信息
+-    * @author ChiMi
+-    * #Date 2023/12/21
+-    */
+-   void addCanteen(Canteen canteen);
+-
+-    List<User> getAllAccount();
+-   /**
+-    * 删除餐厅
+-    *
+-    * @param canteen 要删除的餐厅信息
+-    * @author ChiMi
+-    * #Date 2023/12/21
+-    */
+-   void deleteCanteen(Canteen canteen);
+-   /**
+-    * 更改餐厅信息
+-    *
+-    * @param newCanteen 新的餐厅信息
+-    * @author ChiMi
+-    * #Date 2023/12/21
+-    */
+-   void editCanteen(Canteen newCanteen);
+-
+-   /**
+-    * 用用户id获取用户
+-    * @param
+-    * @return user
+-    * @author ChiMi
+-    * #Date 2023/12/22
+-    */
+-   User getAccount(int userID);
+-
+-   /**
+-    * 用户注册时会用到的添加用户
+-    * @param user 新添加的用户
+-    * @return 操作正常，返回结果1，操作异常，返回结果0
+-    * @author ChiMi
+-    * #Date 2023/12/21
+-    */
+-   int addAccount(User user);
+-   /**
+-    * 修改用户，系统管理员可用
+-    * @param username 新用户
+-    * @param email
+-    * @param role
+-    * @return 操作正常，返回结果1，操作异常，返回结果0
+-    * @author ChiMi
+-    * #Date 2023/12/21
+-    */
+-   int editAccount(String username, String email, String role);
+-
+-   /**
+-    * 删除指定用户
+-    * @param user 需要删除的用户
+-    * @return 操作正常，返回结果1，操作异常，返回结果0
+-    * @author ChiMi
+-    * #Date 2023/12/21
+-    */
+-   int deleteAccount(User user);
+-   /**
+-    * 删除指定评价
+-    * @param reviewID 需要删除的评价
+-    * @return 操作正常，返回结果1，操作异常，返回结果0
+-    * @author ChiMi
+-    * #Date 2023/12/21
+-    */
+-    int deleteReview(int reviewID);
+-
+-    /**
+-     * 删除指定评价
+-     *
+-     * @param newReview 新评论内容
+-     * @author ChiMi
+-     * #Date 2023/12/21
+-     */
+-   void editReview(Review newReview);
+-   /**
+-    * Description
+-    * @param postID 需要删除的评论
+-    * @return 操作正常，返回结果1，操作异常，返回结果0
+-    * @author ChiMi
+-    * #Date 2023/12/21
+-    */
+-   int deletePost(int postID);
+-   /**
+-    * Description
+-    * @param id
+-    * @param title
+-    * @param username
+-    * @param content
+-    * @param createDate
+-    * @return 操作正常，返回结果1，操作异常，返回结果0
+-    * @author ChiMi
+-    * #Date 2023/12/21
+-    */
+-   int editPost(int id, String title, String content, String username, String createDate);
+-
+-   /**
+-    * 将食堂信息封装为食堂实体类
+-    * @param canteenID 餐厅编号
+-    * @param name 餐厅名
+-    * @param location 餐厅位置
+-    * @param openTime 时间
+-    * @param managerName 管理员编号
+-    * @param notice
+-    * @return 餐厅实体类
+-    * @author ChiMi
+-    * #Date 2023/12/21
+-    */
+-   Canteen canteenEncapsulation(int canteenID, String name, String location, String openTime, String managerName, String notice);
+-
+-   Review getReview(int reviewid);
+-
+-    //实体封装类改为用实体类构造方法实现，除canteen封装需要用到managerid和name的转换所以保留以外，其余全部移除
+- }

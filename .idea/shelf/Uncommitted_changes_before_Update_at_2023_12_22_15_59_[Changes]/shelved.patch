@@ -1,0 +1,72 @@
+Index: src/main/java/com/example/webproject/service/Li/PostMessageServlet.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.webproject.service.Li;\n\nimport com.example.webproject.model.Post;\nimport com.example.webproject.util.DBhelper;\nimport jakarta.servlet.ServletContext;\nimport jakarta.servlet.ServletException;\nimport jakarta.servlet.annotation.WebServlet;\nimport jakarta.servlet.http.HttpServlet;\nimport jakarta.servlet.http.HttpServletRequest;\nimport jakarta.servlet.http.HttpServletResponse;\nimport jakarta.servlet.http.HttpSession;\n\nimport java.io.IOException;\nimport java.util.ArrayList;\nimport java.util.Date;\nimport java.util.List;\n\n@WebServlet(name = \"PostMessage\", value = \"/PostMessageServlet\")\npublic class PostMessageServlet extends HttpServlet {\n    private List<Post> postList = new ArrayList<>();\n    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {\n        DBhelper db = new DBhelper();\n        db.init();\n        try {\n            postList = db.getPostList(db.dbconn);\n        } catch (Exception e) {\n            e.printStackTrace();\n            throw new RuntimeException(e);\n        }\n        ServletContext context= request.getServletContext();\n        context.setAttribute(\"postList\", postList);\n        if(postList==null){\n            postList= new ArrayList<>();\n            context.setAttribute(\"postList\", postList);\n        }\n        request.setAttribute(\"postList\", postList);\n        request.getRequestDispatcher(\"customer_community.jsp\").forward(request, response);\n    }\n\n    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {\n        HttpSession session = request.getSession();\n        String title = request.getParameter(\"title\");\n        String content = request.getParameter(\"content\");\n        String username = (String) session.getAttribute(\"username\");\n\n        DBhelper db = new DBhelper();\n        db.init();\n        int userid = db.getUserID(db.dbconn, username);\n        try {\n            if(db.addPost(db.dbconn,userid, title, content)){\n                response.sendRedirect(\"customer_community.jsp?error=Add-success\");\n            }else{\n                response.sendRedirect(\"customer_community.jsp?error=Add-failed\");\n            }\n        } catch (Exception e) {\n            e.printStackTrace();\n            throw new RuntimeException(e);\n        }\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/webproject/service/Li/PostMessageServlet.java b/src/main/java/com/example/webproject/service/Li/PostMessageServlet.java
+--- a/src/main/java/com/example/webproject/service/Li/PostMessageServlet.java	(revision 58bca47de74020cbaed6854ec25598a30784467d)
++++ b/src/main/java/com/example/webproject/service/Li/PostMessageServlet.java	(date 1703231884539)
+@@ -5,10 +5,7 @@
+ import jakarta.servlet.ServletContext;
+ import jakarta.servlet.ServletException;
+ import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
+-import jakarta.servlet.http.HttpSession;
++import jakarta.servlet.http.*;
+ 
+ import java.io.IOException;
+ import java.util.ArrayList;
+@@ -42,6 +39,9 @@
+         String title = request.getParameter("title");
+         String content = request.getParameter("content");
+         String username = (String) session.getAttribute("username");
++        Part filePart = request.getPart("image");
++        String fileName = filePart.getSubmittedFileName();
++
+ 
+         DBhelper db = new DBhelper();
+         db.init();
+Index: src/main/webapp/customer_community.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><%--\n  Created by IntelliJ IDEA.\n  User: 韶光善良君\n  Date: 2023/12/20\n  Time: 22:40\n  To change this template use File | Settings | File Templates.\n--%>\n<%@ page contentType=\"text/html;charset=UTF-8\" language=\"java\" %>\n<%@ taglib prefix=\"c\" uri=\"http://java.sun.com/jsp/jstl/core\" %>\n<html>\n<head>\n    <title>Title</title>\n    <link rel=\"stylesheet\" href=\"css/customer_menu.css\" />\n</head>\n<body>\n<div id=\"sidebar\">\n    <img src=\"res/logo.png\" alt=\"USST Canteen Management System Logo\">\n    <a href=\"customer_dashboard.jsp\">首页</a>\n    <a href=\"customer_dish.jsp\">菜品一览</a>\n    <a href=\"customer_community.jsp\">交流社区</a>\n    <a href=\"customer_canteen.jsp\">食堂搜索</a>\n</div>\n<div id=\"main-content\">\n    <h2>社区论坛</h2>\n\n    <!-- 发布消息表单 -->\n    <form action=\"PostMessageServlet\" method=\"post\">\n        标题: <input type=\"text\" name=\"title\">\n        内容: <textarea name=\"content\"></textarea>\n        <input type=\"submit\" value=\"发表\">\n    </form>\n\n    <!-- 搜索功能 -->\n    <form action=\"SearchForumServlet\" method=\"get\">\n        <input type=\"text\" name=\"searchQuery\" placeholder=\"搜索标题或用户名\">\n        <input type=\"submit\" value=\"搜索\">\n    </form>\n\n    <!-- 排序选项 -->\n    <div>\n        <button onclick=\"sort('time')\">按时间排序</button>\n        <button onclick=\"sort('popularity')\">按热度排序</button>\n    </div>\n\n<%--TODO 后续改为使用fragment动态刷新帖子的页面--%>\n    <form action=\"PostMessageServlet\" method=\"Get\">\n        <input type=\"submit\"   class=\"button\" value=\"点击查看历史帖子\">\n\n    </form>\n    <!-- 用户帖子显示区 -->\n    <c:forEach var=\"post\" items=\"${requestScope.postList}\">\n    <div id=\"messages\">\n        <!-- 动态加载帖子 -->\n        <div class=\"message\">\n            <div class=\"message-header\">\n<%--                <span class=\"message-id\">${post.postID}</span>--%>\n                <span class=\"message-title\"><h4>${post.title}</h4></span>\n                <span class=\"message-author\">发表人:${post.author}</span>\n                <span class=\"message-author\">ID:${post.userID}</span>\n                <span class=\"message-time\">${post.createDate}</span>\n            </div>\n            <div class=\"message-content\">\n                ${post.content}\n            </div>\n            <div>\n                <span class=\"message-popularity\">点赞数: ${post.like}</span>\n            </div>\n            <br>\n\n    </div>\n    </c:forEach>\n    <script>\n        function sort(type) {\n            // 根据排序类型调整消息显示顺序\n        }\n        // 更多JavaScript逻辑\n    </script>\n</div>\n</body>\n</html>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/customer_community.jsp b/src/main/webapp/customer_community.jsp
+--- a/src/main/webapp/customer_community.jsp	(revision 58bca47de74020cbaed6854ec25598a30784467d)
++++ b/src/main/webapp/customer_community.jsp	(date 1703230990396)
+@@ -24,9 +24,10 @@
+     <h2>社区论坛</h2>
+ 
+     <!-- 发布消息表单 -->
+-    <form action="PostMessageServlet" method="post">
++    <form action="PostMessageServlet" method="post" enctype="multipart/form-data">
+         标题: <input type="text" name="title">
+         内容: <textarea name="content"></textarea>
++        上传图片: <input type="file" name="image">
+         <input type="submit" value="发表">
+     </form>
+ 
+Index: .idea/dataSources.local.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"dataSourceStorageLocal\" created-in=\"IU-232.10227.8\">\n    <data-source name=\"WebWeb\" uuid=\"195ff921-4956-490e-9219-906d3b1e98c8\">\n      <database-info product=\"MySQL\" version=\"8.0.35-0ubuntu0.22.04.1\" jdbc-version=\"4.2\" driver-name=\"MySQL Connector/J\" driver-version=\"mysql-connector-java-8.0.25 (Revision: 08be9e9b4cba6aa115f9b27b215887af40b159e0)\" dbms=\"MYSQL\" exact-version=\"8.0.35\" exact-driver-version=\"8.0\">\n        <extra-name-characters>#@</extra-name-characters>\n        <identifier-quote-string>`</identifier-quote-string>\n      </database-info>\n      <case-sensitivity plain-identifiers=\"exact\" quoted-identifiers=\"exact\" />\n      <secret-storage>master_key</secret-storage>\n      <user-name>webteam</user-name>\n      <schema-mapping>\n        <introspection-scope>\n          <node kind=\"schema\" qname=\"web_restaurant\" />\n        </introspection-scope>\n      </schema-mapping>\n    </data-source>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dataSources.local.xml b/.idea/dataSources.local.xml
+--- a/.idea/dataSources.local.xml	(revision 58bca47de74020cbaed6854ec25598a30784467d)
++++ b/.idea/dataSources.local.xml	(date 1703230239918)
+@@ -5,6 +5,7 @@
+       <database-info product="MySQL" version="8.0.35-0ubuntu0.22.04.1" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-java-8.0.25 (Revision: 08be9e9b4cba6aa115f9b27b215887af40b159e0)" dbms="MYSQL" exact-version="8.0.35" exact-driver-version="8.0">
+         <extra-name-characters>#@</extra-name-characters>
+         <identifier-quote-string>`</identifier-quote-string>
++        <jdbc-catalog-is-schema>true</jdbc-catalog-is-schema>
+       </database-info>
+       <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
+       <secret-storage>master_key</secret-storage>

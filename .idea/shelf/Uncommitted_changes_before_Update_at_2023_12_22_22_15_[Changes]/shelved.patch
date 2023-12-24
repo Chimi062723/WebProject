@@ -1,0 +1,102 @@
+Index: src/main/webapp/customer_dish.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><%--\n  Created by IntelliJ IDEA.\n  User: 韶光善良君\n  Date: 2023/12/20\n  Time: 22:38\n  To change this template use File | Settings | File Templates.\n--%>\n<%@ page contentType=\"text/html;charset=UTF-8\" language=\"java\" %>\n<%@ taglib prefix=\"c\" uri=\"http://java.sun.com/jsp/jstl/core\" %>\n<html>\n<head>\n    <title>Title</title>\n    <link rel=\"stylesheet\" href=\"css/customer_menu.css\" />\n</head>\n<body>\n<div id=\"sidebar\">\n    <img src=\"res/logo.png\" alt=\"USST Canteen Management System Logo\">\n    <a href=\"customer_dashboard.jsp\">首页</a>\n    <a href=\"customer_dish.jsp\">菜品一览</a>\n    <a href=\"customer_community.jsp\">交流社区</a>\n    <a href=\"customer_canteen.jsp\">食堂搜索</a>\n</div>\n<div id=\"main-content\">\n    <h2>菜品一览</h2>\n\n    <!-- 检索表单 -->\n    <form action=\"SearchDishesServlet\" method=\"get\">\n        <select name=\"searchType\">\n            <option value=\"cuisine\">菜系</option>\n            <option value=\"price\">价格</option>\n            <option value=\"canteen\">食堂</option>\n        </select>\n        <input type=\"text\" name=\"searchQuery\" />\n        <input type=\"submit\" value=\"检索\" />\n    </form>\n\n    <!-- 检索结果 -->\n    <div id=\"search-results\">\n        <!-- 动态生成的检索结果将在这里显示 -->\n        <c:forEach items=\"${dishes}\" var=\"dish\">\n            <div class=\"dish-card\">\n                <img src=\"placeholder-image.jpg\" alt=\"${dish.name}\" />\n                <div class=\"dish-details\">\n                    <span class=\"dish-name\">${dish.name}</span>\n                    <span class=\"dish-price\">价格: ${dish.price}</span>\n                    <span class=\"dish-type\">类别: ${dish.cuisineType}</span>\n                    <span class=\"dish-canteen\">食堂: ${dish.canteen}</span>\n                    <a href=\"dish_detial_Servlet?name='${dish.name}'\">详情</a>\n                    <!-- 更多信息 -->\n                </div>\n            </div>\n        </c:forEach>\n    </div>\n\n</div>\n</body>\n</html>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/customer_dish.jsp b/src/main/webapp/customer_dish.jsp
+--- a/src/main/webapp/customer_dish.jsp	(revision a5dbdf0c35d57807c41a5a8739af2b0b4777738b)
++++ b/src/main/webapp/customer_dish.jsp	(date 1703239604109)
+@@ -13,13 +13,7 @@
+     <link rel="stylesheet" href="css/customer_menu.css" />
+ </head>
+ <body>
+-<div id="sidebar">
+-    <img src="res/logo.png" alt="USST Canteen Management System Logo">
+-    <a href="customer_dashboard.jsp">首页</a>
+-    <a href="customer_dish.jsp">菜品一览</a>
+-    <a href="customer_community.jsp">交流社区</a>
+-    <a href="customer_canteen.jsp">食堂搜索</a>
+-</div>
++<jsp:include page="sidebar.jspf" />
+ <div id="main-content">
+     <h2>菜品一览</h2>
+ 
+Index: src/main/webapp/customer_community.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><%--\n  Created by IntelliJ IDEA.\n  User: 韶光善良君\n  Date: 2023/12/20\n  Time: 22:40\n  To change this template use File | Settings | File Templates.\n--%>\n<%@ page contentType=\"text/html;charset=UTF-8\" language=\"java\" %>\n<%@ taglib prefix=\"c\" uri=\"http://java.sun.com/jsp/jstl/core\" %>\n<html>\n<head>\n    <title>Title</title>\n    <link rel=\"stylesheet\" href=\"css/customer_menu.css\" />\n</head>\n<body>\n<div id=\"sidebar\">\n    <img src=\"res/logo.png\" alt=\"USST Canteen Management System Logo\">\n    <a href=\"customer_dashboard.jsp\">首页</a>\n    <a href=\"customer_dish.jsp\">菜品一览</a>\n    <a href=\"customer_community.jsp\">交流社区</a>\n    <a href=\"customer_canteen.jsp\">食堂搜索</a>\n</div>\n<div id=\"main-content\">\n    <h2>社区论坛</h2>\n\n    <!-- 发布消息表单 -->\n    <form action=\"PostMessageServlet\" method=\"post\" enctype=\"multipart/form-data\">\n        标题: <input type=\"text\" name=\"title\">\n        内容: <textarea name=\"content\"></textarea>\n        上传图片: <input type=\"file\" name=\"image\">\n        <input type=\"submit\" value=\"发表\">\n    </form>\n\n    <!-- 搜索功能 -->\n    <form action=\"SearchForumServlet\" method=\"get\">\n        <input type=\"text\" name=\"searchQuery\" placeholder=\"搜索标题或用户名\">\n        <input type=\"submit\" value=\"搜索\">\n    </form>\n\n    <!-- 排序选项 -->\n    <div>\n        <button onclick=\"sort('time')\">按时间排序</button>\n        <button onclick=\"sort('popularity')\">按热度排序</button>\n    </div>\n\n<%--TODO 后续改为使用fragment动态刷新帖子的页面--%>\n    <form action=\"PostMessageServlet\" method=\"Get\">\n        <input type=\"submit\"   class=\"button\" value=\"点击查看历史帖子\">\n\n    </form>\n    <!-- 用户帖子显示区 -->\n    <c:forEach var=\"post\" items=\"${requestScope.postList}\">\n    <div id=\"messages\">\n        <!-- 动态加载帖子 -->\n        <div class=\"message\">\n            <div class=\"message-header\">\n<%--                <span class=\"message-id\">${post.postID}</span>--%>\n                <span class=\"message-title\"><h4>${post.title}</h4></span>\n                <span class=\"message-author\">发表人:${post.author}</span>\n                <span class=\"message-author\">ID:${post.userID}</span>\n                <span class=\"message-time\">${post.createDate}</span>\n            </div>\n            <div class=\"message-content\">\n                ${post.content}\n            </div>\n            <div>\n                <span class=\"message-popularity\">点赞数: ${post.like}</span>\n            </div>\n            <br>\n\n    </div>\n    </c:forEach>\n    <script>\n        function sort(type) {\n            // 根据排序类型调整消息显示顺序\n        }\n        // 更多JavaScript逻辑\n    </script>\n</div>\n</body>\n</html>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/customer_community.jsp b/src/main/webapp/customer_community.jsp
+--- a/src/main/webapp/customer_community.jsp	(revision a5dbdf0c35d57807c41a5a8739af2b0b4777738b)
++++ b/src/main/webapp/customer_community.jsp	(date 1703239701652)
+@@ -13,13 +13,7 @@
+     <link rel="stylesheet" href="css/customer_menu.css" />
+ </head>
+ <body>
+-<div id="sidebar">
+-    <img src="res/logo.png" alt="USST Canteen Management System Logo">
+-    <a href="customer_dashboard.jsp">首页</a>
+-    <a href="customer_dish.jsp">菜品一览</a>
+-    <a href="customer_community.jsp">交流社区</a>
+-    <a href="customer_canteen.jsp">食堂搜索</a>
+-</div>
++<jsp:include page="custom_sidebar.jspf" />
+ <div id="main-content">
+     <h2>社区论坛</h2>
+ 
+Index: src/main/webapp/customer_canteen.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><%--\n  Created by IntelliJ IDEA.\n  User: 韶光善良君\n  Date: 2023/12/20\n  Time: 22:40\n  To change this template use File | Settings | File Templates.\n--%>\n<%@ page contentType=\"text/html;charset=UTF-8\" language=\"java\" %>\n<%@ taglib prefix=\"c\" uri=\"http://java.sun.com/jsp/jstl/core\" %>\n<html>\n<head>\n    <title>Title</title>\n    <link rel=\"stylesheet\" href=\"css/customer_menu.css\"/>\n    <link rel=\"stylesheet\" href=\"css/canteen_table.css\"/>\n</head>\n<body>\n<div id=\"sidebar\">\n    <img src=\"res/logo.png\" alt=\"USST Canteen Management System Logo\">\n    <a href=\"customer_dashboard.jsp\">首页</a>\n    <a href=\"customer_dish.jsp\">菜品一览</a>\n    <a href=\"customer_community.jsp\">交流社区</a>\n    <a href=\"customer_canteen.jsp\">食堂搜索</a>\n</div>\n<table>    <!-- 表格标题 -->\n    <caption>食堂信息表</caption>    <!-- 表格第一行：表格表头 -->\n    <tr>\n        <th>编号</th>\n        <th>名称</th>\n        <th>位置</th>\n        <th>开放时间</th>\n        <th>操作</th>\n    </tr>\n    <c:forEach var=\"canteen\" items=\"${sessionScope.canteens}\">\n        <tr>\n            <td>${canteen.id}</td>\n            <td>${canteen.name}</td>\n            <td>${canteen.location}</td>\n            <td>${canteen.openTime}</td>\n            <!-- 在该单元格中创建一个链接标签，void运算符来阻止href返回值，通过onclick事件(鼠标点击)属性来删除信息行-->\n            <td><a href=\"CanteenDetailServlet?canteenID='${canteen.id}'\">查看</a></td>\n        </tr>\n        <!-- 表格第三行：学生信息2 -->\n    </c:forEach>\n</table>\n</body>\n</html>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/customer_canteen.jsp b/src/main/webapp/customer_canteen.jsp
+--- a/src/main/webapp/customer_canteen.jsp	(revision a5dbdf0c35d57807c41a5a8739af2b0b4777738b)
++++ b/src/main/webapp/customer_canteen.jsp	(date 1703239604102)
+@@ -14,13 +14,7 @@
+     <link rel="stylesheet" href="css/canteen_table.css"/>
+ </head>
+ <body>
+-<div id="sidebar">
+-    <img src="res/logo.png" alt="USST Canteen Management System Logo">
+-    <a href="customer_dashboard.jsp">首页</a>
+-    <a href="customer_dish.jsp">菜品一览</a>
+-    <a href="customer_community.jsp">交流社区</a>
+-    <a href="customer_canteen.jsp">食堂搜索</a>
+-</div>
++<jsp:include page="sidebar.jspf" />
+ <table>    <!-- 表格标题 -->
+     <caption>食堂信息表</caption>    <!-- 表格第一行：表格表头 -->
+     <tr>
+Index: src/main/webapp/custom_sidebar.jspf
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/custom_sidebar.jspf b/src/main/webapp/custom_sidebar.jspf
+new file mode 100644
+--- /dev/null	(date 1703239745380)
++++ b/src/main/webapp/custom_sidebar.jspf	(date 1703239745380)
+@@ -0,0 +1,17 @@
++<%--
++  Created by IntelliJ IDEA.
++  User: 08042x'l
++  Date: 2023/12/22
++  Time: 18:05
++  To change this template use File | Settings | File Templates.
++--%>
++<%@ page contentType="text/html;charset=UTF-8"   %>
++
++
++<div id="sidebar">
++    <img src="WEB-INF/res/logo.png" alt="USST Canteen Management System Logo">
++    <a href="customer_dashboard.jsp">首页</a>
++    <a href="customer_dish.jsp">菜品一览</a>
++    <a href="customer_community.jsp">交流社区</a>
++    <a href="customer_canteen.jsp">食堂搜索</a>
++</div>
