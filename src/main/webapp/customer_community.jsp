@@ -45,6 +45,9 @@
     </div>
 
     <div class="message-list">
+        <c:if test="${requestScope.message!=null}">
+            <h3 class="text-center">${requestScope.message}</h3>
+        </c:if>
         <c:forEach items="${requestScope.postList}" var="post">
             <c:if test="${post.commentID==-1}">
                 <div class="post">

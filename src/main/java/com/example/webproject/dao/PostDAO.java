@@ -33,7 +33,29 @@ public class PostDAO {
         }
         return posts;
     }
-
+    public List<Post> getPostsByTitle(String title) throws SQLException {
+        List<Post> posts = new ArrayList<>();
+        String sql = "SELECT * FROM CommunityPosts WHERE Title =?";
+        try (Connection connection = JDBCHelper.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, title);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Post post = new Post(
+                        resultSet.getInt("PostID"),
+                        resultSet.getInt("UserID"),
+                        resultSet.getString("Title"),
+                        resultSet.getString("Content"),
+                        resultSet.getTimestamp("CreateDate"),
+                        resultSet.getInt("Like"),
+                        resultSet.getString("Picture"),
+                        resultSet.getInt("CommentID")
+                );
+                posts.add(post);
+            }
+        }
+        return posts;
+    }
     public List<Post> getPostsByUserID(int userID) throws SQLException {
         List<Post> posts = new ArrayList<>();
         try (Connection connection = JDBCHelper.getConnection();
