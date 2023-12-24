@@ -275,4 +275,12 @@ public class AdminActionImpl implements AdminActions{
             throw new RuntimeException(e);
         }
     }
+
+    public List<Post> getAllPostsByID(int userID) {
+        try {
+            return postDAO.getPostsByUserID(userID);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

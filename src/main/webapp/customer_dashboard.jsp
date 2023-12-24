@@ -26,7 +26,7 @@
                             <br>
                             <span class="dish-type">类别: ${sessionScope.dish6.type}</span>
                             <br>
-                            <a href="dish_detial_Servlet?name='${sessionScope.dish6.name}'">详情</a>
+                            <a href="DishDetailServlet?id=${sessionScope.dish1.dishID}'">详情</a>
                             <!-- 更多信息 -->
                         </div>
                     </div>
@@ -134,7 +134,7 @@
                 <!-- 动态生成交流内容，示例代码 -->
                 <c:forEach items="${sessionScope.posts}" var="post">
                     <div class="post">
-                        <span class="post-author">发表人：${post.author.userName}</span>
+                        <a href="showAllPost?id=${post.author.userID}&username=${post.author.userName}"><span class="post-author">发表人：${post.author.userName}</span></a>
                         <br>
                         <span class="post-title">标题：${post.title}</span>
                         <br>
@@ -175,13 +175,16 @@
                 <div class="complaint-item">
                     <form action="ComplaintServlet" method="post">
                         <div>
-                        <select id="canteenID" name="canteenID">
+                            <label for="canteenID"></label>
+                            <select id="canteenID" name="canteenID">
                             <option value="0">请选择食堂</option>
                             <c:forEach items="${sessionScope.canteens}" var="canteen">
                                 <option value="${canteen.canteenID}">${canteen.name}</option>
                             </c:forEach>
-                        </select>
-                        <input type="text" name="content" placeholder="请填写投诉内容">
+                            </select>
+                            <label>
+                                <input type="text" name="content" placeholder="请填写投诉内容">
+                            </label>
                         </div>
                         <div>
                             <input type="submit" value="投诉">
