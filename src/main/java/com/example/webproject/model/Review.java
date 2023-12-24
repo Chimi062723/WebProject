@@ -2,8 +2,6 @@ package com.example.webproject.model;
 
 import com.example.webproject.dao.DishDAO;
 import com.example.webproject.dao.UserDAO;
-
-import java.sql.Date;
 import java.sql.Timestamp;
 
 public class Review {
@@ -17,6 +15,16 @@ public class Review {
     String picture;
     User sender;
     Dish dish;
+
+    //addReview使用
+    public Review(int dishID, int userID, int rating, String comment, String picture) {
+        this.dishID = dishID;
+        this.userID = userID;
+        this.rating = rating;
+        this.comment = comment;
+        this.picture = picture;
+    }
+
     public User getSender() {
         return sender;
     }

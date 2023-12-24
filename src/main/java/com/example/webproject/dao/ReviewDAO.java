@@ -90,19 +90,18 @@ public class ReviewDAO {
         return reviews;
     }
 
-    public boolean addReview(Review review) throws SQLException {
+    public void addReview(Review review) throws SQLException {
         dBhelper.init();
         Connection connection = dBhelper.dbconn;
-        String sql = "INSERT INTO Reviews (userID, dishID, rating, comment, reply, createDate) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Reviews (userID, dishID, rating, comment, reply, Picture) VALUES (?, ?, ?, ?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, review.getUserID());
         statement.setInt(2, review.getDishID());
         statement.setInt(3, review.getRating());
         statement.setString(4, review.getComment());
         statement.setString(5, review.getReply());
-        statement.setTimestamp(6, review.getCreateDate());
-        int rowsInserted = statement.executeUpdate();
-        return rowsInserted > 0;
+        statement.setString(6, review.getPicture());
+        statement.executeUpdate();
     }
 
     public boolean updateReview(Review review) throws SQLException {
@@ -167,7 +166,7 @@ public class ReviewDAO {
             }
         }
         builder.append(")");
-        String sql = "SELECT * FROM Reviews WHERE DishID IN " + builder.toString();
+        String sql = "SELECT * FROM Reviews WHERE DishID IN " + builder;
 
         PreparedStatement statement = connection.prepareStatement(sql);
 

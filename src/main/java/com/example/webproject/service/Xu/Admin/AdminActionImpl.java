@@ -260,4 +260,19 @@ public class AdminActionImpl implements AdminActions{
     public List<String> getAllCuisine() {
         return cuisineDAO.getAllCuisine();
     }
+
+    public void addReview(int dishID, int userID, int rating, String comment, String picture) {
+        Review review = new Review(
+                dishID,
+                userID,
+                rating,
+                comment,
+                picture
+        );
+        try {
+            reviewDAO.addReview(review);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
