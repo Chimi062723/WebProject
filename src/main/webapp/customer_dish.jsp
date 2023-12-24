@@ -1,4 +1,6 @@
-<%--
+<%@ page import="com.example.webproject.model.Dish" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.example.webproject.dao.DishDAO" %><%--
   Created by IntelliJ IDEA.
   User: 韶光善良君
   Date: 2023/12/20
@@ -21,18 +23,7 @@
 <body>
 <jsp:include page="custom_sidebar.jsp" />
 <div id="main-content">
-<%--    <h2>菜品一览</h2>--%>
 
-<%--    <!-- 检索表单 -->--%>
-<%--    <form action="SearchDishesServlet" method="get">--%>
-<%--        <select name="searchType">--%>
-<%--            <option value="cuisine">菜系</option>--%>
-<%--            <option value="price">价格</option>--%>
-<%--            <option value="canteen">食堂</option>--%>
-<%--        </select>--%>
-<%--        <input type="text" name="searchQuery" />--%>
-<%--        <input type="submit" value="检索" />--%>
-<%--    </form>--%>
     <h2>菜品一览</h2>
     <ul class="tabs" data-tab>
         <li class="tab-title active"><a href="#home">总览</a></li>
@@ -43,10 +34,31 @@
     <div class="tabs-content">
         <div class="content active" id="home">
             <p>列表/表格显示所有菜品</p>
-
+            <%
+                // 调用 JavaBean 中的方法获取菜品列表
+                List<Dish> AlldishList = DishDAO.getAllDishList();
+                // 将菜品列表存储在 request 属性中，以便在页面中使用
+                request.setAttribute("dishList", AlldishList);
+            %>
+            <div class="search-results">
+                <!-- 动态生成的检索结果将在这里显示 -->
+                <c:forEach items="${requestScope.AlldishList}" var="dish">
+                    <div class="dish-card">
+                            <%--                <img src="placeholder-image.jpg" alt="${dish.name}" />--%>
+                        <div class="dish-details">
+                            <span class="dish-name">${dish.name}</span>
+                            <span class="dish-price">价格: ${dish.price}</span>
+                            <span class="dish-type">类别: ${dish.type}</span>
+                            <span class="dish-canteen">食堂id: ${dish.canteenID}</span>
+                            <a href="dish_detial_Servlet?name='${dish.name}'">详情</a>
+                            <!-- 更多信息 -->
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
         </div>
         <div class="content" id="menu1">
-            <form action="customers_dish" method="get">
+            <form id="cuisine-form"action="customers_dish" method="get">
                 <label for="cuisine-select">选择菜系: </label>
                 <select  class="form-select" id="cuisine-select" name="cuisine">
                     <option value="all">所有菜品</option>
@@ -55,7 +67,7 @@
                     <option value="鲁菜">鲁菜</option>
                     <option value="苏菜">徽菜</option>
                 </select>
-                <button type="submit" name="action" value="SearchByCuisine" >确认</button>
+<%--                <button type="submit" name="action" value="SearchByCuisine" >确认</button>--%>
             </form>
             <div class="search-results">
                 <!-- 动态生成的检索结果将在这里显示 -->
@@ -76,16 +88,16 @@
         </div>
         <div class="content" id="menu2">
             <p>呈现不同食堂的选项，点击之后只显示该食堂的菜品</p>
-            <form action="customers_dish" method="get">
+            <form action="customers_dish" id="canteen-form"  method="get">
                 <label for="canteen-select">选择食堂: </label>
-                <select class="form-select" id="canteen-select" name="canteenName">
+                <select class="form-select"   id="canteen-select" name="canteenName">
                     <option value="all">所有食堂</option>
                     <option value="思餐厅">思餐厅</option>
                     <option value="一食堂">一食堂</option>
                     <option value="五食堂">五食堂</option>
                     <option value="新食堂">新食堂</option>
                 </select>
-                <button type="submit" name="action" value="SearchByCuisine" >确认</button>
+<%--                <button type="submit" name="action" value="SearchByCuisine" >确认</button>--%>
             </form>
             <div class="search-results">
                 <!-- 动态生成的检索结果将在这里显示 -->
@@ -105,9 +117,27 @@
             </div>
         </div>
         <div class="content" id="menu3">
-            <li><a href="#">升序</a></li>
-            <li><a href="#">降序</a></li>
             <p>提供降序和升序按钮，点击之后按顺序显示</p>
+            <form action="customers_dish" id="order-form"  method="get">
+                <input type="submit" name="ascending" value="升序">
+                <input type="submit" name="descending" value="降序">
+            </form>
+            <div class="search-results">
+                <!-- 动态生成的检索结果将在这里显示 -->
+                <c:forEach items="${requestScope.dishList}" var="dish">
+                    <div class="dish-card">
+                            <%--                <img src="placeholder-image.jpg" alt="${dish.name}" />--%>
+                        <div class="dish-details">
+                            <span class="dish-name">${dish.name}</span>
+                            <span class="dish-price">价格: ${dish.price}</span>
+                            <span class="dish-type">类别: ${dish.type}</span>
+                            <span class="dish-canteen">食堂id: ${dish.canteenID}</span>
+                            <a href="dish_detial_Servlet?name='${dish.name}'">详情</a>
+                            <!-- 更多信息 -->
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
         </div>
 
     </div>
@@ -144,6 +174,22 @@
         // 监听下拉菜单的change事件，保存用户选择到本地存储
         cuisineSelect.addEventListener('change', () => {
             localStorage.setItem('selectedCuisine', cuisineSelect.value);
+        });
+    })
+    $(document).ready(function() {
+        $(document).foundation();
+
+        // 监听菜系选择变化，选定即提交表单
+        $('#cuisine-select').change(function() {
+            $('#cuisine-form').submit();
+        });
+
+        // 监听食堂选择变化，选定即提交表单
+        $('#canteen-select').change(function() {
+            $('#canteen-form').submit();
+        });
+        $('#order-form').submit(function() {
+            $('#order-form').submit();
         });
     });
 </script>

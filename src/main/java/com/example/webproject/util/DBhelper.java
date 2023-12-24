@@ -251,4 +251,95 @@ public class DBhelper {
 
         return canteens;
     }
+
+    public List<Dish> getDishListByCanteen(Connection dbconn, String canteenName) {
+        String sql = "SELECT * FROM Dishes WHERE CanteenID = ?";
+        PreparedStatement ps = null;
+        try {
+            ps = dbconn.prepareStatement(sql);
+            ps.setInt(1, getCanteenID(dbconn, canteenName));
+            ResultSet rs = ps.executeQuery();
+            List<Dish> dishList = new java.util.ArrayList<>();
+            while (rs.next()) {
+                Dish dish = new Dish();
+                dish.setDishID(rs.getInt("DishID"));
+                dish.setCanteenID(rs.getInt("CanteenID"));
+                dish.setName(rs.getString("Name"));
+                dish.setType(rs.getString("CuisineType"));
+                dish.setPrice(rs.getDouble("Price"));
+                dish.setImage(rs.getString("ImageURL"));
+                dishList.add(dish);
+            }
+            return dishList;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    private int getCanteenID(Connection dbconn, String canteenName) {
+        String sql = "SELECT CanteenID FROM Canteens WHERE Name = ?";
+        PreparedStatement ps = null;
+        try {
+            ps = dbconn.prepareStatement(sql);
+            ps.setString(1, canteenName);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("CanteenID");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return -1;
+    }
+
+    public List<Dish> getDishListByPriceAscending(Connection dbconn) {
+        String sql = "SELECT * FROM Dishes ORDER BY Price ASC";
+        PreparedStatement ps = null;
+        try {
+            ps = dbconn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            List<Dish> dishList = new java.util.ArrayList<>();
+            while (rs.next()) {
+                Dish dish = new Dish();
+                dish.setDishID(rs.getInt("DishID"));
+                dish.setCanteenID(rs.getInt("CanteenID"));
+                dish.setName(rs.getString("Name"));
+                dish.setType(rs.getString("CuisineType"));
+                dish.setPrice(rs.getDouble("Price"));
+                dish.setImage(rs.getString("ImageURL"));
+                dishList.add(dish);
+            }
+            return dishList;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Dish> getDishListByPriceDescending(Connection dbconn) {
+        String sql = "SELECT * FROM Dishes ORDER BY Price DESC";
+        PreparedStatement ps = null;
+        try {
+            ps = dbconn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            List<Dish> dishList = new java.util.ArrayList<>();
+            while (rs.next()) {
+                Dish dish = new Dish();
+                dish.setDishID(rs.getInt("DishID"));
+                dish.setCanteenID(rs.getInt("CanteenID"));
+                dish.setName(rs.getString("Name"));
+                dish.setType(rs.getString("CuisineType"));
+                dish.setPrice(rs.getDouble("Price"));
+                dish.setImage(rs.getString("ImageURL"));
+                dishList.add(dish);
+            }
+            return dishList;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+
 }
