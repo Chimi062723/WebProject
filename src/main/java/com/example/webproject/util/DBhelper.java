@@ -125,7 +125,7 @@ public class DBhelper {
     }
 
     public boolean addPost(Connection dbconn, int userid,String title, String content) {
-        String sql = "INSERT INTO CommunityPosts (UserID,Title, Content) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO CommunityPosts (UserID,Title,Content) VALUES (?,?,?)";
         PreparedStatement ps = null;
         try {
             ps = dbconn.prepareStatement(sql);

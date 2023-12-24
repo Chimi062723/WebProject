@@ -20,25 +20,21 @@
 <div class="container">
     <h1 class="text-center mt-4 mb-4">社区论坛</h1>
 
-    <form action="PostMessageServlet" method="post" enctype="multipart/form-data">
+    <form action="PostMessageServlet" method="post">
         <div class="mb-3">
-            <label for="title" class="form-label">标题:</label>
+            <label class="form-label">标题:</label>
             <input type="text" class="form-control" id="title" name="title" required>
         </div>
         <div class="mb-3">
-            <label for="content" class="form-label">内容:</label>
+            <label class="form-label">内容:</label>
             <textarea class="form-control" id="content" name="content" rows="4" required></textarea>
-        </div>
-        <div class="mb-3">
-            <label for="image" class="form-label">上传图片:</label>
-            <input type="file" class="form-control" id="image" name="image">
         </div>
         <button type="submit" class="btn btn-primary">发表</button>
     </form>
 
     <form action="SearchForumServlet" method="get" class="mt-4">
         <div class="input-group mb-3">
-            <input type="text" class="form-control" name="searchQuery" placeholder="搜索标题或用户名">
+            <input type="text" class="form-control" name="searchQuery" placeholder="搜索标题或用户名" required>
             <button class="btn btn-outline-secondary" type="submit">搜索</button>
         </div>
     </form>
@@ -79,8 +75,7 @@
                     <div class="post-actions">
                         <form class="comment-form" action="AddPostComment" method="get">
                             <label>
-                                <input type="text" name="commentContent" placeholder="输入评论内容"
-                                       class="comment-input"/>
+                                <input type="text" name="commentContent" placeholder="输入评论内容" class="comment-input"/>
                             </label>
                             <input type="hidden" name="postID" value="${post.postID}"/>
                             <a href="#" class="like-link" data-liked="false">点赞</a>

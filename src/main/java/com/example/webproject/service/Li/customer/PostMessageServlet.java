@@ -31,6 +31,7 @@ public class PostMessageServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
+        request.setCharacterEncoding("UTF-8");
         String title = request.getParameter("title");
         String content = request.getParameter("content");
         String username = (String) session.getAttribute("username");
@@ -43,9 +44,9 @@ public class PostMessageServlet extends HttpServlet {
         int userid = db.getUserID(db.dbconn, username);
         try {
             if(db.addPost(db.dbconn,userid, title, content)){
-                response.sendRedirect("customer_community.jsp?error=Add-success");
+                response.sendRedirect("PostMessageServlet");
             }else{
-                response.sendRedirect("customer_community.jsp?error=Add-failed");
+                response.sendRedirect("PostMessageServlet");
             }
         } catch (Exception e) {
             e.printStackTrace();
