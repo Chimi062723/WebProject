@@ -78,7 +78,48 @@ public class PostDAO {
         }
         return posts;
     }
-
+    public List<Post> getPostOrderByTime() throws SQLException {
+        List<Post> posts = new ArrayList<>();
+        String sql = "SELECT * FROM CommunityPosts ORDER BY `CreateDate` DESC";
+        try (Connection connection = JDBCHelper.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Post post = new Post();
+                post.setPostID(resultSet.getInt("PostID"));
+                post.setUserID(resultSet.getInt("UserID"));
+                post.setTitle(resultSet.getString("Title"));
+                post.setContent(resultSet.getString("Content"));
+                post.setCreateDate(resultSet.getTimestamp("CreateDate").toString());
+                post.setLike(resultSet.getInt("Like"));
+                post.setPicture(resultSet.getString("Picture"));
+                post.setCommentID(resultSet.getInt("CommentID"));
+                posts.add(post);
+            }
+        }
+        return posts;
+    }
+    public List<Post> getPostOrderByLike() throws SQLException {
+        List<Post> posts = new ArrayList<>();
+        String sql = "SELECT * FROM CommunityPosts ORDER BY `Like` DESC";
+        try (Connection connection = JDBCHelper.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Post post = new Post();
+                post.setPostID(resultSet.getInt("PostID"));
+                post.setUserID(resultSet.getInt("UserID"));
+                post.setTitle(resultSet.getString("Title"));
+                post.setContent(resultSet.getString("Content"));
+                post.setCreateDate(resultSet.getTimestamp("CreateDate").toString());
+                post.setLike(resultSet.getInt("Like"));
+                post.setPicture(resultSet.getString("Picture"));
+                post.setCommentID(resultSet.getInt("CommentID"));
+                posts.add(post);
+            }
+        }
+        return posts;
+    }
     public List<Post> getMostLikesThreePosts() throws SQLException {
         List<Post> posts = new ArrayList<>();
         UserDAO userDAO = new UserDAO();
@@ -95,7 +136,6 @@ public class PostDAO {
                 post.setCreateDate(resultSet.getTimestamp("CreateDate").toString());
                 post.setLike(resultSet.getInt("Like"));
                 post.setPicture(resultSet.getString("Picture"));
-                post.setAuthor(userDAO.getUserByID(resultSet.getInt("UserID")));
                 post.setCommentID(resultSet.getInt("CommentID"));
                 posts.add(post);
             }

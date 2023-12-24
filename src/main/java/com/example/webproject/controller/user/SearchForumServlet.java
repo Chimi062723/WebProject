@@ -36,11 +36,11 @@ public class SearchForumServlet extends HttpServlet {
                         request.setAttribute("postList", posts);
                         request.getRequestDispatcher("customer_community.jsp").forward(request, response);
                     }else{
-                        request.setAttribute("message","No posts found");
+                        request.setAttribute("message","该用户还没发送帖子");
                         request.getRequestDispatcher("customer_community.jsp").forward(request, response);
                     }
                 }else {
-                    request.setAttribute("message","No user found");
+                    request.setAttribute("message","没有找到用户或者标题");
                     request.getRequestDispatcher("customer_community.jsp").forward(request, response);
                 }
             }catch (SQLException e){

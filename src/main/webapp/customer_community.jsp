@@ -39,10 +39,13 @@
         </div>
     </form>
 
-    <div class="mb-3">
-        <button onclick="sort('time')" class="btn btn-secondary me-2">按时间排序</button>
-        <button onclick="sort('popularity')" class="btn btn-secondary">按热度排序</button>
-    </div>
+    <form action="GetPostServlet" method="post">
+        <input type="hidden" name="action" id="actionField" value="">
+        <div class="mb-3">
+            <button type="submit" class="btn btn-secondary" onclick="setAction('time')">按时间排序</button>
+            <button type="submit" class="btn btn-secondary" onclick="setAction('popularity')">按热度排序</button>
+        </div>
+    </form>
 
     <div class="message-list">
         <c:if test="${requestScope.message!=null}">
@@ -92,8 +95,8 @@
 </div>
 
 <script>
-    function sort(type) {
-        // 根据排序类型调整消息显示顺序
+    function setAction(action) {
+        document.getElementById('actionField').value = action;
     }
 
     document.querySelectorAll('.like-link').forEach(item => {
