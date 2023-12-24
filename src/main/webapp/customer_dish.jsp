@@ -1,6 +1,7 @@
 <%@ page import="com.example.webproject.model.Dish" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.example.webproject.dao.DishDAO" %><%--
+<%@ page import="com.example.webproject.dao.DishDAO" %>
+<%@ page import="com.example.webproject.util.DBhelper" %><%--
   Created by IntelliJ IDEA.
   User: 韶光善良君
   Date: 2023/12/20
@@ -11,7 +12,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>菜品一览</title>
     <link rel="stylesheet" href="css/customer_menu.css" />
     <link rel="stylesheet" href="https://cdn.staticfile.org/foundation/5.5.3/css/foundation.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
@@ -36,9 +37,9 @@
             <p>列表/表格显示所有菜品</p>
             <%
                 // 调用 JavaBean 中的方法获取菜品列表
-                List<Dish> AlldishList = DishDAO.getAllDishList();
+                List<Dish> AlldishList = DBhelper.getAllDishList();
                 // 将菜品列表存储在 request 属性中，以便在页面中使用
-                request.setAttribute("dishList", AlldishList);
+                request.setAttribute("AlldishList", AlldishList);
             %>
             <div class="search-results">
                 <!-- 动态生成的检索结果将在这里显示 -->

@@ -64,6 +64,12 @@ public class Customers_dishServlet extends HttpServlet {
                 throw new RuntimeException(e);
             }
         }
+        //清空选项
+        request.setAttribute("cuisine",null);
+        request.setAttribute("canteenName",null);
+        request.setAttribute("ascending",null);
+        request.setAttribute("descending",null);
+
         request.setAttribute("dishList", dishList);
         request.getRequestDispatcher("customer_dish.jsp").forward(request, response);
 

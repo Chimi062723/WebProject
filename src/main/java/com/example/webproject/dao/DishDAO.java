@@ -104,23 +104,5 @@ public class DishDAO {
         }
         return 0;
     }
-    public static List<Dish> getAllDishList() throws SQLException {
-        Connection connection = JDBCHelper.getConnection();
 
-        List<Dish> dishList = new ArrayList<>();
-        String sql = "select * from Dishes";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()){
-            Dish dish = new Dish();
-            dish.setDishID(resultSet.getInt("DishID"));
-            dish.setName(resultSet.getString("Name"));
-            dish.setType(resultSet.getString("CuisineType"));
-            dish.setPrice(resultSet.getDouble("Price"));
-            dish.setCanteenID(resultSet.getInt("canteenID"));
-            dish.setImage(resultSet.getString("ImageURL"));
-            dishList.add(dish);
-        }
-        return dishList;
-    }
 }
