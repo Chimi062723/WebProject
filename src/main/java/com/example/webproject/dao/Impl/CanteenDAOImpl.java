@@ -11,4 +11,5 @@ public interface CanteenDAOImpl {
     void addCanteen(Canteen canteen) throws SQLException;
     void updateCanteen(Canteen canteen) throws SQLException;
     void deleteCanteen(int canteenID) throws SQLException;
+    Canteen getCanteenByManagerID(int ManagerID) throws SQLException;
 }

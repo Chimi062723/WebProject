@@ -172,6 +172,7 @@
                 <p>我要投诉</p>
                 <div class="complaint-item">
                     <form action="ComplaintServlet" method="post">
+                        <div>
                         <select id="canteenID" name="canteenID">
                             <option value="0">请选择食堂</option>
                             <c:forEach items="${sessionScope.canteens}" var="canteen">
@@ -179,7 +180,11 @@
                             </c:forEach>
                         </select>
                         <input type="text" name="content" placeholder="请填写投诉内容">
-                        <input type="submit" value="投诉">
+                        </div>
+                        <div>
+                            <input type="submit" value="投诉">
+                            <a href="ComplaintServlet" class="my-complaints-btn">我的投诉</a>
+                        </div>
                     </form>
                 </div>
             </div>
