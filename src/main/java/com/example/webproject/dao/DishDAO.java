@@ -17,6 +17,7 @@ public class DishDAO {
     private static final String INSERT_DISH = "INSERT INTO Dishes (Name, CuisineType, Price, canteenID, ImageURL) VALUES (?, ?, ?, ?, ?)";
     private static final String UPDATE_DISH = "UPDATE Dishes SET Name = ?, CuisineType = ?, Price = ?, canteenID = ?, ImageURL = ? WHERE DishID = ?";
     private static final String DELETE_DISH = "DELETE FROM Dishes WHERE DishID = ?";
+    private static final String GET_DISH_BY_CANTEEN_ID = "SELECT * FROM Dishes WHERE CanteenID =?";
 
     public List<Dish> getAllDishes() throws SQLException {
         List<Dish> dishes = new ArrayList<>();
@@ -37,7 +38,27 @@ public class DishDAO {
         }
         return dishes;
     }
-
+    public List<Dish> getAllDishesByCanteenID(int canteenID) throws SQLException {
+        List<Dish> dishes = new ArrayList<>();
+        try (Connection conn = JDBCHelper.getConnection();
+             PreparedStatement ps = conn.prepareStatement(GET_DISH_BY_CANTEEN_ID)) {
+            ps.setInt(1, canteenID);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Dish dish = new Dish();
+                    dish.setDishID(rs.getInt("DishID"));
+                    dish.setName(rs.getString("Name"));
+                    dish.setType(rs.getString("CuisineType"));
+                    dish.setPrice(rs.getDouble("Price"));
+                    dish.setPromotionPrice(rs.getDouble("PromotionPrice"));
+                    dish.setCanteenID(rs.getInt("canteenID"));
+                    dish.setImage(rs.getString("ImageURL"));
+                    dishes.add(dish);
+                }
+            }
+            return dishes;
+        }
+    }
     public Dish getDish(int dishID) throws SQLException {
         Dish dish = new Dish();
         try (Connection conn = JDBCHelper.getConnection();

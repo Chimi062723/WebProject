@@ -15,7 +15,7 @@ import java.util.List;
 @WebServlet(name = "customer_canteens", value = "/customer_canteens")
 
 public class customer_canteensServlet extends HttpServlet {
-     private List<Canteen> canteensList=new ArrayList<>();
+    private List<Canteen> canteensList=new ArrayList<>();
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         doPost(req,res);
 
