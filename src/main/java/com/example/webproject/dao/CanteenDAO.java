@@ -91,4 +91,26 @@ public class CanteenDAO implements com.example.webproject.dao.Impl.CanteenDAOImp
             preparedStatement.executeUpdate();
         }
     }
+
+    @Override
+    public Canteen getCanteenByManagerID(int ManagerID) throws SQLException{
+        Canteen canteen = null;
+        try (Connection connection = JDBCHelper.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Canteens WHERE ManagerID = ?")) {
+
+            preparedStatement.setInt(1, ManagerID);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                canteen = new Canteen();
+                canteen.setCanteenID(rs.getInt("CanteenID"));
+                canteen.setName(rs.getString("Name"));
+                canteen.setLocation(rs.getString("Location"));
+                canteen.setOpenTime(rs.getString("OpenTime"));
+                canteen.setManagerID(rs.getInt("ManagerID"));
+                canteen.setNotice(rs.getString("Notice"));
+            }
+        }
+        return canteen;
+    }
 }

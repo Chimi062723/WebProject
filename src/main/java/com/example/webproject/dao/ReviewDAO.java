@@ -153,4 +153,66 @@ public class ReviewDAO {
         }
     }
 
+
+    public List<Review>  getReviewsBydishIDs(int[] dishIDs) throws SQLException {
+        List<Review> reviews = new ArrayList<>();
+        dBhelper.init();
+        Connection connection = dBhelper.dbconn;
+        StringBuilder builder = new StringBuilder();
+        builder.append("(");
+        for (int i = 0; i < dishIDs.length; i++) {
+            builder.append("?");
+            if (i != dishIDs.length - 1) {
+                builder.append(",");
+            }
+        }
+        builder.append(")");
+        String sql = "SELECT * FROM Reviews WHERE DishID IN " + builder.toString();
+
+        PreparedStatement statement = connection.prepareStatement(sql);
+
+        for (int i = 0; i < dishIDs.length; i++) {
+            statement.setInt(i + 1, dishIDs[i]);
+        }
+
+        ResultSet resultSet = statement.executeQuery();
+        while (resultSet.next()) {
+            Review review = new Review(
+                    resultSet.getInt("reviewID"),
+                    resultSet.getInt("userID"),
+                    resultSet.getInt("dishID"),
+                    resultSet.getInt("rating"),
+                    resultSet.getString("comment"),
+                    resultSet.getString("reply"),
+                    resultSet.getTimestamp("createDate"),
+                    resultSet.getString("Picture")
+            );
+            reviews.add(review);
+        }
+        return reviews;
+    }
+
+    public Review  getReviewsByReviewID(int reviewID) throws SQLException {
+        dBhelper.init();
+        Connection connection = dBhelper.dbconn;
+        String sql = "SELECT * FROM Reviews WHERE reviewID = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, reviewID);
+        ResultSet resultSet = statement.executeQuery();
+        while (resultSet.next()) {
+            Review review = new Review(
+                    resultSet.getInt("reviewID"),
+                    resultSet.getInt("userID"),
+                    resultSet.getInt("dishID"),
+                    resultSet.getInt("rating"),
+                    resultSet.getString("comment"),
+                    resultSet.getString("reply"),
+                    resultSet.getTimestamp("createDate"),
+                    resultSet.getString("Picture")
+            );
+            return review;
+        }
+        return null;
+    }
+
 }
