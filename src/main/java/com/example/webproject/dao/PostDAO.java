@@ -38,6 +38,7 @@ public class PostDAO {
         List<Post> posts = new ArrayList<>();
         try (Connection connection = JDBCHelper.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(GET_POST_BY_USER_ID)) {
+            preparedStatement.setInt(1, userID);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Post post = new Post(
