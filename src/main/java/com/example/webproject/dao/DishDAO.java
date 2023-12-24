@@ -105,4 +105,29 @@ public class DishDAO {
         return 0;
     }
 
+    public List<Dish> getAllDishesByCanteenID(int canteenID) throws SQLException {
+        List<Dish> dishes = new ArrayList<>();
+        try {
+            Connection conn = JDBCHelper.getConnection();
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Dishes WHERE canteenID = ?");
+            ps.setInt(1, canteenID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Dish dish = new Dish();
+                dish.setDishID(rs.getInt("DishID"));
+                dish.setName(rs.getString("Name"));
+                dish.setType(rs.getString("CuisineType"));
+                dish.setPrice(rs.getDouble("Price"));
+                dish.setPromotionPrice(rs.getDouble("PromotionPrice"));
+                dish.setCanteenID(rs.getInt("canteenID"));
+                dish.setImage(rs.getString("ImageURL"));
+                dishes.add(dish);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return dishes;
+    }
+
+
 }
