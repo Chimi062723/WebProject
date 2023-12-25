@@ -17,10 +17,12 @@ public class addReview extends HttpServlet {
         int dishID = Integer.parseInt(request.getParameter("dishID"));
         int rating = Integer.parseInt(request.getParameter("rating"));
         String picture = request.getParameter("picture");
+
         String comment = request.getParameter("comment");
         HttpSession session = request.getSession();
         AdminActionImpl adminAction = new AdminActionImpl();
         int userID = adminAction.getAccountByUserName((String)session.getAttribute("username")).getUserID();
+
         adminAction.addReview(dishID,userID,rating,comment,picture);
         request.getRequestDispatcher("customer_dashboard.jsp").forward(request,response);
     }

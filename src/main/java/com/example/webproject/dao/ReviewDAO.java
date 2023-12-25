@@ -7,6 +7,7 @@ import com.example.webproject.util.JDBCHelper;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ReviewDAO {
 
@@ -100,7 +101,11 @@ public class ReviewDAO {
         statement.setInt(3, review.getRating());
         statement.setString(4, review.getComment());
         statement.setString(5, review.getReply());
-        statement.setString(6, review.getPicture());
+        if (Objects.equals(review.getPicture(), "")) {
+            statement.setNull(6, Types.VARCHAR);
+        } else {
+            statement.setString(6, review.getPicture());
+        }
         statement.executeUpdate();
     }
 
