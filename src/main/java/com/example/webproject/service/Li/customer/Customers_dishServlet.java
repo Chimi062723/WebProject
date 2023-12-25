@@ -12,8 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-//@WebServlet(name = "customers_dish", value = "/customers_dish")
-@WebServlet(name="dish_detail",value = "/dish_detail")
+@WebServlet(name = "customers_dish", value = "/customers_dish")
 public class Customers_dishServlet extends HttpServlet {
     List<Dish> dishList = new ArrayList<>();
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
