@@ -11,6 +11,11 @@
 <head>
     <title>菜品详情</title>
     <link rel="stylesheet" href="css/dishdetail.css"/> <!-- 链接到外部CSS文件 -->
+    <style>
+        .show{
+           display: none;
+        }
+    </style>
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="js/uploadfile.js" defer></script>
 </head>
@@ -68,12 +73,14 @@
                 <label for="picture">
                     选择需要上传的图片
                 </label>
-                <input  id="picture" type="file" accept="image/*" name="picture">
+                <input id="picture" type="file" accept="image/*" name="picture">
                 <button id="submit" onclick="picsubmit()">提交图片</button>
             </form>
             <iframe name="if" style="display: none">
             </iframe>
-            <img id="imageview" src="" alt="图片将会在这里显示">
+
+            <img class="show" id="imageview" src="" alt="图片将会在这里显示" style="width:300px"/>
+
         </div>
     </div>
 </div>
