@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "customers_dish", value = "/customers_dish")
-
 public class Customers_dishServlet extends HttpServlet {
     List<Dish> dishList = new ArrayList<>();
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -71,7 +70,18 @@ public class Customers_dishServlet extends HttpServlet {
 
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String rating = request.getParameter("rating");
+        String comment = request.getParameter("comment");
 
+        // 检查是否进行了评分
+        if (rating == null || rating.isEmpty()) {
+            rating = "未评分";
+        }
+        if (comment == null || comment.isEmpty()) {
+            comment = "该用户未做出评价";
+        }
 
+        // 保存评论，返回到当前界面
+        response.sendRedirect("dish_detail.jsp");
     }
 }
