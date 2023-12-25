@@ -3,11 +3,6 @@
     flex-direction: column;
     overflow: visible;
 }
-.back{
-    position: absolute;
-    left: 0;
-    top: 0;
-}
 .posts{
     display: flex;
     align-items: center;
@@ -18,4 +13,32 @@ body{
 }
 .post{
     overflow: visible;
+}
+.back{
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color:#fff;
+    background-color: #4699E0;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+.back:hover{
+    background-color: #4668E0;
+}
+.back:active{
+    background-color: #4668E0;
+    box-shadow: 0 5px #666;
+    transform:translateY(4px);
+}
+.link{
+    color: white;
 }

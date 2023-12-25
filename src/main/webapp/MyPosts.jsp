@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>${requestScope.username}的帖子</title>
@@ -45,8 +45,8 @@
         </div>
     </c:forEach>
 </div>
-<button class="back">
-    <a href="GetPostServlet">返回上一页</a>
+<button class="back" onclick="window.location.href='GetPostServlet'">
+    <a class="link" href="GetPostServlet">返回上一页</a>
 </button>
 </body>
 </html>
