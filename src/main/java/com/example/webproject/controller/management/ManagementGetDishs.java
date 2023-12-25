@@ -18,7 +18,7 @@ import java.util.List;
 public class ManagementGetDishs extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
+        doPost(request, response);
     }
 
     @Override
@@ -28,9 +28,9 @@ public class ManagementGetDishs extends HttpServlet {
         DBhelper db = new DBhelper();
         db.init();
         int userid = db.getUserID(db.dbconn, username); // 当前用户的id
-        ManagementsImpl managements=new ManagementsImpl();
-        List<Dish> dishs=managements.getDishs(userid);
-        request.setAttribute("dishes",dishs);
-        request.getRequestDispatcher("cantadmin_dish_management.jsp").forward(request,response);
+        ManagementsImpl managements = new ManagementsImpl();
+        List<Dish> dishs = managements.getDishs(userid);
+        request.setAttribute("dishes", dishs);
+        request.getRequestDispatcher("cantadmin_dish_management.jsp").forward(request, response);
     }
 }

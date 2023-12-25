@@ -26,25 +26,25 @@ public class ManagementUpdateDish extends HttpServlet {
         DBhelper db = new DBhelper();
         db.init();
         int userid = db.getUserID(db.dbconn, username); // 当前登录用户的id
-        ManagementsImpl managements=new ManagementsImpl();
+        ManagementsImpl managements = new ManagementsImpl();
         String dishID = request.getParameter("dishID"); // 菜品id
         String name = request.getParameter("name");
         String type = request.getParameter("type");
         String price = request.getParameter("price");
         String image = request.getParameter("image");
         String promotionPrice = request.getParameter("promotionPrice");
-        Dish dish=managements.getDish(Integer.parseInt(dishID));
+        Dish dish = managements.getDish(Integer.parseInt(dishID));
         dish.setImage(image);
         dish.setName(name);
         dish.setPrice(Double.parseDouble(price));
         dish.setType(type);
         dish.setPromotionPrice(Double.parseDouble(promotionPrice));
-        int a=managements.editDish(dish);
+        int a = managements.editDish(dish);
         Boolean msg = false;
         if (a >= 1) {
             msg = true;
         }
         //成功后 跳转到菜品列表信息
-        request.getRequestDispatcher("ManagementGetDishs?msg=" + msg).forward(request,response);
+        request.getRequestDispatcher("ManagementGetDishs?msg=" + msg).forward(request, response);
     }
 }

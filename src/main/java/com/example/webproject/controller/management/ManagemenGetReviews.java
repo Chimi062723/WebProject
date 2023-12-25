@@ -1,4 +1,5 @@
 package com.example.webproject.controller.management;
+
 import com.example.webproject.model.Canteen;
 import com.example.webproject.model.Dish;
 import com.example.webproject.model.Review;
@@ -18,7 +19,7 @@ import java.util.List;
 public class ManagemenGetReviews extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
+        doPost(request, response);
     }
 
     @Override
@@ -29,16 +30,16 @@ public class ManagemenGetReviews extends HttpServlet {
         db.init();
         int userid = db.getUserID(db.dbconn, username); // 当前食堂管理员id
         //
-        ManagementsImpl managements=new ManagementsImpl();
+        ManagementsImpl managements = new ManagementsImpl();
         // 获取食堂信息的的id
-        Canteen canteen=managements.getCanteen(userid);
+        Canteen canteen = managements.getCanteen(userid);
         // 通过食堂信息id拿到菜品集合
-        List<Dish> dishes= managements.getDishs(canteen.getCanteenID());
+        List<Dish> dishes = managements.getDishs(canteen.getCanteenID());
         // 通过菜品id集合，得到所有的评论列表
         int[] dishIDs = dishes.stream().mapToInt(Dish::getDishID).toArray();
         List<Review> reviews = managements.getReviews(dishIDs);
         // 成功后 跳转到评论列表
-        request.setAttribute("reviews",reviews);
-        request.getRequestDispatcher("cantadmin_reviews_management.jsp").forward(request,response);
+        request.setAttribute("reviews", reviews);
+        request.getRequestDispatcher("cantadmin_reviews_management.jsp").forward(request, response);
     }
 }
