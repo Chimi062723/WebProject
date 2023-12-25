@@ -23,7 +23,7 @@ function picsubmit(){
         success: function(data) {
             console.log("请求返回success信息data：", data);
             $('#url').val(data);
-            $('#imageview').attr("src","res/"+data);
+            $('#imageview').attr("src","res/"+data)
             $('#imageview').removeClass("show");
         }
     });

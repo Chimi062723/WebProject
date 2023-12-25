@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/foundation/5.5.3/css/foundation.min.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" >
     <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
-
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="js/uploadfile.js" defer></script>
 </head>
 <body>
 <jsp:include page="custom_sidebar.jsp"/>
@@ -22,17 +23,26 @@
     <h1 class="text-center mt-4 mb-4">社区论坛</h1>
 
     <form action="PostMessageServlet" method="post">
+        <input type="hidden" name="url" id="url" value="">
         <div class="mb-3">
-            <label class="form-label">标题:</label>
+            <label for="title" class="form-label">标题:</label>
             <input type="text" class="form-control" id="title" name="title" required>
         </div>
         <div class="mb-3">
-            <label class="form-label">内容:</label>
+            <label for="content" class="form-label">内容:</label>
             <textarea class="form-control" id="content" name="content" rows="4" required></textarea>
         </div>
         <button type="submit" class="btn btn-primary">发表</button>
     </form>
-
+    <form action="upFile" method="post" enctype="multipart/form-data" target="if" style="display: flex">
+        <label for="picture">
+            选择需要上传的图片
+        </label>
+        <input  id="picture" type="file" accept="image/*" name="picture" style="width: auto">
+        <button id="submit" onclick="picsubmit()" style="text-align: center; text-wrap: none">提交图片</button>
+    </form>
+    <iframe name="if" style="display: none">
+    </iframe>
     <form action="SearchForumServlet" method="get" class="mt-4">
         <div class="input-group mb-3">
             <input type="text" class="form-control" name="searchQuery" placeholder="搜索标题或用户名" required>

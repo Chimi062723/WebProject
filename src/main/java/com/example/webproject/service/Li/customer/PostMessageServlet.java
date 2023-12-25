@@ -35,15 +35,12 @@ public class PostMessageServlet extends HttpServlet {
         String title = request.getParameter("title");
         String content = request.getParameter("content");
         String username = (String) session.getAttribute("username");
-//        Part filePart = request.getPart("image");
-//        String fileName = filePart.getSubmittedFileName();
-
-
+        String pic = request.getParameter("url");
         DBhelper db = new DBhelper();
         db.init();
         int userid = db.getUserID(db.dbconn, username);
         try {
-            if(db.addPost(db.dbconn,userid, title, content)){
+            if(db.addPost(db.dbconn,userid, title, content,pic)){
                 response.sendRedirect("PostMessageServlet");
             }else{
                 response.sendRedirect("PostMessageServlet");

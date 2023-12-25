@@ -124,14 +124,15 @@ public class DBhelper {
         return null;
     }
 
-    public boolean addPost(Connection dbconn, int userid,String title, String content) {
-        String sql = "INSERT INTO CommunityPosts (UserID,Title,Content) VALUES (?,?,?)";
+    public boolean addPost(Connection dbconn, int userid,String title, String content,String picture) {
+        String sql = "INSERT INTO CommunityPosts (UserID,Title,Content,Picture) VALUES (?,?,?,?)";
         PreparedStatement ps = null;
         try {
             ps = dbconn.prepareStatement(sql);
             ps.setInt(1,userid);
             ps.setString(2, title);
             ps.setString(3, content);
+            ps.setString(4, picture);
             int result = ps.executeUpdate();
             return result > 0;
         } catch (SQLException throwables) {
