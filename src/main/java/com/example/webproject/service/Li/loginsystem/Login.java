@@ -30,6 +30,8 @@ public class Login  extends HttpServlet {
                 if(db.verifyPassword(db.dbconn, username, password)){
                     String role=null;
                     UserDAO userDAO = new UserDAO();
+                    int userID=userDAO.getUserByUsername(username).getUserID();
+                    session.setAttribute("userID",userID);
                     CanteenDAO canteenDAO = new CanteenDAO();
                     DishDAO dishDAO = new DishDAO();
                     PostDAO postDAO = new PostDAO();
@@ -47,10 +49,13 @@ public class Login  extends HttpServlet {
                             request.getRequestDispatcher("admin_dashboard.jsp").forward(request, response);
                             break;
                         case "res_admin":
+                            //先确认其管理的对应的食堂
+                            Canteen canteen = canteenDAO.getCanteenByManagerID(userID);
+                            session.setAttribute("canteen", canteen);
                             //获取未回复的评论
-                            session.setAttribute("unreviews", reviewDAO.getUnReplyReviews());
+                            session.setAttribute("unreviews", reviewDAO.getUnReplyReviews(canteen));
                             //获取未处理的投诉
-                            session.setAttribute("uncomplaints", complaintDAO.getUnprocessedComplaints());
+                            session.setAttribute("uncomplaints", complaintDAO.getUnprocessedComplaints(canteen.getCanteenID()));
 
                             request.getRequestDispatcher("cantadmin_dashboard.jsp").forward(request, response);
                             break;

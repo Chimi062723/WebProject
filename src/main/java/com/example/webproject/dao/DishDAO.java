@@ -39,25 +39,29 @@ public class DishDAO {
         return dishes;
     }
     public List<Dish> getAllDishesByCanteenID(int canteenID) throws SQLException {
+        Connection connection = JDBCHelper.getConnection();
         List<Dish> dishes = new ArrayList<>();
-        try (Connection conn = JDBCHelper.getConnection();
-             PreparedStatement ps = conn.prepareStatement(GET_DISH_BY_CANTEEN_ID)) {
+        PreparedStatement ps = null;
+        try {
+            ps = connection.prepareStatement(GET_DISH_BY_CANTEEN_ID);
             ps.setInt(1, canteenID);
-            try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
-                    Dish dish = new Dish();
-                    dish.setDishID(rs.getInt("DishID"));
-                    dish.setName(rs.getString("Name"));
-                    dish.setType(rs.getString("CuisineType"));
-                    dish.setPrice(rs.getDouble("Price"));
-                    dish.setPromotionPrice(rs.getDouble("PromotionPrice"));
-                    dish.setCanteenID(rs.getInt("canteenID"));
-                    dish.setImage(rs.getString("ImageURL"));
-                    dishes.add(dish);
-                }
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Dish dish = new Dish();
+                dish.setDishID(rs.getInt("DishID"));
+                dish.setCanteenID(rs.getInt("CanteenID"));
+                dish.setName(rs.getString("Name"));
+                dish.setPrice(rs.getDouble("Price"));
+                dish.setPromotionPrice(rs.getDouble("PromotionPrice"));
+                dish.setType(rs.getString("CuisineType"));
+                dish.setImage(rs.getString("ImageURL"));
+                dishes.add(dish);
             }
-            return dishes;
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return null;
         }
+        return dishes;
     }
     public Dish getDish(int dishID) throws SQLException {
         Dish dish = new Dish();

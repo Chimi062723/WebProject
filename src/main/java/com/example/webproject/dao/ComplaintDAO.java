@@ -36,13 +36,14 @@ public class ComplaintDAO {
         }
         return complaints;
     }
-    public List<Complaint> getUnprocessedComplaints() throws SQLException {
+    public List<Complaint> getUnprocessedComplaints(int canteenID) throws SQLException {
         Connection conn = JDBCHelper.getConnection();
         List<Complaint> complaints = new ArrayList<>();
-        String sql = "SELECT * FROM Complaints WHERE Status = 0";
+        String sql = "SELECT * FROM Complaints WHERE Status = 0 AND CanteenID = ?";
         PreparedStatement pstmt= null;
         try{
             pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1,canteenID);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 Complaint complaint = new Complaint();

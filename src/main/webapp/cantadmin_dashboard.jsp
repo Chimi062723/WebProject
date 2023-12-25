@@ -21,7 +21,7 @@
 <body>
 <div id="sidebar">
     <img src="res/logo.png" alt="USST Canteen Management System Logo">
-    <a href="cantadmin_dashboard.jsp">首页</a>
+    <a href="ManagemenRefresh">首页</a>
     <a href="cantadmin_canteen_management.jsp">食堂信息维护</a>
     <a href="cantadmin_dish_management.jsp">菜品维护</a>
     <a href="cantadmin_reviews_management.jsp">评价管理</a>
@@ -38,8 +38,10 @@
     <h1>欢迎, 食堂管理员 ${sessionScope.username}</h1>
     <!-- Content blocks for dynamic data -->
     <div>
-        <p>未处理评价: ${sessionScope.unreviews.size()}条</p>
-        <button>处理评价</button>
+        <form action="ManagemenGetUnReviews" method="post">
+            <p>未处理评价: ${sessionScope.unreviews.size()}条</p>
+            <input type="submit" value="处理评价">
+        </form>
     </div>
     <div>
         <p>待处理的投诉: ${sessionScope.uncomplaints.size()}条</p>
