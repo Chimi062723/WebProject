@@ -66,6 +66,27 @@ public class ReviewDAO {
         }
         return reviews;
     }
+    public List<Review> getUnReplyReviews() throws SQLException {
+        Connection connection = JDBCHelper.getConnection();
+        List<Review> reviews = new ArrayList<>();
+        String sql = "select * from Reviews where reply is null";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        ResultSet resultSet = statement.executeQuery();
+        while (resultSet.next()) {
+            Review review = new Review(
+                    resultSet.getInt("reviewID"),
+                    resultSet.getInt("userID"),
+                    resultSet.getInt("dishID"),
+                    resultSet.getInt("rating"),
+                    resultSet.getString("comment"),
+                    resultSet.getString("reply"),
+                    resultSet.getTimestamp("createDate"),
+                    resultSet.getString("Picture")
+            );
+            reviews.add(review);
+        }
+        return reviews;
+    }
 
     public List<Review> getReviewsByDishId(int dishId) throws SQLException {
         List<Review> reviews = new ArrayList<>();
@@ -196,27 +217,5 @@ public class ReviewDAO {
         return reviews;
     }
 
-    public Review  getReviewsByReviewID(int reviewID) throws SQLException {
-        dBhelper.init();
-        Connection connection = dBhelper.dbconn;
-        String sql = "SELECT * FROM Reviews WHERE reviewID = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, reviewID);
-        ResultSet resultSet = statement.executeQuery();
-        while (resultSet.next()) {
-            Review review = new Review(
-                    resultSet.getInt("reviewID"),
-                    resultSet.getInt("userID"),
-                    resultSet.getInt("dishID"),
-                    resultSet.getInt("rating"),
-                    resultSet.getString("comment"),
-                    resultSet.getString("reply"),
-                    resultSet.getTimestamp("createDate"),
-                    resultSet.getString("Picture")
-            );
-            return review;
-        }
-        return null;
-    }
 
 }

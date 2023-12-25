@@ -38,8 +38,7 @@ public class UserDAO implements UserDaoImpl {
         }
         return users;
     }
-// 通过外键
-    public User getUserByID(int id) {
+public User getUserByID(int id) {
     User user = null;
     try (Connection connection = JDBCHelper.getConnection();
          PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_USERID_SQL)) {

@@ -151,7 +151,7 @@ public class ManagementsImpl implements Managements {
     @Override
     public Review getReview(int reviewID) {
         try {
-            return reviewDAO.getReviewsByReviewID(reviewID);
+            return reviewDAO.getReviewByReviewID(reviewID);
         }catch (Exception e){
             e.printStackTrace();
         }

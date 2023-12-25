@@ -35,14 +35,14 @@
     </div>
 </div>
 <div id="main-content">
-    <h1>欢迎, 食堂管理员 ${username}</h1>
+    <h1>欢迎, 食堂管理员 ${sessionScope.username}</h1>
     <!-- Content blocks for dynamic data -->
     <div>
-        <p>未处理评价: ${unreviews.size()}条</p>
+        <p>未处理评价: ${sessionScope.unreviews.size()}条</p>
         <button>处理评价</button>
     </div>
     <div>
-        <p>待处理的投诉: ${uncomplaints.size()}条</p>
+        <p>待处理的投诉: ${sessionScope.uncomplaints.size()}条</p>
         <button>查看投诉</button>
     </div>
     <img src="res/1.png" alt="Dish Illustration" style="float:right; width:300px; margin-top:50px;">

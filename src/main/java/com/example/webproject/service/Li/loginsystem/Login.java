@@ -33,6 +33,7 @@ public class Login  extends HttpServlet {
                     CanteenDAO canteenDAO = new CanteenDAO();
                     DishDAO dishDAO = new DishDAO();
                     PostDAO postDAO = new PostDAO();
+                    ComplaintDAO complaintDAO = new ComplaintDAO();
                     VoteDAO voteDAO = new VoteDAO();
                     VoteResultDao voteResultDAO = new VoteResultDao();
                     ReviewDAO reviewDAO = new ReviewDAO();
@@ -46,7 +47,12 @@ public class Login  extends HttpServlet {
                             request.getRequestDispatcher("admin_dashboard.jsp").forward(request, response);
                             break;
                         case "res_admin":
-                            response.sendRedirect("cantadmin_dashboard.jsp");
+                            //获取未回复的评论
+                            session.setAttribute("unreviews", reviewDAO.getUnReplyReviews());
+                            //获取未处理的投诉
+                            session.setAttribute("uncomplaints", complaintDAO.getUnprocessedComplaints());
+
+                            request.getRequestDispatcher("cantadmin_dashboard.jsp").forward(request, response);
                             break;
                         case "normal_user":
                             session.setAttribute("dish1", dishDAO.getDish(1));

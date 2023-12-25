@@ -11,8 +11,7 @@
 <head>
     <title>菜品详情</title>
     <link rel="stylesheet" href="css/dishdetail.css"/> <!-- 链接到外部CSS文件 -->
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <script src="js/uploadfile.js" defer></script>
+
 </head>
 <body>
 <div class="container">
@@ -47,7 +46,6 @@
             <h1>发表新的评论：</h1>
             <form action="addReview" method="post">
                 <input type="hidden" name="dishID" value="${requestScope.dish.dishID}">
-                <input type="hidden" name="picture" id="url">
                 <label>
                     评分:
                     <input type="radio" name="rating" value="1">
@@ -62,21 +60,33 @@
                     <input type="text" name="comment">
                 </label>
                 <br>
-                <input type="submit">
-            </form>
-            <form action="upFile" method="post" enctype="multipart/form-data" target="if">
+                <br>
                 <label for="picture">
-                    选择需要上传的图片
+                    <button>选择需要上传的图片</button>
                 </label>
-                <input  id="picture" type="file" accept="image/*" name="picture">
-                <button id="submit" onclick="picsubmit()">提交图片</button>
+                <input style="opacity: 0" id="picture" type="file" accept="image/*" name="picture">
+
+                <input type="submit">
+                <img src="" alt="你上传的图片将会在这显示" style="display: none">
             </form>
-            <iframe name="if" style="display: none">
-            </iframe>
-            <img id="imageview" src="" alt="图片将会在这里显示">
         </div>
     </div>
 </div>
 </body>
-</html>
+<script>
+    // 原理是把本地图片路径："D(盘符):/image/..."转为"http://..."格式路径来进行显示图片
+    $("#picture").change(function() {
+        let $file = $(this);
+        let objUrl = $file[0].files[0];
+        //获得一个http格式的url路径:mozilla(firefox)||webkit or chrome
+        let windowURL = window.URL || window.webkitURL;
+        //createObjectURL创建一个指向该参数对象(图片)的URL
+        let dataURL;
+        dataURL = windowURL.createObjectURL(objUrl);
+        //把url给图片的src，让其显示
+        $("#imageview").attr("src",dataURL);
+        $('#imageview').attr("style","display:inline");
+    });
 
+</script>
+</html>

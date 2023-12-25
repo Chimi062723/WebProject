@@ -36,6 +36,30 @@ public class ComplaintDAO {
         }
         return complaints;
     }
+    public List<Complaint> getUnprocessedComplaints() throws SQLException {
+        Connection conn = JDBCHelper.getConnection();
+        List<Complaint> complaints = new ArrayList<>();
+        String sql = "SELECT * FROM Complaints WHERE Status = 0";
+        PreparedStatement pstmt= null;
+        try{
+            pstmt = conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Complaint complaint = new Complaint();
+                complaint.setComplaintID(rs.getInt("ComplaintID"));
+                complaint.setUserID(rs.getInt("UserID"));
+                complaint.setCanteenID(rs.getInt("CanteenID"));
+                complaint.setContent(rs.getString("Content"));
+                complaint.setStatus(rs.getInt("Status"));
+                complaint.setCreateDate(rs.getTimestamp("CreateDate"));
+                complaints.add(complaint);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+            throw e;
+        }
+        return complaints;
+    }
     public boolean addComplaint(int userID,int canteenID,String content)throws SQLException {
         Connection conn = JDBCHelper.getConnection();
         String sql = "INSERT INTO Complaints(UserID,CanteenID,Content) VALUES(?,?,?)";

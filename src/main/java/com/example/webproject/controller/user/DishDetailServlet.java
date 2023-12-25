@@ -16,13 +16,8 @@ import java.util.List;
 public class DishDetailServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        int dishId= Integer.parseInt(request.getParameter("id"));
+        int dishId= Integer.parseInt(request.getParameter("id"));
         DishDAO dishDAO=new DishDAO();
-        String idParam = request.getParameter("id");
-        int dishId = 0;
-        if (idParam != null && !idParam.isEmpty()) {
-            dishId = Integer.parseInt(idParam);
-        }
         ReviewDAO reviewDAO=new ReviewDAO();
         if(dishId!=0) {
             Dish dish;
@@ -33,27 +28,11 @@ public class DishDetailServlet extends HttpServlet {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-            if (dish != null) {
-//            if (dish != null&&reviews!=null) {
+            if (dish != null&&reviews!=null) {
                 request.setAttribute("dish", dish);
                 request.setAttribute("reviews", reviews);
-                request.getRequestDispatcher("dish_detail.jsp").forward(request, response);
-            }else{
-                if(dish==null&&reviews!=null){
-                    request.setAttribute("dish","未评分");
-                    request.setAttribute("reviews", reviews);
-            }
-                else if(dish!=null&&reviews==null){
-                    request.setAttribute("dish", dish);
-                    request.setAttribute("reviews","暂无评论");
-                }
-                else{
-                    request.setAttribute("dish","未评分");
-                    request.setAttribute("reviews","暂无评论");
-                }
                 request.getRequestDispatcher("/dish_detail.jsp").forward(request, response);
             }
-
         }
     }
 
