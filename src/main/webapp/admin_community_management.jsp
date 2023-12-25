@@ -47,7 +47,7 @@
         <c:forEach var="post" items="${sessionScope.posts}">
             <tr>
                 <td>${post.postID}</td>
-                <td>${post.userID}</td>
+                <td>${post.author.userName}</td>
                 <td>${post.title}</td>
                 <td>${post.content}</td>
                 <td>${post.createDate}</td>

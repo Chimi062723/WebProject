@@ -49,8 +49,8 @@
         <c:forEach var="review" items="${sessionScope.reviews}">
             <tr>
                 <td>${review.reviewID}</td>
-                <td>${review.userID}</td>
-                <td>${review.dishID}</td>
+                <td>${review.sender.userName}</td>
+                <td>${review.dish.name}</td>
                 <td>${review.rating}</td>
                 <td>${review.comment}</td>
                 <td>${review.createDate}</td>

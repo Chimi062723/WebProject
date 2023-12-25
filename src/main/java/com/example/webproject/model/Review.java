@@ -16,13 +16,21 @@ public class Review {
     User sender;
     Dish dish;
 
-    //addReview使用
+    //addReview使用,只可
     public Review(int dishID, int userID, int rating, String comment, String picture) {
         this.dishID = dishID;
         this.userID = userID;
         this.rating = rating;
         this.comment = comment;
         this.picture = picture;
+        UserDAO userDAO = new UserDAO();
+        DishDAO dishDAO = new DishDAO();
+        try {
+            this.sender = userDAO.getUserByID(userID);
+            this.dish = dishDAO.getDish(dishID);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public User getSender() {

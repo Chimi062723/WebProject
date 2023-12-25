@@ -14,7 +14,7 @@ button {
 #sidebar {
     background-color: #003366;
     color: white;
-    padding-bottom:2600px;
+    padding-bottom:5200px;
     margin-bottom: 9999px;
     width: 200px;
     height: 100%;
@@ -458,7 +458,6 @@ input[type="submit"]:hover {
 }
 
 .comment-submit {
-    color: #0056b3;
     text-decoration: none;
     padding: 5px 10px;
     border: 1px solid #0056b3;
