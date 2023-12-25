@@ -12,6 +12,7 @@ target/
 .idea/libraries/
 .idea/workspace.xml
 .idea/shelf/
+.idea/dataSources.local.xml
 *.iws
 *.iml
 *.ipr
