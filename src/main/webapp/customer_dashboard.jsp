@@ -4,7 +4,7 @@
 <html lang="zh">
 <head>
     <title>USST食堂管理系统</title>
-    <link rel="stylesheet" href="css/customer_menu.css"/> <!-- 链接到外部CSS文件 -->
+    <link rel="stylesheet" href="css/customer_menu.css"/>
     <!-- 内联样式或外部样式表应包括页面布局、字体、颜色等的定义 -->
 </head>
 <body>

@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>${requestScope.username}的帖子</title>
@@ -25,8 +25,10 @@
             <br>
             <span class="post-details">帖子内容：${post.content}</span>
             <br>
-            <img src="res/${post.picture}" alt="${post.title}"/>
-            <br>
+            <c:if test="${post.picture!= null}">
+                <img src="res/${post.picture}" alt="${post.title}"/>
+                <br>
+            </c:if>
             <span class="comment-list">
                 <c:if test="${post.comments.isEmpty()}">
                     该帖子还没有评论

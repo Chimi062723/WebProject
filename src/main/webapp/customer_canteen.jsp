@@ -16,6 +16,8 @@
     <title>Title</title>
     <link rel="stylesheet" href="css/customer_menu.css"/>
     <link rel="stylesheet" href="css/canteen_table.css"/>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/foundation/5.5.3/css/foundation.min.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" >
 </head>
 <body>
 <jsp:include page="custom_sidebar.jsp" />
