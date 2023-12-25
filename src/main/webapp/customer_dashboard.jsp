@@ -212,17 +212,22 @@
                 <div class="vote-item">
                     <span class="vote-title">${sessionScope.vote.title}</span>
                     <span class="vote-question">${sessionScope.vote.question}</span>
-                    <form action="VoteServlet" method="post">
-                        <input type="radio" name="result" id="1" value="${sessionScope.dish1.name}">
-                        <label for="1">${sessionScope.dish1.name}</label>
-                        <input type="radio" name="result" id="2" value="${sessionScope.dish2.name}">
-                        <label for="2">${sessionScope.dish2.name}</label>
-                        <input type="radio" name="result" id="3" value="${sessionScope.dish3.name}">
-                        <label for="3">${sessionScope.dish3.name}</label>
-                        <input type="radio" name="result" id="4" value="${sessionScope.dish4.name}">
-                        <label for="4">${sessionScope.dish4.name}</label>
-                        <input type="submit" value="投票">
-                    </form>
+                    <c:if test="${sessionScope.voteResult!= null}">
+                        <span class="vote-result">我的投票结果：${sessionScope.voteResult.answer}</span>
+                    </c:if>
+                    <c:if test="${sessionScope.voteResult == null}">
+                        <form action="VoteServlet" method="post">
+                            <input type="radio" name="result" id="1" value="${sessionScope.dish1.name}">
+                            <label for="1">${sessionScope.dish1.name}</label>
+                            <input type="radio" name="result" id="2" value="${sessionScope.dish2.name}">
+                            <label for="2">${sessionScope.dish2.name}</label>
+                            <input type="radio" name="result" id="3" value="${sessionScope.dish3.name}">
+                            <label for="3">${sessionScope.dish3.name}</label>
+                            <input type="radio" name="result" id="4" value="${sessionScope.dish4.name}">
+                            <label for="4">${sessionScope.dish4.name}</label>
+                            <input type="submit" value="投票">
+                        </form>
+                    </c:if>
                 </div>
             </div>
             <!-- 评论区 -->

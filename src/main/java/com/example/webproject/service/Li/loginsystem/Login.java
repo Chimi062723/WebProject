@@ -34,6 +34,7 @@ public class Login  extends HttpServlet {
                     DishDAO dishDAO = new DishDAO();
                     PostDAO postDAO = new PostDAO();
                     VoteDAO voteDAO = new VoteDAO();
+                    VoteResultDao voteResultDAO = new VoteResultDao();
                     ReviewDAO reviewDAO = new ReviewDAO();
                     role= userDAO.judgeRole(username);
                     switch (role) {
@@ -55,17 +56,25 @@ public class Login  extends HttpServlet {
                             session.setAttribute("dish5", dishDAO.getDish(5));
                             session.setAttribute("dish6", dishDAO.getDish(6));
                             //以上传入上新菜品
+
                             session.setAttribute("posts", postDAO.getMostLikesThreePosts());
                             //以上传入社区热点
+
                             List<Canteen> canteens = canteenDAO.getAllCanteens();
                             session.setAttribute("canteens", canteens);
                             //以上传入食堂信息
+
                             Vote vote = voteDAO.getVote(1);
                             session.setAttribute("vote", vote);
+                            VoteResult voteResult = voteResultDAO.getVoteResult(1,userDAO.getUserByUsername(username).getUserID());
+                            session.setAttribute("voteResult", voteResult);
+                            //以上传入投票信息
+
                             //传入菜系信息
                             List<String> cuisines = dishDAO.getAllCuisines();
                             session.setAttribute("cuisinestype", cuisines);
-                            //以上传入投票信息
+
+                            //传入最新3条评论
                             List<Review> lastThreeReviews = reviewDAO.getLastThreeReviews();
                             session.setAttribute("lastThreeReviews", lastThreeReviews);
 

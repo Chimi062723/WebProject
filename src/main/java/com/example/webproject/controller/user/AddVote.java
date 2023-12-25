@@ -3,6 +3,7 @@ package com.example.webproject.controller.user;
 import com.example.webproject.dao.UserDAO;
 import com.example.webproject.dao.VoteResultDao;
 import com.example.webproject.model.Vote;
+import com.example.webproject.model.VoteResult;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -26,6 +27,8 @@ public class AddVote extends HttpServlet {
         UserDAO userDao=new UserDAO();
         try {
             voteResultDao.addVoteResult(vote.getPollId(),userDao.getUserByUsername(username).getUserID(),options);
+            session.setAttribute("voteResult",voteResultDao.getVoteResult(vote.getPollId(),userDao.getUserByUsername(username).getUserID()));
+            response.sendRedirect("GetPostServlet");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

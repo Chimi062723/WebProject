@@ -1,9 +1,11 @@
 package com.example.webproject.dao;
 
+import com.example.webproject.model.VoteResult;
 import com.example.webproject.util.JDBCHelper;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class VoteResultDao {
@@ -21,5 +23,22 @@ public class VoteResultDao {
             e.printStackTrace();
         }
         return false;
+    }
+    public VoteResult getVoteResult(int pollID, int userID) throws SQLException {
+        VoteResult voteResult = null;
+        try(Connection conn = JDBCHelper.getConnection();
+        PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM PollResults WHERE PollID=? AND UserID=?")) {
+            pstmt.setInt(1, pollID);
+            pstmt.setInt(2, userID);
+            try(ResultSet rs = pstmt.executeQuery()){
+                if(rs.next()){
+                    voteResult = new VoteResult();
+                    voteResult.setPollID(rs.getInt("PollID"));
+                    voteResult.setUserID(rs.getInt("UserID"));
+                    voteResult.setAnswer(rs.getString("SelectedOption"));
+                }
+            }
+        }
+        return voteResult;
     }
 }
