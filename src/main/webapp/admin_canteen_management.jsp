@@ -50,7 +50,7 @@ canteens: 所有食堂信息
           <td>${canteen.name}</td>
           <td>${canteen.location}</td>
           <td>${canteen.openTime}</td>
-          <td>${canteen.managerID}</td>
+          <td>姓名:${canteen.manager.userName} ID:${canteen.managerID}</td>
           <td>
             <form>
               <input type="hidden" name="id" value="${canteen.canteenID}">
