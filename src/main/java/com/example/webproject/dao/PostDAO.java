@@ -122,7 +122,6 @@ public class PostDAO {
     }
     public List<Post> getMostLikesThreePosts() throws SQLException {
         List<Post> posts = new ArrayList<>();
-        UserDAO userDAO = new UserDAO();
         String sql = "SELECT * FROM CommunityPosts ORDER BY `Like` DESC LIMIT 3";
         try (Connection connection = JDBCHelper.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -166,7 +165,7 @@ public class PostDAO {
         return post;
     }
 public List<Post> getPostByCommentID(int commentID) throws SQLException {
-        List<Post> posts = null;
+        List<Post> posts;
         UserDAO userDAO = new UserDAO();
         String sql = "SELECT * FROM CommunityPosts WHERE CommentID =? ORDER BY CreateDate DESC";
         try (Connection connection = JDBCHelper.getConnection();
@@ -191,7 +190,11 @@ public List<Post> getPostByCommentID(int commentID) throws SQLException {
         return posts;
     }
     public void deletePost(int PostID) throws SQLException {
-
+        Connection connection = JDBCHelper.getConnection();
+        String sql = "delete from CommunityPosts where PostID = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1,PostID);
+        statement.executeUpdate();
     }
 
     public void editPost(Post newPost) throws SQLException {
