@@ -38,6 +38,6 @@
         </span>
     </div>
 </c:forEach>
-<a href="customer_dashboard.jsp">返回</a>
+<a href="GetPostServlet">返回</a>
 </body>
 </html>

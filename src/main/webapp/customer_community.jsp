@@ -130,13 +130,13 @@
     });
 
 
-    //强制页面返回时更新一次，否则无法动态加载修改后的数据
-    window.addEventListener("pageshow", function (event) {
-        if (event.persisted || (window.performance && window.performance.navigation.type == 2)) {
-            // 页面是从历史记录中加载的
-            window.location.reload(true);
-        }
-    });
+    // //强制页面返回时更新一次，否则无法动态加载修改后的数据
+    // window.addEventListener("pageshow", function (event) {
+    //     if (event.persisted || (window.performance && window.performance.navigation.type == 2)) {
+    //         // 页面是从历史记录中加载的
+    //         window.location.reload(true);
+    //     }
+    // });
 </script>
 </div>
 </body>
