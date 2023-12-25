@@ -40,12 +40,14 @@
     <div>
         <form action="ManagemenGetUnReviews" method="post">
             <p>未处理评价: ${sessionScope.unreviews.size()}条</p>
-            <input type="submit" value="处理评价">
+            <button type="submit" value="处理评价">处理评价</button>
         </form>
     </div>
     <div>
-        <p>待处理的投诉: ${sessionScope.uncomplaints.size()}条</p>
-        <button>查看投诉</button>
+        <form action="ManagemenGetUnComplaints" method="post">
+            <p>待处理的投诉: ${sessionScope.uncomplaints.size()}条</p>
+            <button type="submit" value="处理投诉">处理投诉</button>
+        </form>
     </div>
     <img src="res/1.png" alt="Dish Illustration" style="float:right; width:300px; margin-top:50px;">
 </div>

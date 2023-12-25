@@ -61,6 +61,23 @@ public class ComplaintDAO {
         }
         return complaints;
     }
+    public boolean handleComplaint(int complaintID)throws SQLException {
+        Connection conn = JDBCHelper.getConnection();
+        String sql = "UPDATE Complaints SET Status = 1  WHERE ComplaintID =?";
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, complaintID);
+            int result = pstmt.executeUpdate();
+            if (result > 0) {
+                return true;
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+        return false;
+    }
     public boolean addComplaint(int userID,int canteenID,String content)throws SQLException {
         Connection conn = JDBCHelper.getConnection();
         String sql = "INSERT INTO Complaints(UserID,CanteenID,Content) VALUES(?,?,?)";
