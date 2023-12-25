@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="zh">
@@ -347,7 +347,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.comment-form').forEach(function(form) {
             form.addEventListener('submit', function(event) {
-                var commentInput = this.querySelector('.comment-input');
+                const commentInput = this.querySelector('.comment-input');
                 if (!commentInput.value.trim()) {
                     event.preventDefault(); // 阻止表单提交
                     alert('评论不能为空');
@@ -359,9 +359,9 @@
 
     //强制页面返回时更新一次，否则无法动态加载修改后的数据
     window.addEventListener("pageshow", function (event) {
-        if (event.persisted || (window.performance && window.performance.navigation.type == 2)) {
+        if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
             // 页面是从历史记录中加载的
-            window.location.reload(true);
+            window.location.reload();
         }
     });
 

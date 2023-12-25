@@ -1,0 +1,21 @@
+.scorll{
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+}
+.back{
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.posts{
+    display: flex;
+    align-items: center;
+}
+body{
+    justify-content: center;
+    overflow: scroll;
+}
+.post{
+    overflow: visible;
+}
