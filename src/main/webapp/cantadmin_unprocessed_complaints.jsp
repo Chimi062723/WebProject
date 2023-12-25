@@ -15,7 +15,7 @@
 <body>
 <div id="content">
     <h1>待处理投诉</h1>
-    <a href="ManagemenRefresh">返回</a>
+    <a href="DashboardRefresh">返回</a>
 
     <table border="1" id="table">
         <tr>

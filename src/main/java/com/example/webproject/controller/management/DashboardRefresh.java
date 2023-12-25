@@ -9,8 +9,8 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(name = "ManagemenRefresh", value = "/ManagemenRefresh")
-public class ManagemenRefresh extends HttpServlet {
+@WebServlet(name = "DashboardRefresh", value = "/DashboardRefresh")
+public class DashboardRefresh extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();

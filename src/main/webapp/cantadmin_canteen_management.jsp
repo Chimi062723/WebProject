@@ -12,11 +12,12 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="css/cantadmin_menu.css">
+    <link rel="stylesheet" href="css/edit_canteen.css">
 <body>
 <div id="sidebar">
     <img src="res/logo.png" alt="USST Canteen Management System Logo">
-    <a href="ManagemenRefresh">首页</a>
-    <a href="cantadmin_canteen_management.jsp">食堂信息维护</a>
+    <a href="DashboardRefresh">首页</a>
+    <a href="CanteenInfoRefresh">食堂信息维护</a>
     <a href="cantadmin_dish_management.jsp">菜品维护</a>
     <a href="cantadmin_reviews_management.jsp">评价管理</a>
     <a href="cantadmin_notice_management.jsp">公告管理</a>
@@ -25,20 +26,28 @@
 </div>
 <div id="main-content">
     <h2>食堂信息维护</h2>
-    <!-- Form for canteen information maintenance -->
-    <div class="form-group">
-        <label for="canteenName">食堂名称:</label>
-        <input type="text" id="canteenName" name="canteenName" value=${canteen.name}>
-    </div>
-    <div class="form-group">
-        <label for="canteenLocation">食堂位置:</label>
-        <input type="text" id="canteenLocation" name="canteenLocation" value=${canteen.location}>
-    </div>
-    <div class="form-group">
-        <label for="canteenHours">营业时间:</label>
-        <input type="text" id="canteenHours" name="canteenHours" value=${canteen.opentime}>
-    </div>
-    <button type="submit">保存</button>
+    <form action="EditCanteen" method="post">
+        <input type="hidden" name="canteenID" value="${sessionScope.canteen.canteenID}">
+        <input type="hidden" name="role" value="res_admin">
+        <label>
+            食堂名称:
+            <input type="text" name="canteenName" value="${sessionScope.canteen.name}">
+        </label>
+        <br>
+        <label>
+            食堂地址:
+            <input type="text" name="location" value="${sessionScope.canteen.location}">
+        </label>
+        <br>
+        <label>
+            营业时间:
+            <input type="text" name="opentime" value="${sessionScope.canteen.openTime}">
+        </label>
+        <br>
+        <input type="hidden" name="managerName" value="${sessionScope.username}">
+        <input type="hidden" name="notice" value="${sessionScope.canteen.notice}">
+        <input type="submit" value="修改">
+    </form>
 </div>
 </body>
 </html>
