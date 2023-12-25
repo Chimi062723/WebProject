@@ -1,31 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="WebWeb">
   <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.49">
-    <root id="1">
-      <DefaultCasing>exact</DefaultCasing>
-      <DefaultEngine>InnoDB</DefaultEngine>
-      <DefaultTmpEngine>InnoDB</DefaultTmpEngine>
-      <Grants>web_restaurant|schema||webteam||ALTER|G
-web_restaurant|schema||webteam||ALTER ROUTINE|G
-web_restaurant|schema||webteam||CREATE|G
-web_restaurant|schema||webteam||CREATE ROUTINE|G
-web_restaurant|schema||webteam||CREATE TEMPORARY TABLES|G
-web_restaurant|schema||webteam||CREATE VIEW|G
-web_restaurant|schema||webteam||DELETE|G
-web_restaurant|schema||webteam||DROP|G
-web_restaurant|schema||webteam||EVENT|G
-web_restaurant|schema||webteam||EXECUTE|G
-web_restaurant|schema||webteam||INDEX|G
-web_restaurant|schema||webteam||INSERT|G
-web_restaurant|schema||webteam||LOCK TABLES|G
-web_restaurant|schema||webteam||REFERENCES|G
-web_restaurant|schema||webteam||SELECT|G
-web_restaurant|schema||webteam||SHOW VIEW|G
-web_restaurant|schema||webteam||TRIGGER|G
-web_restaurant|schema||webteam||UPDATE|G
-web_restaurant|schema||webteam||grant option|G</Grants>
-      <ServerVersion>8.0.35</ServerVersion>
-    </root>
+    <root id="1"/>
     <collation id="2" parent="1" name="armscii8_general_ci">
       <Charset>armscii8</Charset>
       <DefaultForCharset>1</DefaultForCharset>
