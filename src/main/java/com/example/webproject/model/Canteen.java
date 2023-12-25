@@ -1,5 +1,7 @@
 package com.example.webproject.model;
 
+import com.example.webproject.dao.UserDAO;
+
 public class Canteen {
     private int canteenID;
     private String name;
@@ -8,7 +10,9 @@ public class Canteen {
     private int managerID;
 
     private String notice;
-
+    //以下为特殊封装对象
+    private User manager;
+    UserDAO userDAO = new UserDAO();
     public Canteen() {
     }
 
@@ -18,11 +22,21 @@ public class Canteen {
         this.location = location;
         this.openTime = openTime;
         this.managerID = managerID;
+        this.manager = userDAO.getUserByID(managerID);
         this.notice = notice;
     }
 
 
     // getters and setters
+
+    public User getManager() {
+        return manager;
+    }
+
+    public void setManager(User manager) {
+        this.manager = manager;
+    }
+
     public int getCanteenID() {
         return canteenID;
     }
@@ -61,6 +75,7 @@ public class Canteen {
 
     public void setManagerID(int managerID){
         this.managerID = managerID;
+        this.manager = userDAO.getUserByID(managerID);
     }
 
 

@@ -12,11 +12,11 @@
 <head>
     <meta charset="UTF-8">
     <title>我的投诉</title>
-<%--    <link rel="stylesheet" href="path_to_your_stylesheet.css">--%>
+    <link rel="stylesheet" href="css/my_complaint.css">
 </head>
 <body>
 <div class="container">
-    <a href="customer_dashboard.jsp" class="back-button">返回</a>
+    <a href="GetPostServlet" class="back-button">返回</a>
     <h1>我的投诉</h1>
     <table>
         <thead>
