@@ -84,9 +84,13 @@
         let dataURL;
         dataURL = windowURL.createObjectURL(objUrl);
         //把url给图片的src，让其显示
-        $("#imageview").attr("src",dataURL);
-        $('#imageview').attr("style","display:inline");
-    });
+        $("#imageview").attr("src", dataURL);
+        $('#imageview').attr("style", "display:inline");
 
+        // 添加监听器，在提交之后刷新页面
+        document.querySelector('form[action="addReview"]').addEventListener('submit', function () {
+            location.reload();
+        });
+    });
 </script>
 </html>
