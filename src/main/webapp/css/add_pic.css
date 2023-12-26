@@ -1,0 +1,60 @@
+/* 新评论和图片上传表单样式 */
+.review form {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.review label {
+    display: block;
+    margin-bottom: 10px;
+    color: #0056b3;
+    font-weight: bold;
+}
+
+.review input[type="text"],
+.review input[type="file"],
+.review input[type="submit"],
+.review button {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.review input[type="submit"],
+.review button {
+    background-color: #0056b3;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+.review input[type="submit"]:hover,
+.review button:hover {
+    background-color: #003366;
+}
+
+.review input[type="radio"] {
+    margin-right: 5px;
+}
+
+.review iframe {
+    margin-top: 10px;
+    width: 100%;
+    height: 50px;
+    border: none;
+}
+
+.review #imageview {
+    margin-top: 10px;
+    border-radius: 5px;
+    width: 300px; /* 或根据需要调整 */
+    height: auto;
+}
+
+/* 调整评分输入的布局 */
+.review input[type="radio"] + label {
+    display: inline;
+    margin-right: 10px;
+}
