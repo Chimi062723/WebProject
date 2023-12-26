@@ -1,5 +1,6 @@
 package com.example.webproject.controller.admin;
 
+import com.example.webproject.model.Canteen;
 import com.example.webproject.model.User;
 import com.example.webproject.service.Xu.Admin.AdminActionImpl;
 import jakarta.servlet.*;
@@ -22,12 +23,28 @@ public class AddAcount extends HttpServlet {
         String email = request.getParameter("email");
         String role = request.getParameter("role");
         String password = request.getParameter("password");
-        if(Objects.equals(role, "res_admin")){
-            int canteenID = Integer.parseInt("canteenID");
-        }
         AdminActionImpl adminAction = new AdminActionImpl();
-        User user = new User(name,password,email,role);
-        adminAction.addAccount(user);
+        if(Objects.equals(role, "res_admin")){
+            int canteenID = Integer.parseInt(request.getParameter("canteenID"));
+            if(adminAction.getAccountByUserName(name) == null){
+                User user = new User(name,password,email,role);
+
+                Canteen newCanteen = adminAction.getCanteen(canteenID);
+                if(newCanteen!=null){
+                    newCanteen.setManagerID(user.getUserID());
+                    User user1 = newCanteen.getManager();
+                    if (user1.getUserID()!=1){
+                        adminAction.editAccount(user1.getUserName(),user1.getEmail(),"normal_user");
+                    }
+                    adminAction.editCanteen(newCanteen);
+                }else{
+                    user.setRole("normal_user");
+                }
+                adminAction.addAccount(user);
+            }
+        }else {
+            adminAction.addAccount(new User(name,password,email,role));
+        }
         HttpSession session = request.getSession();
         session.setAttribute("users",adminAction.getAllAccount());
         request.getRequestDispatcher("admin_account_management.jsp").forward(request,response);

@@ -32,7 +32,7 @@
     <label for="searchBox">搜索用户</label>
     <input type="text" id="searchBox" placeholder="搜索用户..." />
     <input type="button" id="searchBtn" onclick="search()" value="搜索"/>
-    <form>
+    <form action="AddAcount" method="post">
         <table border="1" id="table">
             <tr>
                 <th>ID</th>
@@ -44,21 +44,23 @@
                 <th>操作</th>
             </tr>
             <c:forEach var="user" items="${sessionScope.users}">
-                <tr>
-                    <td>${user.userID}</td>
-                    <td>${user.userName}</td>
-                    <td>${user.password}</td>
-                    <td>${user.email}</td>
-                    <td>${user.role}</td>
-                    <td>${user.createDate}</td>
-                    <td>
-                        <form>
-                            <input type="hidden" name="id" value="${user.userID}">
-                            <input type="submit" value="编辑" formaction="EditAccount" formmethod="get">
-                            <input type="submit" value="删除" formaction="DeleteAccount" formmethod="get">
-                        </form>
-                    </td>
-                </tr>
+                <c:if test="${user.userID!=1}">
+                    <tr>
+                        <td>${user.userID}</td>
+                        <td>${user.userName}</td>
+                        <td>${user.password}</td>
+                        <td>${user.email}</td>
+                        <td>${user.role}</td>
+                        <td>${user.createDate}</td>
+                        <td>
+                            <form>
+                                <input type="hidden" name="id" value="${user.userID}">
+                                <input type="submit" value="编辑" formaction="EditAccount" formmethod="get">
+                                <input type="submit" value="删除" formaction="DeleteAccount" formmethod="get">
+                            </form>
+                        </td>
+                    </tr>
+                </c:if>
             </c:forEach>
             <tr>
                 <td>New</td>
@@ -71,8 +73,11 @@
                         <option value="normal_user">普通用户</option>
                     </select>
                 </label></td>
-                <td>系统自动生成</td>
-                <td><input type="submit" formaction="AddAcount" formmethod="post" value="提交"></td>
+                <td>
+                    <label for="canteenID">管理的食堂名称</label>
+                    <input id="canteenID" type="number" name="canteenID" placeholder="如果是食堂管理员，需要在这里输入管理的食堂名字">
+                </td>
+                <td><input type="submit" value="提交"></td>
             </tr>
         </table>
     </form>
