@@ -1,5 +1,7 @@
 package com.example.webproject.dao;
 
+import com.example.webproject.model.Canteen;
+import com.example.webproject.model.Dish;
 import com.example.webproject.model.Review;
 import com.example.webproject.util.DBhelper;
 import com.example.webproject.util.JDBCHelper;
@@ -66,11 +68,13 @@ public class ReviewDAO {
         }
         return reviews;
     }
-    public List<Review> getUnReplyReviews() throws SQLException {
-        Connection connection = JDBCHelper.getConnection();
+    public List<Review> getUnReplyReviewsByDishId(int dishID) throws SQLException {
         List<Review> reviews = new ArrayList<>();
-        String sql = "select * from Reviews where reply is null";
+        dBhelper.init();
+        Connection connection = dBhelper.dbconn;
+        String sql = "SELECT * FROM Reviews WHERE dishID = ? AND reply is null ";
         PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, dishID);
         ResultSet resultSet = statement.executeQuery();
         while (resultSet.next()) {
             Review review = new Review(
@@ -87,7 +91,56 @@ public class ReviewDAO {
         }
         return reviews;
     }
-
+    public List<Review> getUnReplyReviews(Canteen canteen) throws SQLException {
+        DishDAO dishDAO = new DishDAO();
+        List<Dish> dishes = dishDAO.getAllDishesByCanteenID(canteen.getCanteenID());
+        List<Review> reviews = new ArrayList<>();
+        for(Dish dish : dishes) {
+            reviews.addAll(getUnReplyReviewsByDishId(dish.getDishID()));
+//            String sql = "select * from Reviews where reply is null AND DishID= ?";
+//            PreparedStatement statement = connection.prepareStatement(sql);
+//            ResultSet resultSet = statement.executeQuery();
+//            while (resultSet.next()) {
+//                Review review = new Review(
+//                        resultSet.getInt("reviewID"),
+//                        resultSet.getInt("userID"),
+//                        resultSet.getInt("dishID"),
+//                        resultSet.getInt("rating"),
+//                        resultSet.getString("comment"),
+//                        resultSet.getString("reply"),
+//                        resultSet.getTimestamp("createDate"),
+//                        resultSet.getString("Picture")
+//                );
+//                reviews.add(review);
+//            }
+        }
+        return reviews;
+    }
+    public List<Review> getAllReviews(Canteen canteen) throws SQLException {
+        DishDAO dishDAO = new DishDAO();
+        List<Dish> dishes = dishDAO.getAllDishesByCanteenID(canteen.getCanteenID());
+        List<Review> reviews = new ArrayList<>();
+        for(Dish dish : dishes) {
+            reviews.addAll(getReviewsByDishId(dish.getDishID()));
+//            String sql = "select * from Reviews where reply is null AND DishID= ?";
+//            PreparedStatement statement = connection.prepareStatement(sql);
+//            ResultSet resultSet = statement.executeQuery();
+//            while (resultSet.next()) {
+//                Review review = new Review(
+//                        resultSet.getInt("reviewID"),
+//                        resultSet.getInt("userID"),
+//                        resultSet.getInt("dishID"),
+//                        resultSet.getInt("rating"),
+//                        resultSet.getString("comment"),
+//                        resultSet.getString("reply"),
+//                        resultSet.getTimestamp("createDate"),
+//                        resultSet.getString("Picture")
+//                );
+//                reviews.add(review);
+//            }
+        }
+        return reviews;
+    }
     public List<Review> getReviewsByDishId(int dishId) throws SQLException {
         List<Review> reviews = new ArrayList<>();
         dBhelper.init();
@@ -129,7 +182,16 @@ public class ReviewDAO {
         }
         statement.executeUpdate();
     }
-
+    public boolean addReply(int reviewId, String reply) throws SQLException {
+        dBhelper.init();
+        Connection connection = dBhelper.dbconn;
+        String sql = "UPDATE Reviews SET reply =? WHERE ReviewID =?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, reply);
+        statement.setInt(2, reviewId);
+        int rowsUpdated = statement.executeUpdate();
+        return rowsUpdated > 0;
+    }
     public boolean updateReview(Review review) throws SQLException {
         dBhelper.init();
         Connection connection = dBhelper.dbconn;

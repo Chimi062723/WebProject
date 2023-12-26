@@ -18,8 +18,8 @@
 <body>
 <div id="sidebar">
     <img src="res/logo.png" alt="USST Canteen Management System Logo">
-    <a href="cantadmin_dashboard.jsp">首页</a>
-    <a href="cantadmin_canteen_management.jsp">食堂信息维护</a>
+    <a href="DashboardRefresh">首页</a>
+    <a href="CanteenInfoRefresh">食堂信息维护</a>
     <a href="cantadmin_dish_management.jsp">菜品维护</a>
     <a href="cantadmin_reviews_management.jsp">评价管理</a>
     <a href="cantadmin_notice_management.jsp">公告管理</a>

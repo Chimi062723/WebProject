@@ -1,6 +1,10 @@
 package com.example.webproject.model;
 
+import com.example.webproject.dao.DishDAO;
 import com.example.webproject.dao.UserDAO;
+
+import java.sql.SQLException;
+import java.util.List;
 
 public class Canteen {
     private int canteenID;
@@ -11,8 +15,11 @@ public class Canteen {
 
     private String notice;
     //以下为特殊封装对象
-    private User manager;
     UserDAO userDAO = new UserDAO();
+    private User manager;
+    DishDAO dishDAO = new DishDAO();
+
+
     public Canteen() {
     }
 
@@ -28,7 +35,6 @@ public class Canteen {
 
 
     // getters and setters
-
     public User getManager() {
         return manager;
     }
@@ -43,6 +49,7 @@ public class Canteen {
 
     public void setCanteenID(int canteenID) {
         this.canteenID = canteenID;
+
     }
 
     public String getName() {

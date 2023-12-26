@@ -21,7 +21,7 @@
 </head>
 <body>
 <div class="container">
-    <a href="javascript:history.back()" class="back-button">返回</a>
+    <a href="GetPostServlet" class="back-button">返回</a>
     <div class="dish-detail" style="flex:2; flex-grow: 1">
         <img src="res/${requestScope.dish.image}" alt="${requestScope.dish.name}" class="dish-image"/>
         <div class="dish-info">

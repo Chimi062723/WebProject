@@ -189,6 +189,7 @@ public class AdminActionImpl implements AdminActions{
      * @param location  餐厅位置
      * @param openTime  时间
      * @param managerName 管理员编号
+     * @param notice    公告
      * @return
      */
     @Override

@@ -34,8 +34,13 @@ public class EditCanteen extends HttpServlet {
         AdminActionImpl adminAction = new AdminActionImpl();
         Canteen newcanteen = adminAction.canteenEncapsulation(id,canteenName,location,opentime,managerName,notice);
         adminAction.editCanteen(newcanteen);
-        HttpSession session = request.getSession();
-        session.setAttribute("canteens",adminAction.getAllCanteen());
-        request.getRequestDispatcher("admin_canteen_management.jsp").forward(request,response);
+        String role=request.getParameter("role");
+        if(role.equals("sys_admin")){
+            HttpSession session = request.getSession();
+            session.setAttribute("canteens",adminAction.getAllCanteen());
+            response.sendRedirect("GetPostServlet");
+        }else if(role.equals("res_admin")){
+            response.sendRedirect("CanteenInfoRefresh");
+        }
     }
 }
