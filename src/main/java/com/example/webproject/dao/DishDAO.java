@@ -79,10 +79,12 @@ public class DishDAO {
                     dish.setPrice(rs.getDouble("Price"));
                     dish.setCanteenID(rs.getInt("canteenID"));
                     dish.setImage(rs.getString("ImageURL"));
+                    return dish;
+                }else {
+                    return null;
                 }
             }
         }
-        return dish;
     }
 
     public boolean addDish(Dish dish) throws SQLException {
@@ -98,6 +100,20 @@ public class DishDAO {
         }
     }
 
+    public void addDish2(Dish dish) throws SQLException {
+        String sql = "INSERT INTO Dishes (Name, CuisineType, Price,PromotionPrice, canteenID, ImageURL) VALUES (?, ?, ?, ?, ?, ?)";
+        try (Connection conn = JDBCHelper.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, dish.getName());
+            ps.setString(2, dish.getType());
+            ps.setDouble(3, dish.getPrice());
+            ps.setDouble(4,dish.getPromotionPrice());
+            ps.setInt(5, dish.getCanteenID());
+            ps.setString(6, dish.getImage());
+            ps.executeUpdate();
+        }
+    }
+
     public boolean updateDish(Dish dish) throws SQLException {
         try (Connection conn = JDBCHelper.getConnection();
              PreparedStatement ps = conn.prepareStatement(UPDATE_DISH)) {
@@ -109,6 +125,20 @@ public class DishDAO {
             ps.setInt(6, dish.getDishID());
             int rowsUpdated = ps.executeUpdate();
             return rowsUpdated > 0;
+        }
+    }
+    public void updateDish2(Dish dish) throws SQLException {
+        String sql = "UPDATE Dishes SET Name = ?, CuisineType = ?, Price = ?, canteenID = ?, ImageURL = ?, PromotionPrice = ? WHERE DishID = ?";
+        try (Connection conn = JDBCHelper.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, dish.getName());
+            ps.setString(2, dish.getType());
+            ps.setDouble(3, dish.getPrice());
+            ps.setInt(4, dish.getCanteenID());
+            ps.setString(5, dish.getImage());
+            ps.setDouble(6, dish.getPromotionPrice());
+            ps.setInt(7, dish.getDishID());
+            ps.executeUpdate();
         }
     }
 
@@ -128,10 +158,12 @@ public class DishDAO {
         preparedStatement.setString(1,dish);
         ResultSet resultSet = preparedStatement.executeQuery();
         if(resultSet.next()){
+            connection.close();
             return resultSet.getInt("DishID");
+        }else{
+            connection.close();
+            return 0;
         }
-        connection.close();
-        return 0;
     }
 
     public List<String> getAllCuisines() {
@@ -149,5 +181,34 @@ public class DishDAO {
             throw new RuntimeException(e);
         }
         return cuisines;
+    }
+
+    public List<Dish> getAllDishesByCanteenIDWithSearch(int canteenID, String text) {
+        List<Dish> dishes = new ArrayList<>();
+        String sql;
+        sql = "select * from Dishes where CanteenID = ? and Name like ?";
+        PreparedStatement ps = null;
+        try (Connection connection = JDBCHelper.getConnection()){
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, canteenID);
+            ps.setString(2,'%'+text+'%');
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Dish dish = new Dish();
+                dish.setDishID(rs.getInt("DishID"));
+                dish.setCanteenID(rs.getInt("CanteenID"));
+                dish.setName(rs.getString("Name"));
+                dish.setPrice(rs.getDouble("Price"));
+                dish.setPromotionPrice(rs.getDouble("PromotionPrice"));
+                dish.setType(rs.getString("CuisineType"));
+                dish.setImage(rs.getString("ImageURL"));
+                dishes.add(dish);
+            }
+            connection.close();
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return dishes;
     }
 }
