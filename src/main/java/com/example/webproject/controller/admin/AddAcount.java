@@ -13,8 +13,7 @@ import java.util.Objects;
 @WebServlet(name = "AddAcount", value = "/AddAcount")
 public class AddAcount extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
     }
 
     @Override
@@ -31,15 +30,16 @@ public class AddAcount extends HttpServlet {
                 Canteen newCanteen = adminAction.getCanteen(canteenID);
                 if(newCanteen!=null){
                     User user1 = newCanteen.getManager();
-                    newCanteen.setManagerID(user.getUserID());
                     if (user1.getUserID()!=1){
                         adminAction.editAccount(user1.getUserName(),user1.getEmail(),"normal_user");
                     }
+                    adminAction.addAccount(user);
+                    newCanteen.setManagerID(adminAction.getAccountByUserName(name).getUserID());
                     adminAction.editCanteen(newCanteen);
                 }else{
                     user.setRole("normal_user");
+                    adminAction.addAccount(user);
                 }
-                adminAction.addAccount(user);
             }
         }else {
             adminAction.addAccount(new User(name,password,email,role));

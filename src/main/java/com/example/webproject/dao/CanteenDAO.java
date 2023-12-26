@@ -73,7 +73,6 @@ public class CanteenDAO implements com.example.webproject.dao.Impl.CanteenDAOImp
     public void updateCanteen(Canteen canteen) throws SQLException{
         try (Connection connection = JDBCHelper.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_CANTEEN_SQL)) {
-
             preparedStatement.setString(1, canteen.getName());
             preparedStatement.setString(2, canteen.getLocation());
             preparedStatement.setString(3, canteen.getOpenTime());

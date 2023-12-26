@@ -1,5 +1,6 @@
 package com.example.webproject.controller.admin;
 
+import com.example.webproject.model.Canteen;
 import com.example.webproject.service.Xu.Admin.AdminActionImpl;
 import com.example.webproject.model.User;
 import jakarta.servlet.*;
@@ -25,6 +26,23 @@ public class EditAccount extends HttpServlet {
         String email = request.getParameter("email");
         String role = request.getParameter("role");
         AdminActionImpl adminAction = new AdminActionImpl();
+        int userID = adminAction.getAccountByUserName(username).getUserID();
+        if(request.getParameter("res")!=null){
+            int canteenID = Integer.parseInt(request.getParameter("res"));
+            Canteen canteen = adminAction.getCanteen(canteenID);
+            if(canteen!=null){
+                if(canteen.getManagerID()==1){
+                    canteen.setManagerID(userID);
+                    adminAction.editCanteen(canteen);
+                }else {
+                    role="normal_user";
+                }
+            }else {
+                role="normal_user";
+            }
+        }else {
+            role="normal_user";
+        }
         adminAction.editAccount(username,email,role);
         HttpSession session= request.getSession();
         session.setAttribute("users",adminAction.getAllAccount());

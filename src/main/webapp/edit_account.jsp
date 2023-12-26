@@ -29,17 +29,38 @@
         <br>
         <label>
             角色:
-            <select name="role">
+            <select id="role" name="role" onchange="show()">
                 <option value="sys_admin" ${requestScope.user.role == 'sys_admin' ? 'selected' : ''}>系统管理员</option>
                 <option value="res_admin" ${requestScope.user.role == 'res_admin' ? 'selected' : ''}>食堂管理员</option>
-                <option value="res_admin" ${requestScope.user.role == 'normal_user' ? 'selected' : ''}>普通用户</option>
+                <option value="normal_user" ${requestScope.user.role == 'normal_user' ? 'selected' : ''}>普通用户</option>
                 <!-- 其他角色选项 -->
             </select>
+        </label>
+        <label id="display" class="hide">
+            食堂id:
+            <input type="number" name="res">
         </label>
         <br>
         <input type="submit" value="更新">
     </form>
+
     <a href="javascript:history.back()">返回</a>
 </div>
 </body>
+<script>
+    function show(){
+        const role = document.getElementById("role").value;
+        const res = document.getElementById("display");
+        if(role==="res_admin"){
+            res.classList.remove("hide");
+        }else {
+            res.classList.add("hide")
+        }
+    }
+</script>
+<style>
+    .hide{
+        display: none;
+    }
+</style>
 </html>

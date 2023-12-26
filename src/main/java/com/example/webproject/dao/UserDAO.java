@@ -96,9 +96,9 @@ public User getUserByID(int id) {
     public void updateUser(String username,String email,String role) throws SQLException{
         Connection connection = JDBCHelper.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER_SQL);
-        preparedStatement.setString(1, username);
-        preparedStatement.setString(2, email);
-        preparedStatement.setString(3, role);
+        preparedStatement.setString(3, username);
+        preparedStatement.setString(1, email);
+        preparedStatement.setString(2, role);
         preparedStatement.executeUpdate();
 
     }

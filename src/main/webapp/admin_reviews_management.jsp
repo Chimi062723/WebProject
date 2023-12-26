@@ -24,10 +24,10 @@
 <div id="sidebar">
     <img src="res/logo.png" alt="USST Logo"> <!-- Replace with actual logo path -->
     <a href="admin_dashboard.jsp">首页</a>
-    <a href="admin_canteen_management.jsp">食堂信息管理</a>
-    <a href="admin_account_management.jsp">账号管理</a>
-    <a href="admin_reviews_management.jsp">评价信息管理</a>
-    <a href="admin_community_management.jsp">交流社区管理</a>
+    <a href="GetCanteens">食堂信息管理</a>
+    <a href="GetAccounts">账号管理</a>
+    <a href="GetReviews">评价信息管理</a>
+    <a href="GetPosts">交流社区管理</a>
 </div>
 <div id="content">
     <h1>评价信息管理</h1>
