@@ -1,0 +1,105 @@
+/* 发表帖子和图片上传表单样式 */
+.form-label {
+    color: #0056b3;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-control, textarea, input[type="file"], button {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #0056b3;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+button:hover {
+    background-color: #003366;
+}
+
+/* 图片上传区域样式 */
+#picture {
+    width: auto;
+    margin-right: 10px;
+}
+
+#submit {
+    padding: 8px 15px;
+}
+
+/* 图片预览样式 */
+#imageview {
+    margin-top: 10px;
+    border-radius: 5px;
+    width: 300px; /* 或根据需要调整 */
+    height: auto;
+}
+
+/* 发表新帖子表单样式 */
+#title, #content {
+    margin-bottom: 10px;
+}
+
+/* 搜索表单样式 */
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group input {
+    border-right: none;
+}
+
+.input-group button {
+    border-left: none;
+}
+
+/* 帖子列表样式 */
+.message-list .post {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.message-list .post img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.message-list .post-author, .post-title, .post-time, .post-details {
+    margin-bottom: 10px;
+}
+
+.message-list .post-author {
+    font-weight: bold;
+    color: #0056b3;
+}
+
+.message-list .post-title {
+    font-size: 1.2em;
+    color: #000;
+}
+
+.message-list .post-time {
+    font-style: italic;
+    color: #666;
+}
+
+.message-list .post-details {
+    color: #333;
+}
+
+/* 排序按钮样式 */
+.mb-3 button {
+    margin-right: 10px;
+}
