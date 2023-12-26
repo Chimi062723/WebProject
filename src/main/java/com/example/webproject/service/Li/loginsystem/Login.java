@@ -5,7 +5,6 @@ import com.example.webproject.dao.*;
 //import com.example.webproject.dao.ReviewDAO;
 import com.example.webproject.model.*;
 import com.example.webproject.util.DBhelper;
-import com.example.webproject.util.JDBCHelper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -36,7 +35,7 @@ public class Login  extends HttpServlet {
                     PostDAO postDAO = new PostDAO();
                     ComplaintDAO complaintDAO = new ComplaintDAO();
                     VoteDAO voteDAO = new VoteDAO();
-                    VoteResultDao voteResultDAO = new VoteResultDao();
+                    VoteResultDAO voteResultDAO = new VoteResultDAO();
                     ReviewDAO reviewDAO = new ReviewDAO();
                     role= userDAO.judgeRole(username);
                     switch (role) {

@@ -18,19 +18,7 @@ communityPosts: 所有社区帖子信息
     <link rel="stylesheet" href="css/admin_menu.css">
 </head>
 <body>
-<div id="sidebar">
-    <img src="res/logo.png" alt="USST Logo"> <!-- 修改src为实际Logo图片路径 -->
-    <a href="admin_dashboard.jsp">首页</a>
-    <a href="GetCanteens">食堂信息管理</a>
-    <a href="GetAccounts">账号管理</a>
-    <a href="GetReviews">评价信息管理</a>
-    <a href="GetPosts">交流社区管理</a>
-    <div class="bottom" id="logoutbt">
-        <form id="logout" action="logout" method="post">
-            <input type="submit" class="button" value="退出" />
-        </form>
-    </div>
-</div>
+<jsp:include page="admin_sidebar.jsp"/>
 <div id="content">
     <!-- 这里根据选择的导航栏显示不同的内容 -->
     <!-- 首页内容 -->

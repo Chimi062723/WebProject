@@ -37,8 +37,10 @@
                     <td>${complaint.canteen.name}</td>
                     <td>${complaint.content}</td>
                     <td>${complaint.createDate}</td>
-                    <td><c:if test="${complaint.status == 0}">未处理</c:if></td>
-                    <td><c:if test="${complaint.status == 1}">已处理</c:if></td>
+                    <td>
+                        <c:if test="${complaint.status == 0}">未处理</c:if>
+                        <c:if test="${complaint.status == 1}">已处理</c:if>
+                    </td>
                     <td>
                         <form action="ComplaintHandle?" method="post">
                             <input type="hidden" name="action" value="all">

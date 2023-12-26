@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/customer_menu.css"/>
     <link rel="stylesheet" href="https://cdn.staticfile.org/foundation/5.5.3/css/foundation.min.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="css/community.css">
     <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="js/uploadfile.js" defer></script>
@@ -39,7 +40,7 @@
             选择需要上传的图片
         </label>
         <input  id="picture" type="file" accept="image/*" name="picture" style="width: auto">
-        <button id="submit" onclick="picsubmit()" style="text-align: center; text-wrap: none">提交图片</button>
+        <button id="submit" onclick="picsubmit()">提交图片</button>
     </form>
     <iframe name="if" style="display: none">
     </iframe>

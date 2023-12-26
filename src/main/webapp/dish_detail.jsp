@@ -1,16 +1,10 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 韶光善良君
-  Date: 2023/12/24
-  Time: 0:12
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>菜品详情</title>
-    <link rel="stylesheet" href="css/dishdetail.css"/> <!-- 链接到外部CSS文件 -->
+    <link rel="stylesheet" href="css/dishdetail.css"/>
+    <link rel="stylesheet" href="css/add_pic.css"/>
     <style>
         .show{
            display: none;
@@ -78,9 +72,7 @@
             </form>
             <iframe name="if" style="display: none">
             </iframe>
-
             <img class="show" id="imageview" src="" alt="图片将会在这里显示" style="width:300px"/>
-
         </div>
     </div>
 </div>
