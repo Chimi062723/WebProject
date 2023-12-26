@@ -13,6 +13,22 @@ public class Dish {
     private double promotionPrice;
     private Canteen canteen;
 
+    public Dish(int id, String name, int price, double promptprice, String type) {
+        setDishID(id);
+        setName(name);
+        setPrice(price);
+        setPromotionPrice(promotionPrice);
+        setType(type);
+    }
+
+    public Dish(String name, double price, double promptprice, String type, int canteenID) {
+        this.name =name;
+        this.price = price;
+        this.promotionPrice =promptprice;
+        this.canteenID = canteenID;
+        this.type = type;
+    }
+
     public Canteen getCanteen() {
         return canteen;
     }
