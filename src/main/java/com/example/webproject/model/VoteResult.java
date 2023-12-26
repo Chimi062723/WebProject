@@ -4,6 +4,15 @@ public class VoteResult {
     private int pollID;
     private int userID;
     private String answer;
+    private String userName;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public VoteResult() {
     }

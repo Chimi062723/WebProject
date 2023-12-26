@@ -9,7 +9,7 @@
     <a href="cantadmin_dish_management.jsp">菜品维护</a>
     <a href="CanteenInfoRefresh?action=cantInfo">食堂信息维护</a>
     <a href="CanteenInfoRefresh?action=notice">公告管理</a>
-    <a href="cantadmin_vote_management.jsp">投票与收集</a>
+    <a href="VoteInfoRefresh">投票与收集</a>
     <a href="ReviewInfoRefresh">评价管理</a>
     <a href="ComplaintInfoRefresh">投诉处理</a>
     <div class="bottom" id="logoutbt">

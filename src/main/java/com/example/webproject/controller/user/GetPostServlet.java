@@ -1,7 +1,6 @@
 package com.example.webproject.controller.user;
 
 import com.example.webproject.dao.PostDAO;
-import com.example.webproject.dao.VoteResultDao;
 import com.example.webproject.model.Post;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;

@@ -1,9 +1,8 @@
 package com.example.webproject.controller.user;
 
 import com.example.webproject.dao.UserDAO;
-import com.example.webproject.dao.VoteResultDao;
+import com.example.webproject.dao.VoteResultDAO;
 import com.example.webproject.model.Vote;
-import com.example.webproject.model.VoteResult;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,7 +14,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 @WebServlet(name = "VoteServlet", value = "/VoteServlet")
-public class AddVote extends HttpServlet {
+public class AddVoteResult extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,7 +22,7 @@ public class AddVote extends HttpServlet {
         HttpSession session = request.getSession();
         String username=(String)session.getAttribute("username");
         Vote vote=(Vote)session.getAttribute("vote");
-        VoteResultDao voteResultDao=new VoteResultDao();
+        VoteResultDAO voteResultDao=new VoteResultDAO();
         UserDAO userDao=new UserDAO();
         try {
             voteResultDao.addVoteResult(vote.getPollId(),userDao.getUserByUsername(username).getUserID(),options);
