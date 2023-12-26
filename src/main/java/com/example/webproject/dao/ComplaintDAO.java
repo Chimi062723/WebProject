@@ -11,14 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ComplaintDAO {
-    public List<Complaint> getUserComplaints(int userID) throws SQLException {
+    public List<Complaint> getUserComplaints(int canteenID) throws SQLException {
         Connection conn = JDBCHelper.getConnection();
         List<Complaint> complaints = new ArrayList<>();
-        String sql = "SELECT * FROM Complaints WHERE UserID =?";
+        String sql = "SELECT * FROM Complaints WHERE CanteenID = ?";
         PreparedStatement pstmt= null ;
         try{
             pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1,userID);
+            pstmt.setInt(1,canteenID);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 Complaint complaint = new Complaint();
