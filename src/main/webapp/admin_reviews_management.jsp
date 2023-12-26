@@ -21,14 +21,7 @@
     </style>
 </head>
 <body>
-<div id="sidebar">
-    <img src="res/logo.png" alt="USST Logo"> <!-- Replace with actual logo path -->
-    <a href="admin_dashboard.jsp">首页</a>
-    <a href="GetCanteens">食堂信息管理</a>
-    <a href="GetAccounts">账号管理</a>
-    <a href="GetReviews">评价信息管理</a>
-    <a href="GetPosts">交流社区管理</a>
-</div>
+<jsp:include page="admin_sidebar.jsp"/>
 <div id="content">
     <h1>评价信息管理</h1>
     <label for="searchBox">搜索评价</label>
@@ -82,12 +75,6 @@
                 }
             }
         }
-    }
-    function deleteReview(id) {
-        // Confirm deletion logic
-    }
-    function searchReviews() {
-        // Search logic
     }
 </script>
 </body>

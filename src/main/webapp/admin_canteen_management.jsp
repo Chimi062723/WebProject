@@ -21,14 +21,7 @@ canteens: 所有食堂信息
   <link rel="stylesheet" href="css/table.css">
 </head>
 <body>
-<div id="sidebar">
-  <img src="res/logo.png" alt="USST Logo"> <!-- 修改src为实际Logo图片路径 -->
-  <a href="admin_dashboard.jsp">首页</a>
-  <a href="GetCanteens">食堂信息管理</a>
-  <a href="GetAccounts">账号管理</a>
-  <a href="GetReviews">评价信息管理</a>
-  <a href="GetPosts">交流社区管理</a>
-</div>
+<jsp:include page="admin_sidebar.jsp"/>
 <div id="content">
   <h1>食堂信息管理</h1>
   <label for="searchBox">搜索食堂</label>
@@ -91,14 +84,7 @@ canteens: 所有食堂信息
       }
     }
   }
-  // JavaScript 函数用于处理删除食堂的操作
-  function deleteCanteen(id) {
-    // 确认删除逻辑
-  }
-  // JavaScript 用于处理搜索逻辑
-  function searchCanteens() {
-    // 搜索逻辑
-  }
+
 </script>
 </body>
 </html>
