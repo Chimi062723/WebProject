@@ -17,7 +17,6 @@ public class Canteen {
     //以下为特殊封装对象
     UserDAO userDAO = new UserDAO();
     private User manager;
-    DishDAO dishDAO = new DishDAO();
 
 
     public Canteen() {

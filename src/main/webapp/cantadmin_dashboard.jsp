@@ -19,21 +19,7 @@
     </style>
 </head>
 <body>
-<div id="sidebar">
-    <img src="res/logo.png" alt="USST Canteen Management System Logo">
-    <a href="DashboardRefresh">首页</a>
-    <a href="CanteenInfoRefresh">食堂信息维护</a>
-    <a href="cantadmin_dish_management.jsp">菜品维护</a>
-    <a href="cantadmin_reviews_management.jsp">评价管理</a>
-    <a href="cantadmin_notice_management.jsp">公告管理</a>
-    <a href="cantadmin_vote_management.jsp">投票与收集</a>
-    <a href="cantadmin_complaint_management.jsp">投诉处理</a>
-    <div class="bottom" id="logoutbt">
-        <form id="logout" action="logout" method="post">
-            <input type="submit"   class="button"value="退出" />
-        </form>
-    </div>
-</div>
+<jsp:include page="cantadmin_sidebar.jsp" />
 <div id="main-content">
     <h1>欢迎, 食堂管理员 ${sessionScope.username}</h1>
     <!-- Content blocks for dynamic data -->

@@ -37,6 +37,32 @@ public class ComplaintDAO {
         conn.close();
         return complaints;
     }
+    public List<Complaint> getComplaints(int canteenID) throws SQLException {
+        Connection conn = JDBCHelper.getConnection();
+        List<Complaint> complaints = new ArrayList<>();
+        String sql = "SELECT * FROM Complaints WHERE CanteenID = ?";
+        PreparedStatement pstmt= null;
+        try{
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1,canteenID);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Complaint complaint = new Complaint();
+                complaint.setComplaintID(rs.getInt("ComplaintID"));
+                complaint.setUserID(rs.getInt("UserID"));
+                complaint.setCanteenID(rs.getInt("CanteenID"));
+                complaint.setContent(rs.getString("Content"));
+                complaint.setStatus(rs.getInt("Status"));
+                complaint.setCreateDate(rs.getTimestamp("CreateDate"));
+                complaints.add(complaint);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+            throw e;
+        }
+        conn.close();
+        return complaints;
+    }
     public List<Complaint> getUnprocessedComplaints(int canteenID) throws SQLException {
         Connection conn = JDBCHelper.getConnection();
         List<Complaint> complaints = new ArrayList<>();
@@ -63,6 +89,7 @@ public class ComplaintDAO {
         conn.close();
         return complaints;
     }
+
     public boolean handleComplaint(int complaintID)throws SQLException {
         Connection conn = JDBCHelper.getConnection();
         String sql = "UPDATE Complaints SET Status = 1  WHERE ComplaintID =?";

@@ -13,48 +13,45 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="css/cantadmin_menu.css">
-    <link rel="stylesheet" href="css/table1.css">
+    <link rel="stylesheet" href="css/table.css">
 </head>
 <body>
-<div id="sidebar">
-    <img src="res/logo.png" alt="USST Canteen Management System Logo">
-    <a href="DashboardRefresh">首页</a>
-    <a href="CanteenInfoRefresh">食堂信息维护</a>
-    <a href="cantadmin_dish_management.jsp">菜品维护</a>
-    <a href="cantadmin_reviews_management.jsp">评价管理</a>
-    <a href="cantadmin_notice_management.jsp">公告管理</a>
-    <a href="cantadmin_vote_management.jsp">投票与收集</a>
-    <a href="cantadmin_complaint_management.jsp">投诉处理</a>
-</div>
+<jsp:include page="cantadmin_sidebar.jsp" />
 <div id="main-content">
-    <h2>投诉处理</h2>
-    <!-- A table to display the complaints -->
-    <table>
-        <thead>
-        <tr>
-            <th>投诉ID</th>
-            <th>用户名称</th>
-            <th>投诉内容</th>
-            <th>投诉时间</th>
-            <th>操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="complaint" items="${complaints}">
+    <div id="content">
+        <h1>投诉处理</h1>
+        <table border="1" id="table">
             <tr>
-                <td>${complaint.id}</td>
-                <td>${complaint.username}</td>
-                <td>${complaint.content}</td>
-                <td>${complaint.timestamp}</td>
-                <td>
-                    <button onclick="location.href='edit_complaint.jsp?id=${complaint.id}'">编辑</button>
-                    <button onclick="deleteComplaint(${complaint.id})">删除</button>
-                </td>
+                <th>ID</th>
+                <th>投诉方</th>
+                <th>投诉食堂</th>
+                <th>内容</th>
+                <th>创建时间</th>
+                <th>状态</th>
+                <th>操作</th>
             </tr>
-        </c:forEach>
-        </tbody>
-    </table>
-    <!-- You might include a form or buttons to address each complaint -->
+            <c:forEach var="complaint" items="${requestScope.complaints}">
+                <tr>
+                    <td>${complaint.complaintID}</td>
+                    <td>${complaint.user.userName}</td>
+                    <td>${complaint.canteen.name}</td>
+                    <td>${complaint.content}</td>
+                    <td>${complaint.createDate}</td>
+                    <td><c:if test="${complaint.status == 0}">未处理</c:if></td>
+                    <td><c:if test="${complaint.status == 1}">已处理</c:if></td>
+                    <td>
+                        <form action="ComplaintHandle?" method="post">
+                            <input type="hidden" name="action" value="all">
+                            <input type="hidden" name="complaintID" value="${complaint.complaintID}">
+                            <c:if test="${complaint.status == 0}">
+                                <input type="submit" value="处理">
+                            </c:if>
+                        </form>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
 </div>
 </body>
 </html>

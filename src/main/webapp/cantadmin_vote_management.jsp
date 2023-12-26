@@ -12,16 +12,7 @@
     <link rel="stylesheet" href="css/cantadmin_menu.css">
 </head>
 <body>
-<div id="sidebar">
-    <img src="res/logo.png" alt="USST Canteen Management System Logo">
-    <a href="cantadmin_dashboard.jsp">首页</a>
-    <a href="CanteenInfoRefresh">食堂信息维护</a>
-    <a href="cantadmin_dish_management.jsp">菜品维护</a>
-    <a href="cantadmin_reviews_management.jsp">评价管理</a>
-    <a href="cantadmin_notice_management.jsp">公告管理</a>
-    <a href="cantadmin_vote_management.jsp">投票与收集</a>
-    <a href="cantadmin_complaint_management.jsp">投诉处理</a>
-</div>
+<jsp:include page="cantadmin_sidebar.jsp" />
 <div id="main-content" class="clearfix">
     <h2>投票与收集</h2>
     <form action="SubmitVoteServlet" method="post">

@@ -10,7 +10,7 @@ public class CanteenDAO implements com.example.webproject.dao.Impl.CanteenDAOImp
     private static final String GET_ALL_CANTEENS_SQL = "SELECT * FROM Canteens";
     private static final String GET_CANTEEN_BY_ID_SQL = "SELECT * FROM Canteens WHERE CanteenID = ?";
     private static final String ADD_CANTEEN_SQL = "INSERT INTO Canteens (Name, Location, OpenTime, ManagerID) VALUES (?, ?, ?, ?)";
-    private static final String UPDATE_CANTEEN_SQL = "UPDATE Canteens SET Name = ?, Location = ?, OpenTime = ?, ManagerID = ? WHERE CanteenID = ?";
+    private static final String UPDATE_CANTEEN_SQL = "UPDATE Canteens SET Name = ?, Location = ?, OpenTime = ?, ManagerID = ?, Notice= ? WHERE CanteenID = ?";
     private static final String DELETE_CANTEEN_SQL = "DELETE FROM Canteens WHERE CanteenID = ?";
 
     @Override
@@ -77,7 +77,9 @@ public class CanteenDAO implements com.example.webproject.dao.Impl.CanteenDAOImp
             preparedStatement.setString(2, canteen.getLocation());
             preparedStatement.setString(3, canteen.getOpenTime());
             preparedStatement.setInt(4, canteen.getManagerID());
-            preparedStatement.setInt(5, canteen.getCanteenID());
+            preparedStatement.setString(5, canteen.getNotice());
+            preparedStatement.setInt(6, canteen.getCanteenID());
+
             preparedStatement.executeUpdate();
         }
     }

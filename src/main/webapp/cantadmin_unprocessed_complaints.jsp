@@ -37,6 +37,7 @@
                 <td>未处理</td>
                 <td>
                     <form action="ComplaintHandle?" method="post">
+                        <input type="hidden" name="action" value="unprocessed">
                         <input type="hidden" name="complaintID" value="${uncomplaint.complaintID}">
                         <input type="submit" value="处理">
                     </form>
@@ -44,7 +45,6 @@
             </tr>
         </c:forEach>
     </table>
-
 </div>
 </body>
 </html>

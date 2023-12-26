@@ -1,6 +1,5 @@
 package com.example.webproject.controller.management;
 
-import com.example.webproject.dao.CanteenDAO;
 import com.example.webproject.dao.ComplaintDAO;
 import com.example.webproject.dao.ReviewDAO;
 import com.example.webproject.model.Canteen;
@@ -11,28 +10,19 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "CanteenInfoRefresh", value = "/CanteenInfoRefresh")
-public class CanteenInfoRefresh extends HttpServlet {
+@WebServlet(name = "ComplaintInfoRefresh", value = "/ComplaintInfoRefresh")
+public class ComplaintInfoRefresh extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action=request.getParameter("action");
         HttpSession session = request.getSession();
-        int userID=(Integer) session.getAttribute("userID");
-        CanteenDAO canteenDAO = new CanteenDAO();
-        Canteen canteen = null;
+        Canteen canteen = (Canteen) session.getAttribute("canteen");
+        ComplaintDAO complaintDAO = new ComplaintDAO();
         try {
-            canteen = canteenDAO.getCanteenByManagerID(userID);
+            request.setAttribute("complaints", complaintDAO.getUserComplaints(canteen.getCanteenID()));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-        session.setAttribute("canteen", canteen);
-
-        if(action.equals("cantInfo")) {
-            response.sendRedirect("cantadmin_canteen_management.jsp");
-        }else if(action.equals("notice")) {
-            response.sendRedirect("cantadmin_notice_management.jsp");
-        }
+        request.getRequestDispatcher("cantadmin_complaint_management.jsp").forward(request, response);
     }
 
     @Override

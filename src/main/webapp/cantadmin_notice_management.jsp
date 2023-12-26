@@ -11,22 +11,25 @@
     <title>Title</title>
     <link rel="stylesheet" href="css/cantadmin_menu.css">
     <link rel="stylesheet" href="css/notice.css">
+    <link rel="stylesheet" href="css/edit_canteen.css">
 </head>
 <body>
-<div id="sidebar">
-    <img src="res/logo.png" alt="USST Canteen Management System Logo">
-    <a href="DashboardRefresh">首页</a>
-    <a href="CanteenInfoRefresh">食堂信息维护</a>
-    <a href="cantadmin_dish_management.jsp">菜品维护</a>
-    <a href="cantadmin_reviews_management.jsp">评价管理</a>
-    <a href="cantadmin_notice_management.jsp">公告管理</a>
-    <a href="cantadmin_vote_management.jsp">投票与收集</a>
-    <a href="cantadmin_complaint_management.jsp">投诉处理</a>
-</div>
+<jsp:include page="cantadmin_sidebar.jsp" />
 <div id="main-content" class="clearfix">
-    <form class="announcement-form" action="SaveAnnouncementServlet" method="post">
-        <textarea class="full-width-textarea" name="announcementContent" rows="10">这里是原本的公告信息</textarea>
-        <input type="submit" value="修改" class="btn">
+    <h2>食堂公告管理</h2>
+    <form action="EditCanteen" method="post">
+        <input type="hidden" name="canteenID" value="${sessionScope.canteen.canteenID}">
+        <input type="hidden" name="role" value="notice">
+        <input type="hidden" name="canteenName" value="${sessionScope.canteen.name}">
+        <input type="hidden" name="location" value="${sessionScope.canteen.location}">
+        <input type="hidden" name="opentime" value="${sessionScope.canteen.openTime}">
+        <input type="hidden" name="managerName" value="${sessionScope.username}">
+        <label>
+            食堂公告：
+            <input type="text" name="notice" value="${sessionScope.canteen.notice}" required>
+        </label>
+        <br>
+        <input type="submit" value="修改">
     </form>
 </div>
 </body>

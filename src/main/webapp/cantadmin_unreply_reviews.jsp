@@ -18,6 +18,7 @@
     <h1>待回复评论</h1>
     <a href="DashboardRefresh">返回</a>
     <form>
+        <input type="hidden" name="action" value="unreply">
         <table border="1" id="table">
             <tr>
                 <th>ID</th>

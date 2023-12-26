@@ -40,7 +40,9 @@ public class EditCanteen extends HttpServlet {
             session.setAttribute("canteens",adminAction.getAllCanteen());
             response.sendRedirect("GetPostServlet");
         }else if(role.equals("res_admin")){
-            response.sendRedirect("CanteenInfoRefresh");
+            response.sendRedirect("CanteenInfoRefresh?action=cantInfo");
+        }else if(role.equals("notice")){
+            response.sendRedirect("CanteenInfoRefresh?action=notice");
         }
     }
 }

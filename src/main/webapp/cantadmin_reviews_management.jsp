@@ -13,46 +13,47 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="css/cantadmin_menu.css">
-    <link rel="stylesheet" href="css/reviews.css">
-    <link rel="stylesheet" href="css/table1.css">
+    <link rel="stylesheet" href="css/table.css">
 </head>
 <body>
-<div id="sidebar">
-    <img src="res/logo.png" alt="USST Canteen Management System Logo">
-    <a href="DashboardRefresh">首页</a>
-    <a href="CanteenInfoRefresh">食堂信息维护</a>
-    <a href="cantadmin_dish_management.jsp">菜品维护</a>
-    <a href="cantadmin_reviews_management.jsp">评价管理</a>
-    <a href="cantadmin_notice_management.jsp">公告管理</a>
-    <a href="cantadmin_vote_management.jsp">投票与收集</a>
-    <a href="cantadmin_complaint_management.jsp">投诉处理</a>
-</div>
+<jsp:include page="cantadmin_sidebar.jsp" />
 <div id="main-content" class="clearfix">
-    <table>
-        <thead>
-        <tr>
-            <th>发送者</th>
-            <th>评价菜品</th>
-            <th>评分</th>
-            <th>内容</th>
-            <th>发送时间</th>
-            <th>操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        <!-- Dynamic rows will be loaded here -->
-            <c:forEach var="review" items="${reviews}">
+
+    <div id="content">
+
+        <h1>全部评论</h1>
+        <form>
+            <input type="hidden" name="action" value="all">
+            <table border="1" id="table">
                 <tr>
-                    <td>${review.sender}</td>
-                    <td>${review.dishName}</td>
-                    <td>${review.rating}</td>
-                    <td>${review.content}</td>
-                    <td>${review.creationTime}</td>
-                    <td><a href="review_detail.jsp?reviewID=${review.id}">查看</a></td>
+                    <th>ID</th>
+                    <th>评价方</th>
+                    <th>菜品</th>
+                    <th>评分</th>
+                    <th>评论</th>
+                    <th>发布时间</th>
+                    <th>回复</th>
+                    <th>操作</th>
                 </tr>
-            </c:forEach>
-        </tbody>
-    </table>
+                <c:forEach var="review" items="${requestScope.reviews}">
+                    <tr>
+                        <td>${review.reviewID}</td>
+                        <td>${review.sender.userName}</td>
+                        <td>${review.dish.name}</td>
+                        <td>${review.rating}</td>
+                        <td>${review.comment}</td>
+                        <td>${review.createDate}</td>
+                        <td><label for="reply"></label>
+                            <input id="reply" name="reply${review.reviewID}" type="text" value="${review.reply}" placeholder="输入回复">
+                        </td>
+                        <td>
+                            <input type="submit" formaction="ReplyReview?id=${review.reviewID}" formmethod="post" value="回复">
+                        </td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </form>
+    </div>
 </div>
 <script>
 </script>
