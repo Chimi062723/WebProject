@@ -89,7 +89,6 @@ public class Login  extends HttpServlet {
                     }
                 }else {
                     response.sendRedirect("login.jsp?error=password_error");
-
                 }
             }else{
                 response.sendRedirect("login.jsp?error=Account_is_not_Exists");

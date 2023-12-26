@@ -97,10 +97,8 @@ public class CanteenDAO implements com.example.webproject.dao.Impl.CanteenDAOImp
         Canteen canteen = null;
         try (Connection connection = JDBCHelper.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Canteens WHERE ManagerID = ?")) {
-
             preparedStatement.setInt(1, ManagerID);
             ResultSet rs = preparedStatement.executeQuery();
-
             while (rs.next()) {
                 canteen = new Canteen();
                 canteen.setCanteenID(rs.getInt("CanteenID"));

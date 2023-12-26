@@ -10,7 +10,7 @@ users: 所有用户信息
 reviews: 所有评价信息
 communityPosts: 所有社区帖子信息
 -->
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,13 +21,13 @@ communityPosts: 所有社区帖子信息
 <div id="sidebar">
     <img src="res/logo.png" alt="USST Logo"> <!-- 修改src为实际Logo图片路径 -->
     <a href="admin_dashboard.jsp">首页</a>
-    <a href="admin_canteen_management.jsp">食堂信息管理</a>
-    <a href="admin_account_management.jsp">账号管理</a>
-    <a href="admin_reviews_management.jsp">评价信息管理</a>
-    <a href="admin_community_management.jsp">交流社区管理</a>
+    <a href="GetCanteens">食堂信息管理</a>
+    <a href="GetAccounts">账号管理</a>
+    <a href="GetReviews">评价信息管理</a>
+    <a href="GetPosts">交流社区管理</a>
     <div class="bottom" id="logoutbt">
         <form id="logout" action="logout" method="post">
-            <input type="submit"   class="button"value="退出" />
+            <input type="submit" class="button" value="退出" />
         </form>
     </div>
 </div>

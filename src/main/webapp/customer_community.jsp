@@ -5,7 +5,7 @@
   Time: 22:40
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -45,7 +45,9 @@
     </iframe>
     <form action="SearchForumServlet" method="get" class="mt-4">
         <div class="input-group mb-3">
-            <input type="text" class="form-control" name="searchQuery" placeholder="搜索标题或用户名" required>
+            <label style="display: none" for="searchQuery">
+            </label>
+            <input id="searchQuery" type="text" class="form-control" name="searchQuery" placeholder="搜索标题或用户名" required>
             <button class="btn btn-outline-secondary" type="submit">搜索</button>
         </div>
     </form>
@@ -131,7 +133,7 @@
     document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.comment-form').forEach(function (form) {
             form.addEventListener('submit', function (event) {
-                var commentInput = this.querySelector('.comment-input');
+                const commentInput = this.querySelector('.comment-input');
                 if (!commentInput.value.trim()) {
                     event.preventDefault(); // 阻止表单提交
                     alert('评论不能为空');
@@ -149,6 +151,5 @@
     //     }
     // });
 </script>
-</div>
 </body>
 </html>

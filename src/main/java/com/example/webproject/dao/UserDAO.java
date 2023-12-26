@@ -6,6 +6,7 @@ import com.example.webproject.util.JDBCHelper;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class UserDAO implements UserDaoImpl {
     private static final String GET_ALL_USERS_SQL = "SELECT * FROM Users";
@@ -20,9 +21,7 @@ public class UserDAO implements UserDaoImpl {
         List<User> users = new ArrayList<>();
         try (Connection connection = JDBCHelper.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL_USERS_SQL)) {
-
             ResultSet rs = preparedStatement.executeQuery();
-
             while (rs.next()) {
                 User user = new User();
                 user.setUserID(rs.getInt("UserID"));
@@ -34,7 +33,7 @@ public class UserDAO implements UserDaoImpl {
                 users.add(user);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logger.getLogger("SQLERROR"+e);
         }
         return users;
     }
@@ -44,7 +43,6 @@ public User getUserByID(int id) {
          PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_USERID_SQL)) {
         preparedStatement.setInt(1, id);
         ResultSet rs = preparedStatement.executeQuery();
-
         while (rs.next()) {
             user = new User();
             user.setUserID(rs.getInt("UserID"));
@@ -66,7 +64,6 @@ public User getUserByID(int id) {
              PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_USERNAME_SQL)) {
             preparedStatement.setString(1, username);
             ResultSet rs = preparedStatement.executeQuery();
-
             while (rs.next()) {
                 user = new User();
                 user.setUserID(rs.getInt("UserID"));

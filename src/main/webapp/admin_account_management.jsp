@@ -37,6 +37,7 @@
             <tr>
                 <th>ID</th>
                 <th>姓名</th>
+                <th>密码</th>
                 <th>邮箱</th>
                 <th>角色</th>
                 <th>创建时间</th>
@@ -46,6 +47,7 @@
                 <tr>
                     <td>${user.userID}</td>
                     <td>${user.userName}</td>
+                    <td>${user.password}</td>
                     <td>${user.email}</td>
                     <td>${user.role}</td>
                     <td>${user.createDate}</td>
@@ -61,10 +63,10 @@
             <tr>
                 <td>New</td>
                 <td><label for="name"></label><input id="name" type="text" name="name" placeholder="输入新的用户名称"> </td>
+                <td><label for="password"></label><input id="password" type="text" name="password" placeholder="输入新的密码"></td>
                 <td><label for="address"></label><input id="address" name="email" type="text" placeholder="输入新用户邮箱地址"></td>
                 <td><label>
                     <select name="role" id="role">
-                        <option value="sys_admin">系统管理员</option>
                         <option value="res_admin">食堂管理员</option>
                         <option value="normal_user">普通用户</option>
                     </select>
