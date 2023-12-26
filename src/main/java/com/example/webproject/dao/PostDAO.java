@@ -195,6 +195,7 @@ public List<Post> getPostByCommentID(int commentID) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1,PostID);
         statement.executeUpdate();
+        connection.close();
     }
 
     public void editPost(Post newPost) throws SQLException {
@@ -207,6 +208,7 @@ public List<Post> getPostByCommentID(int commentID) throws SQLException {
         preparedStatement.setString(4, newPost.getCreateDate());
         preparedStatement.setInt(5, newPost.getPostID());
         preparedStatement.executeUpdate();
+        connection.close();
     }
     public boolean addPost(int userID,String title,String content) throws SQLException {
         Connection connection = JDBCHelper.getConnection();
@@ -216,6 +218,7 @@ public List<Post> getPostByCommentID(int commentID) throws SQLException {
         preparedStatement.setString(2, title);
         preparedStatement.setString(3, content);
         int result = preparedStatement.executeUpdate();
+        connection.close();
         return result > 0;
     }
     public boolean addPostComment(int userID,String content,int commentID) throws SQLException {
@@ -226,6 +229,7 @@ public List<Post> getPostByCommentID(int commentID) throws SQLException {
         preparedStatement.setString(2, content);
         preparedStatement.setInt(3, commentID);
         int result = preparedStatement.executeUpdate();
+        connection.close();
         return result > 0;
     }
 }

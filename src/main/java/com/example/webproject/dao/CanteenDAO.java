@@ -65,6 +65,7 @@ public class CanteenDAO implements com.example.webproject.dao.Impl.CanteenDAOImp
             preparedStatement.setString(3, canteen.getOpenTime());
             preparedStatement.setInt(4, canteen.getManagerID());
             preparedStatement.executeUpdate();
+            connection.close();
         }
     }
 

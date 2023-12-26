@@ -20,10 +20,10 @@ public class CuisineDAO {
                 String temp = resultSet.getString("CuisineType");
                 cuisineTypes.add(temp);
             }
+            connection.close();
             return cuisineTypes;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
 }

@@ -34,6 +34,7 @@ public class ComplaintDAO {
             e.printStackTrace();
             throw e;
         }
+        conn.close();
         return complaints;
     }
     public List<Complaint> getUnprocessedComplaints(int canteenID) throws SQLException {
@@ -59,6 +60,7 @@ public class ComplaintDAO {
             e.printStackTrace();
             throw e;
         }
+        conn.close();
         return complaints;
     }
     public boolean handleComplaint(int complaintID)throws SQLException {
@@ -70,12 +72,14 @@ public class ComplaintDAO {
             pstmt.setInt(1, complaintID);
             int result = pstmt.executeUpdate();
             if (result > 0) {
+                conn.close();
                 return true;
             }
         }catch (SQLException e) {
             e.printStackTrace();
             throw e;
         }
+        conn.close();
         return false;
     }
     public boolean addComplaint(int userID,int canteenID,String content)throws SQLException {
@@ -89,12 +93,14 @@ public class ComplaintDAO {
             pstmt.setString(3, content);
             int result = pstmt.executeUpdate();
             if (result > 0) {
+                conn.close();
                 return true;
             }
         } catch (SQLException e) {
             e.printStackTrace();
             throw e;
         }
+        conn.close();
         return false;
     }
 }

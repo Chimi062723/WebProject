@@ -36,6 +36,7 @@ public class DishDAO {
                 dishes.add(dish);
             }
         }
+
         return dishes;
     }
     public List<Dish> getAllDishesByCanteenID(int canteenID) throws SQLException {
@@ -57,10 +58,12 @@ public class DishDAO {
                 dish.setImage(rs.getString("ImageURL"));
                 dishes.add(dish);
             }
+            connection.close();
         }catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
+        connection.close();
         return dishes;
     }
     public Dish getDish(int dishID) throws SQLException {
@@ -127,6 +130,7 @@ public class DishDAO {
         if(resultSet.next()){
             return resultSet.getInt("DishID");
         }
+        connection.close();
         return 0;
     }
 
@@ -140,6 +144,7 @@ public class DishDAO {
             while (rs.next()) {
                 cuisines.add(rs.getString("CuisineType"));
             }
+            db.dbconn.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

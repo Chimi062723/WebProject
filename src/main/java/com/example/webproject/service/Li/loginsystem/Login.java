@@ -5,6 +5,7 @@ import com.example.webproject.dao.*;
 //import com.example.webproject.dao.ReviewDAO;
 import com.example.webproject.model.*;
 import com.example.webproject.util.DBhelper;
+import com.example.webproject.util.JDBCHelper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -44,6 +45,7 @@ public class Login  extends HttpServlet {
                             session.setAttribute("canteens", canteenDAO.getAllCanteens());
                             session.setAttribute("reviews", reviewDAO.getAllReviews());
                             session.setAttribute("posts", postDAO.getAllPosts());
+                            db.dbconn.close();
                             request.getRequestDispatcher("admin_dashboard.jsp").forward(request, response);
                             break;
                         case "res_admin":
@@ -56,7 +58,7 @@ public class Login  extends HttpServlet {
                             session.setAttribute("unreviews", reviewDAO.getUnReplyReviews(canteen));
                             //获取未处理的投诉
                             session.setAttribute("uncomplaints", complaintDAO.getUnprocessedComplaints(canteen.getCanteenID()));
-
+                            db.dbconn.close();
                             request.getRequestDispatcher("cantadmin_dashboard.jsp").forward(request, response);
                             break;
                         case "normal_user":
@@ -88,7 +90,7 @@ public class Login  extends HttpServlet {
                             //传入最新3条评论
                             List<Review> lastThreeReviews = reviewDAO.getLastThreeReviews();
                             session.setAttribute("lastThreeReviews", lastThreeReviews);
-
+                            db.dbconn.close();
                             request.getRequestDispatcher("customer_dashboard.jsp").forward(request, response);
                             break;
                     }

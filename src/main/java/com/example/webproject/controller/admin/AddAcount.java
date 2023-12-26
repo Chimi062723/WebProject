@@ -28,11 +28,10 @@ public class AddAcount extends HttpServlet {
             int canteenID = Integer.parseInt(request.getParameter("canteenID"));
             if(adminAction.getAccountByUserName(name) == null){
                 User user = new User(name,password,email,role);
-
                 Canteen newCanteen = adminAction.getCanteen(canteenID);
                 if(newCanteen!=null){
-                    newCanteen.setManagerID(user.getUserID());
                     User user1 = newCanteen.getManager();
+                    newCanteen.setManagerID(user.getUserID());
                     if (user1.getUserID()!=1){
                         adminAction.editAccount(user1.getUserName(),user1.getEmail(),"normal_user");
                     }

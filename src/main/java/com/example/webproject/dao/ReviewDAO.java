@@ -43,6 +43,7 @@ public class ReviewDAO {
 //            构造方法已经将数据传入了，不需要再额外设置
             reviews.add(review);
         }
+        dBhelper.dbconn.close();
         return reviews;
     }
 
@@ -66,6 +67,7 @@ public class ReviewDAO {
             );
             reviews.add(review);
         }
+        dBhelper.dbconn.close();
         return reviews;
     }
     public List<Review> getUnReplyReviewsByDishId(int dishID) throws SQLException {
@@ -89,6 +91,7 @@ public class ReviewDAO {
             );
             reviews.add(review);
         }
+        dBhelper.dbconn.close();
         return reviews;
     }
     public List<Review> getUnReplyReviews(Canteen canteen) throws SQLException {
@@ -114,6 +117,7 @@ public class ReviewDAO {
 //                reviews.add(review);
 //            }
         }
+        dBhelper.dbconn.close();
         return reviews;
     }
     public List<Review> getAllReviews(Canteen canteen) throws SQLException {
@@ -139,6 +143,7 @@ public class ReviewDAO {
 //                reviews.add(review);
 //            }
         }
+        dBhelper.dbconn.close();
         return reviews;
     }
     public List<Review> getReviewsByDishId(int dishId) throws SQLException {
@@ -162,6 +167,7 @@ public class ReviewDAO {
             );
             reviews.add(review);
         }
+        dBhelper.dbconn.close();
         return reviews;
     }
 
@@ -181,6 +187,7 @@ public class ReviewDAO {
             statement.setString(6, review.getPicture());
         }
         statement.executeUpdate();
+        dBhelper.dbconn.close();
     }
     public boolean addReply(int reviewId, String reply) throws SQLException {
         dBhelper.init();
@@ -190,6 +197,7 @@ public class ReviewDAO {
         statement.setString(1, reply);
         statement.setInt(2, reviewId);
         int rowsUpdated = statement.executeUpdate();
+        dBhelper.dbconn.close();
         return rowsUpdated > 0;
     }
     public boolean updateReview(Review review) throws SQLException {
@@ -205,6 +213,7 @@ public class ReviewDAO {
         statement.setTimestamp(6, review.getCreateDate());
         statement.setInt(7, review.getReviewID());
         int rowsUpdated = statement.executeUpdate();
+        dBhelper.dbconn.close();
         return rowsUpdated > 0;
     }
 
@@ -215,6 +224,7 @@ public class ReviewDAO {
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, reviewId);
         int rowsDeleted = statement.executeUpdate();
+        dBhelper.dbconn.close();
         return rowsDeleted > 0;
     }
 
