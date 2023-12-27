@@ -15,14 +15,13 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/foundation/5.5.3/css/foundation.min.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" >
 
-
-
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/foundation/5.5.3/js/foundation.min.js"></script>
     <script src="https://cdn.staticfile.org/foundation/5.5.3/js/vendor/modernizr.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+<jsp:include page="backToTopComponent.jsp" />
 <jsp:include page="custom_sidebar.jsp" />
 <div class="container mt-3">
     <h1 class="text-center mt-4 mb-4">菜品一览</h1>

@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" >
 </head>
 <body>
+<jsp:include page="backToTopComponent.jsp" />
 <jsp:include page="custom_sidebar.jsp" />
 
 <div class="container mt-3">

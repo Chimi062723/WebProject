@@ -22,6 +22,7 @@ canteens: 所有食堂信息
   <link rel="stylesheet" href="css/table.css">
 </head>
 <body>
+<jsp:include page="backToTopComponent.jsp" />
 <jsp:include page="admin_sidebar.jsp"/>
 <div id="content">
   <h1>食堂信息管理</h1>

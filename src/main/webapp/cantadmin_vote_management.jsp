@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/table.css">
 </head>
 <body>
+<jsp:include page="backToTopComponent.jsp" />
 <jsp:include page="cantadmin_sidebar.jsp"/>
 <div id="main-content" class="clearfix">
     <form action="AddVote" method="post">

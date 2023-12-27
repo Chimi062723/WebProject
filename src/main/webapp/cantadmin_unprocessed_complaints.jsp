@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/table.css">
 </head>
 <body>
+<jsp:include page="backToTopComponent.jsp" />
 <div id="content">
     <h1>待处理投诉</h1>
     <a href="DashboardRefresh">返回</a>

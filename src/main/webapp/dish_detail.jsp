@@ -15,6 +15,7 @@
     <script src="js/uploadfile.js" defer></script>
 </head>
 <body>
+<jsp:include page="backToTopComponent.jsp" />
 <div class="container">
     <a href="GetPostServlet" class="back-button">返回</a>
     <div class="dish-detail" style="flex:2; flex-grow: 1">

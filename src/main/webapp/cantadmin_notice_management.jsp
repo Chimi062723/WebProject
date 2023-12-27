@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/edit_canteen.css">
 </head>
 <body>
+<jsp:include page="backToTopComponent.jsp" />
 <jsp:include page="cantadmin_sidebar.jsp" />
 <div id="main-content" class="clearfix">
     <h2>食堂公告管理</h2>

@@ -20,6 +20,7 @@
     </style>
 </head>
 <body>
+<jsp:include page="backToTopComponent.jsp" />
 <jsp:include page="cantadmin_sidebar.jsp" />
 <div id="main-content">
     <h1>欢迎, 食堂管理员 ${sessionScope.username}</h1>

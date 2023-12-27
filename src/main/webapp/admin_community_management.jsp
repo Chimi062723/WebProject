@@ -22,6 +22,7 @@
     </style>
 </head>
 <body>
+<jsp:include page="backToTopComponent.jsp" />
 <jsp:include page="admin_sidebar.jsp"/>
 <div id="content">
     <h1>交流社区管理</h1>

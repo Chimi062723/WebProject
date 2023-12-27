@@ -20,6 +20,7 @@
     <script src="js/uploadfile.js" defer></script>
 </head>
 <body>
+<jsp:include page="backToTopComponent.jsp" />
 <jsp:include page="custom_sidebar.jsp"/>
 <div class="container">
     <h1 class="text-center mt-4 mb-4">社区论坛</h1>

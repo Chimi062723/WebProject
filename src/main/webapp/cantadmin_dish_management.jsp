@@ -20,6 +20,7 @@
     </style>
 </head>
 <body>
+<jsp:include page="backToTopComponent.jsp" />
 <jsp:include page="cantadmin_sidebar.jsp" />
 <div id="main-content" class="clearfix">
     <div class="content-header">

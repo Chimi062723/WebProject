@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/table.css">
 </head>
 <body>
+<jsp:include page="backToTopComponent.jsp" />
 <div id="content">
     <a href="VoteInfoRefresh" class="back-button">返回</a>
     <h1>投票结果统计</h1>
