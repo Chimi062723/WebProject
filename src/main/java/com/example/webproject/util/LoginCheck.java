@@ -34,11 +34,9 @@ public class LoginCheck implements Filter{
         boolean check =check(urls,requestURI);
         if(check){
             filterChain.doFilter(request,response);
-            return;
         }
         if(request.getSession().getAttribute("username")!=null){
             filterChain.doFilter(request, response);
-            return;
         }else{
             request.setAttribute("msg","请先登录");
             request.getRequestDispatcher("/login.jsp").forward(request,response);
