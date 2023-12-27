@@ -21,7 +21,8 @@ public class LoginCheck implements Filter{
                 "/webweb_war/login.jsp",
                 "/webweb_war/forgot_password.jsp",
                 "/webweb_war/register.jsp",
-                "/webweb_war/"
+                "/webweb_war/",
+                "/webweb_war/login",
         };
         boolean check =check(urls,requestURI);
         if(check){
