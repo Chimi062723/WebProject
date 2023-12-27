@@ -38,7 +38,7 @@ public class EditCanteen extends HttpServlet {
         if(role.equals("sys_admin")){
             HttpSession session = request.getSession();
             session.setAttribute("canteens",adminAction.getAllCanteen());
-            response.sendRedirect("GetPostServlet");
+            response.sendRedirect("GetCanteens");
         }else if(role.equals("res_admin")){
             response.sendRedirect("CanteenInfoRefresh?action=cantInfo");
         }else if(role.equals("notice")){

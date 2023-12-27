@@ -7,11 +7,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class JDBCHelper {
-    private static final String URL = "jdbc:mysql://119.3.158.9:3306/web_restaurant";
+    final static String HOST1="10.100.164.35";
+    final static String HOST2="119.3.158.9";
+    private static final String URL = "jdbc:mysql://"+HOST2+":3306/web_restaurant";
     private static final String USER = "webteam";
     private static final String PASSWORD = "webweb";
     private static final Logger LOGGER = Logger.getLogger(JDBCHelper.class.getName());
-
+;
     public static Connection getConnection() {
         Connection connection = null;
         try {

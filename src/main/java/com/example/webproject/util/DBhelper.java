@@ -12,9 +12,12 @@ import java.util.List;
 
 public class DBhelper {
     public Connection dbconn = null;
+    final static String HOST1="10.100.164.35";
+    final static String HOST2="119.3.158.9";
+
     public void init() {
         String driver = "com.mysql.cj.jdbc.Driver";
-        String url="jdbc:mysql://119.3.158.9:3306/web_restaurant?useSSL=false&serverTimezone=Asia/Shanghai";
+        String url="jdbc:mysql://"+HOST2+":3306/web_restaurant?useSSL=false&serverTimezone=Asia/Shanghai";
         String user="webteam";
         String Password="webweb";
         try {
