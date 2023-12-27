@@ -37,13 +37,12 @@
         </div>
         <button type="submit" class="btn btn-primary">发表</button>
     </form>
-    <form action="upFile" method="post" enctype="multipart/form-data" target="if" style="display: flex">
-        <label for="picture">
-            选择需要上传的图片
-        </label>
-        <input  id="picture" type="file" accept="image/*" name="picture" style="width: auto">
-        <button id="submit" onclick="picsubmit()">提交图片</button>
+    <form action="upFile" method="post" enctype="multipart/form-data" target="if" style="display: flex; align-items: center;">
+        <label for="picture" style="margin-right: 10px;">选择需要上传的图片</label>
+        <input id="picture" type="file" accept="image/*" name="picture" style="width: auto; margin-right: 10px;">
+        <button id="submit" onclick="picsubmit()" class="btn btn-primary btn-sm">提交图片</button>
     </form>
+
     <iframe name="if" style="display: none">
     </iframe>
     <form action="SearchForumServlet" method="get" class="mt-4">
@@ -57,11 +56,16 @@
 
     <form action="GetPostServlet" method="post">
         <input type="hidden" name="action" id="actionField" value="">
-        <div class="mb-3">
-            <button type="submit" class="btn btn-secondary" onclick="setAction('time')">按时间排序</button>
-            <button type="submit" class="btn btn-secondary" onclick="setAction('popularity')">按热度排序</button>
+        <div class="row">
+            <div class="col">
+                <button type="submit" class="btn btn-sm btn-secondary" onclick="setAction('time')">按时间排序</button>
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-sm btn-secondary" onclick="setAction('popularity')">按热度排序</button>
+            </div>
         </div>
     </form>
+
 
     <div class="message-list">
         <c:if test="${requestScope.message!=null}">
@@ -101,7 +105,7 @@
                             </label>
                             <input type="hidden" name="postID" value="${post.postID}"/>
                             <a href="#" class="like-link" data-liked="false">点赞</a>
-                            <button type="submit" class="comment-submit">评论</button>
+                            <button type="submit" class="comment-submit  ">评论</button>
                         </form>
                     </div>
                 </div>
