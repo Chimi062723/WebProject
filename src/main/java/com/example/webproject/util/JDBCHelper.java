@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 public class JDBCHelper {
     final static String HOST1="10.100.164.35";
     final static String HOST2="119.3.158.9";
-    private static final String URL = "jdbc:mysql://"+HOST2+":3306/web_restaurant";
+    private static final String URL = "jdbc:mysql://"+HOST1+":3306/web_restaurant";
     private static final String USER = "webteam";
     private static final String PASSWORD = "webweb";
     private static final Logger LOGGER = Logger.getLogger(JDBCHelper.class.getName());
