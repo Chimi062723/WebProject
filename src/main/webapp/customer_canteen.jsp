@@ -44,6 +44,7 @@
                     <th>名称</th>
                     <th>位置</th>
                     <th>开放时间</th>
+                    <th>公告</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -53,6 +54,7 @@
                         <td>${canteen.name}</td>
                         <td>${canteen.location}</td>
                         <td>${canteen.openTime}</td>
+                        <td>${canteen.notice}</td>
                     </tr>
                 </c:forEach>
                 </tbody>

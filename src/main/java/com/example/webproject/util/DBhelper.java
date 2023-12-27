@@ -17,7 +17,7 @@ public class DBhelper {
 
     public void init() {
         String driver = "com.mysql.cj.jdbc.Driver";
-        String url="jdbc:mysql://"+HOST2+":3306/web_restaurant?useSSL=false&serverTimezone=Asia/Shanghai";
+        String url="jdbc:mysql://"+HOST1+":3306/web_restaurant?useSSL=false&serverTimezone=Asia/Shanghai";
         String user="webteam";
         String Password="webweb";
         try {
@@ -337,6 +337,23 @@ public class DBhelper {
                 dishList.add(dish);
             }
             return dishList;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<String> getFilterWord(Connection dbconn) {
+        String sql = "SELECT * FROM FilterWords";
+        PreparedStatement ps = null;
+        try {
+            ps = dbconn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            List<String> wordList = new java.util.ArrayList<>();
+            while (rs.next()) {
+                wordList.add(rs.getString("Word"));
+            }
+            return wordList;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
