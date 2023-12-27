@@ -21,6 +21,7 @@ public class GetPostServlet extends HttpServlet {
             session.setAttribute("posts", postDAO.getMostLikesThreePosts());
             response.sendRedirect("customer_dashboard.jsp");
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
     }
