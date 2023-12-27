@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-<link rel="icon" type="image/png" href="res/logo_icon.png">
+    <link rel="icon" type="image/png" href="res/logo_icon.png">
     <title>菜品一览</title>
     <link rel="stylesheet" href="css/customer_menu.css" />
     <link rel="stylesheet" href="https://cdn.staticfile.org/foundation/5.5.3/css/foundation.min.css">
