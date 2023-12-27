@@ -18,7 +18,7 @@ public class ComplaintInfoRefresh extends HttpServlet {
         Canteen canteen = (Canteen) session.getAttribute("canteen");
         ComplaintDAO complaintDAO = new ComplaintDAO();
         try {
-            request.setAttribute("complaints", complaintDAO.getUserComplaints(canteen.getCanteenID()));
+            request.setAttribute("complaints", complaintDAO.getComplaints(canteen.getCanteenID()));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
