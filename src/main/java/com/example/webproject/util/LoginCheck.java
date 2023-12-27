@@ -25,7 +25,11 @@ public class LoginCheck implements Filter{
                 "/webweb_war/login",
                 "/webweb_war/forgotPassword",
                 "/webweb_war/register",
-                "/webweb_war/logout"
+                "/webweb_war/logout",
+                "/webweb_war/res/logo.png",
+                "/webweb_war/res/logo_icon.png",
+                "/webweb_war/res/background.png",
+                "/webweb_war/css/login_register_forgetpassword.css"
         };
         boolean check =check(urls,requestURI);
         if(check){

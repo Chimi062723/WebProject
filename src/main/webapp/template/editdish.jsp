@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <html>
 <head>
-<link rel="icon" type="image/png" href="res/logo_icon.png">
+    <link rel="icon" type="image/png" href="res/logo_icon.png">
     <title>编辑菜品</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cantadmin_menu.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/dish.css">
