@@ -128,7 +128,7 @@ public class DishDAO {
         }
     }
     public void updateDish2(Dish dish) throws SQLException {
-        String sql = "UPDATE Dishes SET Name = ?, CuisineType = ?, Price = ?, canteenID = ?, ImageURL = ?, PromotionPrice = ? WHERE DishID = ?";
+        String sql = "UPDATE Dishes SET Name = ?, CuisineType = ?, Price = ?, canteenID = ?, ImageURL = ?, PromotionPrice = ?,ImageURL=? WHERE DishID = ?";
         try (Connection conn = JDBCHelper.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, dish.getName());
@@ -137,7 +137,8 @@ public class DishDAO {
             ps.setInt(4, dish.getCanteenID());
             ps.setString(5, dish.getImage());
             ps.setDouble(6, dish.getPromotionPrice());
-            ps.setInt(7, dish.getDishID());
+            ps.setString(7,dish.getImage());
+            ps.setInt(8, dish.getDishID());
             ps.executeUpdate();
         }
     }
