@@ -344,7 +344,7 @@ public class DBhelper {
     }
 
     public List<String> getFilterWord(Connection dbconn) {
-        String sql = "SELECT * FROM FilterWords";
+        String sql = "SELECT * FROM word";
         PreparedStatement ps = null;
         try {
             ps = dbconn.prepareStatement(sql);
