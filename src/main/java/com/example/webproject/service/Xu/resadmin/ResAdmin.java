@@ -8,5 +8,5 @@ public interface ResAdmin {
     public List<Dish> getAllDishesByCanteenID(int canteenID);
 
     public List<Dish> getAllDishesByCanteenIDWithSearch(int canteenID, String text);
-    public void editDishByID(int id, String name, double price, double promptprice, String type);
+    public void editDishByID(int id, String name, double price, double promptprice, String type,String picture);
 }

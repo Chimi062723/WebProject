@@ -6,6 +6,7 @@ import com.example.webproject.model.Dish;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 public class ResAdminImpl implements ResAdmin{
@@ -32,13 +33,14 @@ public class ResAdminImpl implements ResAdmin{
         return dishes;
     }
 
-    public void editDishByID(int id, String name, double price, double promptprice, String type) {
+    public void editDishByID(int id, String name, double price, double promptprice, String type,String picture) {
         dishDAO = new DishDAO();
         Dish dish = getDishByID(id);
         dish.setName(name);
         dish.setPrice(price);
         dish.setPromotionPrice(promptprice);
         dish.setType(type);
+        dish.setImage(picture);
         try {
             dishDAO.updateDish2(dish);
         } catch (SQLException e) {
@@ -57,7 +59,7 @@ public class ResAdminImpl implements ResAdmin{
         return dish;
     }
 
-    public void addDish(String name, double price, double promptprice, String type, int canteenID) {
+    public void addDish(String name, double price, double promptprice, String type, int canteenID, String picture) {
         dishDAO = new DishDAO();
         try {
             if(dishDAO.getDishIDByName(name)==0){
@@ -68,6 +70,9 @@ public class ResAdminImpl implements ResAdmin{
                         type,
                         canteenID
                 );
+                if(!Objects.equals(picture, "")){
+                    dish.setImage(picture);
+                }
                 dishDAO.addDish2(dish);
             }
         } catch (SQLException e) {

@@ -13,6 +13,13 @@
     <title>添加菜品</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cantadmin_menu.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/dish.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/uploadfile.js" defer></script>
+    <style>
+        .show{
+            display: none;
+        }
+    </style>
 </head>
 <body>
 <div class="dish-card">
@@ -21,6 +28,7 @@
     </c:if>
     <div class="dish-info">
         <form action="AddDish" method="post">
+            <input type="hidden" name="picture" id="url">
             <h3>菜品名称：
                 <label>
                     <input type="text" name="name" value="">
@@ -43,6 +51,16 @@
             </p>
             <input type="submit" class="button" value="添加菜品">
         </form>
+        <form action="upFile" method="post" enctype="multipart/form-data" target="if">
+            <label for="picture" style="display: none">
+                选择需要上传的图片
+            </label>
+            <input id="picture" type="file" accept="image/*" name="picture">
+            <button id="submit" onclick="picsubmit()">提交图片</button>
+        </form>
+        <iframe name="if" style="display: none">
+        </iframe>
+        <img class="show" id="imageview" src="" alt="图片将会在这里显示" style="width:300px"/>
     </div>
 </div>
 </body>

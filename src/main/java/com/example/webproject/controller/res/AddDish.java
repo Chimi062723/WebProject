@@ -23,12 +23,13 @@ public class AddDish extends HttpServlet {
         String name = request.getParameter("name");
         double price = Double.parseDouble(request.getParameter("price"));
         double promptprice = Double.parseDouble(request.getParameter("promptprice"));
+        String picture = request.getParameter("picture");
         String type = request.getParameter("type");
         HttpSession session = request.getSession();
         Canteen canteen = (Canteen) session.getAttribute("canteen");
         int canteenID = canteen.getCanteenID();
         ResAdminImpl resAdmin = new ResAdminImpl();
-        resAdmin.addDish(name,price,promptprice,type,canteenID);
+        resAdmin.addDish(name,price,promptprice,type,canteenID,picture);
         request.getRequestDispatcher("cantadmin_dashboard.jsp").forward(request,response);
     }
 }
