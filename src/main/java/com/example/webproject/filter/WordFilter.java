@@ -1,5 +1,6 @@
-package com.example.webproject.util;
+package com.example.webproject.filter;
 
+import com.example.webproject.wrapper.MyRequest;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
