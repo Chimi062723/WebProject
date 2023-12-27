@@ -12,6 +12,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="icon" type="image/png" href="res/logo_icon.png">
     <title>交流社区管理</title>
     <link rel="stylesheet" href="css/admin_menu.css">
     <link rel="stylesheet" href="css/table.css">

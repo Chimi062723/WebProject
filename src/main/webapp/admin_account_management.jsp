@@ -15,6 +15,7 @@
     <title>账号管理</title>
     <link rel="stylesheet" href="css/admin_menu.css">
     <link rel="stylesheet" href="css/table.css">
+    <link rel="icon" type="image/png" href="res/logo_icon.png">
     <style>
     </style>
 </head>

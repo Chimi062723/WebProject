@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
+<link rel="icon" type="image/png" href="res/logo_icon.png">
     <title>菜品详情</title>
     <link rel="stylesheet" href="css/dishdetail.css"/>
     <link rel="stylesheet" href="css/add_pic.css"/>

@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" type="image/png" href="res/logo_icon.png">
     <title>评价详情</title>
     <!-- 在这里添加CSS和JavaScript的链接 -->
 </head>

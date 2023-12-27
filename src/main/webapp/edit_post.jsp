@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+<link rel="icon" type="image/png" href="res/logo_icon.png">
     <title>编辑帖子信息</title>
     <link rel="stylesheet" href="css/edit_post.css">
 </head>

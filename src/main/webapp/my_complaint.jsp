@@ -10,6 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" type="image/png" href="res/logo_icon.png">
     <meta charset="UTF-8">
     <title>我的投诉</title>
     <link rel="stylesheet" href="css/my_complaint.css">

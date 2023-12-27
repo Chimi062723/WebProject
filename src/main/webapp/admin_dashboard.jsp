@@ -14,6 +14,7 @@ communityPosts: 所有社区帖子信息
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="icon" type="image/png" href="res/logo_icon.png">
     <title>系统管理员控制台</title>
     <link rel="stylesheet" href="css/admin_menu.css">
 </head>

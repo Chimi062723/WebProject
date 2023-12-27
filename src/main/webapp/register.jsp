@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" type="image/png" href="res/logo_icon.png">
   <title>注册 - USST食堂管理系统</title>
   <link rel="stylesheet" href="css/login_register_forgetpassword.css">
 </head>

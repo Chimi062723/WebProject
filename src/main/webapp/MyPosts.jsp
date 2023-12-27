@@ -9,6 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
+<link rel="icon" type="image/png" href="res/logo_icon.png"><link rel="icon" type="image/png" href="res/logo_icon.png">
     <title>${requestScope.username}的帖子</title>
     <link rel="stylesheet" href="css/customer_menu.css"/>
     <link rel="stylesheet" href="css/myDish.css">

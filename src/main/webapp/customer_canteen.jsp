@@ -13,6 +13,7 @@
 
 <html>
 <head>
+<link rel="icon" type="image/png" href="res/logo_icon.png">
     <title>Title</title>
     <link rel="stylesheet" href="css/customer_menu.css"/>
     <link rel="stylesheet" href="css/canteen_table.css"/>
