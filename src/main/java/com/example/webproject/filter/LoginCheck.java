@@ -1,4 +1,4 @@
-package com.example.webproject.util;
+package com.example.webproject.filter;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,6 +22,7 @@ public class LoginCheck implements Filter{
                 "/webweb_war/forgot_password.jsp",
                 "/webweb_war/register.jsp",
                 "/webweb_war/",
+                "login.jsp",
                 "/webweb_war/login",
                 "/webweb_war/forgotPassword",
                 "/webweb_war/register",
@@ -35,6 +36,7 @@ public class LoginCheck implements Filter{
         boolean check =check(urls,requestURI);
         if(check){
             filterChain.doFilter(request,response);
+            return;
         }
         if(request.getSession().getAttribute("username")!=null){
             filterChain.doFilter(request, response);

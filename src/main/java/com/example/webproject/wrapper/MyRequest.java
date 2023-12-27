@@ -1,5 +1,6 @@
-package com.example.webproject.util;
+package com.example.webproject.wrapper;
 
+import com.example.webproject.util.DBhelper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletRequestWrapper;
 
