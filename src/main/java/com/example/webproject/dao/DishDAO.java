@@ -77,6 +77,7 @@ public class DishDAO {
                     dish.setName(rs.getString("Name"));
                     dish.setType(rs.getString("CuisineType"));
                     dish.setPrice(rs.getDouble("Price"));
+                    dish.setPromotionPrice(rs.getDouble("PromotionPrice"));
                     dish.setCanteenID(rs.getInt("canteenID"));
                     dish.setImage(rs.getString("ImageURL"));
                     return dish;

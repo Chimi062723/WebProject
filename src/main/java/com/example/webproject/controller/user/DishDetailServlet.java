@@ -33,27 +33,10 @@ public class DishDetailServlet extends HttpServlet {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-            if (dish != null) {
-//            if (dish != null&&reviews!=null) {
-                request.setAttribute("dish", dish);
-                request.setAttribute("reviews", reviews);
-                request.getRequestDispatcher("dish_detail.jsp").forward(request, response);
-            }else{
-                if(dish==null&&reviews!=null){
-                    request.setAttribute("dish","未评分");
-                    request.setAttribute("reviews", reviews);
-                }
-                else if(dish!=null&&reviews==null){
-                    request.setAttribute("dish", dish);
-                    request.setAttribute("reviews","暂无评论");
-                }
-                else{
-                    request.setAttribute("dish","未评分");
-                    request.setAttribute("reviews","暂无评论");
-                }
-                request.getRequestDispatcher("/dish_detail.jsp").forward(request, response);
-            }
 
+            request.setAttribute("dish", dish);
+            request.setAttribute("reviews", reviews);
+            request.getRequestDispatcher("dish_detail.jsp").forward(request, response);
         }
     }
 

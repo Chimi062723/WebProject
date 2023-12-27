@@ -28,7 +28,7 @@
     </c:if>
     <div class="dish-info">
         <form action="EditDish" method="post">
-            <input type="hidden" name="picture" id="url">
+            <input type="hidden" name="picture" id="url" value="${requestScope.dish.image}">
             <input type="hidden" name="dishID" value="${requestScope.dish.dishID}">
             <h3>
                 <label>
