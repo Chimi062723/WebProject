@@ -22,7 +22,7 @@ public class register  extends HttpServlet {
         db.init();
         try {
             if(db.isAccountExists(db.dbconn, username)){
-                response.sendRedirect("login.jsp?error=Account_is_Exists");
+                response.sendRedirect("register.jsp?error=Account_is_Exists");
             }
             else if(db.registerAccount(db.dbconn, username, password,email)){
                 String role=null;
