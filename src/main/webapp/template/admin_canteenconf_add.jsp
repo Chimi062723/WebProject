@@ -12,7 +12,7 @@
     <title>选择饭店管理员需要管理的餐厅</title>
 </head>
 <body>
-<jsp:include page="backToTopComponent.jsp" />
+
     <div>
         <label>
             <input type="text" name="resadmin" readonly value="${requestScope.name}">
