@@ -19,7 +19,7 @@ public class LoginCheck implements Filter{
         //不需要请求处理的请求路径
         String [] urls=new String[]{
                 "/webweb_war/login.jsp",
-                "/webweb_war/login",
+                "/webweb_war/forgot_password.jsp",
                 "/webweb_war/register.jsp",
                 "/webweb_war/"
         };

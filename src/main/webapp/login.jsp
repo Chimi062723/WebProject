@@ -36,6 +36,11 @@
     <%
         }
     %>
+    <% if(request.getAttribute("msg") != null) { %>
+    <script>
+        alert("${msg}");
+    </script>
+    <% } %>
 </div>
 </body>
 </html>
