@@ -33,7 +33,6 @@
     </ul>
     <div class="tabs-content">
         <div class="content active" id="home">
-            <p>列表/表格显示所有菜品</p>
         </div>
         <div class="content" id="menu1"> <!-- 菜系选择 -->
             <form id="cuisine-form" action="customers_dish" method="get">
@@ -47,7 +46,6 @@
             </form>
         </div>
         <div class="content" id="menu2">
-            <p>呈现不同食堂的选项，点击之后只显示该食堂的菜品</p>
             <form action="customers_dish" id="canteen-form"  method="get">
                 <label for="canteen-select">选择食堂: </label>
                 <select class="form-select"   id="canteen-select" name="canteenName">
@@ -59,7 +57,6 @@
             </form>
         </div>
         <div class="content" id="menu3">
-            <p>提供降序和升序按钮，点击之后按顺序显示</p>
             <form action="customers_dish" id="order-form"  method="get">
                 <input type="submit" name="ascending" value="升序">
                 <input type="submit" name="descending" value="降序">

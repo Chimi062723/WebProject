@@ -12,33 +12,7 @@ public class MyRequest extends HttpServletRequestWrapper {
     public MyRequest(HttpServletRequest request) {
         super(request);
     }
-//    public String getParameter(String name) {
-//        if ("title".equals(name)) {
-//            String value = super.getParameter(name);
-//            return filterInput(value);
-//        }else if("content".equals(name)){
-//            String value = super.getParameter(name);
-//            return filterInput(value);
-//        }else if("username".equals(name)){
-//            String value = super.getParameter(name);
-//            return filterInput(value);
-//        }else if("comment".equals(name)){
-//            String value = super.getParameter(name);
-//            return filterInput(value);
-//        }else {
-//            return super.getParameter(name);
-//        }
-//
-//
-//    }
-//    public String getParameter(String name) {
-//        String value = super.getParameter(name);
-//        if (value != null) {
-//            return filterInput(value);
-//        }
-//        return value;
 
-//    }
 @Override
 public String getParameter(String name) {
     String value = super.getParameter(name);
