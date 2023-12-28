@@ -18,8 +18,8 @@ public class DBhelper {
     public void init() {
         String driver = "com.mysql.cj.jdbc.Driver";
         String url="jdbc:mysql://"+HOST1+":3306/web_restaurant?useSSL=false&serverTimezone=Asia/Shanghai";
-        String user="webteam";
-        String Password="webweb";
+        String user=System.getenv("DB_USER");
+        String Password=System.getenv("DB_PASSWORD");
         try {
             Class.forName(driver); // 加载驱动程序
             dbconn = java.sql.DriverManager.getConnection(url, user, Password);//创建连接对象
