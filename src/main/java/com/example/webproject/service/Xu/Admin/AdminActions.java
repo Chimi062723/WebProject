@@ -60,7 +60,8 @@ public interface AdminActions {
      * @author ChiMi
      * #Date 2023/12/21
      */
-    void editAccount(String username, String email, String role);
+
+    void editAccount(String username, String email, String role, Integer userID);
 
     /**
      * 删除指定用户

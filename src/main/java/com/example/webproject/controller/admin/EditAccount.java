@@ -8,6 +8,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.util.Objects;
 
 @WebServlet(name = "EditAccount", value = "/EditAccount")
 public class EditAccount extends HttpServlet {
@@ -26,8 +27,9 @@ public class EditAccount extends HttpServlet {
         String email = request.getParameter("email");
         String role = request.getParameter("role");
         AdminActionImpl adminAction = new AdminActionImpl();
-        int userID = adminAction.getAccountByUserName(username).getUserID();
-        if(request.getParameter("res")!=null){
+        HttpSession session = request.getSession();
+        int userID = Integer.parseInt(request.getParameter("userID"));
+        if(request.getParameter("res")!=null && !Objects.equals(request.getParameter("res"), "")){
             int canteenID = Integer.parseInt(request.getParameter("res"));
             Canteen canteen = adminAction.getCanteen(canteenID);
             if(canteen!=null){
@@ -43,8 +45,7 @@ public class EditAccount extends HttpServlet {
         }else {
             role="normal_user";
         }
-        adminAction.editAccount(username,email,role);
-        HttpSession session= request.getSession();
+        adminAction.editAccount(username,email,role,userID);
         session.setAttribute("users",adminAction.getAllAccount());
         request.getRequestDispatcher("admin_account_management.jsp").forward(request,response);
     }

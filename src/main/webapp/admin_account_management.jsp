@@ -69,7 +69,7 @@
                     </select>
                 </label></td>
                 <td>
-                    <label for="canteenID">管理的食堂名称</label>
+                    <label for="canteenID">管理的食堂ID:</label>
                     <input id="canteenID" type="number" name="canteenID" placeholder="如果是食堂管理员，需要在这里输入管理的食堂名字">
                 </td>
                 <td><input type="submit" value="提交"></td>

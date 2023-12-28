@@ -18,7 +18,7 @@
     <h2>编辑帖子信息</h2>
     <!-- 假设已经获取了用户对象 user -->
     <form action="EditPost" method="post">
-        <input type="hidden" name="postID" value="${requestScope.post.userID}">
+        <input type="hidden" name="postID" value="${requestScope.post.postID}">
         <label>
             帖子标题:
             <input type="text" name="title" value="${requestScope.post.title}">

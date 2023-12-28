@@ -12,6 +12,7 @@ public interface UserDaoImpl{
     void addUser(User user) throws SQLException;
 
     void updateUser(String username, String email, String role) throws SQLException;
+    void updateUser(String username, String email, String role,int userID) throws SQLException;
 
     void deleteUser(String username) throws SQLException;
 

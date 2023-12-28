@@ -18,6 +18,7 @@
     <h2>编辑用户信息</h2>
     <!-- 假设已经获取了用户对象 user -->
     <form action="EditAccount" method="post">
+        <input type="hidden" name="userID" value="${requestScope.user.userID}">
         <label>
             用户名:
             <input type="text" name="username" value="${requestScope.user.userName}">

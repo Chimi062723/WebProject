@@ -1,5 +1,6 @@
 package com.example.webproject.controller.admin;
 
+import com.example.webproject.dao.DishDAO;
 import com.example.webproject.model.Review;
 import com.example.webproject.model.User;
 import com.example.webproject.service.Xu.Admin.AdminActionImpl;
@@ -8,6 +9,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -33,6 +35,8 @@ public class EditReview extends HttpServlet {
         int rating = Integer.parseInt(request.getParameter("rating"));
         String user = request.getParameter("sendername");
         String dish = request.getParameter("dishname");
+        String picture = request.getParameter("picture");
+        int dishID = Integer.parseInt(request.getParameter("dishID"));
         String comment = request.getParameter("comment");
         String reply = request.getParameter("reply");
         String createdate = request.getParameter("createDate");
@@ -44,12 +48,12 @@ public class EditReview extends HttpServlet {
             Review review = new Review(
                     reviewID,
                     adminAction.getAccountByUserName(user).getUserID(),
-                    adminAction.getDishIDByName(dish),
+                    dishID,
                     rating,
                     comment,
                     reply,
                     timestamp,
-                    ""
+                    picture
             );
             adminAction.editReview(review);
             HttpSession session = request.getSession();

@@ -111,6 +111,13 @@ public class AdminActionImpl implements AdminActions{
      * @param role     角色
      */
     @Override
+    public void editAccount(String username, String email, String role, Integer userID) {
+        try{
+            userDAO.updateUser(username,email,role,userID);
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
     public void editAccount(String username, String email, String role) {
         try{
             userDAO.updateUser(username,email,role);
@@ -118,7 +125,6 @@ public class AdminActionImpl implements AdminActions{
             throw new RuntimeException(e);
         }
     }
-
     /**
      * @param user 需要删除的用户
      */

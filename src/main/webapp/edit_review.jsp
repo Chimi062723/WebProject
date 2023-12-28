@@ -35,6 +35,7 @@
         <label>
             评价菜品:
             <input type="text" name="dishname" value="${requestScope.dish.name}">
+            <input type="hidden" name="dishID" value="${requestScope.dish.dishID}">
         </label>
         <br>
         <label>
@@ -52,6 +53,7 @@
             <input type="text" name="createDate" value="${requestScope.review.createDate}" placeholder="修改格式需如：2023-02-02 01:00:00">
         </label>
         <br>
+        <input type="hidden" name="picture" value="${requestScope.review.picture}">
         <input type="submit" value="更新">
     </form>
     <a href="javascript:history.back()">返回</a>

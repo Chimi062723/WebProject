@@ -22,13 +22,16 @@ public class AddCanteen extends HttpServlet {
         String address = request.getParameter("address");
         String time = request.getParameter("time");
         HttpSession session = request.getSession();
-        int managerID = Integer.parseInt(request.getParameter("managerID"));
+        int managerID = 1;
+        if (request.getParameter("managerID") != null && !request.getParameter("managerID").isEmpty()) {
+            managerID = Integer.parseInt(request.getParameter("managerID"));
+        }
         AdminActionImpl adminAction = new AdminActionImpl();
         String managername = adminAction.getAccount(managerID).getUserName();
-        Canteen canteen = adminAction.canteenEncapsulation(-1,name,address,time,managername,"none");
+        Canteen canteen = adminAction.canteenEncapsulation(-1, name, address, time, managername, "none");
         adminAction.addCanteen(canteen);
         List<Canteen> canteens = adminAction.getAllCanteen();
-        session.setAttribute("canteens",canteens);
-        request.getRequestDispatcher("admin_canteen_management.jsp").forward(request,response);
+        session.setAttribute("canteens", canteens);
+        request.getRequestDispatcher("admin_canteen_management.jsp").forward(request, response);
     }
 }

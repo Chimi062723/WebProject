@@ -13,7 +13,8 @@ public class UserDAO implements UserDaoImpl {
     private static final String GET_USER_BY_USERNAME_SQL = "SELECT * FROM Users WHERE UserName = ?";
     private static final String GET_USER_BY_USERID_SQL = "SELECT * FROM Users WHERE UserID = ?";
     private static final String ADD_USER_SQL = "INSERT INTO Users (UserName,Password,Email, Role) VALUES (?,? ,?, ?)";
-    private static final String UPDATE_USER_SQL = "UPDATE Users SET Email= ?, Role = ? WHERE UserName = ?";
+    private static final String UPDATE_USER_SQL = "UPDATE Users SET Email= ?, Role = ? ,UserName=? WHERE UserID = ?";
+    private static final String UPDATE_USER_SQL_1 = "UPDATE Users SET Email= ?, Role = ?  WHERE UserName=?";
     private static final String DELETE_USER_SQL = "DELETE FROM Users WHERE UserName = ?";
 
     @Override
@@ -93,12 +94,24 @@ public User getUserByID(int id) {
     }
 
     @Override
-    public void updateUser(String username,String email,String role) throws SQLException{
+    public void updateUser(String username, String email, String role, int userID) throws SQLException{
         Connection connection = JDBCHelper.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER_SQL);
-        preparedStatement.setString(3, username);
+
         preparedStatement.setString(1, email);
         preparedStatement.setString(2, role);
+        preparedStatement.setString(3, username);
+        preparedStatement.setInt(4,userID);
+        preparedStatement.executeUpdate();
+
+    }
+    public void updateUser(String username,String email,String role) throws SQLException{
+        Connection connection = JDBCHelper.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER_SQL_1);
+
+        preparedStatement.setString(1, email);
+        preparedStatement.setString(2, role);
+        preparedStatement.setString(3, username);
         preparedStatement.executeUpdate();
 
     }
