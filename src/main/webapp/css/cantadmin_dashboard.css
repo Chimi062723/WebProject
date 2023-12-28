@@ -1,0 +1,40 @@
+#main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 20px;
+}
+
+#main-content h1 {
+    font-size: 24px; /* 较大的标题字体 */
+    margin-bottom: 20px; /* 标题和内容的间距 */
+}
+
+#main-content div {
+    margin-bottom: 15px; /* 每个区块的间距 */
+}
+
+#main-content p {
+    font-size: 16px; /* 文本字体大小 */
+    line-height: 1.5; /* 行高 */
+    margin-bottom: 10px; /* 文本和按钮的间距 */
+}
+
+button {
+    background-color: #4CAF50; /* 按钮颜色 */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049; /* 按钮悬停效果 */
+}
+
+img {
+    border: 1px solid #ddd; /* 图片边框 */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* 图片阴影 */
+    border-radius: 5px; /* 图片圆角 */
+}

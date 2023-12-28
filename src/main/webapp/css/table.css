@@ -1,3 +1,6 @@
+body{
+    display: flex;
+}
 /* Styles for tables */
 table {
     width: 100%; /* Make the table take the full width of the content div */

@@ -9,7 +9,7 @@
 <html>
 <head>
 <link rel="icon" type="image/png" href="res/logo_icon.png">
-    <title>Title</title>
+    <title>公告管理</title>
     <link rel="stylesheet" href="css/cantadmin_menu.css">
     <link rel="stylesheet" href="css/notice.css">
     <link rel="stylesheet" href="css/edit_canteen.css">

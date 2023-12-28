@@ -10,7 +10,7 @@
 <html>
 <head>
 <link rel="icon" type="image/png" href="res/logo_icon.png">
-    <title>Title</title>
+    <title>投票与收集</title>
     <link rel="stylesheet" href="css/cantadmin_menu.css">
     <link rel="stylesheet" href="css/table.css">
 </head>

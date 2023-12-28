@@ -1,40 +1,32 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 韶光善良君
-  Date: 2023/12/19
-  Time: 0:41
-  To change this template use File | Settings | File Templates.
-    需要传入的变量：
-    dishes: 所有菜品信息
-
---%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-<link rel="icon" type="image/png" href="res/logo_icon.png">
+    <link rel="icon" type="image/png" href="res/logo_icon.png">
     <title>菜品维护</title>
     <link rel="stylesheet" href="css/cantadmin_menu.css">
-    <link rel="stylesheet" href="css/dish.css">
+    <link rel="stylesheet" href="css/edit_dish.css">
     <style>
     </style>
 </head>
 <body>
-<jsp:include page="backToTopComponent.jsp" />
-<jsp:include page="cantadmin_sidebar.jsp" />
-<div id="main-content" class="clearfix">
+<jsp:include page="backToTopComponent.jsp"/>
+<jsp:include page="cantadmin_sidebar.jsp"/>
+<div id="main-content">
     <div class="content-header">
         <form>
-            <label for="search">搜索栏:</label>
             <input id="search" name="search" type="text" placeholder="搜索菜品..." class="search-box">
         </form>
         <button class="button add-new"
                 onclick="search()"
-        >搜索菜品</button>
+        >搜索菜品
+        </button>
         <button class="button add-new"
                 onclick="addNew()"
-        >添加菜品</button>
+        >添加菜品
+        </button>
     </div>
+    <div class="content-body">
     <!-- Dynamic generation of dish cards -->
     <c:forEach var="dish" items="${requestScope.dishes}">
         <div class="dish-card">
@@ -54,16 +46,19 @@
             </div>
         </div>
     </c:forEach>
+    </div>
     <!-- Repeat for other dishes -->
 </div>
 </body>
+
 <script>
-    function search(){
+    function search() {
         const index = document.getElementById("search").value;
-        window.location.href="SearchDish?text="+index;
+        window.location.href = "SearchDish?text=" + index;
     }
-    function addNew(){
-        window.location.href="AddDish";
+
+    function addNew() {
+        window.location.href = "AddDish";
     }
 </script>
 </html>

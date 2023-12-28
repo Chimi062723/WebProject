@@ -1,0 +1,74 @@
+/* 顶部搜索栏和按钮样式 */
+.content-header {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 10px;
+}
+
+.search-box {
+    margin-right: 10px;
+    width: 100%; /* 调整宽度 */
+    padding: 8px 15px; /* 增加内边距 */
+    border: 2px solid #ccc; /* 轻微边框 */
+    border-radius: 20px; /* 圆角设计 */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* 轻微阴影 */
+    font-size: 16px; /* 调整字体大小 */
+    transition: all 0.3s ease; /* 平滑过渡效果 */
+    height: 40px; /* 设置高度 */
+    margin-top: 30px;
+}
+
+.search-box:hover, .search-box:focus {
+    border-color: #888; /* 悬停和焦点时边框颜色 */
+    outline: none; /* 移除焦点时的默认轮廓 */
+}
+
+
+.button {
+    padding: 8px 15px;
+    margin-left: 10px;
+    height: 40px; /* 设置高度与搜索框相匹配 */
+}
+
+/* 菜品卡片样式 */
+.content-body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 10px;
+}
+
+.dish-card {
+    width: calc(33.333% - 50px); /* 减少水平间距 */
+    margin-right: 15px; /* 调整右侧间距 */
+    margin-bottom: 15px; /* 调整底部间距 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dish-card img {
+    width: 80%;
+    margin-bottom: 15px;
+}
+
+.dish-info {
+    width: 100%;
+    text-align: center;
+}
+
+/* 响应式设计 */
+@media (max-width: 800px) {
+    .dish-card {
+        width: calc(50% - 15px); /* 调整为两列布局 */
+    }
+}
+
+@media (max-width: 500px) {
+    .dish-card {
+        width: 100%;
+    }
+}

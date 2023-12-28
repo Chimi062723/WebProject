@@ -1,0 +1,51 @@
+body {
+    font-family: Arial, sans-serif; /* 使用易读的字体 */
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.dish-card {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* 轻微阴影 */
+    padding: 20px;
+    max-width: 500px; /* 最大宽度限制 */
+    margin: auto; /* 居中显示 */
+}
+
+.dish-card img {
+    width: 100%; /* 图片宽度 */
+    height: auto; /* 自动高度 */
+    margin-bottom: 20px; /* 图片和表单间距 */
+}
+
+.dish-info h3, .dish-info p {
+    margin-bottom: 15px; /* 文字和输入框间距 */
+}
+
+input[type="text"], input[type="number"], input[type="file"] {
+    width: 100%; /* 输入框宽度 */
+    padding: 10px; /* 内边距 */
+    margin-bottom: 10px; /* 间距 */
+    border: 1px solid #ccc; /* 边框 */
+    border-radius: 5px; /* 圆角 */
+}
+
+.button {
+    background-color: #4CAF50; /* 按钮颜色 */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #45a049; /* 按钮悬停效果 */
+}
+
+/* 响应式调整 */
+@media (max-width: 600px) {
+    .dish-card {
+        padding: 10px;
+    }
+}

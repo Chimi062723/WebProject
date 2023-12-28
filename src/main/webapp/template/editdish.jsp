@@ -11,8 +11,7 @@
 <head>
     <link rel="icon" type="image/png" href="res/logo_icon.png">
     <title>编辑菜品</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cantadmin_menu.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/dish.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/add_dish.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/uploadfile.js" defer></script>
     <style>
@@ -27,6 +26,16 @@
         <img src="res/${requestScope.dish.image}" alt="Dish Name" style="width: 200px">
     </c:if>
     <div class="dish-info">
+        <form action="upFile" method="post" enctype="multipart/form-data" target="if">
+            <label for="picture">
+                选择需要上传的图片
+            </label>
+            <input id="picture" type="file" accept="image/*" name="picture">
+            <button id="submit" onclick="picsubmit()">提交图片</button>
+        </form>
+        <iframe name="if" style="display: none">
+        </iframe>
+        <img class="show" id="imageview" src="" alt="图片将会在这里显示" style="width:300px"/>
         <form action="EditDish" method="post">
             <input type="hidden" name="picture" id="url" value="${requestScope.dish.image}">
             <input type="hidden" name="dishID" value="${requestScope.dish.dishID}">
@@ -52,16 +61,6 @@
             </p>
             <input type="submit" class="button" value="提交修改">
         </form>
-        <form action="upFile" method="post" enctype="multipart/form-data" target="if">
-            <label for="picture">
-                选择需要上传的图片
-            </label>
-            <input id="picture" type="file" accept="image/*" name="picture">
-            <button id="submit" onclick="picsubmit()">提交图片</button>
-        </form>
-        <iframe name="if" style="display: none">
-        </iframe>
-        <img class="show" id="imageview" src="" alt="图片将会在这里显示" style="width:300px"/>
     </div>
 </div>
 </body>

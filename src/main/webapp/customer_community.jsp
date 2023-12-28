@@ -10,7 +10,7 @@
 <html>
 <head>
 <link rel="icon" type="image/png" href="res/logo_icon.png">
-    <title>Title</title>
+    <title>交流社区</title>
     <link rel="stylesheet" href="css/customer_menu.css"/>
     <link rel="stylesheet" href="https://cdn.staticfile.org/foundation/5.5.3/css/foundation.min.css">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" >

@@ -11,7 +11,7 @@
 <html>
 <head>
 <link rel="icon" type="image/png" href="res/logo_icon.png">
-    <title>Title</title>
+    <title>食堂信息维护</title>
     <link rel="stylesheet" href="css/cantadmin_menu.css">
     <link rel="stylesheet" href="css/edit_canteen.css">
 <body>

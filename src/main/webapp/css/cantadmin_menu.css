@@ -3,9 +3,9 @@ body, h1, p {
     margin: 0;
     padding: 0;
 }
+
 body {
     font-family: Arial, sans-serif;
-    display: flex;
     margin: 0;
     height: 100vh;
 }

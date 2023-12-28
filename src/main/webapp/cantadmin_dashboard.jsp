@@ -1,20 +1,10 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 韶光善良君
-  Date: 2023/12/18
-  Time: 16:45
-  To change this template use File | Settings | File Templates.
-  需要传入的变量：
-  - _username: 用户名_
-- _unreviews: 未审核的评价信息_
-- _uncomplaints: 未处理的投诉信息_
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
 <link rel="icon" type="image/png" href="res/logo_icon.png">
     <title>食堂管理员首页</title>
     <link rel="stylesheet" href="css/cantadmin_menu.css">
+    <link rel="stylesheet" href="css/cantadmin_dashboard.css">
     <style>
 
     </style>

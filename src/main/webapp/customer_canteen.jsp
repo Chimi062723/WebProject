@@ -14,7 +14,7 @@
 <html>
 <head>
 <link rel="icon" type="image/png" href="res/logo_icon.png">
-    <title>Title</title>
+    <title>食堂信息</title>
     <link rel="stylesheet" href="css/customer_menu.css"/>
     <link rel="stylesheet" href="css/canteen_table.css"/>
     <link rel="stylesheet" href="https://cdn.staticfile.org/foundation/5.5.3/css/foundation.min.css">
@@ -31,7 +31,7 @@
             <form action="customer_canteens">
                 <div class="input-group mb-3">
                     <input type="text" name="canteenName" class="form-control" placeholder="请输入食堂名称">
-                    <button class="btn btn-outline-secondary" type="submit">搜索</button>
+                    <button class="btn btn-outline-secondary" type="submit" style="margin-bottom: auto;margin-top: 0; ">搜索</button>
                 </div>
             </form>
         </div>
